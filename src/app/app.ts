@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Calendar } from './calendar/calendar';
+import { MoodView } from './mood-view/mood-view';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [Calendar, MoodView],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
