@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { Calendar } from './calendar/calendar';
 import { MoodView } from './mood-view/mood-view';
 
@@ -6,7 +6,8 @@ import { MoodView } from './mood-view/mood-view';
   selector: 'app-root',
   imports: [Calendar, MoodView],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class App {
   protected readonly title = signal('mood-tracker');
