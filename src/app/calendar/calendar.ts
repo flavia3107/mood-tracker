@@ -1,16 +1,14 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, input, model, output } from '@angular/core';
-import { provideNativeDateAdapter } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DAYS } from '../../shared/constants/constants';
 import { UtilsService } from '../../shared/services/utils';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-calendar',
-  imports: [MatDatepickerModule, DatePipe],
+  imports: [DatePipe, MatIconModule, NgClass],
   templateUrl: './calendar.html',
   styleUrl: './calendar.scss',
-  providers: [provideNativeDateAdapter()],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Calendar {
@@ -26,7 +24,7 @@ export class Calendar {
     this.selectDate.emit(new Date(this.activeDate().getFullYear(), this.activeDate().getMonth() + move, 1));
   }
 
-  public emitSelection(newDate: Date): void {
+  public emitSelection(newDate: string): void {
     this.selectDate.emit(new Date(`${newDate}T12:00:00Z`));
   }
 

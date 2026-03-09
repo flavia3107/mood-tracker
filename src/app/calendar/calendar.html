@@ -16,7 +16,7 @@
 <div class="calendar-body">
 	@for(day of calendarDays(); track $index){
 	<p class="calendar-day flex-row center middle" matTooltip="Select Day" (click)="emitSelection(day)" [ngClass]="{
-				'outside-month': +(day | date:'M') !== (currentDay.getMonth()+1), 
+				'outside-month': +(day | date:'M')! !== (currentDay!.getMonth() + 1),
 				'sunday':(day | date:'EEE') === 'Sun',
 				'today': ((day | date:'yyyy-MM-dd') === (activeDate() | date:'yyyy-MM-dd'))
 				}">{{day | date:'d'}}</p>
