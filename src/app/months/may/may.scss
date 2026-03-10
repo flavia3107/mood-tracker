@@ -1,0 +1,12 @@
+.petal {
+	transition: all 0.4s ease;
+	cursor: pointer;
+}
+.petal:hover {
+	transform: scale(1.2);
+	filter: brightness(1.2);
+}
+.trunk {
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}

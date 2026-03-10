@@ -9,28 +9,29 @@ import { Component } from '@angular/core';
 export class May {
   monthData: string[] = Array(31).fill('none');
 
-  // Positions for 5 flowers on the branch
-  flowers = [
-    { x: 60, y: 60, petals: 6, startIdx: 0 },
-    { x: 140, y: 50, petals: 6, startIdx: 6 },
-    { x: 100, y: 110, petals: 7, startIdx: 12 }, // Center flower
-    { x: 50, y: 150, petals: 6, startIdx: 19 },
-    { x: 150, y: 160, petals: 6, startIdx: 25 }
+  // Coordinates for blossom clusters on the tree
+  clusters = [
+    { x: 100, y: 70, count: 6, start: 0 },  // Top center
+    { x: 60, y: 90, count: 5, start: 6 },  // Left mid
+    { x: 140, y: 100, count: 5, start: 11 }, // Right mid
+    { x: 40, y: 130, count: 5, start: 16 }, // Left low
+    { x: 160, y: 140, count: 5, start: 21 }, // Right low
+    { x: 105, y: 130, count: 5, start: 26 }  // Inner center
   ];
 
-  getPetalTransform(flowerX: number, flowerY: number, petalIdx: number, total: number): string {
-    const angle = (petalIdx * 360) / total;
-    return `rotate(${angle}, ${flowerX}, ${flowerY})`;
+  getPetalTransform(x: number, y: number, i: number, total: number): string {
+    const angle = (i * 360) / total + (i * 5); // Added a slight offset for organic look
+    return `rotate(${angle}, ${x}, ${y})`;
   }
 
-  getMoodColor(dayIndex: number): string {
-    const mood = this.monthData[dayIndex];
+  getMoodColor(idx: number): string {
+    const mood = this.monthData[idx];
     const palette: Record<string, string> = {
       'great': '#FF69B4', // Hot Pink
       'good': '#FFB7C5',  // Sakura Pink
       'meh': '#FADADD',   // Pale Pink
-      'bad': '#D8BFD8',   // Thistle/Muted Purple
-      'none': '#FDFEFE'   // Almost White
+      'bad': '#D8BFD8',   // Muted Lavender
+      'none': '#F9F9F9'   // Empty bud
     };
     return palette[mood] || palette['none'];
   }
