@@ -1,0 +1,30 @@
+:host {
+	display: block;
+	background: #d0dfec;
+	border-radius: 20px;
+	padding: 20px;
+}
+
+.crystal {
+	transition: fill 0.4s ease, filter 0.3s;
+	cursor: pointer;
+	stroke-linejoin: round;
+}
+
+.crystal:hover {
+	filter: brightness(1.2) drop-shadow(0 0 5px #fff);
+}
+
+.shard-group {
+	animation: drift 5s infinite ease-in-out;
+}
+
+@keyframes drift {
+	0%,
+	100% {
+		transform: translate(100px, 195px) rotate(0deg);
+	}
+	50% {
+		transform: translate(105px, 205px) rotate(10deg);
+	}
+}

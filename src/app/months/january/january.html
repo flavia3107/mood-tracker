@@ -1,1 +1,24 @@
-<p>january works!</p>
+<svg viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<filter id="glow">
+			<feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
+			<feMerge>
+				<feMergeNode in="coloredBlur" />
+				<feMergeNode in="SourceGraphic" />
+			</feMerge>
+		</filter>
+	</defs>
+
+	@for (pos of crystalPositions; track $index) {
+	<polygon class="crystal" [attr.points]="getHexPoints(pos.x, pos.y)" [attr.fill]="getMoodColor($index)"
+		stroke="#FFFFFF" stroke-width="1.5" />
+	}
+
+	<g class="shard-group">
+		<polygon class="crystal" [attr.points]="getHexPoints(0, 0)" [attr.fill]="getMoodColor(30)" stroke="#FFFFFF"
+			stroke-width="2" filter="url(#glow)" />
+		<circle cx="-12" cy="5" r="1.5" fill="white" opacity="0.7">
+			<animate attributeName="opacity" values="0.7;0;0.7" dur="2s" repeatCount="indefinite" />
+		</circle>
+	</g>
+</svg>
