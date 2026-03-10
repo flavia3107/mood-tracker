@@ -9,16 +9,16 @@ import { Component } from '@angular/core';
 export class May {
   monthData: string[] = Array(31).fill('none');
   flowerSites = [
-    { x: 140, y: 45, count: 6, start: 0 },
-    { x: 100, y: 65, count: 5, start: 6 },
-    { x: 160, y: 85, count: 5, start: 11 },
-    { x: 65, y: 95, count: 5, start: 16 },
-    { x: 120, y: 115, count: 5, start: 21 },
-    { x: 175, y: 135, count: 5, start: 26 }
+    { x: 70, y: 60, start: 0 },
+    { x: 155, y: 75, start: 5 },
+    { x: 65, y: 105, start: 10 },
+    { x: 100, y: 45, start: 15 },
+    { x: 140, y: 120, start: 20 },
+    { x: 105, y: 90, start: 25 }
   ];
 
-  getTransform(x: number, y: number, i: number, total: number): string {
-    const angle = (i * 360) / total;
+  getTransform(x: number, y: number, i: number): string {
+    const angle = (i * 360) / 5; // Fixed at 5 petals per flower
     return `rotate(${angle}, ${x}, ${y})`;
   }
 

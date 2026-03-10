@@ -1,28 +1,33 @@
 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-	<g fill="none" stroke="#5D4037" stroke-linecap="round" opacity="0.8">
-		<path d="M40 180 Q 70 170, 90 140" stroke-width="2.5" />
-		<path d="M90 140 C 110 120, 130 90, 140 45" stroke-width="1.2" />
-		<path d="M110 100 L 100 65" stroke-width="0.8" />
-		<path d="M125 90 L 160 85" stroke-width="0.8" />
-		<path d="M85 145 L 65 95" stroke-width="0.8" />
-		<path d="M105 125 L 120 115" stroke-width="0.8" />
-		<path d="M120 140 L 175 135" stroke-width="0.8" />
+	<g fill="none" stroke="#5D4037" stroke-linecap="round">
+		<path d="M100 170 Q105 150 100 130" stroke-width="3" />
+		<path d="M100 130 C 90 110, 85 90, 85 75" stroke-width="1.5" />
+		<path d="M100 130 C 115 110, 125 100, 135 85" stroke-width="1.5" />
+		<path d="M85 75 L 70 60" stroke-width="0.8" />
+		<path d="M85 100 L 65 105" stroke-width="0.8" />
+		<path d="M115 115 L 140 120" stroke-width="0.8" />
+		<path d="M135 85 L 155 75" stroke-width="0.8" />
 	</g>
 
 	@for (site of flowerSites; track $index) {
 	<g>
-		@for (p of [].constructor(site.count); track $index; let pIdx = $index) {
-		<g [attr.transform]="getTransform(site.x, site.y, pIdx, site.count)">
+		@for (pIdx of [0, 1, 2, 3, 4]; track pIdx) {
+		<g [attr.transform]="getTransform(site.x, site.y, pIdx)">
 			<path class="petal" [attr.d]="'M ' + site.x + ' ' + site.y + 
-						 ' C ' + (site.x - 10) + ' ' + (site.y - 8) + ', ' + 
-								 (site.x - 6) + ' ' + (site.y - 14) + ', ' + 
-								 site.x + ' ' + (site.y - 11) + 
-						 ' C ' + (site.x + 6) + ' ' + (site.y - 14) + ', ' + 
-								 (site.x + 10) + ' ' + (site.y - 8) + ', ' + 
+						 ' C ' + (site.x - 11) + ' ' + (site.y - 7) + ', ' + 
+								 (site.x - 7) + ' ' + (site.y - 15) + ', ' + 
+								 site.x + ' ' + (site.y - 12) + 
+						 ' C ' + (site.x + 7) + ' ' + (site.y - 15) + ', ' + 
+								 (site.x + 11) + ' ' + (site.y - 7) + ', ' + 
 								 site.x + ' ' + site.y" [attr.fill]="getMoodColor(site.start + pIdx)" stroke="#F06292" stroke-width="0.1" />
 		</g>
 		}
-		<circle [attr.cx]="site.x" [attr.cy]="site.y" r="2" fill="#C2185B" />
+		<circle [attr.cx]="site.x" [attr.cy]="site.y" r="1.8" fill="#C2185B" />
 	</g>
 	}
+
+	<g class="falling-petal" transform="translate(130, 165) rotate(45)">
+		<path class="petal" d="M 0 0 C -11 -7, -7 -15, 0 -12 C 7 -15, 11 -7, 0 0" [attr.fill]="getMoodColor(30)"
+			stroke="#F06292" stroke-width="0.1" />
+	</g>
 </svg>
