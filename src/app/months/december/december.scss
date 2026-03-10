@@ -1,63 +1,36 @@
-// .bulb {
-// 	cursor: pointer;
-// 	transition: all 0.3s ease;
-// }
-// .bulb:hover {
-// 	filter: brightness(1.5);
-// 	// transform: scale(1.2);
-// 	transform-origin: center;
-// }
-// .twinkle {
-// 	animation: shine 2s infinite alternate ease-in-out;
-// }
-// @keyframes shine {
-// 	from {
-// 		opacity: 0.7;
-// 		filter: drop-shadow(0 0 1px #fff);
-// 	}
-// 	to {
-// 		opacity: 1;
-// 		filter: drop-shadow(0 0 4px #fff);
-// 	}
-// }
-
 :host {
 	display: block;
-	overflow: hidden;
+	background: #0f172a;
+	border-radius: 12px;
 }
-
-.decoration {
+.ornament {
 	cursor: pointer;
-	transition: transform 0.2s, filter 0.3s;
+	transition: all 0.3s ease;
 }
-.decoration:hover {
-	// transform: scale(1.2);
-	filter: brightness(1.2);
+.ornament:hover {
+	filter: brightness(1.3);
+	transform: translateY(-2px);
 }
-
-.light-glow {
-	animation: blink 3s infinite alternate ease-in-out;
+.static-light {
+	animation: pulse 3s infinite alternate;
 }
-@keyframes blink {
+@keyframes pulse {
 	from {
-		opacity: 0.6;
+		opacity: 0.4;
 	}
 	to {
 		opacity: 1;
 	}
 }
-
-.spark {
-	animation: sparkle 4s infinite alternate ease-in-out;
+.sparkle {
+	animation: twinkle 4s infinite;
 }
-@keyframes sparkle {
+@keyframes twinkle {
 	0%,
 	100% {
-		opacity: 0.2;
-		transform: translateY(0);
+		opacity: 0.1;
 	}
 	50% {
 		opacity: 0.8;
-		transform: translateY(-5px);
 	}
 }
