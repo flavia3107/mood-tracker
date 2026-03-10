@@ -1,19 +1,41 @@
-<svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
-	<path d="M25 155 Q 100 145, 175 155" stroke="#D1F2EB" stroke-width="4" fill="none" class="ground-line"
-		opacity="0.5" />
+<svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" style="background: #ffffff">
+	<path d="M30 185 Q 110 170, 190 185 L 190 210 L 30 210 Z" fill="#F1F5F9" />
+	<path d="M50 180 Q 110 165, 170 180" fill="none" stroke="#E2E8F0" stroke-width="2" opacity="0.5" />
 
-	@for (s of shards; track $index) {
-	<g [attr.transform]="'translate(' + s.x + ',' + s.y + ') rotate(' + s.tilt + ')'">
-		<path class="ice-shard" [attr.d]="getShardPath(s.height, s.width)" [attr.fill]="getMoodColor($index)"
-			stroke="white" stroke-width="0.3" />
+	@for (c of clusters; track $index) {
+	<g [attr.transform]="'translate(' + c.x + ',' + c.y + ') scale(' + c.scale + ') rotate(' + c.rotation + ')'">
+		@for (i of [0,1,2,3,4,5]; track $index) {
+		@let dayIdx = c.start + i;
+		@let h = 45 + (i * 5); // Height
+		@let w = 14; // Width
 
-		<path [attr.d]="'M 0 0 L 0 ' + -s.height + ' L ' + (-s.width/2) + ' ' + (-s.height*0.3) + ' Z'" fill="white"
-			opacity="0.25" pointer-events="none" />
+		<g [attr.transform]="'rotate(' + (i * 18 - 45) + ') translate(' + (i * 2) + ', 0)'">
+
+			<path class="facet"
+				[attr.d]="'M 0 0 L 0 ' + -h + ' L ' + (-w/2) + ' ' + (-h + 12) + ' L ' + (-w/2) + ' 0 Z'"
+				[attr.fill]="getMoodColor(dayIdx, 'dark')" />
+
+			<path class="facet" [attr.d]="'M 0 0 L 0 ' + -h + ' L ' + (w/2) + ' ' + (-h + 12) + ' L ' + (w/2) + ' 0 Z'"
+				[attr.fill]="getMoodColor(dayIdx, 'base')" />
+
+			<path class="facet" [attr.d]="'M 0 ' + -(h+18) + ' L ' + (w/2) + ' ' + -h + ' L 0 ' + (-h + 6) + ' Z'"
+				[attr.fill]="getMoodColor(dayIdx, 'peak')" />
+
+			<path class="facet" [attr.d]="'M 0 ' + -(h+18) + ' L ' + (-w/2) + ' ' + -h + ' L 0 ' + (-h + 6) + ' Z'"
+				[attr.fill]="getMoodColor(dayIdx, 'light')" />
+
+			@if (monthData[dayIdx] === 'great' || monthData[dayIdx] === 'good') {
+			<circle class="glint" [attr.cx]="w/4" [attr.cy]="-h-5" r="1.5" fill="white" />
+			}
+		</g>
+		}
 	</g>
 	}
 
-	<g transform="translate(180, 145) rotate(30)">
-		<path class="ice-shard" [attr.d]="getShardPath(20, 6)" [attr.fill]="getMoodColor(30)" stroke="white"
-			stroke-width="0.5" />
+	<g transform="translate(40, 195) scale(0.4) rotate(-20)">
+		<path d="M 0 0 L 0 -40 L -8 -30 L -8 0 Z" [attr.fill]="getMoodColor(30, 'dark')" />
+		<path d="M 0 0 L 0 -40 L 8 -30 L 8 0 Z" [attr.fill]="getMoodColor(30, 'base')" />
+		<path d="M 0 -55 L 8 -40 L 0 -34 Z" [attr.fill]="getMoodColor(30, 'peak')" />
+		<path d="M 0 -55 L -8 -40 L 0 -34 Z" [attr.fill]="getMoodColor(30, 'light')" />
 	</g>
 </svg>
