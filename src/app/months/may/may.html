@@ -1,28 +1,25 @@
-<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-	<g class="trunk" fill="none" stroke="#4E342E">
-		<path d="M100 190 Q105 160 100 130" stroke-width="8" />
-		<path d="M100 130 Q70 120 45 130" stroke-width="4" />
-		<path d="M100 130 Q130 120 155 140" stroke-width="4" />
-		<path d="M100 130 Q105 100 100 75" stroke-width="3" />
-		<path d="M100 100 Q75 80 60 90" stroke-width="2" />
-		<path d="M100 100 Q125 80 140 100" stroke-width="2" />
+<svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+	<g class="branch" fill="none" stroke="#5D4037">
+		<path d="M20 150 C 40 140, 80 120, 120 40" stroke-width="5" />
+		<path d="M80 120 Q 140 110, 160 80" stroke-width="3" />
+		<path d="M60 130 Q 40 90, 60 70" stroke-width="2" />
 	</g>
 
-	@for (cluster of clusters; track $index) {
-	<g>
-		@for (p of [].constructor(cluster.count); track $index; let pIdx = $index) {
-		<g [attr.transform]="getPetalTransform(cluster.x, cluster.y, pIdx, cluster.count)">
-			<path class="petal" [attr.d]="'M ' + cluster.x + ' ' + cluster.y + 
-						 ' C ' + (cluster.x - 8) + ' ' + (cluster.y - 12) + ', ' + 
-								 (cluster.x - 4) + ' ' + (cluster.y - 18) + ', ' + 
-								 cluster.x + ' ' + (cluster.y - 14) + 
-						 ' C ' + (cluster.x + 4) + ' ' + (cluster.y - 18) + ', ' + 
-								 (cluster.x + 8) + ' ' + (cluster.y - 12) + ', ' + 
-								 cluster.x + ' ' + cluster.y" [attr.fill]="getMoodColor(cluster.start + pIdx)" stroke="#F06292"
-				stroke-width="0.2" />
+	@for (site of flowerSites; track $index) {
+	<g class="flower-cluster">
+		@for (p of [].constructor(site.count); track $index; let pIdx = $index) {
+		<g [attr.transform]="getTransform(site.x, site.y, pIdx, site.count)">
+			<path class="petal" [attr.d]="'M ' + site.x + ' ' + site.y + 
+						 ' C ' + (site.x - 7) + ' ' + (site.y - 10) + ', ' + 
+								 (site.x - 3) + ' ' + (site.y - 16) + ', ' + 
+								 site.x + ' ' + (site.y - 13) + 
+						 ' C ' + (site.x + 3) + ' ' + (site.y - 16) + ', ' + 
+								 (site.x + 7) + ' ' + (site.y - 10) + ', ' + 
+								 site.x + ' ' + site.y" [attr.fill]="getMoodColor(site.start + pIdx)" stroke="#F48FB1" stroke-width="0.3" />
 		</g>
 		}
-		<circle [attr.cx]="cluster.x" [attr.cy]="cluster.y" r="2" fill="#F48FB1" />
+		<circle [attr.cx]="site.x" [attr.cy]="site.y" r="2.5" fill="#E91E63" opacity="0.8" />
+		<circle [attr.cx]="site.x" [attr.cy]="site.y" r="1" fill="#FFEB3B" />
 	</g>
 	}
 </svg>
