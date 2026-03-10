@@ -1,22 +1,18 @@
+/* No movement animation here, all elements are static */
+:host {
+	display: block;
+	overflow: hidden;
+}
 .sparkle {
-	animation: twinkle 3s infinite alternate;
+	fill: #fdf5d7;
+	opacity: 0.7;
 }
-@keyframes twinkle {
-	0%,
-	100% {
-		opacity: 0.3;
-		transform: scale(0.8);
-	}
-	50% {
-		opacity: 1;
-		transform: scale(1.1);
-	}
-}
+
+/* The tracking ornaments change color, but they are still complex 'glass' shapes */
 .ornament {
 	cursor: pointer;
-	transition: transform 0.2s;
-	transform-origin: center;
+	transition: filter 0.3s;
 }
 .ornament:hover {
-	transform: scale(1.2);
+	filter: brightness(1.3);
 }
