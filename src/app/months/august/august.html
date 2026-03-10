@@ -1,1 +1,14 @@
-<p>august works!</p>
+<svg viewBox="0 0 200 200" class="sunflower">
+	<path d="M100 120 Q100 180 100 200" stroke="#2D5A27" stroke-width="4" fill="none" />
+
+	@for(day of [].constructor(31); track $index){
+	<g>
+		<ellipse [attr.cx]="100" [attr.cy]="60" [attr.rx]="10" [attr.ry]="35" [attr.fill]="getMoodColor($index)"
+			[attr.stroke]="'#DAA520'" [attr.stroke-width]="0.5" [attr.transform]="getPetalTransform($index)" />
+	</g>
+	}
+
+
+	<circle cx="100" cy="100" r="30" fill="#4B3621" />
+	<circle cx="100" cy="100" r="25" fill="#3E2723" stroke="#5D4037" stroke-dasharray="2 2" />
+</svg>
