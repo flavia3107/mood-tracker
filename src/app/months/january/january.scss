@@ -1,34 +1,26 @@
-.ice-shard {
-	transition: fill 0.3s ease, transform 0.2s;
+:host {
+	display: block;
+	background: #0f172a;
+	border-radius: 15px;
+} /* Dark night window */
+.frost-shard {
+	transition: fill 0.5s ease, opacity 0.3s;
 	cursor: pointer;
-	stroke-linejoin: round;
-}
-.ice-shard:hover {
-	filter: brightness(1.2) contrast(1.1);
-	transform: translateY(-5px);
-}
-.ground-line {
-	stroke-linecap: round;
-	filter: blur(1px);
-}
-
-.facet {
-	transition: fill 0.4s ease;
-	cursor: pointer;
-	stroke-width: 0.5;
 	stroke: rgba(255, 255, 255, 0.2);
+	stroke-width: 0.5;
 }
-.glint {
-	pointer-events: none;
-	animation: shine 4s infinite alternate;
+.frost-shard:hover {
+	filter: brightness(1.4) drop-shadow(0 0 5px #fff);
 }
-@keyframes shine {
+.spine {
+	stroke-dasharray: 4;
+	animation: grow 2s ease-out;
+}
+@keyframes grow {
 	from {
-		opacity: 0.2;
-		transform: scale(0.8);
+		stroke-dashoffset: 200;
 	}
 	to {
-		opacity: 0.9;
-		transform: scale(1.2);
+		stroke-dashoffset: 0;
 	}
 }
