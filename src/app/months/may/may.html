@@ -1,1 +1,21 @@
-<p>may works!</p>
+<svg viewBox="0 0 220 220" class="sakura-branch">
+	<path d="M20 180 C 50 170, 100 130, 150 50 M100 110 L 60 60 M100 110 L 150 160" stroke="#5D4037" stroke-width="3"
+		fill="none" class="branch" />
+
+	@for (f of flowers; track $index) {
+	<g class="flower-group">
+		@for (p of [].constructor(f.petals); track $index; let pIdx = $index) {
+		<g [attr.transform]="getPetalTransform(f.x, f.y, pIdx, f.petals)">
+			<path class="petal" [attr.d]="'M ' + f.x + ' ' + f.y + 
+						 ' C ' + (f.x - 12) + ' ' + (f.y - 15) + ', ' + 
+								 (f.x - 5) + ' ' + (f.y - 25) + ', ' + 
+								 f.x + ' ' + (f.y - 20) + 
+						 ' C ' + (f.x + 5) + ' ' + (f.y - 25) + ', ' + 
+								 (f.x + 12) + ' ' + (f.y - 15) + ', ' + 
+								 f.x + ' ' + f.y" [attr.fill]="getMoodColor(f.startIdx + pIdx)" stroke="#F8BBD0" stroke-width="0.3" />
+		</g>
+		}
+		<circle [attr.cx]="f.x" [attr.cy]="f.y" r="3" fill="#F06292" opacity="0.6" />
+	</g>
+	}
+</svg>

@@ -19,5 +19,5 @@ import { September } from '../months/september/september';
   styleUrl: './mood-view.scss',
 })
 export class MoodView {
-  currentMonth = 'August';
+  currentMonth = 'May';
 }
