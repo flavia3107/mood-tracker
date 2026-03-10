@@ -1,38 +1,68 @@
-<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-	<rect x="94" y="175" width="12" height="15" fill="#4a2c2a" />
+<svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" style="background: #111111;">
+	<defs>
+		<radialGradient id="haloGradient" cx="50%" cy="50%" r="50%">
+			<stop offset="0%" stop-color="#fffce0" stop-opacity="0.3" />
+			<stop offset="100%" stop-color="#111111" stop-opacity="0" />
+		</radialGradient>
 
-	<g stroke-linejoin="round">
-		<path d="M100 25 L135 75 L65 75 Z" fill="#2E7D32" />
-		<path d="M100 55 L155 125 L45 125 Z" fill="#1B5E20" />
-		<path d="M100 95 L180 180 L20 180 Z" fill="#0A3D11" />
+		<filter id="shadow">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="1.5" />
+			<feOffset dx="0" dy="2" result="offsetblur" />
+			<feFlood flood-color="rgba(0,0,0,0.5)" />
+			<feComposite in2="offsetblur" operator="in" />
+			<feMerge>
+				<feMergeNode />
+				<feMergeNode in="SourceGraphic" />
+			</feMerge>
+		</filter>
+	</defs>
+
+	<circle cx="100" cy="110" r="100" fill="url(#haloGradient)" />
+
+	<g filter="url(#shadow)">
+		<rect x="92" y="180" width="16" height="20" fill="#5D4037" />
+		<path d="M100 30 L140 80 L60 80 Z" fill="#2E7D32" />
+		<path d="M100 60 L160 130 L40 130 Z" fill="#2E7D32" />
+		<path d="M100 100 L180 190 L20 190 Z" fill="#1B5E20" />
 	</g>
 
-	<g transform="translate(100, 18) scale(1.2)">
-		<polygon points="0,-10 2.5,-3 10,-3 4,2 6,9 0,5 -6,9 -4,2 -10,-3 -2.5,-3" fill="#FFD700" stroke="#F9A825"
-			stroke-width="0.5" />
-		<circle r="2" fill="white" opacity="0.4" filter="blur(2px)" />
-	</g>
+	@for (spark of sparks; track $index) {
+	<circle class="spark" [attr.cx]="spark.x" [attr.cy]="spark.y" [attr.r]="spark.r" fill="white"
+		[style.animation-delay]="spark.delay + 's'" opacity="0.6" />
+	}
 
-	<path [attr.d]="'M' + decorations[0].x + ' ' + decorations[0].y + 
-					decorations.slice(1).map(d => ' L' + d.x + ' ' + d.y).join('')" fill="none" stroke="#052107" stroke-width="0.5"
-		opacity="0.6" />
+	<polygon points="100,20 103,28 112,28 105,34 108,43 100,38 92,43 95,34 88,28 97,28" fill="#FFEB3B" stroke="white"
+		stroke-width="0.5" />
+
+	<g transform="translate(60, 195) scale(0.8)">
+		<rect x="0" y="0" width="20" height="20" fill="#D32F2F" rx="2" />
+		<rect x="0" y="8" width="20" height="4" fill="#FFC107" />
+		<rect x="8" y="0" width="4" height="20" fill="#FFC107" />
+		<rect x="8" y="-5" width="4" height="5" fill="#FFC107" rx="1" transform="rotate(-15, 10, -2)" />
+
+		<rect x="25" y="-5" width="25" height="25" fill="#1976D2" rx="2" />
+		<rect x="25" y="5" width="25" height="5" fill="white" />
+		<rect x="35" y="-5" width="5" height="25" fill="white" />
+	</g>
+	<g transform="translate(130, 200) scale(0.7) rotate(10)">
+		<rect x="0" y="0" width="15" height="15" fill="#388E3C" rx="1" />
+		<rect x="0" y="6" width="15" height="3" fill="#F44336" />
+		<rect x="6" y="0" width="3" height="15" fill="#F44336" />
+	</g>
 
 	@for (d of decorations; track $index; let i = $index) {
-	<g class="bulb" [attr.transform]="'translate(' + d.x + ',' + d.y + ')'">
+	<g class="decoration">
+		<circle [attr.cx]="d.x" [attr.cy]="d.y" [attr.r]="d.r" [attr.fill]="getMoodColor(i)"
+			[attr.class]="d.type === 'light' ? 'light-glow' : ''" stroke="rgba(255,255,255,0.3)" stroke-width="0.5" />
 
-		@if (monthData[i] === 'great' || monthData[i] === 'good') {
-		<circle r="6" [attr.fill]="getMoodColor(i)" opacity="0.2" class="twinkle" />
+		@if (d.type === 'ornament') {
+		<rect [attr.x]="d.x - 1.5" [attr.y]="d.y - d.r - 1.2" width="3" height="2.5" fill="#BDBDBD" rx="0.5" />
 		}
 
-		<circle [attr.r]="d.r" [attr.fill]="getMoodColor(i)" stroke="white" stroke-width="0.2" />
-
-		@if (d.isOrnament) {
-		<rect x="-1.5" [attr.y]="-d.r - 1" width="3" height="2" fill="#9e9e9e" />
+		@if (monthData[i] === 'great') {
+		<circle [attr.cx]="d.x - d.r/2.5" [attr.cy]="d.y - d.r/2.5" r="1.5" fill="white" opacity="0.6"
+			filter="blur(1px)" />
 		}
-
-		<path
-			[attr.d]="'M ' + (-d.r/2) + ' ' + (-d.r/2) + ' A ' + d.r + ' ' + d.r + ' 0 0 1 ' + (d.r/2) + ' ' + (-d.r/2)"
-			fill="none" stroke="white" stroke-width="0.5" opacity="0.4" pointer-events="none" />
 	</g>
 	}
 </svg>
