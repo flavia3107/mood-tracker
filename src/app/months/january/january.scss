@@ -1,12 +1,13 @@
-.crystal {
-	transition: fill 0.4s ease;
+.ice-shard {
+	transition: fill 0.3s ease, transform 0.2s;
 	cursor: pointer;
-	stroke-linejoin: miter;
+	stroke-linejoin: round;
 }
-.crystal:hover {
-	filter: brightness(1.2);
-	transform: translateY(-2px);
+.ice-shard:hover {
+	filter: brightness(1.2) contrast(1.1);
+	transform: translateY(-5px);
 }
-.ice-base {
-	filter: blur(2px);
+.ground-line {
+	stroke-linecap: round;
+	filter: blur(1px);
 }
