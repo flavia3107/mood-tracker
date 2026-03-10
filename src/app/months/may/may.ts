@@ -9,12 +9,12 @@ import { Component } from '@angular/core';
 export class May {
   monthData: string[] = Array(31).fill('none');
   flowerSites = [
-    { x: 70, y: 60, start: 0 },
-    { x: 155, y: 75, start: 5 },
-    { x: 65, y: 105, start: 10 },
-    { x: 100, y: 45, start: 15 },
-    { x: 140, y: 120, start: 20 },
-    { x: 105, y: 90, start: 25 }
+    { x: 60, y: 40, start: 0 },  // Highest, closest to "origin"
+    { x: 100, y: 50, start: 5 },
+    { x: 140, y: 70, start: 10 },
+    { x: 80, y: 85, start: 15 },
+    { x: 120, y: 110, start: 20 },
+    { x: 160, y: 125, start: 25 }  // Lowest, furthest right
   ];
 
   getTransform(x: number, y: number, i: number): string {

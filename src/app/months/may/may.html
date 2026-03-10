@@ -1,12 +1,13 @@
-<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-	<g fill="none" stroke="#5D4037" stroke-linecap="round">
-		<path d="M100 170 Q105 150 100 130" stroke-width="3" />
-		<path d="M100 130 C 90 110, 85 90, 85 75" stroke-width="1.5" />
-		<path d="M100 130 C 115 110, 125 100, 135 85" stroke-width="1.5" />
-		<path d="M85 75 L 70 60" stroke-width="0.8" />
-		<path d="M85 100 L 65 105" stroke-width="0.8" />
-		<path d="M115 115 L 140 120" stroke-width="0.8" />
-		<path d="M135 85 L 155 75" stroke-width="0.8" />
+<svg viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg">
+	<g fill="none" stroke="#5D4037" stroke-linecap="round" opacity="0.9">
+		<path d="M-10 -10 C 20 10, 50 20, 100 50" stroke-width="3" />
+		<path d="M100 50 C 130 70, 150 100, 170 140" stroke-width="1.8" />
+
+		<path d="M30 13 L 60 40" stroke-width="1" />
+		<path d="M110 55 L 140 70" stroke-width="1" />
+		<path d="M70 45 L 80 85" stroke-width="1" />
+		<path d="M120 67 L 120 110" stroke-width="1" />
+		<path d="M150 106 L 150 125" stroke-width="1" />
 	</g>
 
 	@for (site of flowerSites; track $index) {
@@ -22,11 +23,12 @@
 								 site.x + ' ' + site.y" [attr.fill]="getMoodColor(site.start + pIdx)" stroke="#F06292" stroke-width="0.1" />
 		</g>
 		}
-		<circle [attr.cx]="site.x" [attr.cy]="site.y" r="1.8" fill="#C2185B" />
+		<circle [attr.cx]="site.x" [attr.cy]="site.y" r="2" fill="#C2185B" />
+		<circle [attr.cx]="site.x" [attr.cy]="site.y" r="0.8" fill="#FFEB3B" />
 	</g>
 	}
 
-	<g class="falling-petal" transform="translate(130, 165) rotate(45)">
+	<g class="falling-petal" transform="translate(60, 160) rotate(-20)">
 		<path class="petal" d="M 0 0 C -11 -7, -7 -15, 0 -12 C 7 -15, 11 -7, 0 0" [attr.fill]="getMoodColor(30)"
 			stroke="#F06292" stroke-width="0.1" />
 	</g>
