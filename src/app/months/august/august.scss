@@ -1,0 +1,7 @@
+.petal {
+	transition: transform 0.2s ease-in-out, fill 0.3s ease;
+	cursor: pointer;
+}
+.petal:hover {
+	filter: brightness(1.1);
+}
