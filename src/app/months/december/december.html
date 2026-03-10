@@ -1,38 +1,35 @@
 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-	<rect x="94" y="175" width="12" height="15" fill="#4a2c2a" />
+	<rect x="94" y="178" width="12" height="12" fill="#4a2c2a" />
 
 	<g stroke-linejoin="round" stroke-linecap="round">
-		<path d="M100 95 
-                 Q140 135 180 180 
-                 L160 175 L140 182 L120 175 L100 182 L80 175 L60 182 L40 175 L20 180 
-                 Q60 135 100 95 Z" fill="#0A3D11" stroke="#052107" stroke-width="1" />
-
-		<path d="M100 55 
-                 Q130 90 155 125 
-                 L130 120 L100 128 L70 120 L45 125 
-                 Q70 90 100 55 Z" fill="#1B5E20" stroke="#052107" stroke-width="1" />
-
-		<path d="M100 25 
-                 Q120 50 135 75 
-                 L115 70 L100 78 L85 70 L65 75 
-                 Q80 50 100 25 Z" fill="#2E7D32" stroke="#052107" stroke-width="1" />
+		<path d="M100 120 Q150 155 180 180 L140 175 L100 182 L60 175 L20 180 Q50 155 100 120 Z" fill="#062b0c"
+			stroke="#052107" stroke-width="0.8" />
+		<path d="M100 95 Q140 125 165 150 L130 145 L100 152 L70 145 L35 150 Q60 125 100 95 Z" fill="#0A3D11"
+			stroke="#052107" stroke-width="0.8" />
+		<path d="M100 70 Q130 95 150 120 L120 115 L100 122 L80 115 L50 120 Q70 95 100 70 Z" fill="#1B5E20"
+			stroke="#052107" stroke-width="0.8" />
+		<path d="M100 45 Q120 65 135 90 L115 85 L100 92 L85 85 L65 90 Q80 65 100 45 Z" fill="#247029" stroke="#052107"
+			stroke-width="0.8" />
+		<path d="M100 25 Q115 45 125 65 L100 60 L75 65 Q85 45 100 25 Z" fill="#2E7D32" stroke="#052107"
+			stroke-width="0.8" />
 	</g>
 
-	<g transform="translate(100, 18) scale(1.2)">
-		<polygon points="0,-10 2.5,-3 10,-3 4,2 6,9 0,5 -6,9 -4,2 -10,-3 -2.5,-3" fill="#FFD700" stroke="#F9A825"
-			stroke-width="0.5" />
-	</g>
-
-	<path [attr.d]="'M' + decorations[0].x + ' ' + decorations[0].y + 
-                    decorations.slice(1).map(d => ' L' + d.x + ' ' + d.y).join('')" fill="none" stroke="#052107"
-		stroke-width="0.3" opacity="0.4" />
+	<path [attr.d]="lightWirePath" fill="none" stroke="#FFF176" stroke-width="0.75" opacity="0.75" />
 
 	@for (d of decorations; track $index; let i = $index) {
 	<g [attr.transform]="'translate(' + d.x + ',' + d.y + ')'">
-		@if (monthData[i] === 'great' || monthData[i] === 'good') {
-		<circle r="5" [attr.fill]="getMoodColor(i)" opacity="0.2" />
-		}
-		<circle [attr.r]="d.r" [attr.fill]="getMoodColor(i)" stroke="white" stroke-width="0.2" />
+		<path d="M -1.2 -1 L 1.2 -1 L 0.8 -2.5 L -0.8 -2.5 Z" fill="#555" [attr.transform]="'translate(0, -1 )'" />
+
+		<circle [attr.r]="d.r" [attr.fill]="getMoodColor(i)" />
+
+		<path
+			[attr.d]="'M ' + (-d.r * 0.4) + ' ' + (-d.r * 0.2) + ' A ' + (d.r * 0.4) + ' ' + (d.r * 0.4) + ' 0 0 1 ' + (d.r * 0.2) + ' ' + (-d.r * 0.4)"
+			fill="none" stroke="white" stroke-width="0.7" stroke-linecap="round" opacity="0.6" />
 	</g>
 	}
+
+	<g transform="translate(100, 18) scale(1.1)">
+		<polygon points="0,-10 2.5,-3 10,-3 4,2 6,9 0,5 -6,9 -4,2 -10,-3 -2.5,-3" fill="#FFD700" stroke="#F9A825"
+			stroke-width="0.5" />
+	</g>
 </svg>
