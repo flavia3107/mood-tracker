@@ -1,20 +1,22 @@
 .sparkle {
-	animation: pulse 2s infinite alternate;
+	animation: twinkle 3s infinite alternate;
 }
-@keyframes pulse {
-	from {
-		opacity: 0.2;
+@keyframes twinkle {
+	0%,
+	100% {
+		opacity: 0.3;
 		transform: scale(0.8);
 	}
-	to {
+	50% {
 		opacity: 1;
-		transform: scale(1.2);
+		transform: scale(1.1);
 	}
 }
 .ornament {
 	cursor: pointer;
-	transition: filter 0.3s;
+	transition: transform 0.2s;
+	transform-origin: center;
 }
 .ornament:hover {
-	filter: brightness(1.4);
+	transform: scale(1.2);
 }
