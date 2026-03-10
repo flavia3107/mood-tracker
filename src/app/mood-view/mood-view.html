@@ -1,1 +1,38 @@
-<p>mood-view works!</p>
+<div class="month-container">
+	@switch (currentMonth) {
+	@case ('January') {
+	<app-january />
+	}
+	@case ('February') {
+	<app-february />
+	}
+	@case ('March') {
+	<app-march />
+	}
+	@case ('April') {
+	<app-april />
+	} @case ('May') {
+	<app-may />
+	}
+	@case ('June') {
+	<app-june />
+	} @case ('July') {
+	<app-july />
+	}
+	@case ('August') {
+	<app-august />
+	}
+	@case ('September') {
+	<app-september />
+	}
+	@case ('October') {
+	<app-october />
+	}
+	@case ('November') {
+	<app-november />
+	}
+	@case ('December') {
+	<app-december />
+	}
+	}
+</div>
