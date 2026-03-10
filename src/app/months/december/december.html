@@ -1,47 +1,54 @@
-<svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
-	<radialGradient id="treeGlow" cx="50%" cy="50%" r="50%">
-		<stop offset="0%" stop-color="#334155" stop-opacity="0.4" />
-		<stop offset="100%" stop-color="#0F172A" stop-opacity="0" />
-	</radialGradient>
-	<circle cx="100" cy="100" r="80" fill="url(#treeGlow)" />
+<svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" style="background: #1a0f00;">
+	<defs>
+		<radialGradient id="backLight" cx="50%" cy="50%" r="50%">
+			<stop offset="0%" stop-color="#fceabb" stop-opacity="0.4" />
+			<stop offset="100%" stop-color="#1a0f00" stop-opacity="0" />
+		</radialGradient>
 
-	<rect x="94" y="180" width="12" height="15" fill="#422006" />
-	<path d="M100 30 L140 85 L60 85 Z" fill="#14532D" />
-	<path d="M100 65 L165 135 L35 135 Z" fill="#14532D" />
-	<path d="M100 105 L185 190 L15 190 Z" fill="#064E3B" />
+		<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="1" />
+			<feOffset dx="1" dy="1" />
+			<feComposite in2="SourceAlpha" operator="out" result="shadow" />
+			<feFlood flood-color="black" flood-opacity="0.3" />
+			<feComposite in2="shadow" operator="in" />
+			<feMerge>
+				<feMergeNode />
+				<feMergeNode in="SourceGraphic" />
+			</feMerge>
+		</filter>
+	</defs>
 
-	@for (l of staticLights; track $index) {
-	<circle [attr.cx]="l.x" [attr.cy]="l.y" [attr.r]="l.r" fill="#FEF3C7" class="static-light" />
+	<circle cx="100" cy="90" r="90" fill="url(#backLight)" />
+
+	@for (s of sparkles; track $index) {
+	<circle class="sparkle" [attr.cx]="s.x" [attr.cy]="s.y" [attr.r]="s.r" fill="white"
+		[style.animation-delay]="s.delay + 's'" opacity="0.6" />
 	}
 
-	@for (o of ornaments; track $index; let i = $index) {
-	<g class="ornament" [attr.transform]="'translate(' + o.x + ',' + o.y + ')'">
-		@switch (o.shape) {
-		@case ('circle') {
-		<circle r="4" [attr.fill]="getMoodColor(i)" stroke="white" stroke-width="0.3" />
-		}
-		@case ('teardrop') {
-		<path d="M 0 -5 C 3 -2 3 2 0 4 C -3 2 -3 -2 0 -5" [attr.fill]="getMoodColor(i)" stroke="white"
-			stroke-width="0.3" />
-		}
-		@case ('star') {
-		<path d="M 0 -4 L 1 -1 L 4 -1 L 2 1 L 3 4 L 0 2 L -3 4 L -2 1 L -4 -1 L -1 -1 Z" [attr.fill]="getMoodColor(i)"
-			stroke="white" stroke-width="0.3" transform="scale(1.2)" />
-		}
-		}
-		<line x1="0" y1="-4" x2="0" y2="-8" stroke="#94A3B8" stroke-width="0.2" />
+	<rect x="92" y="175" width="16" height="15" fill="#3e2723" />
+
+	<path d="M100 25 L135 75 L65 75 Z" fill="#2E7D32" />
+	<path d="M100 55 L155 125 L45 125 Z" fill="#1B5E20" />
+	<path d="M100 95 L180 185 L20 185 Z" fill="#0D3B11" /> @for (o of ornaments; track $index; let i = $index) {
+	<g class="ornament">
+		<circle [attr.cx]="o.x" [attr.cy]="o.y" [attr.r]="o.r" [attr.fill]="getMoodColor(i)"
+			stroke="rgba(255,255,255,0.4)" stroke-width="0.3" />
+		<circle [attr.cx]="o.x - o.r/3" [attr.cy]="o.y - o.r/3" [attr.r]="o.r/4" fill="white" opacity="0.4" />
 	</g>
 	}
 
-	<path d="M100 15 L103 23 L112 23 L105 29 L108 38 L100 33 L92 38 L95 29 L88 23 L97 23 Z" fill="#FDE047"
-		stroke="white" stroke-width="0.5" />
+	<path d="M100 12 L104 22 L114 22 L106 28 L109 38 L100 32 L91 38 L94 28 L86 22 L96 22 Z" fill="#FFD700"
+		stroke="#fceabb" stroke-width="0.5" />
 
-	<g transform="translate(65, 195)">
-		<rect width="18" height="14" fill="#B91C1C" rx="1" />
-		<rect x="7" width="4" height="14" fill="#FDE047" />
-	</g>
-	<g transform="translate(115, 192)">
-		<rect width="22" height="18" fill="#1D4ED8" rx="1" />
-		<rect x="9" width="4" height="18" fill="white" />
+	<g filter="url(#shadow)">
+		<rect x="65" y="185" width="25" height="20" fill="#8b0000" rx="1" />
+		<rect x="75" y="185" width="5" height="20" fill="#ffd700" />
+		<rect x="65" y="193" width="25" height="4" fill="#ffd700" />
+
+		<rect x="110" y="188" width="22" height="18" fill="#003366" rx="1" />
+		<rect x="119" y="188" width="4" height="18" fill="white" />
+
+		<rect x="85" y="195" width="30" height="15" fill="#004d00" rx="1" />
+		<rect x="98" y="195" width="4" height="15" fill="#f5f5f5" />
 	</g>
 </svg>
