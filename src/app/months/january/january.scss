@@ -1,26 +1,8 @@
-:host {
-	display: block;
-	background: #0f172a;
-	border-radius: 15px;
-} /* Dark night window */
-.frost-shard {
-	transition: fill 0.5s ease, opacity 0.3s;
+.frost-unit {
+	transition: all 0.5s ease;
 	cursor: pointer;
-	stroke: rgba(255, 255, 255, 0.2);
-	stroke-width: 0.5;
 }
-.frost-shard:hover {
-	filter: brightness(1.4) drop-shadow(0 0 5px #fff);
-}
-.spine {
-	stroke-dasharray: 4;
-	animation: grow 2s ease-out;
-}
-@keyframes grow {
-	from {
-		stroke-dashoffset: 200;
-	}
-	to {
-		stroke-dashoffset: 0;
-	}
+.frost-unit:hover {
+	filter: brightness(1.5) drop-shadow(0 0 5px #fff);
+	// transform: scale(1.1);
 }
