@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UtilsService } from '../../../shared/services/utils';
 
 @Component({
   selector: 'app-may',
@@ -7,7 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './may.scss',
 })
 export class May {
-  monthData: string[] = Array(31).fill('none');
+  private _utilsService = inject(UtilsService);
+  private _monthData = this._utilsService.monthDays;
+
   flowerSites = [
     { x: 60, y: 40, start: 0 },  // Highest, closest to "origin"
     { x: 100, y: 50, start: 5 },
@@ -27,6 +30,6 @@ export class May {
       'great': '#FF69B4', 'good': '#FFB7C5',
       'meh': '#FADADD', 'none': '#FFF5F7'
     };
-    return palette[this.monthData[idx]] || palette['none'];
+    return palette[this._monthData()[idx]] || palette['none'];
   }
 }

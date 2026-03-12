@@ -20,7 +20,7 @@
 	@for (seed of frostSeeds; track $index; let dayIdx = $index) {
 	<g class="frost-unit"
 		[attr.transform]="'translate(' + seed.x + ',' + seed.y + ') rotate(' + seed.rotation + ') scale(' + seed.scale + ')'"
-		[attr.filter]="monthData[dayIdx] === 'great' ? 'url(#iceGlow)' : 'none'">
+		[attr.filter]="monthData()[dayIdx] === 'great' ? 'url(#iceGlow)' : 'none'">
 
 		@for (angle of [0, 60, 120, 180, 240, 300]; track $index) {
 		<path [attr.transform]="'rotate(' + angle + ')'" d="M 0 0 L 8 -5 L 16 0 L 8 5 Z"

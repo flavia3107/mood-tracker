@@ -1,7 +1,7 @@
 <svg viewBox="0 0 250 250" class="sunflower">
 	<path d="M125 160 Q125 220 125 250" stroke="#2D5A27" stroke-width="6" fill="none" />
 
-	@for (day of [].constructor(31); track $index) {
+	@for (day of [].constructor(monthData()); track $index) {
 	<g [attr.transform]="getRotation($index)">
 		<path class="petal" d="M125 105 
 			 C135 80, 140 40, 125 30 

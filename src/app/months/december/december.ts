@@ -9,7 +9,7 @@ import { UtilsService } from '../../../shared/services/utils';
 })
 export class December {
   private _utilsService = inject(UtilsService);
-  private _monthData = this._utilsService.calendarDays;
+  private _monthData = this._utilsService.monthDays;
 
   get lightWirePath(): string {
     const points = [];
@@ -34,7 +34,7 @@ export class December {
     return path;
   }
 
-  decorations = Array.from({ length: 31 }, (_, i) => {
+  decorations = Array.from({ length: this._monthData() }, (_, i) => {
     const y = 35 + (i * 4.6);
     const distanceFromTop = y - 25;
     const maxWidth = (distanceFromTop * 0.42);

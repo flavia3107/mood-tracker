@@ -5,17 +5,16 @@ import { computed, Injectable, signal } from '@angular/core';
 	providedIn: 'root',
 })
 export class UtilsService {
+
 	private _selectedDate = signal<Date>(new Date());
 	public calendarDays = computed(() => this._getDaysInMonth());
 	public activeMonth = computed(() => this._getMonth());
+	public monthDays = computed(() => this._getMonthDays());
 
 	private _getDaysInMonth(): string[] {
 		const date = this._selectedDate();
 		const year = date.getFullYear();
 		const month = date.getMonth();
-
-		console.log('tes')
-
 		const numDays = new Date(year, month + 1, 0).getDate();
 		const daysArray = [];
 		const firstDayOfMonth = new Date(year, month, 1).getDay();
@@ -38,12 +37,16 @@ export class UtilsService {
 	}
 
 	private _getMonth(): string {
-		console.log('her')
 		return this._selectedDate().toLocaleString('en-US', { month: 'numeric' });
 	}
 
+	private _getMonthDays(): any {
+		const date = this._selectedDate();
+		const year = date.getFullYear();
+		return new Date(year, date.getMonth() + 1, 0).getDate();
+	}
+
 	public updateActiveDate(date: Date) {
-		console.log('FFF')
 		this._selectedDate.set(date);
 	}
 
