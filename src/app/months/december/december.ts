@@ -23,60 +23,56 @@ export class December {
     };
     return palette[mood] || palette['none'];
   }
-
-  private tiers = [
-    { y: 60, amplitude: 15 },
-    { y: 130, amplitude: 15 }
-  ];
-
   get decorations() {
-    const totalItems = this._monthData(); // Now treating this as a number
-    const half = Math.ceil(totalItems / 2);
+    const totalItems = this._monthData(); // Total number of bulbs
+    const padding = 25; // Space from edges
+    const width = 200 - (padding * 2);
+
+    // We want the line to zig-zag about 4-5 times
+    const zags = 5;
+    const itemsPerZag = Math.ceil(totalItems / zags);
 
     return Array.from({ length: totalItems }).map((_, i) => {
-      const isTopTier = i < half;
-      const tier = isTopTier ? this.tiers[0] : this.tiers[1];
+      const zagIndex = Math.floor(i / itemsPerZag);
+      const progressInZag = (i % itemsPerZag) / (itemsPerZag - 1 || 1);
 
-      const indexInTier = isTopTier ? i : i - half;
-      const itemsInTier = isTopTier ? half : totalItems - half;
+      // Calculate Y: Moves from top to bottom based on total progress
+      const totalProgress = i / (totalItems - 1);
+      const y = 30 + (totalProgress * 140);
 
-      // Calculate horizontal progress (0 to 1)
-      const progress = itemsInTier > 1 ? indexInTier / (itemsInTier - 1) : 0.5;
+      // Calculate X: Bounce between left and right
+      const isGoingRight = zagIndex % 2 === 0;
+      let x: number;
+      if (isGoingRight) {
+        x = padding + (progressInZag * width);
+      } else {
+        x = (padding + width) - (progressInZag * width);
+      }
 
-      const x = 20 + (progress * 160);
-      const sag = tier.amplitude * 4 * (progress * (1 - progress));
-      const y = tier.y + sag;
-
-      return { x, y, r: i % 4 === 0 ? 4 : 3 };
+      return { x, y, r: 3 };
     });
   }
 
-  // // Updated to handle the number input
-  // getMoodColor(idx: number): string {
-  //   const palette = ['#FFD700', '#FF3131', '#4CC9FE', '#BDE0D0'];
-  //   // Logic to pick a color based on index since we don't have a status string
-  //   return palette[idx % palette.length];
-  // }
-
   get lightWirePath(): string {
     const decs = this.decorations;
-    if (decs.length === 0) return '';
+    if (decs.length < 2) return '';
 
-    const totalItems = this._monthData();
-    const half = Math.ceil(totalItems / 2);
+    let path = `M ${decs[0].x} ${decs[0].y}`;
+    for (let i = 0; i < decs.length - 1; i++) {
+      const p1 = decs[i];
+      const p2 = decs[i + 1];
 
-    const drawTier = (startIdx: number, endIdx: number) => {
-      if (startIdx >= endIdx) return '';
-      let path = `M ${decs[startIdx].x} ${decs[startIdx].y}`;
-      for (let i = startIdx; i < endIdx - 1; i++) {
-        // Create a smooth curve between bulbs
-        const cpX = (decs[i].x + decs[i + 1].x) / 2;
-        const cpY = Math.max(decs[i].y, decs[i + 1].y) + 3; // Extra dip for the wire
-        path += ` Q ${cpX} ${cpY} ${decs[i + 1].x} ${decs[i + 1].y}`;
-      }
-      return path;
-    };
+      // The "Sag": Creates the heavy hanging effect from your photo
+      const cpX = (p1.x + p2.x) / 2;
+      const cpY = (p1.y + p2.y) / 2 + 12; // Increase this for deeper hanging lines
 
-    return drawTier(0, half) + " " + drawTier(half, totalItems);
+      path += ` Q ${cpX} ${cpY} ${p2.x} ${p2.y}`;
+    }
+    return path;
   }
+
+  // getMoodColor(idx: number): string {
+  //   const palette = ['#FFF9C4', '#FFECB3', '#FFE082', '#FFF59D']; // Warm white/carnival tones
+  //   return palette[idx % palette.length];
+  // }
 }
