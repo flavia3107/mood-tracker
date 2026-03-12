@@ -1,13 +1,15 @@
 import { formatDate } from '@angular/common';
-import { Injectable } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class UtilsService {
-	public activeMonthDays: string[] = [];
+	private _selectedDate = signal<Date>(new Date());
+	public calendarDays = computed(() => this._getDaysInMonth(this._selectedDate().getFullYear(), this._selectedDate().getMonth()));
+	public activeMonth = computed(() => this._getMonth());
 
-	public getDaysInMonth(year: number, month: number): string[] {
+	private _getDaysInMonth(year: number, month: number): string[] {
 		const numDays = new Date(year, month + 1, 0).getDate();
 		const daysArray = [];
 		const firstDayOfMonth = new Date(year, month, 1).getDay();
@@ -26,13 +28,15 @@ export class UtilsService {
 		for (let i = 1; i <= daysFromNextMonth; i++) {
 			daysArray.push(formatDate(new Date(year, month + 1, i), 'yyyy-MM-dd', 'en-US'));
 		}
-		this.activeMonthDays = [...daysArray];
 		return daysArray;
 	}
 
-	public getMonth(year: number, month: number): string {
-		const date = new Date(year, month);
-		return date.toLocaleString('en-US', { month: 'numeric' });
+	private _getMonth(): string {
+		return this._selectedDate().toLocaleString('en-US', { month: 'numeric' });
+	}
+
+	public updateActiveDate(date: Date) {
+		this._selectedDate.set(date);
 	}
 
 	public generateRandomNumber(min: number, max: number): number {

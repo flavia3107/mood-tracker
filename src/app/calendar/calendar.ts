@@ -13,26 +13,14 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class Calendar {
   private _utilsService = inject(UtilsService);
-  public selected = model<Date>(new Date());
-  public calendarDays = computed(() => this._calculateWeekDates());
-  public month = computed(() => this._getMonth());
+  public selected: Date = new Date();
+  public calendarDays = this._utilsService.calendarDays();
   public days: string[] = DAYS;
   public currentDay: Date = new Date();
-  public selectDate = output<Date>();
 
   public updateCurrentMonth(move: number): void {
-    // this.selectDate.emit(new Date(this.selected().getFullYear(), this.selected().getMonth() + move, 1));
-    this.selected.set(new Date(this.selected().getFullYear(), this.selected().getMonth() + move, 1))
-    this._utilsService.getDaysInMonth(this.selected().getFullYear(), this.selected().getMonth() + move)
-  }
-
-  private _calculateWeekDates(): string[] {
-    return this._utilsService.getDaysInMonth(this.selected().getFullYear(), this.selected().getMonth());
-  }
-
-  private _getMonth() {
-    const date = this.selected();
-    return this._utilsService.getMonth(date.getFullYear(), date.getMonth());
+    this.selected = new Date(this.selected.getFullYear(), this.selected.getMonth() + move, 1);
+    this._utilsService.updateActiveDate(this.selected);
   }
 }
 

@@ -9,7 +9,7 @@ import { UtilsService } from '../../../shared/services/utils';
 })
 export class December {
   private _utilsService = inject(UtilsService);
-  private _monthData: string[] = this._utilsService.activeMonthDays;
+  private _monthData: string[] = this._utilsService.calendarDays();
 
   get lightWirePath(): string {
     const points = [];
