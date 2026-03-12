@@ -24,11 +24,11 @@ export class December {
     return palette[mood] || palette['none'];
   }
   get decorations() {
-    const totalItems = this._monthData(); // Total number of bulbs
+    const totalItems = this._monthData();
     const padding = 25; // Space from edges
     const width = 200 - (padding * 2);
 
-    // We want the line to zig-zag about 4-5 times
+    // Total zags (number of times it crosses the hallway)
     const zags = 5;
     const itemsPerZag = Math.ceil(totalItems / zags);
 
@@ -64,7 +64,7 @@ export class December {
 
       // The "Sag": Creates the heavy hanging effect from your photo
       const cpX = (p1.x + p2.x) / 2;
-      const cpY = (p1.y + p2.y) / 2 + 12; // Increase this for deeper hanging lines
+      const cpY = (p1.y + p2.y) / 2 + 12; // Controls the "weight" of the wire
 
       path += ` Q ${cpX} ${cpY} ${p2.x} ${p2.y}`;
     }

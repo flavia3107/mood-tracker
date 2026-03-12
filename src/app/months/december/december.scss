@@ -1,7 +1,9 @@
 .bulb {
 	cursor: pointer;
+	filter: brightness(1) drop-shadow(0 0 5px #ffffff);
+
 	transition: all 0.3s ease;
 }
 .bulb:hover {
-	filter: brightness(1) drop-shadow(0 0 5px #ffffff);
+	filter: brightness(1.3) drop-shadow(0 0 5px #ffffff);
 }
