@@ -9,7 +9,7 @@ import { UtilsService } from '../../../shared/services/utils';
 })
 export class December {
   private _utilsService = inject(UtilsService);
-  private _monthData: string[] = this._utilsService.calendarDays();
+  private _monthData = this._utilsService.calendarDays;
 
   get lightWirePath(): string {
     const points = [];
@@ -47,7 +47,7 @@ export class December {
   });
 
   getMoodColor(idx: number): string {
-    const mood = this._monthData[idx];
+    const mood = this._monthData()[idx];
     const palette: Record<string, string> = {
       'great': '#FFD700',
       'good': '#FF3131',

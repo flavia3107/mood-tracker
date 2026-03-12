@@ -1,39 +1,28 @@
 <div class="month-container">
-	{{currentMonth}}
-	@switch (currentMonth) {
-	@case ('0') {
-	<app-january />
-	}
+	@switch (currentMonth()) {
 	@case ('1') {
-	<app-february />
-	}
+	<app-january /> }
 	@case ('2') {
-	<app-march />
-	}
+	<app-february /> }
 	@case ('3') {
-	<app-april />
-	} @case ('4') {
-	<app-may />
-	}
+	<app-march /> }
+	@case ('4') {
+	<app-april /> }
 	@case ('5') {
-	<app-june />
-	} @case ('6') {
-	<app-july />
-	}
+	<app-may /> }
+	@case ('6') {
+	<app-june /> }
 	@case ('7') {
-	<app-august />
-	}
+	<app-july /> }
 	@case ('8') {
-	<app-september />
-	}
+	<app-august /> }
 	@case ('9') {
-	<app-october />
-	}
+	<app-september /> }
 	@case ('10') {
-	<app-november />
-	}
+	<app-october /> }
 	@case ('11') {
-	<app-december />
-	}
+	<app-november /> }
+	@case ('12') {
+	<app-december /> }
 	}
 </div>

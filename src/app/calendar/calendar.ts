@@ -14,7 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class Calendar {
   private _utilsService = inject(UtilsService);
   public selected: Date = new Date();
-  public calendarDays = this._utilsService.calendarDays();
+  public calendarDays = this._utilsService.calendarDays;
   public days: string[] = DAYS;
   public currentDay: Date = new Date();
 

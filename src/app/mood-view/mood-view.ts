@@ -21,5 +21,5 @@ import { September } from '../months/september/september';
 })
 export class MoodView {
   private _utilService = inject(UtilsService);
-  currentMonth = this._utilService.activeMonth();
+  public currentMonth = this._utilService.activeMonth;
 }
