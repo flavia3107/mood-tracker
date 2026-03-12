@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UtilsService } from '../../shared/services/utils';
 import { April } from '../months/april/april';
 import { August } from '../months/august/august';
 import { December } from '../months/december/december';
@@ -19,5 +20,6 @@ import { September } from '../months/september/september';
   styleUrl: './mood-view.scss',
 })
 export class MoodView {
-  currentMonth = 'December';
+  private _utilService = inject(UtilsService);
+  currentMonth = this._utilService.activeMonth;
 }

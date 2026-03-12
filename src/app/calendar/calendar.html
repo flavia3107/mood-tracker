@@ -1,6 +1,6 @@
 <div class="calendar-container">
 	<div class="navigation flex-row middle">
-		<span>{{activeDate() | date: 'MMMM yyyy'}} </span>
+		<span>{{selected() | date: 'MMMM yyyy'}} </span>
 		<div class="navigation-buttons-container flex-row">
 			<mat-icon matTooltip="Previous Month" (click)="updateCurrentMonth(-1)">navigate_before</mat-icon>
 			<mat-icon matTooltip="Next Month" (click)="updateCurrentMonth(1)">navigate_next</mat-icon>
@@ -13,10 +13,10 @@
 	</div>
 	<div class="calendar-body">
 		@for(day of calendarDays(); track $index){
-		<p class="calendar-day flex-row center middle" matTooltip="Select Day" (click)="emitSelection(day)" [ngClass]="{
+		<p class="calendar-day flex-row center middle" [ngClass]="{
 				'outside-month': +(day | date:'M')! !== (currentDay!.getMonth() + 1),
 				'sunday':(day | date:'EEE') === 'Sun',
-				'today': ((day | date:'yyyy-MM-dd') === (activeDate() | date:'yyyy-MM-dd'))
+				'today': ((day | date:'yyyy-MM-dd') === (selected() | date:'yyyy-MM-dd'))
 				}">{{day | date:'d'}}</p>
 		}
 	</div>
