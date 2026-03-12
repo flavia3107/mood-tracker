@@ -11,40 +11,7 @@ export class December {
   private _utilsService = inject(UtilsService);
   private _monthData = this._utilsService.monthDays;
 
-  get lightWirePath(): string {
-    const points = [];
-    const steps = 60; // More steps = smoother curve
-    const startY = 35;
-    const endY = 175;
 
-    for (let i = 0; i <= steps; i++) {
-      const y = startY + (i * (endY - startY) / steps);
-      const distanceFromTop = y - 25;
-      const maxWidth = (distanceFromTop * 0.42);
-      const x = 100 + (Math.sin(i * 0.4) * maxWidth);
-      points.push({ x, y });
-    }
-
-    let path = `M ${points[0].x} ${points[0].y}`;
-    for (let i = 1; i < points.length; i++) {
-      const xc = (points[i].x + points[i - 1].x) / 2;
-      const yc = (points[i].y + points[i - 1].y) / 2;
-      path += ` Q ${points[i - 1].x} ${points[i - 1].y}, ${xc} ${yc}`;
-    }
-    return path;
-  }
-
-  decorations = Array.from({ length: this._monthData() }, (_, i) => {
-    const y = 35 + (i * 4.6);
-    const distanceFromTop = y - 25;
-    const maxWidth = (distanceFromTop * 0.42);
-    const x = 100 + (Math.sin(i * 1.1) * maxWidth);
-
-    return {
-      x, y,
-      r: i % 4 === 0 ? 4 : 2.5,
-    };
-  });
 
   getMoodColor(idx: number): string {
     const mood = this._monthData()[idx];
@@ -57,17 +24,59 @@ export class December {
     return palette[mood] || palette['none'];
   }
 
-  generateCurvedPath(): string {
-    if (this.decorations.length === 0) return '';
+  private tiers = [
+    { y: 60, amplitude: 15 },
+    { y: 130, amplitude: 15 }
+  ];
 
-    let path = `M ${this.decorations[0].x} ${this.decorations[0].y}`;
-    for (let i = 0; i < this.decorations.length - 1; i++) {
-      const start = this.decorations[i];
-      const end = this.decorations[i + 1];
-      const cpX = (start.x + end.x) / 2;
-      const cpY = Math.max(start.y, end.y) + 2;
-      path += ` Q ${cpX} ${cpY} ${end.x} ${end.y}`;
-    }
-    return path;
+  get decorations() {
+    const totalItems = this._monthData(); // Now treating this as a number
+    const half = Math.ceil(totalItems / 2);
+
+    return Array.from({ length: totalItems }).map((_, i) => {
+      const isTopTier = i < half;
+      const tier = isTopTier ? this.tiers[0] : this.tiers[1];
+
+      const indexInTier = isTopTier ? i : i - half;
+      const itemsInTier = isTopTier ? half : totalItems - half;
+
+      // Calculate horizontal progress (0 to 1)
+      const progress = itemsInTier > 1 ? indexInTier / (itemsInTier - 1) : 0.5;
+
+      const x = 20 + (progress * 160);
+      const sag = tier.amplitude * 4 * (progress * (1 - progress));
+      const y = tier.y + sag;
+
+      return { x, y, r: i % 4 === 0 ? 4 : 3 };
+    });
+  }
+
+  // // Updated to handle the number input
+  // getMoodColor(idx: number): string {
+  //   const palette = ['#FFD700', '#FF3131', '#4CC9FE', '#BDE0D0'];
+  //   // Logic to pick a color based on index since we don't have a status string
+  //   return palette[idx % palette.length];
+  // }
+
+  get lightWirePath(): string {
+    const decs = this.decorations;
+    if (decs.length === 0) return '';
+
+    const totalItems = this._monthData();
+    const half = Math.ceil(totalItems / 2);
+
+    const drawTier = (startIdx: number, endIdx: number) => {
+      if (startIdx >= endIdx) return '';
+      let path = `M ${decs[startIdx].x} ${decs[startIdx].y}`;
+      for (let i = startIdx; i < endIdx - 1; i++) {
+        // Create a smooth curve between bulbs
+        const cpX = (decs[i].x + decs[i + 1].x) / 2;
+        const cpY = Math.max(decs[i].y, decs[i + 1].y) + 3; // Extra dip for the wire
+        path += ` Q ${cpX} ${cpY} ${decs[i + 1].x} ${decs[i + 1].y}`;
+      }
+      return path;
+    };
+
+    return drawTier(0, half) + " " + drawTier(half, totalItems);
   }
 }
