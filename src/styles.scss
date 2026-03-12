@@ -26,6 +26,15 @@ body {
 	align-items: center;
 }
 
+.svg-container {
+	height: 80vh;
+	width: 50rem;
+	border: 1px solid;
+	overflow: hidden;
+	border-radius: 15px;
+}
+
 svg {
-	max-height: 99vh;
+	width: 55rem;
+	height: 90%;
 }

@@ -11,3 +11,11 @@
 	background: #f3f3f3;
 	width: calc(100% - 10rem);
 }
+
+app-mood-view {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
