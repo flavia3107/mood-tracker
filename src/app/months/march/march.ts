@@ -5,36 +5,52 @@ interface CloudDay {
   x: number;
   y: number;
   scale: number;
-  rotation: number;
   moodColor: string;
 }
 
 @Component({
   selector: 'app-march',
-  imports: [],
   templateUrl: './march.html',
   styleUrl: './march.scss',
+  standalone: true
 })
 export class March {
   days = signal(Array.from({ length: 31 }, (_, i) => ({ id: i + 1, color: '#f8fafc' })));
 
-  // Computed signal to generate the organic cloud nursery
   marchClouds = computed<CloudDay[]>(() => {
-    return this.days().map((day, i) => {
-      // 1. Placement: Randomly scatter across the ENTIRE space (0-600)
-      const x = 50 + (Math.random() * 500);
-      const y = 80 + (Math.random() * 650);
+    const clouds: CloudDay[] = [];
+    const minDistance = 75; // Minimum pixels between cloud centers
+    const width = 800;
+    const height = 720;
 
-      // 2. Variable Scale and Depth
-      return {
+    this.days().forEach((day) => {
+      let x = 0, y = 0;
+      let collision = true;
+      let attempts = 0;
+
+      // Try up to 50 times to find a clear spot
+      while (collision && attempts < 50) {
+        x = 50 + Math.random() * (width - 150);
+        y = 50 + Math.random() * (height - 150);
+
+        // Check distance against all clouds already placed
+        collision = clouds.some(c => {
+          const dx = c.x - x;
+          const dy = c.y - y;
+          return Math.sqrt(dx * dx + dy * dy) < minDistance;
+        });
+        attempts++;
+      }
+
+      clouds.push({
         ...day,
         x,
         y,
-        // Scale variation creates depth (0.7 is far away, 1.4 is closer)
-        scale: 0.7 + (Math.random() * 0.7),
-        rotation: (Math.random() * 20) - 10, // Subtle natural drift
+        scale: 0.8 + (Math.random() * 0.5),
         moodColor: day.color
-      };
+      });
     });
+
+    return clouds;
   });
 }
