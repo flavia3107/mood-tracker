@@ -1,38 +1,36 @@
-<svg viewBox="0 0 600 700" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto rounded-lg shadow-lg">
+<svg viewBox="0 0 650 750" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto bg-slate-50 rounded-xl shadow-inner">
 	<defs>
 		<linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
 			<stop offset="0%" style="stop-color:#f0f9ff;stop-opacity:1" />
 			<stop offset="100%" style="stop-color:#e0f2fe;stop-opacity:1" />
 		</linearGradient>
 
-		<path id="kiteShape" d="M 20 0 L 40 30 L 20 60 L 0 30 Z" />
-
-		<path id="bow" d="M -5 -3 L 5 3 M -5 3 L 5 -3" stroke-width="2" vector-effect="non-scaling-stroke" />
+		<g id="cloud-shape">
+			<path class="cloud-body"
+				d="M 15 25 C 15 11.2 26.2 0 40 0 C 51.1 0 60.5 7.2 63.8 17.1 C 68.6 15 74 15 79.1 17.5 C 84.8 20.3 88.5 26.1 88.5 32.5 C 88.5 41.6 81.1 49 72 49 L 15 49 Z" />
+		</g>
 	</defs>
 
-	<rect width="100%" height="100%" fill="url(#skyGradient)" />
+	<rect width="100%" height="100%" fill="url(#skyGradient)" rx="20" />
 
-	<g stroke="#cbd5e1" fill="none" stroke-width="1" stroke-dasharray="5,5" opacity="0.5">
-		<path d="M -50 150 Q 300 100 650 150" />
-		<path d="M -50 450 Q 300 400 650 450" />
+	<g transform="translate(25, 25)">
+		@for (cloud of marchClouds(); track cloud.id) {
+		<g class="cloud-group"
+			[attr.transform]="'translate(' + cloud.x + ',' + cloud.y + ') rotate(' + cloud.rotation + ') scale(' + cloud.scale + ')'"
+			[style.fill]="cloud.moodColor" [style.color]="cloud.moodColor">
+
+			<use href="#cloud-shape" stroke="#64748b" stroke-width="1" />
+
+			<text x="45" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b"
+				style="pointer-events: none; font-family: sans-serif; transition: all 0.3s;">
+				{{ cloud.id }}
+			</text>
+		</g>
+		}
 	</g>
 
-	@for (kite of marchKites(); track kite.id) {
-	<g class="kite-group"
-		[attr.transform]="'translate(' + kite.x + ',' + kite.y + ') rotate(' + kite.rotation + ') scale(' + kite.scale + ')'">
-
-		<path [attr.d]="kite.tailPath" fill="none" stroke="#94a3b8" stroke-width="1.5" />
-
-		<use href="#bow" x="25" y="100" stroke="#64748b" />
-		<use href="#bow" x="15" y="140" stroke="#64748b" />
-
-		<use href="#kiteShape" [style.fill]="kite.moodColor" stroke="#334155" stroke-width="1.5"
-			class="cursor-pointer" />
-
-		<text x="20" y="35" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a"
-			style="pointer-events: none; font-family: sans-serif;">
-			{{ kite.id }}
-		</text>
+	<g fill="none" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="8 6" opacity="0.4">
+		<path d="M -50 200 Q 300 150 650 200" />
+		<path d="M -50 500 Q 300 450 650 500" />
 	</g>
-	}
 </svg>
