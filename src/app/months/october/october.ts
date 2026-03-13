@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-october',
-  imports: [],
+  standalone: true,
   templateUrl: './october.html',
-  styleUrl: './october.scss',
+  styleUrl: './october.scss'
 })
-export class October {}
+export class October {
+
+}

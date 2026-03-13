@@ -1,0 +1,27 @@
+:host ::ng-deep {
+	.chestnut-group {
+		cursor: pointer;
+		transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+		filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.35));
+
+		&:hover {
+			filter: drop-shadow(0 15px 20px rgba(189, 248, 248, 0.45));
+			z-index: 50;
+
+			.nut-text {
+				fill: #ffffff;
+				text-shadow: 0 0 5px rgba(255, 201, 164, 0.692);
+			}
+		}
+
+		.nut-text {
+			fill: #fef3c7;
+			font-size: 14px;
+			font-weight: 900;
+			font-family: "Segoe UI", system-ui, sans-serif;
+			pointer-events: none;
+			user-select: none;
+			text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+		}
+	}
+}
