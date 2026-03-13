@@ -1,27 +1,37 @@
-<svg viewBox="0 0 500 600" class="w-full h-auto">
+<svg viewBox="0 0 600 700" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto rounded-lg shadow-lg">
 	<defs>
-		<path id="kite-body" d="M 20 0 L 40 30 L 20 60 L 0 30 Z" />
+		<linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+			<stop offset="0%" style="stop-color:#f0f9ff;stop-opacity:1" />
+			<stop offset="100%" style="stop-color:#e0f2fe;stop-opacity:1" />
+		</linearGradient>
 
-		<path id="kite-bow" d="M -5 -3 L 5 3 M -5 3 L 5 -3" stroke-width="2" />
+		<path id="kiteShape" d="M 20 0 L 40 30 L 20 60 L 0 30 Z" />
+
+		<path id="bow" d="M -5 -3 L 5 3 M -5 3 L 5 -3" stroke-width="2" vector-effect="non-scaling-stroke" />
 	</defs>
 
-	<path d="M 50 100 Q 250 50 450 100" fill="none" stroke="#f0f0f0" stroke-width="2" />
-	<path d="M 50 300 Q 250 250 450 300" fill="none" stroke="#f0f0f0" stroke-width="2" />
+	<rect width="100%" height="100%" fill="url(#skyGradient)" />
 
-	@for (day of marchDays(); track day.id) {
-	<g [attr.transform]="'translate(' + day.x + ',' + day.y + ') rotate(' + day.rotation + ')'">
+	<g stroke="#cbd5e1" fill="none" stroke-width="1" stroke-dasharray="5,5" opacity="0.5">
+		<path d="M -50 150 Q 300 100 650 150" />
+		<path d="M -50 450 Q 300 400 650 450" />
+	</g>
 
-		<path d="M 20 60 Q 30 80 20 100 T 20 140" fill="none" stroke="#64748b" stroke-width="1.5" />
+	@for (kite of marchKites(); track kite.id) {
+	<g class="kite-group"
+		[attr.transform]="'translate(' + kite.x + ',' + kite.y + ') rotate(' + kite.rotation + ') scale(' + kite.scale + ')'">
 
-		<use href="#kite-bow" x="25" y="85" stroke="#64748b" />
-		<use href="#kite-bow" x="15" y="115" stroke="#64748b" />
+		<path [attr.d]="kite.tailPath" fill="none" stroke="#94a3b8" stroke-width="1.5" />
 
-		<use href="#kite-body" [style.fill]="day.moodColor" stroke="#475569" stroke-width="2"
-			class="cursor-pointer transition-colors duration-200" />
+		<use href="#bow" x="25" y="100" stroke="#64748b" />
+		<use href="#bow" x="15" y="140" stroke="#64748b" />
 
-		<text x="20" y="35" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b"
-			style="pointer-events: none;">
-			{{ day.id }}
+		<use href="#kiteShape" [style.fill]="kite.moodColor" stroke="#334155" stroke-width="1.5"
+			class="cursor-pointer" />
+
+		<text x="20" y="35" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a"
+			style="pointer-events: none; font-family: sans-serif;">
+			{{ kite.id }}
 		</text>
 	</g>
 	}

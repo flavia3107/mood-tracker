@@ -1,0 +1,6 @@
+.kite-group {
+	transition: transform 0.3s ease-out;
+}
+.kite-group:hover {
+	transform: translateY(-5px);
+}
