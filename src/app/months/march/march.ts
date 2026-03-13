@@ -21,24 +21,18 @@ export class March {
   // Computed signal to generate the organic cloud nursery
   marchClouds = computed<CloudDay[]>(() => {
     return this.days().map((day, i) => {
-      // 1. Pathing: An "S" curve drifting up and right across the sky
-      const progress = i / 31;
+      // 1. Placement: Randomly scatter across the ENTIRE space (0-600)
+      const x = 50 + (Math.random() * 500);
+      const y = 80 + (Math.random() * 650);
 
-      // Horizontal drift (some random horizontal variability)
-      const x = 50 + (progress * 450) + (Math.random() * 100 - 50);
-
-      // Vertical drift (March clouds climb high)
-      const y = 650 - (progress * 550) + (Math.random() * 100 - 50);
-
-      // 2. Depth and Variety
+      // 2. Variable Scale and Depth
       return {
         ...day,
         x,
         y,
-        // Scale variation creates depth (0.7 is far away, 1.3 is closer)
-        scale: 0.7 + (Math.random() * 0.6),
-        // Slight natural rotation
-        rotation: (Math.random() * 30) - 15,
+        // Scale variation creates depth (0.7 is far away, 1.4 is closer)
+        scale: 0.7 + (Math.random() * 0.7),
+        rotation: (Math.random() * 20) - 10, // Subtle natural drift
         moodColor: day.color
       };
     });

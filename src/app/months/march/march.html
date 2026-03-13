@@ -5,9 +5,10 @@
 			<stop offset="100%" style="stop-color:#e0f2fe;stop-opacity:1" />
 		</linearGradient>
 
-		<g id="cloud-shape">
-			<path class="cloud-body"
-				d="M 15 25 C 15 11.2 26.2 0 40 0 C 51.1 0 60.5 7.2 63.8 17.1 C 68.6 15 74 15 79.1 17.5 C 84.8 20.3 88.5 26.1 88.5 32.5 C 88.5 41.6 81.1 49 72 49 L 15 49 Z" />
+		<g id="cloud-shape-fluffy">
+			<path
+				d="M 10 30 C 10 16 23 5 38 5 C 47 5 56 10 60 18 C 65 14 73 14 78 18 C 84 22 88 30 88 38 C 88 50 81 60 70 60 L 60 60 C 58 64 50 68 40 68 L 30 68 C 18 68 10 60 10 50 Z"
+				fill="currentColor" />
 		</g>
 	</defs>
 
@@ -15,22 +16,18 @@
 
 	<g transform="translate(25, 25)">
 		@for (cloud of marchClouds(); track cloud.id) {
-		<g class="cloud-group"
-			[attr.transform]="'translate(' + cloud.x + ',' + cloud.y + ') rotate(' + cloud.rotation + ') scale(' + cloud.scale + ')'"
-			[style.fill]="cloud.moodColor" [style.color]="cloud.moodColor">
+		<g [attr.transform]="'translate(' + cloud.x + ',' + cloud.y + ') scale(' + cloud.scale + ')'"
+			[style.color]="cloud.moodColor"
+			class="cursor-pointer transition-transform duration-300 hover:brightness-105"
+			style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));">
 
-			<use href="#cloud-shape" stroke="#64748b" stroke-width="1" />
+			<use href="#cloud-shape-fluffy" stroke="#1e293b" stroke-width="1.8" stroke-linejoin="round" />
 
-			<text x="45" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b"
-				style="pointer-events: none; font-family: sans-serif; transition: all 0.3s;">
+			<text x="50" y="42" text-anchor="middle" font-size="14" font-weight="bold" fill="#0f172a"
+				style="pointer-events: none; font-family: sans-serif;">
 				{{ cloud.id }}
 			</text>
 		</g>
 		}
-	</g>
-
-	<g fill="none" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="8 6" opacity="0.4">
-		<path d="M -50 200 Q 300 150 650 200" />
-		<path d="M -50 500 Q 300 450 650 500" />
 	</g>
 </svg>
