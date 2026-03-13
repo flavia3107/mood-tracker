@@ -1,14 +1,17 @@
-<svg viewBox="0 0 500 600" class="mood-chart">
+<svg viewBox="0 0 400 450" class="w-full h-auto">
 	<defs>
-		<path id="honey-hex" d="M25 0 L50 14.4 V43.3 L25 57.7 L0 43.3 V14.4 Z" />
+		<path id="hex-shape" d="M25 0 L50 14.42 V43.25 L25 57.67 L0 43.25 V14.42 Z" />
 	</defs>
 
-	@for (group of julyGroups(); track $index) {
-	<g [attr.transform]="'translate(' + ($index * 120 + 50) + ',' + ($index * 150 + 50) + ')'">
-		@for (day of group; track day.id) {
-		<use href="#honey-hex" [attr.x]="day.x" [attr.y]="day.y" [style.fill]="day.moodColor" stroke="#eab308"
-			stroke-width="1" />
+	<g transform="translate(50, 50)">
+		@for (day of julyDays(); track day.id) {
+		<use href="#hex-shape" [attr.x]="day.x" [attr.y]="day.y" [style.fill]="day.moodColor" stroke="#D4A017"
+			stroke-width="1.5" class="transition-all duration-300 hover:brightness-95 cursor-pointer" />
+
+		<text [attr.x]="day.x + 25" [attr.y]="day.y + 35" text-anchor="middle" font-size="10" fill="#92400E"
+			style="pointer-events: none;">
+			{{ day.id }}
+		</text>
 		}
 	</g>
-	}
 </svg>

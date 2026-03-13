@@ -13,35 +13,28 @@ interface Day {
   styleUrl: './july.scss',
 })
 export class July {
-  // Your 31 days data
-  days = signal<Day[]>(this.generateJulyData());
+  cols = 5;
+  hexWidth = 50;
+  hexHeight = 58; // Distance from top point to bottom point
 
-  private generateJulyData(): Day[] {
-    const hexWidth = 50;
-    const horizontalSpacing = 44;
-    const verticalSpacing = 38;
+  // Create the 31 days with pre-calculated positions
+  julyDays = signal(Array.from({ length: 31 }, (_, i) => {
+    const row = Math.floor(i / this.cols);
+    const col = i % this.cols;
 
-    return Array.from({ length: 31 }, (_, i) => {
-      // Basic grid math
-      const row = Math.floor(i / 4); // 4 hexagons per row
-      const col = i % 4;
+    // Horizontal spacing is roughly 3/4 of width for interlocking
+    // Vertical spacing is the full height, but rows overlap
+    const xSpacing = 52;
+    const ySpacing = 45;
 
-      // The Magic: Offset every odd row
-      const xOffset = (row % 2 === 1) ? horizontalSpacing / 2 : 0;
+    // Offset every odd row to the right to nest the hexagons
+    const xOffset = (row % 2 !== 0) ? xSpacing / 2 : 0;
 
-      return {
-        id: i + 1,
-        moodColor: '#fef3c7', // Default honey color
-        x: col * horizontalSpacing + xOffset,
-        y: row * verticalSpacing
-      };
-    });
-  }
-
-  // Group them for your "2-3 clusters" idea
-  julyGroups = computed(() => [
-    this.days().slice(0, 10),
-    this.days().slice(10, 20),
-    this.days().slice(20, 31)
-  ]);
+    return {
+      id: i + 1,
+      x: col * xSpacing + xOffset,
+      y: row * ySpacing,
+      moodColor: '#FEF3C7' // Initial light honey color
+    };
+  }));
 }
