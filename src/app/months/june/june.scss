@@ -1,23 +1,39 @@
 .june-container {
-	position: relative;
-	width: 50rem;
 	height: 45rem;
-	background: #fdfcf0; /* Light summer background */
-	border: 2px dashed #ccc;
-	overflow: hidden;
+	background: #fdfcf0;
+	display: flex;
+	flex-wrap: wrap;
+	width: 50rem;
+	position: relative;
 }
 .ice-cream-unit {
 	position: absolute;
+	width: 80px; /* Fixed width for the 'unit' container */
+	height: auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	transition: all 0.5s ease;
+	transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	cursor: pointer;
+
+	&:hover {
+		z-index: 100 !important;
+		transform: scale(1.1) rotate(0deg) !important; /* Straighten up on hover */
+	}
 }
+
+.cone {
+	z-index: 5;
+	filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.1));
+}
+
 .scoop-wrapper {
 	position: absolute;
 	cursor: pointer;
 	transition: transform 0.2s;
+	/* bottom calculation happens in HTML via style binding */
 }
+
 .scoop-wrapper:hover {
 	transform: scale(1.1);
 	z-index: 100 !important;
