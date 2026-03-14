@@ -11,22 +11,20 @@ export class April {
 
   aprilTulips = computed(() => {
     const focalPointX = 400;
-    const focalPointY = 700;
+    const focalPointY = 720;
     const days = this.days();
     const placedTulips: any[] = [];
-
-    // Strict 115px distance to honor the "quarter overlap" rule
-    const minDistance = 115;
+    const minDistance = 115; // Strict "Quarter Overlap" rule
 
     days.forEach((id) => {
-      let x = 0, y = 0, angleDeg = 0, stemLength = 0;
+      let x = 0, y = 0, angleDeg = 0;
       let tooClose = true;
       let attempts = 0;
 
-      while (tooClose && attempts < 250) {
-        angleDeg = (Math.random() - 0.5) * 140;
+      while (tooClose && attempts < 300) {
+        angleDeg = (Math.random() - 0.5) * 150;
         const angleRad = (angleDeg * Math.PI) / 180;
-        stemLength = 280 + (Math.random() * 320);
+        const stemLength = 250 + (Math.random() * 350);
 
         x = focalPointX + Math.sin(angleRad) * stemLength;
         y = focalPointY - Math.cos(angleRad) * stemLength;
@@ -43,12 +41,13 @@ export class April {
         id,
         centerX: x,
         centerY: y,
-        x: x - 50,
+        x: x - 50, // Offset for the 100x100 symbol
         y: y - 50,
-        rotation: (Math.random() - 0.5) * 15,
-        scale: 1.2,
-        stemX: focalPointX,
-        stemY: focalPointY
+        rotation: (Math.random() - 0.5) * 20,
+        scale: 1.1 + Math.random() * 0.2,
+        // Add a tiny bit of random offset to the "gathering point" for a natural look
+        bundleX: focalPointX + (Math.random() - 0.5) * 40,
+        bundleY: focalPointY
       });
     });
 
