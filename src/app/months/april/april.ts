@@ -10,30 +10,23 @@ export class April {
   days = signal(Array.from({ length: 31 }, (_, i) => i + 1));
 
   aprilTulips = computed(() => {
-    const focalPointX = 400;
-    const focalPointY = 750; // Anchored slightly lower for better stem curve
+    const containerWidth = 800;
+    const containerHeight = 850;
     const days = this.days();
     const placedTulips: any[] = [];
 
-    // Strict 125px distance prevents the "clumped" look from previous versions
+    // Strict distance to prevent overlapping more than a quarter
     const minDistance = 125;
 
     days.forEach((id, index) => {
-      let x = 0, y = 0, angleDeg = 0, stemLength = 0;
+      let x = 0, y = 0;
       let tooClose = true;
       let attempts = 0;
 
       while (tooClose && attempts < 400) {
-        // Create a wider, more natural oval distribution
-        angleDeg = (Math.random() - 0.5) * 160;
-        const angleRad = (angleDeg * Math.PI) / 180;
-
-        // Tiered heights (Front: shorter, Back: taller)
-        const tier = index % 3;
-        stemLength = 280 + (tier * 100) + (Math.random() * 80);
-
-        x = focalPointX + Math.sin(angleRad) * stemLength;
-        y = focalPointY - Math.cos(angleRad) * (stemLength * 0.85); // Oval squash
+        // Create a natural field distribution rather than a concentrated bouquet
+        x = 100 + Math.random() * 600;
+        y = 100 + Math.random() * 500;
 
         tooClose = placedTulips.some(other => {
           const dx = x - other.centerX;
@@ -49,14 +42,15 @@ export class April {
         centerY: y,
         x: x - 50,
         y: y - 50,
-        rotation: (Math.random() - 0.5) * 25,
+        rotation: (Math.random() - 0.5) * 10, // Very slight tilt for realism
         scale: 1.1 + (Math.random() * 0.2),
-        // Bundle stems into a "hand-held" width
-        bundleX: focalPointX + (Math.random() - 0.5) * 60,
-        bundleY: focalPointY + 20
+        // Straight stems go down to a fixed ground line or slightly off-vertical
+        groundX: x + (Math.random() - 0.5) * 30,
+        groundY: containerHeight - 50
       });
     });
 
+    // Sort by Y-coordinate so tulips in the back are drawn first
     return placedTulips.sort((a, b) => a.y - b.y);
   });
 }

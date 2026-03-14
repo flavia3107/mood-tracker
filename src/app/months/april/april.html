@@ -5,17 +5,12 @@
 			<path d="M50 90 C85 90 95 70 85 35 C80 15 65 15 55 30 L50 90 Z" fill="#f43f5e" />
 			<path d="M30 80 C30 50 40 10 50 10 C60 10 70 50 70 80 C70 95 30 95 30 80 Z" fill="#ffe4e6" />
 		</symbol>
-
-		<path id="wrap" d="M300 800 L400 600 L500 800 Z" fill="white" opacity="0.1" />
 	</defs>
-
-	<use href="#wrap" transform="scale(2, 1) translate(-200, 0)" />
 
 	<g fill="none" stroke="#4ade80" stroke-linecap="round">
 		@for (item of aprilTulips(); track item.id) {
-		<path [attr.d]="'M' + item.centerX + ',' + (item.centerY + 40) + 
-						 ' Q' + item.centerX + ',' + (item.centerY + 150) + 
-						 ' ' + item.bundleX + ',' + item.bundleY" [attr.stroke-width]="item.scale * 2" opacity="0.4" />
+		<line [attr.x1]="item.centerX" [attr.y1]="item.centerY + 40" [attr.x2]="item.groundX" [attr.y2]="item.groundY"
+			[attr.stroke-width]="item.scale * 2.5" opacity="0.6" />
 		}
 	</g>
 
