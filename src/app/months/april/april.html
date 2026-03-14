@@ -1,17 +1,21 @@
-<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 800 850" xmlns="http://www.w3.org/2000/svg">
 	<defs>
 		<symbol id="tulip-head" viewBox="0 0 100 100">
 			<path d="M50 90 C15 90 5 70 15 35 C20 15 35 15 45 30 L50 90 Z" fill="#fb7185" />
 			<path d="M50 90 C85 90 95 70 85 35 C80 15 65 15 55 30 L50 90 Z" fill="#f43f5e" />
 			<path d="M30 80 C30 50 40 10 50 10 C60 10 70 50 70 80 C70 95 30 95 30 80 Z" fill="#ffe4e6" />
 		</symbol>
+
+		<path id="wrap" d="M300 800 L400 600 L500 800 Z" fill="white" opacity="0.1" />
 	</defs>
 
-	<g fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" opacity="0.5">
+	<use href="#wrap" transform="scale(2, 1) translate(-200, 0)" />
+
+	<g fill="none" stroke="#4ade80" stroke-linecap="round">
 		@for (item of aprilTulips(); track item.id) {
 		<path [attr.d]="'M' + item.centerX + ',' + (item.centerY + 40) + 
-						 ' Q' + item.centerX + ',' + (item.centerY + 100) + 
-						 ' ' + item.bundleX + ',' + item.bundleY" />
+						 ' Q' + item.centerX + ',' + (item.centerY + 150) + 
+						 ' ' + item.bundleX + ',' + item.bundleY" [attr.stroke-width]="item.scale * 2" opacity="0.4" />
 		}
 	</g>
 

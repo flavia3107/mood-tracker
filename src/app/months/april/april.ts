@@ -11,23 +11,29 @@ export class April {
 
   aprilTulips = computed(() => {
     const focalPointX = 400;
-    const focalPointY = 720;
+    const focalPointY = 750; // Anchored slightly lower for better stem curve
     const days = this.days();
     const placedTulips: any[] = [];
-    const minDistance = 115; // Strict "Quarter Overlap" rule
 
-    days.forEach((id) => {
-      let x = 0, y = 0, angleDeg = 0;
+    // Strict 125px distance prevents the "clumped" look from previous versions
+    const minDistance = 125;
+
+    days.forEach((id, index) => {
+      let x = 0, y = 0, angleDeg = 0, stemLength = 0;
       let tooClose = true;
       let attempts = 0;
 
-      while (tooClose && attempts < 300) {
-        angleDeg = (Math.random() - 0.5) * 150;
+      while (tooClose && attempts < 400) {
+        // Create a wider, more natural oval distribution
+        angleDeg = (Math.random() - 0.5) * 160;
         const angleRad = (angleDeg * Math.PI) / 180;
-        const stemLength = 250 + (Math.random() * 350);
+
+        // Tiered heights (Front: shorter, Back: taller)
+        const tier = index % 3;
+        stemLength = 280 + (tier * 100) + (Math.random() * 80);
 
         x = focalPointX + Math.sin(angleRad) * stemLength;
-        y = focalPointY - Math.cos(angleRad) * stemLength;
+        y = focalPointY - Math.cos(angleRad) * (stemLength * 0.85); // Oval squash
 
         tooClose = placedTulips.some(other => {
           const dx = x - other.centerX;
@@ -41,13 +47,13 @@ export class April {
         id,
         centerX: x,
         centerY: y,
-        x: x - 50, // Offset for the 100x100 symbol
+        x: x - 50,
         y: y - 50,
-        rotation: (Math.random() - 0.5) * 20,
-        scale: 1.1 + Math.random() * 0.2,
-        // Add a tiny bit of random offset to the "gathering point" for a natural look
-        bundleX: focalPointX + (Math.random() - 0.5) * 40,
-        bundleY: focalPointY
+        rotation: (Math.random() - 0.5) * 25,
+        scale: 1.1 + (Math.random() * 0.2),
+        // Bundle stems into a "hand-held" width
+        bundleX: focalPointX + (Math.random() - 0.5) * 60,
+        bundleY: focalPointY + 20
       });
     });
 
