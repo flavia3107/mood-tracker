@@ -1,1 +1,34 @@
-<p>april works!</p>
+<svg viewBox="0 0 800 720" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<g id="tulip-head">
+			<path d="M-30 0 C-45 -10 -50 -40 -35 -60 C-25 -75 -10 -75 0 -60 C10 -75 25 -75 35 -60 C50 -40 45 -10 30 0 Z"
+				fill="#fb7185" />
+			<path d="M-15 -10 C-5 -50 5 -50 15 -10 C15 5 -15 5 -15 -10 Z" fill="#ffe4e6" />
+		</g>
+
+		<path id="bow" d="M380 670 Q400 650 420 670 Q440 690 400 690 Q360 690 380 670 Z" fill="#f43f5e" />
+	</defs>
+
+	<g stroke="#4ade80" stroke-width="4" stroke-linecap="round">
+		@for (item of aprilTulips(); track item.id) {
+		<line x1="400" y1="680" [attr.x2]="item.x" [attr.y2]="item.y" opacity="0.6" />
+		}
+	</g>
+
+	@for (item of aprilTulips(); track item.id) {
+	<g
+		[attr.transform]="'translate(' + item.x + ',' + item.y + ') rotate(' + item.rotation + ') scale(' + item.scale + ')'">
+		<use href="#tulip-head" />
+
+		<text y="-35" text-anchor="middle" font-weight="900" fill="#881337" font-size="16" transform="rotate(0)">
+			{{ item.id }}
+		</text>
+
+		<circle cx="-10" cy="-20" r="3" fill="#4c0519" />
+		<circle cx="10" cy="-20" r="3" fill="#4c0519" />
+	</g>
+	}
+
+	<use href="#bow" />
+	<circle cx="400" cy="680" r="10" fill="#fb7185" />
+</svg>
