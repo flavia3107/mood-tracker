@@ -8,24 +8,24 @@ import { Component, computed, signal } from '@angular/core';
 })
 export class April {
   days = signal(Array.from({ length: 31 }, (_, i) => i + 1));
-
   aprilTulips = computed(() => {
     const containerWidth = 800;
     const containerHeight = 850;
     const days = this.days();
     const placedTulips: any[] = [];
 
-    // Strict distance to prevent overlapping more than a quarter
-    const minDistance = 125;
+    // Strict spacing: 120px is roughly the width of one tulip + a small gap
+    const minDistance = 120;
 
-    days.forEach((id, index) => {
+    days.forEach((id) => {
       let x = 0, y = 0;
       let tooClose = true;
       let attempts = 0;
 
-      while (tooClose && attempts < 400) {
-        // Create a natural field distribution rather than a concentrated bouquet
-        x = 100 + Math.random() * 600;
+      while (tooClose && attempts < 800) {
+        // Keep them within the 800px width with a bit of padding
+        x = 80 + Math.random() * 640;
+        // Keep them in the top 2/3rds of the height
         y = 100 + Math.random() * 500;
 
         tooClose = placedTulips.some(other => {
@@ -40,17 +40,17 @@ export class April {
         id,
         centerX: x,
         centerY: y,
-        x: x - 50,
+        x: x - 50, // Centers the 100x100 symbol
         y: y - 50,
-        rotation: (Math.random() - 0.5) * 10, // Very slight tilt for realism
-        scale: 1.1 + (Math.random() * 0.2),
-        // Straight stems go down to a fixed ground line or slightly off-vertical
-        groundX: x + (Math.random() - 0.5) * 30,
-        groundY: containerHeight - 50
+        rotation: (Math.random() - 0.5) * 15,
+        scale: 1.2,
+        // Stems go straight down to the "ground"
+        groundX: x,
+        groundY: 820
       });
     });
 
-    // Sort by Y-coordinate so tulips in the back are drawn first
+    // Critical for overlapping: Sort so bottom-most flowers draw LAST (on top)
     return placedTulips.sort((a, b) => a.y - b.y);
   });
 }
