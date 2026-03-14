@@ -10,54 +10,56 @@ export class April {
   days = signal(Array.from({ length: 31 }, (_, i) => i + 1));
 
   aprilTulips = computed(() => {
-    const focalPointX = 400; // The bottom center of the bouquet
+    const focalPointX = 400;
     const focalPointY = 650;
     const days = this.days();
+    const placedTulips: any[] = [];
 
-    // Distribute the 30 days into three layered tiers
-    const layerCount = 3;
-    const daysPerLayer = Math.ceil(days.length / layerCount);
+    // Enforced spacing: 85-90 units ensures minimal overlap (roughly 1/4 or less)
+    const minDistance = 88;
 
-    return days.map((id, index) => {
-      // 1. Determine which "tier" this tulip sits in
-      const layer = Math.floor(index / daysPerLayer); // 0, 1, or 2
+    days.forEach((id) => {
+      let x = 0, y = 0, angleDeg = 0, stemLength = 0;
+      let tooClose = true;
+      let attempts = 0;
 
-      // 2. Base Arc Geometry (We fan out less, only 120 degrees)
-      const angleRange = 120;
-      const positionInLayer = index % daysPerLayer;
-      const angleStep = angleRange / (daysPerLayer - 1);
-      const angleDeg = -60 + (positionInLayer * angleStep);
-      const angleRad = (angleDeg * Math.PI) / 180;
+      while (tooClose && attempts < 100) {
+        // 1. Randomize within a loose bouquet arc
+        angleDeg = (Math.random() - 0.5) * 130; // Fan width
+        const angleRad = (angleDeg * Math.PI) / 180;
 
-      // 3. Multi-Tiered Stagger (Creates Volume, not a line)
-      // Front layers are shorter, back layers are taller
-      const baseLength = 220;
-      const layerLengthStagger = 65;
-      const jitter = (Math.random() - 0.5) * 40; // High random variation
+        // Variable lengths to create the "cloud" effect
+        stemLength = 220 + (Math.random() * 200);
 
-      const stemLength = baseLength + (layer * layerLengthStagger) + jitter;
+        x = focalPointX + Math.sin(angleRad) * stemLength;
+        y = focalPointY - Math.cos(angleRad) * stemLength;
 
-      // 4. Set the positions
-      // Tulip head position
-      const x = focalPointX + Math.sin(angleRad) * stemLength;
-      const y = focalPointY - Math.cos(angleRad) * stemLength;
+        // 2. Check overlap against already placed tulips
+        tooClose = placedTulips.some(other => {
+          const dx = x - other.centerX;
+          const dy = y - other.centerY;
+          return Math.sqrt(dx * dx + dy * dy) < minDistance;
+        });
 
-      return {
+        attempts++;
+      }
+
+      placedTulips.push({
         id,
-        x: x - 50, // Correcting for 100x100 symbol anchor
+        centerX: x, // Used for collision math
+        centerY: y,
+        x: x - 50,  // Offset for 100px symbol alignment
         y: y - 50,
-
-        // key fix: Rotation is always generally UP (-10 to 10 degrees), not fanned out.
-        rotation: (Math.random() - 0.5) * 20,
-
-        scale: 1.2 + Math.random() * 0.2,
-
-        // Data for the stem to match the staggered head
+        rotation: (Math.random() - 0.5) * 20, // Keep them looking UP
+        scale: 1.1 + Math.random() * 0.2,
         stemX: focalPointX,
         stemY: focalPointY,
         stemRotation: angleDeg,
-        stemLengthMultiplier: stemLength / 100 // Scale the 100px base stem path
-      };
+        stemLength: stemLength
+      });
     });
+
+    // Sort by Y so tulips in the "back" are drawn first
+    return placedTulips.sort((a, b) => a.y - b.y);
   });
 }
