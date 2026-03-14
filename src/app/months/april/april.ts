@@ -11,55 +11,47 @@ export class April {
 
   aprilTulips = computed(() => {
     const focalPointX = 400;
-    const focalPointY = 650;
+    const focalPointY = 700;
     const days = this.days();
     const placedTulips: any[] = [];
 
-    // Enforced spacing: 85-90 units ensures minimal overlap (roughly 1/4 or less)
-    const minDistance = 88;
+    // Strict 115px distance to honor the "quarter overlap" rule
+    const minDistance = 115;
 
     days.forEach((id) => {
       let x = 0, y = 0, angleDeg = 0, stemLength = 0;
       let tooClose = true;
       let attempts = 0;
 
-      while (tooClose && attempts < 100) {
-        // 1. Randomize within a loose bouquet arc
-        angleDeg = (Math.random() - 0.5) * 130; // Fan width
+      while (tooClose && attempts < 250) {
+        angleDeg = (Math.random() - 0.5) * 140;
         const angleRad = (angleDeg * Math.PI) / 180;
-
-        // Variable lengths to create the "cloud" effect
-        stemLength = 220 + (Math.random() * 200);
+        stemLength = 280 + (Math.random() * 320);
 
         x = focalPointX + Math.sin(angleRad) * stemLength;
         y = focalPointY - Math.cos(angleRad) * stemLength;
 
-        // 2. Check overlap against already placed tulips
         tooClose = placedTulips.some(other => {
           const dx = x - other.centerX;
           const dy = y - other.centerY;
           return Math.sqrt(dx * dx + dy * dy) < minDistance;
         });
-
         attempts++;
       }
 
       placedTulips.push({
         id,
-        centerX: x, // Used for collision math
+        centerX: x,
         centerY: y,
-        x: x - 50,  // Offset for 100px symbol alignment
+        x: x - 50,
         y: y - 50,
-        rotation: (Math.random() - 0.5) * 20, // Keep them looking UP
-        scale: 1.1 + Math.random() * 0.2,
+        rotation: (Math.random() - 0.5) * 15,
+        scale: 1.2,
         stemX: focalPointX,
-        stemY: focalPointY,
-        stemRotation: angleDeg,
-        stemLength: stemLength
+        stemY: focalPointY
       });
     });
 
-    // Sort by Y so tulips in the "back" are drawn first
     return placedTulips.sort((a, b) => a.y - b.y);
   });
 }

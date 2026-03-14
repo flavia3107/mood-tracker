@@ -1,16 +1,16 @@
-<svg viewBox="0 0 800 720" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
 	<defs>
 		<symbol id="tulip-head" viewBox="0 0 100 100">
 			<path d="M50 90 C15 90 5 70 15 35 C20 15 35 15 45 30 L50 90 Z" fill="#fb7185" />
 			<path d="M50 90 C85 90 95 70 85 35 C80 15 65 15 55 30 L50 90 Z" fill="#f43f5e" />
 			<path d="M30 80 C30 50 40 10 50 10 C60 10 70 50 70 80 C70 95 30 95 30 80 Z" fill="#ffe4e6" />
-			<path d="M48 35 L52 35 M47 45 L53 45" fill="none" stroke="#4c0519" stroke-width="1" />
 		</symbol>
 	</defs>
 
-	<g stroke="#4ade80" stroke-width="3" opacity="0.5">
+	<g fill="none" stroke="#4ade80" stroke-width="2.5" opacity="0.4">
 		@for (item of aprilTulips(); track item.id) {
-		<line [attr.x1]="item.stemX" [attr.y1]="item.stemY" [attr.x2]="item.centerX" [attr.y2]="item.centerY" />
+		<path
+			[attr.d]="'M' + item.stemX + ',' + item.stemY + ' Q' + item.stemX + ',' + (item.centerY + 80) + ' ' + item.centerX + ',' + item.centerY" />
 		}
 	</g>
 
@@ -18,6 +18,7 @@
 	<g
 		[attr.transform]="'translate(' + item.x + ',' + item.y + ') rotate(' + item.rotation + ', 50, 50) scale(' + item.scale + ')'">
 		<use href="#tulip-head" width="100" height="100" />
+
 		<text x="50" y="55" text-anchor="middle" font-weight="900" fill="#881337" font-size="16">
 			{{ item.id }}
 		</text>
