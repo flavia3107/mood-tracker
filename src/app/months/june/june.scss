@@ -1,0 +1,24 @@
+.june-container {
+	position: relative;
+	width: 50rem;
+	height: 45rem;
+	background: #fdfcf0; /* Light summer background */
+	border: 2px dashed #ccc;
+	overflow: hidden;
+}
+.ice-cream-unit {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transition: all 0.5s ease;
+}
+.scoop-wrapper {
+	position: absolute;
+	cursor: pointer;
+	transition: transform 0.2s;
+}
+.scoop-wrapper:hover {
+	transform: scale(1.1);
+	z-index: 100 !important;
+}
