@@ -10,33 +10,53 @@ export class April {
   days = signal(Array.from({ length: 31 }, (_, i) => i + 1));
 
   aprilTulips = computed(() => {
-    const centerX = 400; // Middle of the 50rem container
-    const centerY = 680; // The base of the bouquet (the "knot")
+    const focalPointX = 400; // The bottom center of the bouquet
+    const focalPointY = 650;
     const days = this.days();
 
-    return days.map((id: any, index: number) => {
-      // 1. Calculate an angle to fan them out (from -70 to +70 degrees)
-      const angleRange = 140;
-      const angleStep = angleRange / (days.length - 1);
-      const angleDeg = -70 + (index * angleStep);
+    // Distribute the 30 days into three layered tiers
+    const layerCount = 3;
+    const daysPerLayer = Math.ceil(days.length / layerCount);
+
+    return days.map((id, index) => {
+      // 1. Determine which "tier" this tulip sits in
+      const layer = Math.floor(index / daysPerLayer); // 0, 1, or 2
+
+      // 2. Base Arc Geometry (We fan out less, only 120 degrees)
+      const angleRange = 120;
+      const positionInLayer = index % daysPerLayer;
+      const angleStep = angleRange / (daysPerLayer - 1);
+      const angleDeg = -60 + (positionInLayer * angleStep);
       const angleRad = (angleDeg * Math.PI) / 180;
 
-      // 2. Vary the "stem length" so they aren't in a perfect flat line
-      // This creates the lush, rounded bouquet look
-      const length = 350 + (index % 3) * 40 + (Math.random() * 30);
+      // 3. Multi-Tiered Stagger (Creates Volume, not a line)
+      // Front layers are shorter, back layers are taller
+      const baseLength = 220;
+      const layerLengthStagger = 65;
+      const jitter = (Math.random() - 0.5) * 40; // High random variation
 
-      // 3. Trigonometry to find the tulip head position
-      const x = centerX + Math.sin(angleRad) * length;
-      const y = centerY - Math.cos(angleRad) * length;
+      const stemLength = baseLength + (layer * layerLengthStagger) + jitter;
+
+      // 4. Set the positions
+      // Tulip head position
+      const x = focalPointX + Math.sin(angleRad) * stemLength;
+      const y = focalPointY - Math.cos(angleRad) * stemLength;
 
       return {
         id,
-        x,
-        y,
-        // The tulip should rotate to "look" away from the center
-        rotation: angleDeg,
+        x: x - 50, // Correcting for 100x100 symbol anchor
+        y: y - 50,
+
+        // key fix: Rotation is always generally UP (-10 to 10 degrees), not fanned out.
+        rotation: (Math.random() - 0.5) * 20,
+
         scale: 1.2 + Math.random() * 0.2,
-        delay: index * 0.05 // Useful for stagger animations
+
+        // Data for the stem to match the staggered head
+        stemX: focalPointX,
+        stemY: focalPointY,
+        stemRotation: angleDeg,
+        stemLengthMultiplier: stemLength / 100 // Scale the 100px base stem path
       };
     });
   });
