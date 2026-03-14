@@ -6,3 +6,10 @@
 	filter: brightness(1.5) drop-shadow(0 0 5px #fff);
 	// transform: scale(1.1);
 }
+
+svg {
+	background: #0f172a;
+	border-radius: 12px;
+	// background: radial-gradient(circle, #1e293b 0%, #0f172a 100%);
+	background: radial-gradient(circle, #384a66 0%, #08122b 100%);
+}
