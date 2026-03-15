@@ -1,11 +1,12 @@
 import { DecimalPipe } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 
-interface DaySegment {
+interface WebSegment {
   id: number;
+  path: string;
   color: string;
-  x: number;
-  y: number;
+  labelX: number;
+  labelY: number;
 }
 
 @Component({
@@ -16,9 +17,8 @@ interface DaySegment {
   styleUrl: './october.scss'
 })
 export class October {
-  days: DaySegment[] = [];
+  segments: WebSegment[] = [];
   selectedColor = '#FF9100';
-
   moods = [
     { label: 'Amazing', color: '#FF9100' },
     { label: 'Good', color: '#FFD54F' },
@@ -27,27 +27,42 @@ export class October {
   ];
 
   ngOnInit() {
-    this.generateCoordinates();
+    this.generateWeb();
   }
 
-  generateCoordinates() {
-    this.days = Array.from({ length: 31 }, (_, i) => {
-      const col = i % 6;
-      const row = Math.floor(i / 6);
+  generateWeb() {
+    const totalDays = 31;
+    const centerX = 200;
+    const centerY = 200;
+    const radius = 180;
+
+    this.segments = Array.from({ length: totalDays }, (_, i) => {
+      const angleStep = (2 * Math.PI) / totalDays;
+      const startAngle = i * angleStep;
+      const endAngle = (i + 1) * angleStep;
+
+      // Calculate path for a "slice" of the web
+      const x1 = centerX + radius * Math.cos(startAngle);
+      const y1 = centerY + radius * Math.sin(startAngle);
+      const x2 = centerX + radius * Math.cos(endAngle);
+      const y2 = centerY + radius * Math.sin(endAngle);
+
+      // Label position (slightly offset from center)
+      const labelRadius = radius * 0.75;
+      const lx = centerX + labelRadius * Math.cos(startAngle + angleStep / 2);
+      const ly = centerY + labelRadius * Math.sin(startAngle + angleStep / 2);
+
       return {
         id: i + 1,
-        color: '#2a2a2a', // Dark "unfilled" color
-        x: 70 + col * 50,
-        y: 80 + row * 50
+        path: `M ${centerX} ${centerY} L ${x1} ${y1} A ${radius} ${radius} 0 0 1 ${x2} ${y2} Z`,
+        color: 'rgba(255, 255, 255, 0.05)',
+        labelX: lx,
+        labelY: ly
       };
     });
   }
 
-  selectMood(color: string) {
-    this.selectedColor = color;
-  }
-
   updateDay(index: number) {
-    this.days[index].color = this.selectedColor;
+    this.segments[index].color = this.selectedColor;
   }
 }

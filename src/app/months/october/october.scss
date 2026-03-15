@@ -1,48 +1,48 @@
-.tracker-container {
-	background: #1a1a1a;
-	color: #f1f1f1;
-	padding: 2rem;
-	border-radius: 15px;
+.october-container {
+	background: #0d0d0d;
+	padding: 30px;
+	border-radius: 20px;
 	text-align: center;
-	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	color: #eb6123;
 }
 
-.mood-palette {
-	margin-bottom: 2rem;
+.mood-picker {
 	display: flex;
 	justify-content: center;
-	gap: 10px;
+	gap: 15px;
+	margin-bottom: 20px;
 }
 
-.mood-palette button {
+.mood-item {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	cursor: pointer;
 	border: 2px solid transparent;
-	padding: 10px 15px;
-	border-radius: 20px;
-	cursor: pointer;
-	color: #000;
-	font-weight: bold;
-	transition: transform 0.2s;
+	transition: 0.3s;
 }
 
-.mood-palette button.active {
+.mood-item.active {
 	border-color: white;
-	transform: scale(1.1);
-	box-shadow: 0 0 10px #ff9100;
+	box-shadow: 0 0 10px white;
 }
 
-.pumpkin-svg {
-	max-width: 500px;
-	filter: drop-shadow(0 0 5px rgba(255, 145, 0, 0.2));
+.web-svg {
+	max-width: 100%;
+	height: auto;
 }
 
-.day-segment {
+.web-slice {
 	cursor: pointer;
-	stroke: #2c2c2c;
-	stroke-width: 2;
-	transition: opacity 0.3s;
+	transition: opacity 0.2s;
 }
 
-.day-segment:hover {
-	opacity: 0.8;
-	stroke: #ffffff;
+.web-slice path:hover {
+	fill-opacity: 0.8;
+	stroke: #eb6123;
+}
+
+.web-slice text {
+	pointer-events: none;
+	font-weight: bold;
 }

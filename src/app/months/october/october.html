@@ -1,28 +1,29 @@
-<div class="tracker-container">
-	<h2>October Mood Pumpkin</h2>
+<div class="october-container">
+	<h2>The Spider's Web</h2>
 
-	<div class="mood-palette">
+	<div class="mood-picker">
 		@for (mood of moods; track mood.label) {
-		<button [style.background]="mood.color" (click)="selectMood(mood.color)"
+		<div class="mood-item" [style.background]="mood.color" (click)="selectedColor = mood.color"
 			[class.active]="selectedColor === mood.color">
-			{{ mood.label }}
-		</button>
+		</div>
 		}
 	</div>
 
-	<div class="pumpkin-canvas">
-		<svg viewBox="0 0 400 380" class="pumpkin-svg">
-			<path d="M180,20 Q200,0 220,20 L210,60 L190,60 Z" fill="#4E342E" />
+	<svg viewBox="0 0 400 400" class="web-svg">
+		<circle cx="200" cy="200" r="180" fill="none" stroke="#444" stroke-width="1" />
+		<circle cx="200" cy="200" r="120" fill="none" stroke="#444" stroke-width="1" />
+		<circle cx="200" cy="200" r="60" fill="none" stroke="#444" stroke-width="1" />
 
-			@for (day of days; track day.id; let i = $index) {
-			<g (click)="updateDay(i)" class="day-group">
-				<circle [attr.cx]="day.x" [attr.cy]="day.y" r="20" [attr.fill]="day.color" class="day-segment" />
-				<text [attr.x]="day.x" [attr.y]="day.y + 4" font-size="12" text-anchor="middle" fill="white"
-					class="day-label">
-					{{ day.id }}
-				</text>
-			</g>
-			}
-		</svg>
-	</div>
+		@for (seg of segments; track seg.id; let i = $index) {
+		<g class="web-slice" (click)="updateDay(i)">
+			<path [attr.d]="seg.path" [attr.fill]="seg.color" stroke="#222" stroke-width="1" />
+			<text [attr.x]="seg.labelX" [attr.y]="seg.labelY" font-size="8" fill="#888" text-anchor="middle">
+				{{ seg.id }}
+			</text>
+		</g>
+		}
+
+		<circle cx="200" cy="200" r="15" fill="#111" />
+		<circle cx="200" cy="188" r="8" fill="#111" />
+	</svg>
 </div>
