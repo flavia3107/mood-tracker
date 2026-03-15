@@ -1,42 +1,90 @@
-.tracker-wrapper {
+.pumpkin-tracker-wrapper {
 	background: #fff;
-	padding: 20px;
+	padding: 2rem;
 	text-align: center;
-	font-family: "Segoe UI", sans-serif;
+	font-family: "Times New Roman", Times, serif; /* Bullet journal text feel */
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.mood-selectors {
+.svg-container {
 	display: flex;
 	justify-content: center;
-	gap: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 2rem;
 }
 
-.swatch {
-	width: 25px;
-	height: 25px;
-	border-radius: 50%;
-	cursor: pointer;
-	border: 2px solid #eee;
-	transition: transform 0.2s;
+.pumpkin-svg {
+	width: 100%;
+	max-width: 500px;
+	height: auto;
 }
 
-.swatch.active {
-	transform: scale(1.3);
-	border-color: #444;
-}
-
-.clickable-item {
-	cursor: pointer;
-}
-
-.clickable-item:hover path {
+.face-static {
+	fill: #333; /* Dark face features */
 	stroke: #000;
 	stroke-width: 2;
 }
 
-.item-text {
-	pointer-events: none;
-	font-weight: bold;
+.clickable-facet {
+	stroke: #000; /* Crisp black lines like the sketch */
+	stroke-width: 2;
+	cursor: pointer;
+	transition: fill 0.3s ease;
+}
+
+.clickable-facet:hover {
+	stroke: #ffb300; /* Golden hover highlight */
+	stroke-width: 3;
+}
+
+.facet-label {
+	pointer-events: none; /* User selection shouldn't block clicking facets */
 	fill: #333;
+	font-family: Arial, sans-serif;
+	font-size: 10px;
+	text-anchor: middle;
+	font-weight: bold;
+}
+
+/* Mood Palette Styles */
+.mood-palette {
+	display: flex;
+	justify-content: center;
+	gap: 15px;
+	flex-wrap: wrap;
+}
+
+.mood-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	cursor: pointer;
+	transition: transform 0.2s;
+}
+
+.mood-item:hover {
+	transform: translateY(-3px);
+}
+
+.mood-item.selected .swatch {
+	border-color: #333;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.mood-item.selected .label {
+	font-weight: bold;
+}
+
+.swatch {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 3px solid #eee;
+	cursor: pointer;
+	margin-bottom: 5px;
+}
+
+.label {
+	font-size: 12px;
+	color: #555;
 }
