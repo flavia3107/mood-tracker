@@ -1,14 +1,13 @@
 import { DecimalPipe } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 
-interface WebSegment {
+interface Ghost {
   id: number;
-  path: string;
   color: string;
-  labelX: number;
-  labelY: number;
+  x: number;
+  y: number;
+  rotation: number;
 }
-
 @Component({
   selector: 'app-october',
   standalone: true,
@@ -17,52 +16,32 @@ interface WebSegment {
   styleUrl: './october.scss'
 })
 export class October {
-  segments: WebSegment[] = [];
+  ghosts: Ghost[] = [];
   selectedColor = '#FF9100';
+
   moods = [
-    { label: 'Amazing', color: '#FF9100' },
-    { label: 'Good', color: '#FFD54F' },
-    { label: 'Neutral', color: '#A1887F' },
-    { label: 'Spooky', color: '#4A148C' }
+    { label: 'Happy', color: '#FFD54F' },
+    { label: 'Normal', color: '#B0BEC5' },
+    { label: 'Spooky', color: '#9575CD' },
+    { label: 'Sad', color: '#4FC3F7' }
   ];
 
   ngOnInit() {
-    this.generateWeb();
+    this.generateGhosts();
   }
 
-  generateWeb() {
-    const totalDays = 31;
-    const centerX = 200;
-    const centerY = 200;
-    const radius = 180;
-
-    this.segments = Array.from({ length: totalDays }, (_, i) => {
-      const angleStep = (2 * Math.PI) / totalDays;
-      const startAngle = i * angleStep;
-      const endAngle = (i + 1) * angleStep;
-
-      // Calculate path for a "slice" of the web
-      const x1 = centerX + radius * Math.cos(startAngle);
-      const y1 = centerY + radius * Math.sin(startAngle);
-      const x2 = centerX + radius * Math.cos(endAngle);
-      const y2 = centerY + radius * Math.sin(endAngle);
-
-      // Label position (slightly offset from center)
-      const labelRadius = radius * 0.75;
-      const lx = centerX + labelRadius * Math.cos(startAngle + angleStep / 2);
-      const ly = centerY + labelRadius * Math.sin(startAngle + angleStep / 2);
-
-      return {
-        id: i + 1,
-        path: `M ${centerX} ${centerY} L ${x1} ${y1} A ${radius} ${radius} 0 0 1 ${x2} ${y2} Z`,
-        color: 'rgba(255, 255, 255, 0.05)',
-        labelX: lx,
-        labelY: ly
-      };
-    });
+  generateGhosts() {
+    this.ghosts = Array.from({ length: 31 }, (_, i) => ({
+      id: i + 1,
+      color: '#ffffff', // Default ghost white
+      // Random-ish scattering logic
+      x: 10 + (i % 6) * 65 + (Math.random() * 15),
+      y: 20 + Math.floor(i / 6) * 75 + (Math.random() * 20),
+      rotation: Math.random() * 30 - 15 // Slight tilt left or right
+    }));
   }
 
-  updateDay(index: number) {
-    this.segments[index].color = this.selectedColor;
+  updateMood(index: number) {
+    this.ghosts[index].color = this.selectedColor;
   }
 }
