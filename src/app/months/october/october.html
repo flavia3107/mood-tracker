@@ -1,1 +1,28 @@
-<!-- halloween theme -->
+<div class="tracker-container">
+	<h2>October Mood Pumpkin</h2>
+
+	<div class="mood-palette">
+		@for (mood of moods; track mood.label) {
+		<button [style.background]="mood.color" (click)="selectMood(mood.color)"
+			[class.active]="selectedColor === mood.color">
+			{{ mood.label }}
+		</button>
+		}
+	</div>
+
+	<div class="pumpkin-canvas">
+		<svg viewBox="0 0 400 380" class="pumpkin-svg">
+			<path d="M180,20 Q200,0 220,20 L210,60 L190,60 Z" fill="#4E342E" />
+
+			@for (day of days; track day.id; let i = $index) {
+			<g (click)="updateDay(i)" class="day-group">
+				<circle [attr.cx]="day.x" [attr.cy]="day.y" r="20" [attr.fill]="day.color" class="day-segment" />
+				<text [attr.x]="day.x" [attr.y]="day.y + 4" font-size="12" text-anchor="middle" fill="white"
+					class="day-label">
+					{{ day.id }}
+				</text>
+			</g>
+			}
+		</svg>
+	</div>
+</div>
