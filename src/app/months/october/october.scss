@@ -1,56 +1,52 @@
-.october-canvas {
-	background: #f8f8f8; /* Soft light background like your image */
-	padding: 20px;
-	border-radius: 20px;
-	border: 1px solid #ddd;
-	max-width: 500px;
+.journal-page {
+	background: #fafaf8; /* Matches your image background */
+	padding: 25px;
+	border-radius: 15px;
+	border: 1px solid #e0e0e0;
+	max-width: 450px;
 	margin: auto;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-.mood-bar {
+.palette {
 	display: flex;
 	justify-content: center;
-	gap: 12px;
-	margin-bottom: 20px;
+	gap: 15px;
+	margin-bottom: 25px;
 }
 
-.mood-bar button {
-	width: 40px;
-	height: 40px;
-	border-radius: 12px;
-	border: 2px solid transparent;
+.mood-swatch {
+	width: 24px;
+	height: 24px;
+	border-radius: 6px;
 	cursor: pointer;
+	border: 2px solid #fff;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 	transition: transform 0.2s;
 }
 
-.mood-bar button.active {
-	transform: scale(1.2);
-	border-color: #333;
+.mood-swatch.active {
+	transform: translateY(-5px);
+	outline: 2px solid #8d6e63;
 }
 
-.main-svg {
-	width: 100%;
-	height: auto;
-}
-
-.ghost-group {
+.pumpkin-group {
 	cursor: pointer;
-	filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.1));
 }
 
-.ghost-body {
-	stroke: #d1d1d1;
-	stroke-width: 1.5;
-	transition: fill 0.3s ease;
+.pumpkin-group use {
+	transition: fill 0.4s ease, stroke 0.2s;
 }
 
-.ghost-group:hover .ghost-body {
-	stroke: #666;
+.pumpkin-group:hover use {
+	stroke: #5d4037;
+	stroke-width: 2.5px;
 }
 
-.ghost-label {
-	fill: #666;
-	font-family: "Comic Sans MS", cursive, sans-serif; /* To match the informal vibe */
-	font-weight: bold;
+.day-label {
+	fill: #8d6e63;
+	font-family: "Segoe UI", Roboto, sans-serif;
+	font-weight: 600;
 	pointer-events: none;
+	user-select: none;
 }

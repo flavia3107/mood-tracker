@@ -1,13 +1,16 @@
 import { DecimalPipe } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 
-interface Ghost {
+interface Pumpkin {
   id: number;
   color: string;
   x: number;
   y: number;
+  scale: number;
   rotation: number;
+  type: number; // 0: round, 1: tall, 2: wide
 }
+
 @Component({
   selector: 'app-october',
   standalone: true,
@@ -16,32 +19,34 @@ interface Ghost {
   styleUrl: './october.scss'
 })
 export class October {
-  ghosts: Ghost[] = [];
-  selectedColor = '#FF9100';
+  pumpkins: Pumpkin[] = [];
+  selectedColor = '#FB8C00'; // Default Harvest Orange
 
   moods = [
-    { label: 'Happy', color: '#FFD54F' },
-    { label: 'Normal', color: '#B0BEC5' },
-    { label: 'Spooky', color: '#9575CD' },
-    { label: 'Sad', color: '#4FC3F7' }
+    { label: 'Great', color: '#E65100' },
+    { label: 'Good', color: '#FB8C00' },
+    { label: 'Meh', color: '#795548' },
+    { label: 'Spooky', color: '#4A148C' }
   ];
 
   ngOnInit() {
-    this.generateGhosts();
+    this.generatePatch();
   }
 
-  generateGhosts() {
-    this.ghosts = Array.from({ length: 31 }, (_, i) => ({
+  generatePatch() {
+    this.pumpkins = Array.from({ length: 31 }, (_, i) => ({
       id: i + 1,
-      color: '#ffffff', // Default ghost white
-      // Random-ish scattering logic
-      x: 10 + (i % 6) * 65 + (Math.random() * 15),
-      y: 20 + Math.floor(i / 6) * 75 + (Math.random() * 20),
-      rotation: Math.random() * 30 - 15 // Slight tilt left or right
+      color: '#FFF3E0', // Uncolored "paper" color
+      // Scattering logic to look like a field
+      x: 30 + (i % 6) * 60 + (Math.random() * 20),
+      y: 40 + Math.floor(i / 6) * 70 + (Math.random() * 20),
+      scale: 0.8 + Math.random() * 0.4,
+      rotation: Math.random() * 20 - 10,
+      type: Math.floor(Math.random() * 3)
     }));
   }
 
-  updateMood(index: number) {
-    this.ghosts[index].color = this.selectedColor;
+  fillPumpkin(index: number) {
+    this.pumpkins[index].color = this.selectedColor;
   }
 }
