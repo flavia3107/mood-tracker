@@ -22,8 +22,14 @@ export class August {
       'good': '#F4D03F',
       'meh': '#D4AC0D',
       'bad': '#997950',
-      'none': '#FCF3CF'
+      'none': '#fff'
     };
     return palette[mood] || palette['none'];
+  }
+
+  getTextRotation(index: number): string {
+    const angle = (index * (360 / this.monthData()));
+    // Center of rotation is 125 (horizontal center) and 48 (near the tip)
+    return `rotate(${-angle}, 125, 48)`;
   }
 }
