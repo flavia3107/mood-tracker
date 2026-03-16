@@ -3,11 +3,11 @@
 		<svg viewBox="0 0 400 500" class="clover-svg">
 			<defs>
 				<clipPath id="heartClip">
-					<path d="M50,100 C50,100 0,70 0,35 C0,10 25,0 50,25 C75,0 100,10 100,35 C100,70 50,100 50,100 Z" />
+					<path d="M50,100 C50,100 0,75 0,35 C0,10 25,0 50,25 C75,0 100,10 100,35 C100,75 50,100 50,100 Z" />
 				</clipPath>
 			</defs>
 
-			<path d="M200,300 Q210,450 120,480" stroke="#2E7D32" stroke-width="12" fill="none" stroke-linecap="round" />
+			<path d="M200,200 Q215,400 130,480" stroke="#2E7D32" stroke-width="10" fill="none" stroke-linecap="round" />
 
 			@for (leafIdx of [0, 1, 2, 3]; track leafIdx) {
 			<g [attr.transform]="getLeafTransform(leafIdx)">
@@ -15,13 +15,13 @@
 					@for (shardPath of shardPaths; track $index) {
 					@let dayIdx = (leafIdx * 8) + $index;
 					@if (dayIdx
-					< 31) { <path [attr.d]="shardPath" [attr.fill]="days()[dayIdx].color" stroke="#333" stroke-width="1"
-						(click)="updateDay(dayIdx)" class="shard" />
+					< 31) { <path [attr.d]="shardPath" [attr.fill]="days()[dayIdx].color" stroke="#333"
+						stroke-width="0.8" (click)="updateDay(dayIdx)" class="shard" />
 					}
 					}
 				</g>
-				<path d="M50,100 C50,100 0,70 0,35 C0,10 25,0 50,25 C75,0 100,10 100,35 C100,70 50,100 50,100 Z"
-					fill="none" stroke="#222" stroke-width="2" />
+				<path d="M50,100 C50,100 0,75 0,35 C0,10 25,0 50,25 C75,0 100,10 100,35 C100,75 50,100 50,100 Z"
+					fill="none" stroke="#111" stroke-width="2" />
 			</g>
 			}
 		</svg>
@@ -30,8 +30,7 @@
 			@for (mood of moods; track mood.label) {
 			<div class="mood-item" (click)="setMood(mood.color)">
 				<div class="swatch" [style.background-color]="mood.color"
-					[class.active]="selectedMood() === mood.color">
-				</div>
+					[class.active]="selectedMood() === mood.color"></div>
 				<span class="label">{{ mood.label }}</span>
 			</div>
 			}

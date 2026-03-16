@@ -27,24 +27,14 @@ export class March {
   ];
 
   selectedMood = signal<string>(this.moods[0].color);
+  days = signal(Array.from({ length: 31 }, (_, i) => ({ id: i + 1, color: '#FFFFFF' })));
 
-  // 31 Days total
-  days = signal(Array.from({ length: 31 }, (_, i) => ({
-    id: i + 1,
-    color: '#FFFFFF'
-  })));
-
-  // This defines the geometric triangles inside a single heart "box"
-  // Coordinates are relative to a 100x100 leaf area
+  // Geometric shards relative to a 100x100 leaf area
   readonly shardPaths = [
-    "M50,100 L20,70 L50,50 Z",   // Bottom left inner
-    "M50,100 L50,50 L80,70 Z",   // Bottom right inner
-    "M20,70 L0,40 L30,20 Z",     // Middle left
-    "M30,20 L50,50 L20,70 Z",    // Center left
-    "M30,20 L50,0 L70,20 Z",     // Top middle peak
-    "M70,20 L50,50 L30,20 Z",    // Center top
-    "M80,70 L50,50 L70,20 Z",    // Center right
-    "M100,40 L80,70 L70,20 Z"    // Middle right
+    "M50,100 L10,60 L50,50 Z", "M50,100 L50,50 L90,60 Z",
+    "M10,60 L0,30 L40,15 Z", "M40,15 L50,50 L10,60 Z",
+    "M40,15 L50,0 L60,15 Z", "M60,15 L50,50 L40,15 Z",
+    "M90,60 L50,50 L60,15 Z", "M100,30 L90,60 L60,15 Z"
   ];
 
   setMood(color: string) {
@@ -61,11 +51,13 @@ export class March {
 
   getLeafTransform(leafIndex: number): string {
     const rotations = [0, 90, 180, 270];
+    // These offsets are calculated to make the 'tip' (50,100) of the heart 
+    // sit exactly at the center (200, 200) of the SVG.
     const offsets = [
-      { x: 150, y: 50 },  // Top
-      { x: 250, y: 150 }, // Right
-      { x: 150, y: 250 }, // Bottom
-      { x: 50, y: 150 }   // Left
+      { x: 150, y: 100 }, // Top
+      { x: 200, y: 150 }, // Right
+      { x: 150, y: 200 }, // Bottom
+      { x: 100, y: 150 }  // Left
     ];
     const pos = offsets[leafIndex];
     return `translate(${pos.x}, ${pos.y}) rotate(${rotations[leafIndex]}, 50, 50)`;
