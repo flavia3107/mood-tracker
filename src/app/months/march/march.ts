@@ -28,23 +28,23 @@ export class March {
 
   selectedMood = signal<string>(this.moods[0].color);
 
-  // 31 Days: 8 per leaf for first 3, 7 for the last.
+  // 31 Days total
   days = signal(Array.from({ length: 31 }, (_, i) => ({
     id: i + 1,
     color: '#FFFFFF'
   })));
 
-  // These coordinates define 8 shards for ONE vertical heart-shaped leaf
-  // Center is 0,0 for easier rotation logic
-  readonly leafShards = [
-    "M0,0 L-20,-40 L0,-60 Z",   // Inner left
-    "M0,0 L0,-60 L20,-40 Z",    // Inner right
-    "M-20,-40 L-50,-50 L-30,-80 Z", // Far left mid
-    "M-20,-40 L-30,-80 L0,-60 Z",   // Left top hump
-    "M0,-60 L30,-80 L20,-40 Z",    // Right top hump
-    "M20,-40 L30,-80 L50,-50 Z",   // Far right mid
-    "M-20,-40 L-50,-50 L-30,-20 Z", // Bottom left curve
-    "M20,-40 L50,-50 L30,-20 Z"     // Bottom right curve
+  // This defines the geometric triangles inside a single heart "box"
+  // Coordinates are relative to a 100x100 leaf area
+  readonly shardPaths = [
+    "M50,100 L20,70 L50,50 Z",   // Bottom left inner
+    "M50,100 L50,50 L80,70 Z",   // Bottom right inner
+    "M20,70 L0,40 L30,20 Z",     // Middle left
+    "M30,20 L50,50 L20,70 Z",    // Center left
+    "M30,20 L50,0 L70,20 Z",     // Top middle peak
+    "M70,20 L50,50 L30,20 Z",    // Center top
+    "M80,70 L50,50 L70,20 Z",    // Center right
+    "M100,40 L80,70 L70,20 Z"    // Middle right
   ];
 
   setMood(color: string) {
@@ -59,15 +59,15 @@ export class March {
     });
   }
 
-  // Helper to place and rotate each shard
-  getTransform(index: number): string {
-    const leafIndex = Math.floor(index / 8);
-    const rotation = leafIndex * 90;
-    // Centers the clover at 200, 200
-    return `translate(200, 200) rotate(${rotation})`;
-  }
-
-  getShardPath(index: number): string {
-    return this.leafShards[index % 8];
+  getLeafTransform(leafIndex: number): string {
+    const rotations = [0, 90, 180, 270];
+    const offsets = [
+      { x: 150, y: 50 },  // Top
+      { x: 250, y: 150 }, // Right
+      { x: 150, y: 250 }, // Bottom
+      { x: 50, y: 150 }   // Left
+    ];
+    const pos = offsets[leafIndex];
+    return `translate(${pos.x}, ${pos.y}) rotate(${rotations[leafIndex]}, 50, 50)`;
   }
 }
