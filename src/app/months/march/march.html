@@ -1,21 +1,20 @@
 <div class="tracker-container">
-	<div class="canvas">
-		<svg viewBox="0 0 400 450" class="clover-svg">
-			<path d="M200 320 Q200 420 120 440" stroke="#2E7D32" stroke-width="6" fill="none" stroke-linecap="round" />
+	<div class="layout">
+		<svg viewBox="0 0 400 500" class="clover-svg">
+			<path d="M200,330 Q210,450 120,480" stroke="#2E7D32" stroke-width="8" fill="none" stroke-linecap="round" />
 
 			<g>
 				@for (day of days(); track day.id; let i = $index) {
-				<path [attr.d]="getPathForDay(i)" [attr.fill]="day.color" stroke="#222" stroke-width="1.5"
-					(click)="updateDay(day.id)" class="segment" />
+				<path [attr.d]="day.d" [attr.fill]="day.color" stroke="#222" stroke-width="1.5" (click)="updateDay(i)"
+					class="shard" />
 				}
 			</g>
 		</svg>
 
 		<div class="legend">
 			@for (mood of moods; track mood.label) {
-			<div class="mood-item" (click)="setMood(mood.color)">
-				<div class="swatch" [style.background-color]="mood.color"
-					[class.active]="selectedMood() === mood.color">
+			<div class="mood-row" (click)="setMood(mood.color)">
+				<div class="box" [style.background-color]="mood.color" [class.selected]="selectedMood() === mood.color">
 				</div>
 				<span class="label">{{ mood.label }}</span>
 			</div>
