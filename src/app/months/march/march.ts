@@ -1,22 +1,13 @@
-import { KeyValuePipe } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
-
-interface CloudDay {
-  id: number;
-  x: number;
-  y: number;
-  scale: number;
-  moodColor: string;
-}
+import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-march',
+  standalone: true,
   templateUrl: './march.html',
-  styleUrl: './march.scss',
-  standalone: true
+  styleUrls: ['./march.scss']
 })
 export class March {
-  // days = signal(Array.from({ length: 31 }, (_, i) => ({ id: i + 1, color: '#f8fafc' })));
   readonly moods = [
     { label: 'happy', color: '#D4E157' },
     { label: 'neutral', color: '#9CCC65' },
@@ -29,12 +20,12 @@ export class March {
   selectedMood = signal<string>(this.moods[0].color);
   days = signal(Array.from({ length: 31 }, (_, i) => ({ id: i + 1, color: '#FFFFFF' })));
 
-  // Geometric shards relative to a 100x100 leaf area
+  // Shard paths relative to the 100x100 leaf box
   readonly shardPaths = [
-    "M50,100 L10,60 L50,50 Z", "M50,100 L50,50 L90,60 Z",
-    "M10,60 L0,30 L40,15 Z", "M40,15 L50,50 L10,60 Z",
-    "M40,15 L50,0 L60,15 Z", "M60,15 L50,50 L40,15 Z",
-    "M90,60 L50,50 L60,15 Z", "M100,30 L90,60 L60,15 Z"
+    "M50,100 L10,65 L50,55 Z", "M50,100 L50,55 L90,65 Z",
+    "M10,65 L0,35 L40,20 Z", "M40,20 L50,55 L10,65 Z",
+    "M40,20 L50,5 L60,20 Z", "M60,20 L50,55 L40,20 Z",
+    "M90,65 L50,55 L60,20 Z", "M100,35 L90,65 L60,20 Z"
   ];
 
   setMood(color: string) {
@@ -51,14 +42,17 @@ export class March {
 
   getLeafTransform(leafIndex: number): string {
     const rotations = [0, 90, 180, 270];
-    // These offsets are calculated to make the 'tip' (50,100) of the heart 
-    // sit exactly at the center (200, 200) of the SVG.
+
+    // GAP ADJUSTMENT: 
+    // Increasing/decreasing these numbers pushes the leaves away from center.
+    const gap = 4;
     const offsets = [
-      { x: 150, y: 100 }, // Top
-      { x: 200, y: 150 }, // Right
-      { x: 150, y: 200 }, // Bottom
-      { x: 100, y: 150 }  // Left
+      { x: 150, y: 100 - gap }, // Top (moved up)
+      { x: 200 + gap, y: 150 }, // Right (moved right)
+      { x: 150, y: 200 + gap }, // Bottom (moved down)
+      { x: 100 - gap, y: 150 }  // Left (moved left)
     ];
+
     const pos = offsets[leafIndex];
     return `translate(${pos.x}, ${pos.y}) rotate(${rotations[leafIndex]}, 50, 50)`;
   }
