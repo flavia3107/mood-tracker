@@ -2,7 +2,7 @@
 	@for (day of [].constructor(monthData()); track $index) {
 	<g [attr.transform]="getRotation($index)">
 		<path class="petal" d="M125 105 C135 80, 140 40, 125 30 C110 40, 115 80, 125 105 Z"
-			[attr.fill]="getMoodColor($index)" stroke="#DAA520" stroke-width="0.5" />
+			[attr.fill]="getMoodColor($index)" stroke="#232323" stroke-width="0.5" />
 		<text x="125" y="48" class="day-label" [attr.transform]="getTextRotation($index)">
 			{{ $index + 1 }}
 		</text>
