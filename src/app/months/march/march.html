@@ -1,15 +1,15 @@
 <div class="tracker-container">
 	<div class="layout">
-		<svg viewBox="0 0 400 550" class="clover-svg">
+		<svg viewBox="0 0 400 500" class="clover-svg">
 			<defs>
 				<clipPath id="heartClip">
 					<path d="M50,100 C45,90 0,75 0,35 C0,10 25,0 50,25 C75,0 100,10 100,35 C100,75 55,90 50,100 Z" />
 				</clipPath>
 			</defs>
 
-			<path d="M200,200 Q210,420 120,490" stroke="#2E7D32" stroke-width="12" fill="none" stroke-linecap="round" />
+			<path d="M200,185 Q210,300 160,380" stroke="#2E7D32" stroke-width="7" fill="none" stroke-linecap="round" />
 
-			<g transform="rotate(45, 200, 200)">
+			<g transform="rotate(45, 200, 180)">
 				@for (leafIdx of [0, 1, 2, 3]; track leafIdx) {
 				<g [attr.transform]="getLeafTransform(leafIdx)">
 					<g clip-path="url(#heartClip)">
@@ -17,12 +17,12 @@
 						@let dayIdx = (leafIdx * 8) + $index;
 						@if (dayIdx
 						< 31) { <path [attr.d]="shardPath" [attr.fill]="days()[dayIdx].color" stroke="#333"
-							stroke-width="0.8" (click)="updateDay(dayIdx)" class="shard" />
+							stroke-width="0.6" (click)="updateDay(dayIdx)" class="shard" />
 						}
 						}
 					</g>
 					<path d="M50,100 C45,90 0,75 0,35 C0,10 25,0 50,25 C75,0 100,10 100,35 C100,75 55,90 50,100 Z"
-						fill="none" stroke="#111" stroke-width="2.5" />
+						fill="none" stroke="#111" stroke-width="1.8" />
 				</g>
 				}
 			</g>

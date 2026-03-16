@@ -20,7 +20,7 @@ export class March {
   selectedMood = signal<string>(this.moods[0].color);
   days = signal(Array.from({ length: 31 }, (_, i) => ({ id: i + 1, color: '#FFFFFF' })));
 
-  // Shard paths relative to the 100x100 leaf box
+  // Shards relative to 100x100 leaf box
   readonly shardPaths = [
     "M50,100 L10,65 L50,55 Z", "M50,100 L50,55 L90,65 Z",
     "M10,65 L0,35 L40,20 Z", "M40,20 L50,55 L10,65 Z",
@@ -42,17 +42,18 @@ export class March {
 
   getLeafTransform(leafIndex: number): string {
     const rotations = [0, 90, 180, 270];
-    const gap = 6; // Spacing between leaves
+    const gap = 8; // Slightly larger gap for the larger head
 
-    // Offsets positioned around the center (200, 200)
+    // Centered at 200, 180 (moved up to make room for stem)
     const offsets = [
-      { x: 150, y: 100 - gap },
-      { x: 200 + gap, y: 150 },
-      { x: 150, y: 200 + gap },
-      { x: 100 - gap, y: 150 }
+      { x: 150, y: 80 - gap },
+      { x: 200 + gap, y: 130 },
+      { x: 150, y: 180 + gap },
+      { x: 100 - gap, y: 130 }
     ];
 
     const pos = offsets[leafIndex];
-    return `translate(${pos.x}, ${pos.y}) rotate(${rotations[leafIndex]}, 50, 50)`;
+    // Added scale(1.3) to make the head bigger
+    return `translate(${pos.x}, ${pos.y}) scale(1.3) rotate(${rotations[leafIndex]}, 50, 50)`;
   }
 }
