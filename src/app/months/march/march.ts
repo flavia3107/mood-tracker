@@ -42,15 +42,14 @@ export class March {
 
   getLeafTransform(leafIndex: number): string {
     const rotations = [0, 90, 180, 270];
+    const gap = 6; // Spacing between leaves
 
-    // GAP ADJUSTMENT: 
-    // Increasing/decreasing these numbers pushes the leaves away from center.
-    const gap = 4;
+    // Offsets positioned around the center (200, 200)
     const offsets = [
-      { x: 150, y: 100 - gap }, // Top (moved up)
-      { x: 200 + gap, y: 150 }, // Right (moved right)
-      { x: 150, y: 200 + gap }, // Bottom (moved down)
-      { x: 100 - gap, y: 150 }  // Left (moved left)
+      { x: 150, y: 100 - gap },
+      { x: 200 + gap, y: 150 },
+      { x: 150, y: 200 + gap },
+      { x: 100 - gap, y: 150 }
     ];
 
     const pos = offsets[leafIndex];
