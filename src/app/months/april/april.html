@@ -7,7 +7,8 @@
 
 			@for (config of shardConfigs; track $index) {
 			<g (click)="updateDay($index)" class="shard-group" style="cursor: pointer;">
-				<path [attr.d]="config.path" [attr.fill]="days()[$index].color" stroke="#333" stroke-width="0.8" />
+				<path [attr.d]="config.path" [attr.fill]="days()[$index].color" stroke="#333" stroke-width="0.5"
+					opacity="0.9" />
 				<text [attr.x]="config.label.x" [attr.y]="config.label.y" text-anchor="middle" font-size="9"
 					font-weight="bold" fill="#111" style="pointer-events: none; font-family: sans-serif;">
 					{{ $index + 1 }}
@@ -15,17 +16,11 @@
 			</g>
 			}
 
-			<path
-				d="M200,60 L130,90 L60,150 L35,220 L30,280 L100,280 L150,290 L200,320 L250,300 L300,280 L370,280 L365,220 L340,150 L270,90 Z"
-				fill="none" stroke="#111" stroke-width="3" stroke-linejoin="round" />
+			<path d="M200,60 
+			C300,60 375,160 375,275 
+			Q200,330 25,275 
+			C25,160 100,60 200,60 Z" fill="none" stroke="#111" stroke-width="3.5" stroke-linecap="round"
+				stroke-linejoin="round" />
 		</svg>
 	</div>
-
-	<div class="legend">
-		@for (mood of moods; track mood.label) {
-		<div class="legend-item">
-			<span class="color-swatch" [style.background-color]="mood.color"></span>
-			<span class="label">{{ mood.label }}</span>
-		</div>
-		}
-	</div>
+</div>
