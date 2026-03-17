@@ -1,33 +1,22 @@
 <div class="tracker-container">
 	<div class="layout">
 		<svg viewBox="0 0 400 600" class="april-svg">
-			@for (item of decorations; track $index) {
-			<path [attr.d]="item.d" [attr.stroke]="item.stroke" [attr.stroke-width]="item.width" fill="none"
-				stroke-linecap="round" />
-			}
+			<path d="M200,280 L200,480" stroke="#333" stroke-width="6" fill="none" stroke-linecap="round" />
+			<path d="M200,480 Q200,550 150,550" stroke="#333" stroke-width="6" fill="none" stroke-linecap="round" />
 
 			@for (config of shardConfigs; track $index) {
 			<g (click)="updateDay($index)" style="cursor: pointer;">
 				<path [attr.d]="config.path" [attr.fill]="days()[$index].color" [attr.stroke]="days()[$index].color"
-					stroke-width="0.5" />
-				<text [attr.x]="config.label.x" [attr.y]="config.label.y" text-anchor="middle" font-size="8"
-					font-weight="bold" fill="#111" style="pointer-events: none;">
+					stroke-width="1" />
+				<text [attr.x]="config.label.x" [attr.y]="config.label.y" text-anchor="middle" font-size="10"
+					font-weight="bold" fill="#111" style="pointer-events: none; font-family: sans-serif;">
 					{{ $index + 1 }}
 				</text>
 			</g>
 			}
 
-			<path d="M200,60 L30,280 Q200,380 370,280 Z" fill="none" stroke="#111" stroke-width="2.5" />
+			<path d="M200,60 A170,110 0 0,1 370,280 Q200,380 30,280 A170,110 0 0,1 200,60 Z" fill="none" stroke="#111"
+				stroke-width="3" stroke-linejoin="round" />
 		</svg>
-
-		<div class="legend">
-			@for (mood of moods; track mood.label) {
-			<div class="mood-item" (click)="selectedMood.set(mood.color)">
-				<div class="swatch" [style.background-color]="mood.color"
-					[class.active]="selectedMood() === mood.color"></div>
-				<span class="label">{{ mood.label }}</span>
-			</div>
-			}
-		</div>
 	</div>
 </div>

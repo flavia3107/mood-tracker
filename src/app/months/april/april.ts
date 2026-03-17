@@ -19,48 +19,47 @@ export class April {
   selectedMood = signal<string>(this.moods[0].color);
   days = signal(Array.from({ length: 30 }, (_, i) => ({ color: '#FFFFFF' })));
 
-  // Decorative paths that aren't clickable days
-  readonly decorations = [
-    { d: "M200,160 L200,450", stroke: "#333", width: 6 }, // Stick
-    { d: "M200,450 Q200,530 140,530", stroke: "#333", width: 6 } // Handle
-  ];
-
+  // Center is 200. Top peak is 60. Bottom of canopy curve is roughly 280.
   readonly shardConfigs = [
-    // LAYER 1: TOP (Days 1-6)
-    { path: "M200,60 L160,110 L200,120 Z", label: { x: 188, y: 95 } },
-    { path: "M200,60 L200,120 L240,110 Z", label: { x: 212, y: 95 } },
-    { path: "M200,60 L120,130 L160,110 Z", label: { x: 155, y: 95 } },
-    { path: "M200,60 L240,110 L280,130 Z", label: { x: 245, y: 95 } },
-    { path: "M200,60 L80,160 L120,130 Z", label: { x: 125, y: 110 } },
-    { path: "M200,60 L280,130 L320,160 Z", label: { x: 275, y: 110 } },
+    // LEFT SECTION (Anchored to the left curve)
+    { path: "M200,60 L130,90 L60,150 Z", label: { x: 140, y: 100 } }, // 1
+    { path: "M60,150 L130,90 L110,180 Z", label: { x: 100, y: 140 } }, // 2
+    { path: "M60,150 L110,180 L35,220 Z", label: { x: 70, y: 185 } },  // 3
+    { path: "M35,220 L110,180 L80,240 Z", label: { x: 75, y: 215 } },  // 4
+    { path: "M35,220 L80,240 L30,280 Z", label: { x: 50, y: 250 } },  // 5
+    { path: "M30,280 L80,240 L100,280 Z", label: { x: 70, y: 270 } }, // 6
 
-    // LAYER 2: MIDDLE (Days 7-18)
-    { path: "M160,110 L130,170 L180,180 L200,120 Z", label: { x: 165, y: 145 } },
-    { path: "M200,120 L180,180 L220,180 L240,110 Z", label: { x: 200, y: 155 } },
-    { path: "M240,110 L220,180 L270,170 L280,130 Z", label: { x: 245, y: 145 } },
-    { path: "M120,130 L90,190 L130,170 L160,110 Z", label: { x: 125, y: 145 } },
-    { path: "M280,130 L270,170 L310,190 L320,160 Z", label: { x: 285, y: 145 } },
-    { path: "M80,160 L50,220 L90,190 L120,130 Z", label: { x: 85, y: 170 } },
-    { path: "M320,160 L310,190 L350,220 L320,160 Z", label: { x: 315, y: 185 } },
-    { path: "M90,190 L60,250 L110,250 L130,170 Z", label: { x: 95, y: 220 } },
-    { path: "M130,170 L110,250 L160,260 L180,180 Z", label: { x: 145, y: 220 } },
-    { path: "M180,180 L160,260 L200,270 L200,180 Z", label: { x: 185, y: 235 } },
-    { path: "M200,180 L200,270 L240,260 L220,180 Z", label: { x: 215, y: 235 } },
-    { path: "M220,180 L240,260 L290,250 L270,170 Z", label: { x: 255, y: 220 } },
+    // LEFT-CENTER
+    { path: "M200,60 L160,140 L130,90 Z", label: { x: 165, y: 95 } },  // 7
+    { path: "M130,90 L160,140 L110,180 Z", label: { x: 135, y: 140 } }, // 8
+    { path: "M110,180 L160,140 L140,220 Z", label: { x: 135, y: 185 } }, // 9
+    { path: "M110,180 L140,220 L100,280 Z", label: { x: 120, y: 240 } }, // 10
+    { path: "M100,280 L140,220 L150,290 Z", label: { x: 130, y: 270 } }, // 11
 
-    // LAYER 3: BOTTOM (Days 19-30)
-    { path: "M270,170 L290,250 L340,250 L310,190 Z", label: { x: 305, y: 220 } },
-    { path: "M60,250 L30,280 L80,280 L110,250 Z", label: { x: 70, y: 265 } },
-    { path: "M340,250 L310,250 L320,280 L370,280 Z", label: { x: 335, y: 265 } },
-    { path: "M110,250 L80,280 L140,290 L160,260 Z", label: { x: 120, y: 275 } },
-    { path: "M160,260 L140,290 L200,300 L200,270 Z", label: { x: 175, y: 280 } },
-    { path: "M200,270 L200,300 L260,290 L240,260 Z", label: { x: 225, y: 280 } },
-    { path: "M240,260 L260,290 L320,280 L290,250 Z", label: { x: 280, y: 275 } },
-    { path: "M140,290 L170,320 L200,325 L200,300 Z", label: { x: 180, y: 310 } },
-    { path: "M200,300 L200,325 L230,320 L260,290 Z", label: { x: 220, y: 310 } },
-    { path: "M80,280 L100,310 L140,290 Z", label: { x: 105, y: 295 } },
-    { path: "M320,280 L260,290 L300,310 Z", label: { x: 295, y: 295 } },
-    { path: "M200,325 L170,320 L200,350 L230,320 Z", label: { x: 200, y: 335 } }
+    // CENTER STRIP
+    { path: "M200,60 L200,160 L160,140 Z", label: { x: 185, y: 125 } }, // 12
+    { path: "M160,140 L200,160 L170,230 Z", label: { x: 175, y: 180 } }, // 13
+    { path: "M170,230 L200,160 L230,230 Z", label: { x: 200, y: 200 } }, // 14
+    { path: "M170,230 L230,230 L200,320 Z", label: { x: 200, y: 265 } }, // 15
+    { path: "M170,230 L200,320 L150,290 Z", label: { x: 175, y: 285 } }, // 16
+
+    // RIGHT-CENTER
+    { path: "M200,60 L240,140 L200,160 Z", label: { x: 215, y: 125 } }, // 17
+    { path: "M240,140 L290,180 L230,230 Z", label: { x: 255, y: 180 } }, // 18
+    { path: "M230,230 L290,180 L270,260 Z", label: { x: 260, y: 230 } }, // 19
+    { path: "M230,230 L270,260 L200,320 Z", label: { x: 235, y: 280 } }, // 20
+    { path: "M200,320 L270,260 L250,300 Z", label: { x: 240, y: 300 } }, // 21
+
+    // RIGHT SECTION (Anchored to the right curve)
+    { path: "M200,60 L270,90 L240,140 Z", label: { x: 235, y: 95 } },  // 22
+    { path: "M270,90 L340,150 L290,180 Z", label: { x: 300, y: 140 } }, // 23
+    { path: "M340,150 L290,180 L365,220 Z", label: { x: 330, y: 185 } }, // 24
+    { path: "M365,220 L290,180 L320,240 Z", label: { x: 325, y: 215 } }, // 25
+    { path: "M365,220 L320,240 L370,280 Z", label: { x: 350, y: 250 } }, // 26
+    { path: "M370,280 L320,240 L300,280 Z", label: { x: 330, y: 270 } }, // 27
+    { path: "M300,280 L320,240 L270,260 Z", label: { x: 300, y: 260 } }, // 28
+    { path: "M300,280 L270,260 L250,300 Z", label: { x: 275, y: 285 } }, // 29
+    { path: "M250,300 L200,320 L300,280 Z", label: { x: 250, y: 310 } }  // 30
   ];
 
   updateDay(index: number) {
