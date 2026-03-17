@@ -1,21 +1,33 @@
-<div class="meadow-container">
-	@for (item of aprilTulips(); track item.id) {
-	<div class="tulip-plant" [style.margin]="'0 0.1rem'">
-		<svg [attr.viewBox]="'0 0 100 ' + item.height" preserveAspectRatio="xMidYMax meet">
-			<path [attr.d]="'M50,' + item.height + ' L50,40'" fill="none" stroke="#4ade80" stroke-width="3" />
-			<path d="M50,150 Q70,120 50,90 Q40,120 50,150" fill="#4ade80" opacity="0.7" />
+<div class="tracker-container">
+	<div class="layout">
+		<svg viewBox="0 0 400 600" class="april-svg">
+			@for (item of decorations; track $index) {
+			<path [attr.d]="item.d" [attr.stroke]="item.stroke" [attr.stroke-width]="item.width" fill="none"
+				stroke-linecap="round" />
+			}
 
-			<g [style.transform]="'translate(0, 0) rotate(' + item.rotation + 'deg)'"
-				style="transform-origin: 50% 40px;">
-				<path d="M50 90 C15 90 5 70 15 35 C20 15 35 15 45 30 L50 90 Z" [attr.fill]="item.color" />
-				<path d="M50 90 C85 90 95 70 85 35 C80 15 65 15 55 30 L50 90 Z" fill="#e11d48" />
-				<path d="M30 80 C30 50 40 10 50 10 C60 10 70 50 70 80 C70 95 30 95 30 80 Z" fill="#ffe4e6" />
-
-				<text x="50" y="55" text-anchor="middle" font-weight="900" fill="#881337" font-size="16">
-					{{ item.id }}
+			@for (config of shardConfigs; track $index) {
+			<g (click)="updateDay($index)" style="cursor: pointer;">
+				<path [attr.d]="config.path" [attr.fill]="days()[$index].color" [attr.stroke]="days()[$index].color"
+					stroke-width="0.5" />
+				<text [attr.x]="config.label.x" [attr.y]="config.label.y" text-anchor="middle" font-size="8"
+					font-weight="bold" fill="#111" style="pointer-events: none;">
+					{{ $index + 1 }}
 				</text>
 			</g>
+			}
+
+			<path d="M200,60 L30,280 Q200,380 370,280 Z" fill="none" stroke="#111" stroke-width="2.5" />
 		</svg>
+
+		<div class="legend">
+			@for (mood of moods; track mood.label) {
+			<div class="mood-item" (click)="selectedMood.set(mood.color)">
+				<div class="swatch" [style.background-color]="mood.color"
+					[class.active]="selectedMood() === mood.color"></div>
+				<span class="label">{{ mood.label }}</span>
+			</div>
+			}
+		</div>
 	</div>
-	}
 </div>
