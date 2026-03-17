@@ -8,15 +8,16 @@
 			<g (click)="updateDay($index)" style="cursor: pointer;">
 				<path [attr.d]="config.path" [attr.fill]="days()[$index].color" [attr.stroke]="days()[$index].color"
 					stroke-width="1" />
-				<text [attr.x]="config.label.x" [attr.y]="config.label.y" text-anchor="middle" font-size="10"
+				<text [attr.x]="config.label.x" [attr.y]="config.label.y" text-anchor="middle" font-size="9"
 					font-weight="bold" fill="#111" style="pointer-events: none; font-family: sans-serif;">
 					{{ $index + 1 }}
 				</text>
 			</g>
 			}
 
-			<path d="M200,60 A170,110 0 0,1 370,280 Q200,380 30,280 A170,110 0 0,1 200,60 Z" fill="none" stroke="#111"
-				stroke-width="3" stroke-linejoin="round" />
+			<path
+				d="M200,60 L130,90 L60,150 L35,220 L30,280 L100,280 L150,290 L200,320 L250,300 L300,280 L370,280 L365,220 L340,150 L270,90 Z"
+				fill="none" stroke="#111" stroke-width="3" stroke-linejoin="round" />
 		</svg>
 	</div>
 </div>

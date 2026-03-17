@@ -19,39 +19,38 @@ export class April {
   selectedMood = signal<string>(this.moods[0].color);
   days = signal(Array.from({ length: 30 }, (_, i) => ({ color: '#FFFFFF' })));
 
-  // Center is 200. Top peak is 60. Bottom of canopy curve is roughly 280.
   readonly shardConfigs = [
-    // LEFT SECTION (Anchored to the left curve)
-    { path: "M200,60 L130,90 L60,150 Z", label: { x: 140, y: 100 } }, // 1
+    // LEFT FACETS
+    { path: "M200,60 L130,90 L60,150 Z", label: { x: 135, y: 105 } }, // 1
     { path: "M60,150 L130,90 L110,180 Z", label: { x: 100, y: 140 } }, // 2
     { path: "M60,150 L110,180 L35,220 Z", label: { x: 70, y: 185 } },  // 3
     { path: "M35,220 L110,180 L80,240 Z", label: { x: 75, y: 215 } },  // 4
     { path: "M35,220 L80,240 L30,280 Z", label: { x: 50, y: 250 } },  // 5
     { path: "M30,280 L80,240 L100,280 Z", label: { x: 70, y: 270 } }, // 6
 
-    // LEFT-CENTER
+    // LEFT-CENTER FACETS
     { path: "M200,60 L160,140 L130,90 Z", label: { x: 165, y: 95 } },  // 7
     { path: "M130,90 L160,140 L110,180 Z", label: { x: 135, y: 140 } }, // 8
     { path: "M110,180 L160,140 L140,220 Z", label: { x: 135, y: 185 } }, // 9
     { path: "M110,180 L140,220 L100,280 Z", label: { x: 120, y: 240 } }, // 10
     { path: "M100,280 L140,220 L150,290 Z", label: { x: 130, y: 270 } }, // 11
 
-    // CENTER STRIP
+    // CENTER FACETS
     { path: "M200,60 L200,160 L160,140 Z", label: { x: 185, y: 125 } }, // 12
     { path: "M160,140 L200,160 L170,230 Z", label: { x: 175, y: 180 } }, // 13
     { path: "M170,230 L200,160 L230,230 Z", label: { x: 200, y: 200 } }, // 14
     { path: "M170,230 L230,230 L200,320 Z", label: { x: 200, y: 265 } }, // 15
     { path: "M170,230 L200,320 L150,290 Z", label: { x: 175, y: 285 } }, // 16
 
-    // RIGHT-CENTER
+    // RIGHT-CENTER FACETS
     { path: "M200,60 L240,140 L200,160 Z", label: { x: 215, y: 125 } }, // 17
     { path: "M240,140 L290,180 L230,230 Z", label: { x: 255, y: 180 } }, // 18
     { path: "M230,230 L290,180 L270,260 Z", label: { x: 260, y: 230 } }, // 19
     { path: "M230,230 L270,260 L200,320 Z", label: { x: 235, y: 280 } }, // 20
     { path: "M200,320 L270,260 L250,300 Z", label: { x: 240, y: 300 } }, // 21
 
-    // RIGHT SECTION (Anchored to the right curve)
-    { path: "M200,60 L270,90 L240,140 Z", label: { x: 235, y: 95 } },  // 22
+    // RIGHT FACETS
+    { path: "M200,60 L270,90 L240,140 Z", label: { x: 235, y: 95 } },   // 22
     { path: "M270,90 L340,150 L290,180 Z", label: { x: 300, y: 140 } }, // 23
     { path: "M340,150 L290,180 L365,220 Z", label: { x: 330, y: 185 } }, // 24
     { path: "M365,220 L290,180 L320,240 Z", label: { x: 325, y: 215 } }, // 25
