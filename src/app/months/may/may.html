@@ -1,4 +1,4 @@
-<svg viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg" class="svg">
+<svg viewBox="0 0 220 400" xmlns="http://www.w3.org/2000/svg" class="svg">
 	<g fill="none" stroke="#5D4037" stroke-linecap="round" opacity="0.9">
 		<path d="M-10 -10 C 20 10, 50 20, 100 50" stroke-width="3" />
 		<path d="M100 50 C 130 70, 150 100, 170 140" stroke-width="1.8" />
@@ -6,33 +6,32 @@
 		<path d="M30 13 L 60 40" stroke-width="1" />
 		<path d="M110 55 L 140 70" stroke-width="1" />
 		<path d="M70 45 L 80 85" stroke-width="1" />
-		<path d="M120 67 L 120 110" stroke-width="1" />
-		<path d="M150 106 L 150 125" stroke-width="1" />
 	</g>
 
-	@for (site of flowerSites; track $index) {
-	<g>
-		@for (pIdx of [0, 1, 2, 3, 4]; track pIdx) {
-		<g [attr.transform]="getTransform(site.x, site.y, pIdx)">
-			<path class="petal" [attr.d]="'M ' + site.x + ' ' + site.y + 
-						 ' C ' + (site.x - 11) + ' ' + (site.y - 7) + ', ' + 
-								 (site.x - 7) + ' ' + (site.y - 15) + ', ' + 
-								 site.x + ' ' + (site.y - 12) + 
-						 ' C ' + (site.x + 7) + ' ' + (site.y - 15) + ', ' + 
-								 (site.x + 11) + ' ' + (site.y - 7) + ', ' + 
-								 site.x + ' ' + site.y" [attr.fill]="getMoodColor(site.start + pIdx)" stroke="#F06292" stroke-width="0.1" />
-		</g>
+	<g transform="translate(60, 40)">
+		@for (angle of [0, 72, 144, 216, 288]; track $index) {
+		<path d="M 0 0 C -11 -7, -7 -15, 0 -12 C 7 -15, 11 -7, 0 0" fill="#FFB7C5" stroke="#F06292" stroke-width="0.2"
+			[attr.transform]="'rotate(' + angle + ')'" />
 		}
-		<circle [attr.cx]="site.x" [attr.cy]="site.y" r="2" fill="#C2185B" />
-		<circle [attr.cx]="site.x" [attr.cy]="site.y" r="0.8" fill="#FFEB3B" />
+		<circle r="1.5" fill="#C2185B" />
+	</g>
+
+	<g transform="translate(140, 70) scale(0.8)">
+		@for (angle of [0, 72, 144, 216, 288]; track $index) {
+		<path d="M 0 0 C -11 -7, -7 -15, 0 -12 C 7 -15, 11 -7, 0 0" fill="#FADADD" stroke="#F06292" stroke-width="0.2"
+			[attr.transform]="'rotate(' + angle + ')'" />
+		}
+		<circle r="1.5" fill="#C2185B" />
+	</g>
+
+	@for (p of fallingPetals; track p.day) {
+	<g [attr.transform]="'translate(' + p.x + ',' + p.y + ') rotate(' + p.rotation + ')'">
+		<path d="M 0 0 C -11 -7, -7 -15, 0 -12 C 7 -15, 11 -7, 0 0" [attr.fill]="getMoodColor(p.day - 1)"
+			stroke="#5D4037" stroke-width="0.8" />
+
+		<text x="8" y="0" font-size="7" fill="#5D4037" font-family="cursive" transform="rotate(-10)">
+			{{ p.day }}
+		</text>
 	</g>
 	}
-
-	<g class="falling-petal" transform="translate(60, 160) rotate(-20)">
-		<path class="petal" d="M 0 0 C -11 -7, -7 -15, 0 -12 C 7 -15, 11 -7, 0 0" [attr.fill]="getMoodColor(30)"
-			stroke="#F06292" stroke-width="0.1" />
-	</g>
 </svg>
-
-<!-- to do: add leaves and background in the svg or even mount fuji -->
-<!-- to do: update the sidenav -->

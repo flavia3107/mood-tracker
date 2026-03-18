@@ -8,28 +8,26 @@ import { UtilsService } from '../../../shared/services/utils';
   styleUrl: './may.scss',
 })
 export class May {
+  // Updated logic for the component
   private _utilsService = inject(UtilsService);
-  private _monthData = this._utilsService.monthDays;
-
-  flowerSites = [
-    { x: 60, y: 40, start: 0 },  // Highest, closest to "origin"
-    { x: 100, y: 50, start: 5 },
-    { x: 140, y: 70, start: 10 },
-    { x: 80, y: 85, start: 15 },
-    { x: 120, y: 110, start: 20 },
-    { x: 160, y: 125, start: 25 }  // Lowest, furthest right
-  ];
-
-  getTransform(x: number, y: number, i: number): string {
-    const angle = (i * 360) / 5; // Fixed at 5 petals per flower
-    return `rotate(${angle}, ${x}, ${y})`;
+  private _monthData = this._utilsService.monthDays; // Assuming this returns an array of ~30 days
+  // Generate an array of objects for each day's position
+  // Generate coordinates for the scattered "day" petals
+  get fallingPetals() {
+    return Array.from({ length: this._monthData() }, (_, i) => {
+      return {
+        day: i + 1,
+        // Creates a scattered layout starting below the branch
+        x: 35 + (i % 5) * 40 + (Math.sin(i) * 12),
+        y: 130 + Math.floor(i / 5) * 35 + (Math.cos(i) * 8),
+        rotation: (i * 137.5) % 360 // Natural-looking random rotation
+      };
+    });
   }
 
-  getMoodColor(idx: number): string {
-    const palette: Record<string, string> = {
-      'great': '#FF69B4', 'good': '#FFB7C5',
-      'meh': '#FADADD', 'none': '#FFF5F7'
-    };
-    return palette[this._monthData()[idx]] || palette['none'];
+  getMoodColor(dayIndex: number): string {
+    // Replace with your actual mood logic. 
+    // Returning #FFFFFF (white) for untracked days to match the photo.
+    return '#FFFFFF';
   }
 }
