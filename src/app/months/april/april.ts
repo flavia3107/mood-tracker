@@ -26,34 +26,34 @@ export class April {
     { path: "M60,150 L110,180 L25,240 Z", label: { x: 70, y: 185 } },  // 3
     { path: "M25,240 L110,180 L80,250 Z", label: { x: 75, y: 220 } },  // 4
     { path: "M25,240 L80,250 L25,310 Z", label: { x: 45, y: 265 } },  // 5
-    { path: "M25,310 L80,250 L110,180 L125,310 Z", label: { x: 85, y: 285 } }, // 6 (Absorbed the gap between 4 & 10)
+    { path: "M25,310 L80,250 L125,310 Z", label: { x: 75, y: 290 } }, // 6
 
-    // LEFT-CENTER (7-11)
+    // LEFT-CENTER (Fixed gap at 10)
     { path: "M200,60 L165,145 L130,90 Z", label: { x: 165, y: 95 } },   // 7
     { path: "M130,90 L165,145 L110,180 Z", label: { x: 135, y: 140 } }, // 8
-    { path: "M110,180 L165,145 L145,230 Z", label: { x: 140, y: 185 } }, // 9
-    { path: "M110,180 L145,230 L125,310 Z", label: { x: 125, y: 250 } }, // 10
+    { path: "M110,180 L165,145 L145,230 L110,180 Z", label: { x: 135, y: 195 } }, // 9 
+    { path: "M110,180 L80,250 L125,310 L145,230 Z", label: { x: 110, y: 250 } }, // 10 (SEALED GAP LEFT)
     { path: "M125,310 L145,230 L165,260 Z", label: { x: 145, y: 275 } }, // 11
 
-    // CENTER (12-16)
+    // CENTER (Fixed gaps at 13 & 14)
     { path: "M200,60 L200,165 L165,145 Z", label: { x: 188, y: 125 } },  // 12
-    { path: "M165,145 L200,165 L165,260 Z", label: { x: 177, y: 190 } }, // 13
-    { path: "M165,260 L200,165 L235,260 Z", label: { x: 200, y: 215 } }, // 14
+    { path: "M165,145 L200,165 L200,260 L165,260 Z", label: { x: 180, y: 200 } }, // 13 (SEALED GAP CENTER)
+    { path: "M200,165 L235,145 L235,260 L200,260 Z", label: { x: 215, y: 210 } }, // 14 (SEALED GAP RIGHT)
     { path: "M165,260 L235,260 L200,310 Z", label: { x: 200, y: 280 } }, // 15
     { path: "M165,260 L200,310 L125,310 Z", label: { x: 165, y: 295 } }, // 16
 
-    // RIGHT-CENTER (17-21)
+    // RIGHT-CENTER
     { path: "M200,60 L235,145 L200,165 Z", label: { x: 212, y: 125 } },  // 17
-    { path: "M235,145 L290,180 L235,260 Z", label: { x: 255, y: 190 } }, // 18 (Absorbed gap above 18)
-    { path: "M235,260 L290,180 L275,260 Z", label: { x: 265, y: 235 } }, // 19
+    { path: "M235,145 L270,90 L340,150 L290,180 L235,260 Z", label: { x: 260, y: 160 } }, // 18 
+    { path: "M235,260 L290,180 L320,250 L275,260 Z", label: { x: 275, y: 230 } }, // 19 
     { path: "M235,260 L275,260 L200,310 Z", label: { x: 235, y: 290 } }, // 20
     { path: "M200,310 L275,260 L275,310 Z", label: { x: 250, y: 300 } }, // 21
 
-    // RIGHT SECTION (22-30)
+    // RIGHT SECTION
     { path: "M200,60 L270,90 L235,145 Z", label: { x: 235, y: 95 } },    // 22
-    { path: "M270,90 L340,150 L290,180 Z", label: { x: 300, y: 135 } },  // 23 (Absorbed gap between 22/23)
+    { path: "M270,90 L340,150 L290,180 Z", label: { x: 300, y: 135 } },  // 23
     { path: "M340,150 L375,240 L290,180 Z", label: { x: 335, y: 185 } }, // 24
-    { path: "M290,180 L375,240 L320,250 Z", label: { x: 325, y: 220 } }, // 25 (Absorbed gap between 24/25)
+    { path: "M290,180 L375,240 L320,250 Z", label: { x: 325, y: 220 } }, // 25
     { path: "M375,240 L375,310 L320,250 Z", label: { x: 355, y: 270 } }, // 26
     { path: "M375,310 L300,280 L320,250 Z", label: { x: 330, y: 290 } }, // 27
     { path: "M320,250 L300,280 L275,260 Z", label: { x: 300, y: 265 } }, // 28
