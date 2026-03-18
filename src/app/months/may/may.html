@@ -1,36 +1,24 @@
-<svg viewBox="0 0 220 400" xmlns="http://www.w3.org/2000/svg" class="svg">
-	<g fill="none" stroke="#5D4037" stroke-linecap="round" opacity="0.9">
-		<path d="M-10 -10 C 20 10, 50 20, 100 50" stroke-width="3" />
-		<path d="M100 50 C 130 70, 150 100, 170 140" stroke-width="1.8" />
+<img src="/vecteezy_cherry-blossom-free-vector-background_16808160.jpg" alt="">
+<svg viewBox="0 0 220 500" xmlns="http://www.w3.org/2000/svg" class="svg">
+	<defs>
+		<path id="heartShape" d="M 0 0 C 0 -6, -6 -6, -6 -2 L 0 5 L 6 -2 C 6 -6, 0 -6, 0 0" />
 
-		<path d="M30 13 L 60 40" stroke-width="1" />
-		<path d="M110 55 L 140 70" stroke-width="1" />
-		<path d="M70 45 L 80 85" stroke-width="1" />
+		<path id="petalShape" d="M 0 0 C -11 -7, -7 -15, 0 -12 C 7 -15, 11 -7, 0 0" />
+	</defs>
+	<g transform="translate(30, 35) scale(0.65)">
+		<use href="#petalShape" fill="#FFB7C5" stroke="#F06292" stroke-width="0.2" transform="rotate(0)" />
+		<use href="#petalShape" fill="#FADADD" stroke="#F06292" stroke-width="0.2" transform="rotate(72)" />
+		<use href="#petalShape" fill="#FFB7C5" stroke="#F06292" stroke-width="0.2" transform="rotate(144)" />
+		<use href="#petalShape" fill="#FADADD" stroke="#F06292" stroke-width="0.2" transform="rotate(216)" />
+		<use href="#petalShape" fill="#FFB7C5" stroke="#F06292" stroke-width="0.2" transform="rotate(288)" />
+		<circle r="2" fill="#C2185B" />
 	</g>
+	@for (item of trackItems; track item.index) {
+	<g [attr.transform]="'translate(' + item.x + ',' + item.y + ')'">
+		<use href="#heartShape" [attr.fill]="getMoodColor(item.index - 1)" stroke="#5D4037" stroke-width="0.8" />
 
-	<g transform="translate(60, 40)">
-		@for (angle of [0, 72, 144, 216, 288]; track $index) {
-		<path d="M 0 0 C -11 -7, -7 -15, 0 -12 C 7 -15, 11 -7, 0 0" fill="#FFB7C5" stroke="#F06292" stroke-width="0.2"
-			[attr.transform]="'rotate(' + angle + ')'" />
-		}
-		<circle r="1.5" fill="#C2185B" />
-	</g>
-
-	<g transform="translate(140, 70) scale(0.8)">
-		@for (angle of [0, 72, 144, 216, 288]; track $index) {
-		<path d="M 0 0 C -11 -7, -7 -15, 0 -12 C 7 -15, 11 -7, 0 0" fill="#FADADD" stroke="#F06292" stroke-width="0.2"
-			[attr.transform]="'rotate(' + angle + ')'" />
-		}
-		<circle r="1.5" fill="#C2185B" />
-	</g>
-
-	@for (p of fallingPetals; track p.day) {
-	<g [attr.transform]="'translate(' + p.x + ',' + p.y + ') rotate(' + p.rotation + ')'">
-		<path d="M 0 0 C -11 -7, -7 -15, 0 -12 C 7 -15, 11 -7, 0 0" [attr.fill]="getMoodColor(p.day - 1)"
-			stroke="#5D4037" stroke-width="0.8" />
-
-		<text x="8" y="0" font-size="7" fill="#5D4037" font-family="cursive" transform="rotate(-10)">
-			{{ p.day }}
+		<text x="8" y="-1" font-size="6" fill="#5D4037" font-family="cursive" transform="rotate(-10)">
+			{{ item.index }}
 		</text>
 	</g>
 	}

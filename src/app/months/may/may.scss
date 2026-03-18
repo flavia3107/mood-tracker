@@ -9,3 +9,11 @@
 	stroke-linecap: round;
 	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
 }
+img {
+	height: 20rem;
+	margin-top: -3rem;
+}
+
+:host {
+	background-color: #fff;
+}
