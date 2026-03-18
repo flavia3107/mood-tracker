@@ -28,17 +28,17 @@ export class April {
     { path: "M25,240 L80,250 L25,310 Z", label: { x: 45, y: 265 } },  // 5
     { path: "M25,310 L80,250 L125,310 Z", label: { x: 75, y: 290 } }, // 6
 
-    // LEFT-CENTER (Fixed gap at 10)
+    // LEFT-CENTER (Fixed the final gap at 9)
     { path: "M200,60 L165,145 L130,90 Z", label: { x: 165, y: 95 } },   // 7
     { path: "M130,90 L165,145 L110,180 Z", label: { x: 135, y: 140 } }, // 8
-    { path: "M110,180 L165,145 L145,230 L110,180 Z", label: { x: 135, y: 195 } }, // 9 
-    { path: "M110,180 L80,250 L125,310 L145,230 Z", label: { x: 110, y: 250 } }, // 10 (SEALED GAP LEFT)
+    { path: "M110,180 L165,145 L165,260 L145,230 L110,180 Z", label: { x: 140, y: 200 } }, // 9 (FINAL SEAL)
+    { path: "M110,180 L80,250 L125,310 L145,230 Z", label: { x: 110, y: 250 } }, // 10 
     { path: "M125,310 L145,230 L165,260 Z", label: { x: 145, y: 275 } }, // 11
 
-    // CENTER (Fixed gaps at 13 & 14)
+    // CENTER (Completely stitched)
     { path: "M200,60 L200,165 L165,145 Z", label: { x: 188, y: 125 } },  // 12
-    { path: "M165,145 L200,165 L200,260 L165,260 Z", label: { x: 180, y: 200 } }, // 13 (SEALED GAP CENTER)
-    { path: "M200,165 L235,145 L235,260 L200,260 Z", label: { x: 215, y: 210 } }, // 14 (SEALED GAP RIGHT)
+    { path: "M165,145 L200,165 L200,260 L165,260 Z", label: { x: 180, y: 200 } }, // 13 
+    { path: "M200,165 L235,145 L235,260 L200,260 Z", label: { x: 215, y: 210 } }, // 14 
     { path: "M165,260 L235,260 L200,310 Z", label: { x: 200, y: 280 } }, // 15
     { path: "M165,260 L200,310 L125,310 Z", label: { x: 165, y: 295 } }, // 16
 
