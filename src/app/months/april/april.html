@@ -16,13 +16,22 @@
 			</g>
 			}
 
-			<path d="M200,60 
+			<path d="M180,70 
 			C300,60 375,160 375,275 
-			L275,310 
+			Q340,280 275,310 
 			L125,310 
-			L25,275 
-			C25,160 100,60 200,60 Z" fill="none" stroke="#111" stroke-width="3.5" stroke-linecap="round"
+			Q65,280 25,275 
+			C25,160 100,60 220,70 Z" fill="none" stroke="#111" stroke-width="3.5" stroke-linecap="round"
 				stroke-linejoin="round" />
 		</svg>
+	</div>
+	<div class="legend">
+		@for (mood of moods; track mood.label) {
+		<div class="mood-item" (click)="setMood(mood.color)">
+			<div class="swatch" [style.background-color]="mood.color" [class.active]="selectedMood() === mood.color">
+			</div>
+			<span class="label">{{ mood.label }}</span>
+		</div>
+		}
 	</div>
 </div>

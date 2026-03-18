@@ -17,7 +17,7 @@ export class April {
   ];
 
   selectedMood = signal<string>(this.moods[0].color);
-  days = signal(Array.from({ length: 30 }, (_, i) => ({ color: '#FFFFFF' })));
+  days = signal(Array.from({ length: 31 }, (_, i) => ({ id: i + 1, color: '#FFFFFF' })));
 
   readonly shardConfigs = [
     // LEFT FACETS
@@ -60,6 +60,10 @@ export class April {
     { path: "M300,280 L270,260 L250,300 Z", label: { x: 275, y: 285 } }, // 29
     { path: "M250,300 L200,320 L300,280 Z", label: { x: 250, y: 310 } }  // 30
   ];
+
+  setMood(color: string) {
+    this.selectedMood.set(color);
+  }
 
   updateDay(index: number) {
     this.days.update(current => {

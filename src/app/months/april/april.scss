@@ -1,35 +1,44 @@
 .tracker-container {
 	display: flex;
-	flex-direction: column;
 	align-items: center;
 	padding: 20px;
-	background-color: #f8f8f8; /* Matches the notebook page feel */
+	background-color: #f8f8f8;
+	width: 50rem;
+	height: 45rem;
+	justify-content: center;
 }
 
 .april-svg {
-	width: 100%;
-	max-width: 400px;
-	height: auto;
+	width: 40rem;
+	height: 45rem;
 }
 
 .legend {
-	margin-top: 20px;
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-top: 50px;
 }
 
-.legend-item {
+.mood-item {
 	display: flex;
 	align-items: center;
-	gap: 8px;
-	font-family: sans-serif;
-	font-size: 14px;
+	gap: 12px;
+	cursor: pointer;
 }
 
-.color-swatch {
-	width: 16px;
-	height: 16px;
-	border-radius: 4px;
-	border: 1px solid #ddd;
+.swatch {
+	width: 20px;
+	height: 20px;
+	border: 1px solid #000;
+}
+
+.active {
+	outline: 3px solid #000;
+	outline-offset: 2px;
+}
+
+.label {
+	font-family: "Courier New", Courier, monospace;
+	font-weight: bold;
 }
