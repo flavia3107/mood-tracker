@@ -19,7 +19,7 @@
 				@for (config of shardConfigs; track $index) {
 				<g (click)="updateDay($index)" class="shard-group" style="cursor: pointer;">
 					<path [attr.d]="config.path" [attr.fill]="days()[$index].color" stroke="#333" stroke-width="0.5"
-						opacity="0.9" />
+						opacity="1" />
 					<text [attr.x]="config.label.x" [attr.y]="config.label.y" text-anchor="middle" font-size="9"
 						font-weight="bold" fill="#111" style="pointer-events: none; font-family: sans-serif;">
 						{{ $index + 1 }}
