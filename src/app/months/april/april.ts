@@ -22,10 +22,10 @@ export class April {
   readonly shardConfigs = [
     // LEFT FACETS
     { path: "M200,60 L130,90 L60,150 Z", label: { x: 135, y: 105 } }, // 1
-    { path: "M60,150 L130,90 L110,180 Z", label: { x: 100, y: 140 } }, // 2
-    { path: "M60,150 L110,180 L35,220 Z", label: { x: 70, y: 185 } },  // 3
+    { path: "M35,135 L135,85 L110,180 Z", label: { x: 100, y: 140 } }, // 2
+    { path: "M55,145 L110,180 L30,225 Z", label: { x: 70, y: 185 } },  // 3
     { path: "M35,220 L110,180 L80,240 Z", label: { x: 75, y: 215 } },  // 4
-    { path: "M35,220 L80,240 L30,280 Z", label: { x: 50, y: 250 } },  // 5
+    { path: "M30,217 L80,240 L25,285 Z", label: { x: 50, y: 250 } },  // 5
     { path: "M30,280 L80,240 L100,280 Z", label: { x: 70, y: 270 } }, // 6
 
     // LEFT-CENTER FACETS
@@ -51,7 +51,7 @@ export class April {
 
     // RIGHT FACETS
     { path: "M200,60 L270,90 L240,140 Z", label: { x: 235, y: 95 } },   // 22
-    { path: "M270,90 L340,150 L290,180 Z", label: { x: 300, y: 140 } }, // 23
+    { path: "M280,80 L360,160 L290,185 Z", label: { x: 300, y: 140 } }, // 23
     { path: "M340,150 L290,180 L365,220 Z", label: { x: 330, y: 185 } }, // 24
     { path: "M365,220 L290,180 L320,240 Z", label: { x: 325, y: 215 } }, // 25
     { path: "M365,220 L320,240 L370,280 Z", label: { x: 350, y: 250 } }, // 26

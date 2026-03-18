@@ -1,20 +1,32 @@
 <div class="tracker-container">
 	<div class="layout">
 		<svg viewBox="0 0 400 600" class="april-svg" xmlns="http://www.w3.org/2000/svg">
+			<defs>
+				<clipPath id="umbrella-mask">
+					<path d="M180,70 
+					C300,60 375,160 375,275 
+					Q340,280 275,310 
+					L125,310 
+					Q65,280 25,275 
+					C25,160 100,60 220,70 Z" />
+				</clipPath>
+			</defs>
 
 			<path d="M200,280 L200,480" stroke="#333" stroke-width="6" fill="none" stroke-linecap="round" />
 			<path d="M200,480 Q200,550 150,550" stroke="#333" stroke-width="6" fill="none" stroke-linecap="round" />
 
-			@for (config of shardConfigs; track $index) {
-			<g (click)="updateDay($index)" class="shard-group" style="cursor: pointer;">
-				<path [attr.d]="config.path" [attr.fill]="days()[$index].color" stroke="#333" stroke-width="0.5"
-					opacity="0.9" />
-				<text [attr.x]="config.label.x" [attr.y]="config.label.y" text-anchor="middle" font-size="9"
-					font-weight="bold" fill="#111" style="pointer-events: none; font-family: sans-serif;">
-					{{ $index + 1 }}
-				</text>
+			<g clip-path="url(#umbrella-mask)">
+				@for (config of shardConfigs; track $index) {
+				<g (click)="updateDay($index)" class="shard-group" style="cursor: pointer;">
+					<path [attr.d]="config.path" [attr.fill]="days()[$index].color" stroke="#333" stroke-width="0.5"
+						opacity="0.9" />
+					<text [attr.x]="config.label.x" [attr.y]="config.label.y" text-anchor="middle" font-size="9"
+						font-weight="bold" fill="#111" style="pointer-events: none; font-family: sans-serif;">
+						{{ $index + 1 }}
+					</text>
+				</g>
+				}
 			</g>
-			}
 
 			<path d="M180,70 
 			C300,60 375,160 375,275 
