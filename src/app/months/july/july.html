@@ -1,20 +1,23 @@
-<svg viewBox="0 0 400 450" class="svg">
-	<defs>
-		<path id="hex-shape" d="M25 0 L50 14.42 V43.25 L25 57.67 L0 43.25 V14.42 Z" />
-	</defs>
+<div class="container-july">
+	<svg viewBox="0 0 400 450" class="svg">
+		<defs>
+			<path id="hex-shape" d="M25 0 L50 14.42 V43.25 L25 57.67 L0 43.25 V14.42 Z" />
+		</defs>
 
-	<g transform="translate(50, 50)">
-		@for (day of julyDays(); track day.id) {
-		<use href="#hex-shape" [attr.x]="day.x" [attr.y]="day.y" [style.fill]="day.moodColor" stroke="#D4A017"
-			stroke-width="1.5" class="transition-all duration-300 hover:brightness-95 cursor-pointer" />
+		<g transform="translate(50, 50)">
+			@for (day of julyDays(); track day.id) {
+			<use href="#hex-shape" [attr.x]="day.x" [attr.y]="day.y" [style.fill]="day.moodColor" stroke="#D4A017"
+				stroke-width="1.5" class="transition-all duration-300 hover:brightness-95 cursor-pointer" />
 
-		<text [attr.x]="day.x + 25" [attr.y]="day.y + 35" text-anchor="middle" font-size="10" fill="#92400E"
-			style="pointer-events: none;">
-			{{ day.id }}
-		</text>
-		}
-	</g>
-</svg>
+			<text [attr.x]="day.x + 25" [attr.y]="day.y + 35" text-anchor="middle" font-size="10" fill="#92400E"
+				style="pointer-events: none;">
+				{{ day.id }}
+			</text>
+			}
+		</g>
+	</svg>
+
+</div>
 
 
 <!-- to do: add bees, honey-drops and background in the svg -->
