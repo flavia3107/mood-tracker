@@ -19,12 +19,56 @@ img {
 }
 
 svg {
-	width: 100%;
-	height: 35rem;
+	width: 90%;
+	height: 23rem;
 	display: block;
 	overflow: visible;
+	margin: 0 auto;
 }
 
 .flex-column {
 	height: 45rem;
+}
+
+/* Mood Palette Styles */
+.mood-palette {
+	display: flex;
+	justify-content: center;
+	gap: 15px;
+	flex-wrap: wrap;
+}
+
+.mood-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	cursor: pointer;
+	transition: transform 0.2s;
+}
+
+.mood-item:hover {
+	transform: translateY(-3px);
+}
+
+.mood-item.selected .swatch {
+	border-color: #333;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.mood-item.selected .label {
+	font-weight: bold;
+}
+
+.swatch {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 3px solid #eee;
+	cursor: pointer;
+	margin-bottom: 5px;
+}
+
+.label {
+	font-size: 12px;
+	color: #555;
 }
