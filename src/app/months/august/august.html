@@ -1,16 +1,20 @@
-<svg viewBox="0 0 250 250" class="sunflower svg">
-	@for (day of [].constructor(monthData()); track $index) {
-	<g [attr.transform]="getRotation($index)">
-		<path class="petal" d="M125 105 C135 80, 140 40, 125 30 C110 40, 115 80, 125 105 Z"
-			[attr.fill]="getMoodColor($index)" stroke="#232323" stroke-width="0.5" />
-		<text x="125" y="48" class="day-label" [attr.transform]="getTextRotation($index)">
-			{{ $index + 1 }}
-		</text>
-	</g>
-	}
+<div class="container">
+	<svg viewBox="0 0 250 250" class="sunflower">
+		@for (day of [].constructor(monthData()); track $index) {
+		<g [attr.transform]="getRotation($index)">
+			<path class="petal" d="M125 105 C135 80, 140 40, 125 30 C110 40, 115 80, 125 105 Z"
+				[attr.fill]="getMoodColor($index)" stroke="#232323" stroke-width="0.5" />
+			<text x="125" y="48" class="day-label" [attr.transform]="getTextRotation($index)">
+				{{ $index + 1 }}
+			</text>
+		</g>
+		}
+		<circle cx="125" cy="125" r="40" fill="#3E2723" />
+		<circle cx="125" cy="125" r="35" fill="#5D4037" stroke="#3E2723" stroke-dasharray="2 4" />
+	</svg>
+</div>
 
-	<circle cx="125" cy="125" r="40" fill="#3E2723" />
-	<circle cx="125" cy="125" r="35" fill="#5D4037" stroke="#3E2723" stroke-dasharray="2 4" />
-</svg>
+<!-- <img src="/sunflower.jpg" alt=""> -->
+
 <!-- to do: add leaves and background in the svg -->
 <!-- to do: update the sidenav -->
