@@ -15,22 +15,18 @@ export class May {
   numDays = 31;
 
   get flowerTrackers() {
-    // Define the boundaries of the red square area
-    const minX = 50;   // Left padding
-    const maxX = 750;  // Right boundary (wide to match your branch)
-    const minY = 250;  // Start below the branch
-    const maxY = 650;  // Bottom boundary
+    const remToUnit = 16;
+    const targetWidth = 50 * remToUnit;
+    const targetHeight = 45 * remToUnit;
 
-    return Array.from({ length: this._monthData() }, (_, i) => {
+    return Array.from({ length: this.numDays }, (_, i) => {
+      const progress = i / this.numDays;
       return {
         day: i + 1,
-        // Randomly place within the square bounds
-        x: minX + (Math.random() * (maxX - minX)),
-        y: minY + (Math.random() * (maxY - minY)),
-        // Random rotation for the falling effect
+        x: (2 * remToUnit) + (Math.random() * (targetWidth - (4 * remToUnit))),
+        y: (progress * targetHeight) + (Math.random() * 60 - 30),
         rotation: Math.random() * 360,
-        // Larger scale so they are visible and easy to click
-        scale: 1.4 + (Math.random() * 0.3)
+        scale: 2 + (Math.random() * 0.4)
       };
     });
   }
