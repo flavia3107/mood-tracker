@@ -23,9 +23,10 @@ svg {
 }
 
 .container {
-	background-image: url(/sunflower.jpg);
+	background-image: url("/sunflower.png");
 	background-size: cover;
 	background-position: right;
+	background-color: #fff;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
