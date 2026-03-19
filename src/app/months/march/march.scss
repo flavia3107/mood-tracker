@@ -1,8 +1,12 @@
 .tracker-container {
-	display: flex;
 	justify-content: center;
-	padding: 40px;
-	background-color: #fdfdfd;
+	background-image: url(/st-patrick.jpg);
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	align-items: center;
+	width: 50rem;
+	align-items: flex-end;
 }
 
 .canvas {
@@ -11,9 +15,11 @@
 	gap: 30px;
 }
 
-.clover-svg {
-	width: 40rem;
-	height: 45rem;
+svg {
+	position: relative;
+	top: -4.5rem;
+	left: 18.5rem;
+	width: 35rem;
 }
 
 .segment {
