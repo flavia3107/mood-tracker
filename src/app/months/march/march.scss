@@ -1,6 +1,6 @@
 .tracker-container {
 	justify-content: center;
-	background-image: url(/st-patrick.jpg);
+	background-image: url("/st-patrick.png");
 	background-size: cover;
 	background-position: center;
 	display: flex;
@@ -17,7 +17,7 @@
 
 svg {
 	position: relative;
-	top: -4.5rem;
+	top: -5.5rem;
 	left: 18.5rem;
 	width: 35rem;
 }
@@ -35,7 +35,10 @@ svg {
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
-	margin-top: 50px;
+	position: relative;
+	top: -3rem;
+	left: 3rem;
+	background: #f6f6f6;
 }
 
 .mood-item {
