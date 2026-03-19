@@ -15,20 +15,34 @@ export class May {
   numDays = 31;
 
   get flowerTrackers() {
+    const trackers: any[] = [];
     const remToUnit = 16;
-    const targetWidth = 50 * remToUnit;
-    const targetHeight = 45 * remToUnit;
+    const width = 45 * remToUnit;
+    const height = 30 * remToUnit;
+    const minDistance = 65;
 
-    return Array.from({ length: this.numDays }, (_, i) => {
-      const progress = i / this.numDays;
-      return {
+    for (let i = 0; i < this.numDays; i++) {
+      let x = 0, y = 0, collision = true, attempts = 0;
+
+      while (collision && attempts < 50) {
+        x = 40 + Math.random() * (width - 80);
+        y = 40 + Math.random() * (height - 80);
+        collision = trackers.some(other => {
+          const dx = x - other.x;
+          const dy = y - other.y;
+          return Math.sqrt(dx * dx + dy * dy) < minDistance;
+        });
+        attempts++;
+      }
+      trackers.push({
         day: i + 1,
-        x: (2 * remToUnit) + (Math.random() * (targetWidth - (4 * remToUnit))),
-        y: (progress * targetHeight) + (Math.random() * 60 - 30),
+        x,
+        y,
         rotation: Math.random() * 360,
-        scale: 2 + (Math.random() * 0.4)
-      };
-    });
+        scale: 2.3 + Math.random() * 0.3
+      });
+    }
+    return trackers;
   }
 
   getMoodColor(idx: number): string {
