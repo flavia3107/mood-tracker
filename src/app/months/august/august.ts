@@ -10,7 +10,14 @@ import { UtilsService } from '../../../shared/services/utils';
 export class August {
   private _utilService = inject(UtilsService);
   public monthData = this._utilService.monthDays;
-
+  moods = [
+    { label: 'Happy/Excited', color: '#ffaaa5' }, // Peach
+    { label: 'Good/Normal', color: '#ffd3b6' },   // Light Orange
+    { label: 'Calm/Relaxed', color: '#a8e6cf' }, // Mint Green
+    { label: 'Tired/Low', color: '#B0BEC5' },      // Grey
+    { label: 'Spooky/Stressed', color: '#9575CD' } // Purple
+  ];
+  selectedColor = '#ffd3b6'; // Default mood color
   getRotation(i: number): string {
     return `rotate(${(i * 360) / 31}, 125, 125)`;
   }

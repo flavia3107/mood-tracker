@@ -1,4 +1,12 @@
 <div class="container">
+	<div class="mood-palette">
+		@for (mood of moods; track mood.label) {
+		<div class="mood-item" [class.selected]="selectedColor === mood.color" (click)="selectedColor = mood.color">
+			<div [style.background]="mood.color" class="swatch"></div>
+			<span class="label">{{ mood.label }}</span>
+		</div>
+		}
+	</div>
 	<svg viewBox="0 0 250 250" class="sunflower">
 		@for (day of [].constructor(monthData()); track $index) {
 		<g [attr.transform]="getRotation($index)">
