@@ -20,11 +20,12 @@ export class March {
   ];
 
   updateDay(index: number) {
-    this.days.update(current => {
-      const updated = [...current];
-      updated[index].color = this._selectedMood;
-      return updated;
-    });
+    if (this._selectedMood)
+      this.days.update(current => {
+        const updated = [...current];
+        updated[index].color = this._selectedMood;
+        return updated;
+      });
   }
 
   getLeafTransform(leafIndex: number): string {

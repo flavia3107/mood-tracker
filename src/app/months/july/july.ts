@@ -14,7 +14,7 @@ interface Day {
 })
 export class July {
   cols = 5;
-  selectedColor = '#ffd3b6';
+  private _selectedColor = '';
   hexWidth = 50;
   hexHeight = 58;
   julyDays = signal(Array.from({ length: 31 }, (_, i) => {
@@ -32,16 +32,12 @@ export class July {
     };
   }));
 
-  getMoodColor(idx: number): string {
-    // Same logic as before
-    return '#FFFFFF';
-  }
-
   updateDayMood(day: Day) {
-    day.moodColor = this.selectedColor;
+    if (this._selectedColor)
+      day.moodColor = this._selectedColor;
   }
 
   updateMood(color: string) {
-    this.selectedColor = color;
+    this._selectedColor = color;
   }
 }

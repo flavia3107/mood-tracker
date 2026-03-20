@@ -9,11 +9,6 @@ svg {
 	margin: 0 auto;
 }
 
-use[href="#dayFlower"] {
-	stroke: #f4cfdf; /* A medium-light dusty rose */
-	stroke-width: 0.5;
-}
-
 g[style*="cursor: pointer"] {
 	transition: transform 0.2s ease-out;
 }

@@ -21,8 +21,8 @@ export class May implements OnInit {
   private _utilsService = inject(UtilsService);
   private _monthData = this._utilsService.monthDays; // Assuming this returns an array of ~30 days
   numDays = 31;
-  selectedColor = '#F06292'; // The color currently selected in your palette
-  flowers: Flower[] = [];
+  public _selectedColor = ''; // The color currently selected in your palette
+  public flowers: Flower[] = [];
 
   ngOnInit() {
     this._generateFlowers();
@@ -56,17 +56,18 @@ export class May implements OnInit {
         y,
         rotation: Math.random() * 360,
         scale: 1.8 + Math.random() * 0.3,
-        color: '#ffffff' // Initial empty state
+        color: '#ffffff'
       });
     }
     this.flowers = tempTrackers;
   }
 
   onFlowerClick(flower: Flower) {
-    flower.color = this.selectedColor;
+    if (this._selectedColor)
+      flower.color = this._selectedColor;
   }
 
   public updateMood(color: string) {
-    this.selectedColor = color;
+    this._selectedColor = color;
   }
 }

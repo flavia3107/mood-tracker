@@ -11,11 +11,11 @@ import { UtilsService } from '../../shared/services/utils';
 export class MoodPicker {
   private _utilsService = inject(UtilsService);
   public moods = computed(() => MONTHLY_MOOD_CONFIG[this._utilsService.activeMonth()]);
-  public selectedMood = model();
+  public selectedMood = '';
   public moodColorSelected = output<string>();
 
   setMood(color: string) {
-    this.selectedMood.set(color);
+    this.selectedMood = color;
     this.moodColorSelected.emit(color);
   }
 }
