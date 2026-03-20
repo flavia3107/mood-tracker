@@ -37,7 +37,7 @@ export class UtilsService {
 	}
 
 	private _getMonth(): string {
-		return this._selectedDate().toLocaleString('en-US', { month: 'numeric' });
+		return this._selectedDate().toLocaleString('en-US', { month: 'long' });
 	}
 
 	private _getMonthDays(): any {

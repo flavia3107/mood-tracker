@@ -1,1 +1,113 @@
 export const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+const JANUARY_MOOD_COLORS = [
+	{ label: 'happy', color: '#D4E157' },
+	{ label: 'neutral', color: '#9CCC65' },
+	{ label: 'stressed', color: '#689F38' },
+	{ label: 'tired', color: '#455A64' },
+	{ label: 'moody', color: '#2E7D32' },
+	{ label: 'sad', color: '#546E7A' }
+];
+const FEBRUARY_MOOD_COLORS = [
+	{ label: 'happy', color: '#D4E157' },
+	{ label: 'neutral', color: '#9CCC65' },
+	{ label: 'stressed', color: '#689F38' },
+	{ label: 'tired', color: '#455A64' },
+	{ label: 'moody', color: '#2E7D32' },
+	{ label: 'sad', color: '#546E7A' }
+];
+const MARCH_MOOD_COLORS = [
+	{ label: 'happy', color: '#D4E157' },
+	{ label: 'neutral', color: '#9CCC65' },
+	{ label: 'stressed', color: '#689F38' },
+	{ label: 'tired', color: '#455A64' },
+	{ label: 'moody', color: '#2E7D32' },
+	{ label: 'sad', color: '#546E7A' }
+];
+const APRIL_MOOD_COLORS = [
+	{ label: 'happy', color: '#D4E157' },
+	{ label: 'neutral', color: '#9CCC65' },
+	{ label: 'stressed', color: '#689F38' },
+	{ label: 'tired', color: '#455A64' },
+	{ label: 'moody', color: '#2E7D32' },
+	{ label: 'sad', color: '#546E7A' }
+];
+const MAY_MOOD_COLORS = [
+	{ label: 'happy', color: '#D4E157' },
+	{ label: 'neutral', color: '#9CCC65' },
+	{ label: 'stressed', color: '#689F38' },
+	{ label: 'tired', color: '#455A64' },
+	{ label: 'moody', color: '#2E7D32' },
+	{ label: 'sad', color: '#546E7A' }
+];
+const JUNE_MOOD_COLORS = [
+	{ label: 'happy', color: '#D4E157' },
+	{ label: 'neutral', color: '#9CCC65' },
+	{ label: 'stressed', color: '#689F38' },
+	{ label: 'tired', color: '#455A64' },
+	{ label: 'moody', color: '#2E7D32' },
+	{ label: 'sad', color: '#546E7A' }
+];
+const JULY_MOOD_COLORS = [
+	{ label: 'happy', color: '#D4E157' },
+	{ label: 'neutral', color: '#9CCC65' },
+	{ label: 'stressed', color: '#689F38' },
+	{ label: 'tired', color: '#455A64' },
+	{ label: 'moody', color: '#2E7D32' },
+	{ label: 'sad', color: '#546E7A' }
+];
+const AUGUST_MOOD_COLORS = [
+	{ label: 'happy', color: '#D4E157' },
+	{ label: 'neutral', color: '#9CCC65' },
+	{ label: 'stressed', color: '#689F38' },
+	{ label: 'tired', color: '#455A64' },
+	{ label: 'moody', color: '#2E7D32' },
+	{ label: 'sad', color: '#546E7A' }
+];
+const SEPTEMBER_MOOD_COLORS = [
+	{ label: 'happy', color: '#D4E157' },
+	{ label: 'neutral', color: '#9CCC65' },
+	{ label: 'stressed', color: '#689F38' },
+	{ label: 'tired', color: '#455A64' },
+	{ label: 'moody', color: '#2E7D32' },
+	{ label: 'sad', color: '#546E7A' }
+];
+const OCTOBER_MOOD_COLORS = [
+	{ label: 'happy', color: '#D4E157' },
+	{ label: 'neutral', color: '#9CCC65' },
+	{ label: 'stressed', color: '#689F38' },
+	{ label: 'tired', color: '#455A64' },
+	{ label: 'moody', color: '#2E7D32' },
+	{ label: 'sad', color: '#546E7A' }
+];
+const NOVEMBER_MOOD_COLORS = [
+	{ label: 'happy', color: '#D4E157' },
+	{ label: 'neutral', color: '#9CCC65' },
+	{ label: 'stressed', color: '#689F38' },
+	{ label: 'tired', color: '#455A64' },
+	{ label: 'moody', color: '#2E7D32' },
+	{ label: 'sad', color: '#546E7A' }
+];
+const DECEMBER_MOOD_COLORS = [
+	{ label: 'happy', color: '#D4E157' },
+	{ label: 'neutral', color: '#9CCC65' },
+	{ label: 'stressed', color: '#689F38' },
+	{ label: 'tired', color: '#455A64' },
+	{ label: 'moody', color: '#2E7D32' },
+	{ label: 'sad', color: '#546E7A' }
+];
+
+export const MONTHLY_MOOD_CONFIG: { [key: string]: any } = {
+	'January': JANUARY_MOOD_COLORS,
+	'February': FEBRUARY_MOOD_COLORS,
+	'March': MARCH_MOOD_COLORS,
+	'April': APRIL_MOOD_COLORS,
+	'May': MAY_MOOD_COLORS,
+	'June': JUNE_MOOD_COLORS,
+	'July': JULY_MOOD_COLORS,
+	'August': AUGUST_MOOD_COLORS,
+	'September': SEPTEMBER_MOOD_COLORS,
+	'October': OCTOBER_MOOD_COLORS,
+	'November': NOVEMBER_MOOD_COLORS,
+	'December': DECEMBER_MOOD_COLORS,
+};
