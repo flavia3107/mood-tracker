@@ -16,48 +16,8 @@ svg {
 	margin: 7rem auto auto;
 }
 
-/* Mood Palette Styles */
-.mood-palette {
-	display: flex;
-	justify-content: center;
-	gap: 15px;
-	flex-wrap: wrap;
-	margin-left: 1.5rem;
-	margin-bottom: 1rem;
-}
-
-.mood-item {
-	display: flex;
-	align-items: center;
-	cursor: pointer;
-	transition: transform 0.2s;
-	flex-direction: column;
-	gap: 0.5rem;
-}
-
-.mood-item:hover {
-	transform: translateY(-3px);
-}
-
-.mood-item.selected .swatch {
-	border-color: #333;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.mood-item.selected .label {
-	font-weight: bold;
-}
-
-.swatch {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	border: 3px solid #eee;
-	cursor: pointer;
-	margin-bottom: 5px;
-}
-
-.label {
-	font-size: 12px;
-	color: #555;
+.legend-container {
+	position: relative;
+	right: -20rem;
+	bottom: 1rem;
 }

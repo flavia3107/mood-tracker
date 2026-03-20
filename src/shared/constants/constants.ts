@@ -33,7 +33,7 @@ const APRIL_MOOD_COLORS = [
 	{ label: 'sad', color: '#546E7A' }
 ];
 const MAY_MOOD_COLORS = [
-	{ label: 'happy', color: '#FFF5F6' },
+	{ label: 'happy', color: '#feeef0' },
 	{ label: 'neutral', color: '#FDD7E4' },
 	{ label: 'stressed', color: '#eea2bc' },
 	{ label: 'tired', color: '#F8B1CA' },
