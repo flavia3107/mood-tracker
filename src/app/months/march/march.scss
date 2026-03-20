@@ -17,9 +17,10 @@
 
 svg {
 	position: relative;
-	top: -2.5rem;
-	left: 14.5rem;
+	top: -8.5rem;
+	left: 18.5rem;
 	width: 33rem;
+	transform: rotate(22deg);
 }
 
 .segment {
@@ -38,6 +39,8 @@ svg {
 	position: relative;
 	top: -2rem;
 	left: 4rem;
+	background: #ffffff87;
+	border-radius: 9px;
 }
 
 .mood-item {
