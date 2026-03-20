@@ -1,76 +1,35 @@
-.petal {
-	transition: fill 0.4s ease, filter 0.3s;
-	cursor: pointer;
-}
-.petal:hover {
-	filter: brightness(1.2) saturate(1.2);
-}
-.branch {
-	stroke-linecap: round;
-	filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.2));
-}
-
 img {
 	width: 100%;
 }
 
 svg {
-	width: 75%;
+	width: 45rem;
 	height: 27rem;
 	display: block;
-	overflow: visible;
 	margin: 0 auto;
+}
+
+use[href="#dayFlower"] {
+	stroke: #f4cfdf; /* A medium-light dusty rose */
+	stroke-width: 0.5;
+}
+
+g[style*="cursor: pointer"] {
+	transition: transform 0.2s ease-out;
+}
+
+g[style*="cursor: pointer"]:hover {
+	filter: brightness(1.05);
+	transform-box: fill-box;
+	transform-origin: center;
 }
 
 .flex-column {
 	height: 45rem;
 }
 
-/* Mood Palette Styles */
-.mood-palette {
-	display: flex;
-	justify-content: center;
-	gap: 15px;
-	flex-wrap: wrap;
-	margin-right: 1.5rem;
-	margin-bottom: 1rem;
-}
-
-.mood-item {
-	display: flex;
-	flex-direction: row-reverse;
-	align-items: center;
-	cursor: pointer;
-	transition: transform 0.2s;
-	width: 10rem;
-	gap: 0.5rem;
-}
-
-.mood-item:hover {
-	transform: translateY(-3px);
-}
-
-.mood-item.selected .swatch {
-	border-color: #333;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.mood-item.selected .label {
-	font-weight: bold;
-}
-
-.swatch {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	border: 3px solid #eee;
-	cursor: pointer;
-	margin-bottom: 5px;
-}
-
-.label {
-	font-size: 12px;
-	color: #555;
+.legend-container {
+	margin: auto 1rem 2rem 0;
 }
 
 .container {
@@ -82,4 +41,6 @@ svg {
 	justify-content: flex-end;
 	align-items: flex-end;
 	flex-direction: row;
+	width: 50rem;
+	overflow: hidden;
 }

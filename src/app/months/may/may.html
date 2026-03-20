@@ -13,23 +13,22 @@
 					transform="rotate(216)" />
 				<use href="#petalShape" fill="currentColor" stroke="#F06292" stroke-width="0.3"
 					transform="rotate(288)" />
-				<circle r="2" fill="#C2185B" />
+				<circle r="2" fill="#FAD4E1" />
 			</symbol>
 		</defs>
 
-		<pattern id="dotGrid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-			<circle cx="2" cy="2" r="0.5" fill="#ddd" />
-		</pattern>
 		<rect width="100%" height="100%" fill="url(#dotGrid)" />
 
-		@for (f of flowerTrackers; track f.day) {
-		<g [attr.transform]="'translate(' + f.x + ',' + f.y + ') scale(' + f.scale + ')'">
+		@for (f of flowers; track f.day) {
+		<g [attr.transform]="'translate(' + f.x + ',' + f.y + ') scale(' + f.scale + ')'" (click)="onFlowerClick(f)"
+			style="cursor: pointer;">
 
 			<g [attr.transform]="'rotate(' + f.rotation + ')'">
-				<use href="#dayFlower" [attr.color]="getMoodColor(f.day - 1)" width="30" height="30" x="-15" y="-15" />
+				<use href="#dayFlower" [attr.color]="f.color" width="30" height="30" x="-15" y="-15" />
 
 				<g [attr.transform]="'rotate(' + (-f.rotation) + ') translate(3, -6)'">
-					<text font-size="6" font-weight="900" text-anchor="middle" fill="#5D4037" font-family="cursive">
+					<text font-size="6" font-weight="900" text-anchor="middle" fill="#5D4037" font-family="cursive"
+						style="pointer-events: none;">
 						{{ f.day }}
 					</text>
 				</g>
@@ -37,12 +36,7 @@
 		</g>
 		}
 	</svg>
-	<div class="mood-palette">
-		@for (mood of moods; track mood.label) {
-		<div class="mood-item" [class.selected]="selectedColor === mood.color" (click)="selectedColor = mood.color">
-			<div [style.background]="mood.color" class="swatch"></div>
-			<span class="label">{{ mood.label }}</span>
-		</div>
-		}
+	<div class="legend-container">
+		<app-mood-picker (moodColorSelected)="updateMood($event)" />
 	</div>
 </div>
