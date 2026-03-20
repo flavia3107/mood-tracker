@@ -26,8 +26,8 @@ export class May {
   get flowerTrackers() {
     const trackers: any[] = [];
     const remToUnit = 16;
-    const width = 40 * remToUnit;
-    const height = 23 * remToUnit;
+    const width = 45 * remToUnit;
+    const height = 25 * remToUnit;
     const minDistance = 60;
 
     for (let i = 0; i < this.numDays; i++) {
