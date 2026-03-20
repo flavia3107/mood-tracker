@@ -10,7 +10,7 @@ import { MoodPicker } from '../../mood-picker/mood-picker';
 })
 export class March {
   days = signal(Array.from({ length: 31 }, (_, i) => ({ id: i + 1, color: '#FFFFFF' })));
-  selectedMood: any;
+  private _selectedMood: string = '';
 
   readonly shardPaths = [
     "M50,100 L10,65 L50,55 Z", "M50,100 L50,55 L90,65 Z",
@@ -22,7 +22,7 @@ export class March {
   updateDay(index: number) {
     this.days.update(current => {
       const updated = [...current];
-      updated[index].color = this.selectedMood;
+      updated[index].color = this._selectedMood;
       return updated;
     });
   }
@@ -54,7 +54,7 @@ export class March {
     return centers[shardIndex];
   }
 
-  updateMood(color: any) {
-    console.log('COLOR', color)
+  updateMood(color: string) {
+    this._selectedMood = color;
   }
 }
