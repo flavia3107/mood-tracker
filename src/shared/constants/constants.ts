@@ -17,12 +17,12 @@ const FEBRUARY_MOOD_COLORS = [
 	{ label: 'sad', color: '#546E7A' }
 ];
 const MARCH_MOOD_COLORS = [
-	{ label: 'happy', color: '#D4E157' },
-	{ label: 'neutral', color: '#9CCC65' },
-	{ label: 'stressed', color: '#689F38' },
-	{ label: 'tired', color: '#455A64' },
-	{ label: 'moody', color: '#2E7D32' },
-	{ label: 'sad', color: '#546E7A' }
+	{ label: 'happy', color: '#ecef7e' },
+	{ label: 'neutral', color: '#d9e261' },
+	{ label: 'stressed', color: '#c8ce50' },
+	{ label: 'tired', color: '#d2dd77' },
+	{ label: 'moody', color: '#b6bd5f' },
+	{ label: 'sad', color: '#adc054' }
 ];
 const APRIL_MOOD_COLORS = [
 	{ label: 'happy', color: '#D4E157' },
