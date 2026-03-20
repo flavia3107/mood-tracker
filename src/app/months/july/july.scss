@@ -1,15 +1,63 @@
 .container-july {
-	background-image: url(/bee.jpg);
+	background-image: url("/bee.png");
 	background-size: cover;
 	background-position: center;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	height: 45rem;
 	width: 50rem;
-	justify-content: center;
+	justify-content: space-between;
 }
 
 svg {
-	width: 25rem;
-	height: 25rem;
+	width: 30rem;
+	height: 30rem;
+	margin: 7rem auto auto;
+}
+
+/* Mood Palette Styles */
+.mood-palette {
+	display: flex;
+	justify-content: center;
+	gap: 15px;
+	flex-wrap: wrap;
+	margin-left: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+.mood-item {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	transition: transform 0.2s;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.mood-item:hover {
+	transform: translateY(-3px);
+}
+
+.mood-item.selected .swatch {
+	border-color: #333;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.mood-item.selected .label {
+	font-weight: bold;
+}
+
+.swatch {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 3px solid #eee;
+	cursor: pointer;
+	margin-bottom: 5px;
+}
+
+.label {
+	font-size: 12px;
+	color: #555;
 }
