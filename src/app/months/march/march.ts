@@ -1,24 +1,16 @@
 import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { MoodPicker } from '../../mood-picker/mood-picker';
 
 @Component({
   selector: 'app-march',
+  imports: [MoodPicker],
   standalone: true,
   templateUrl: './march.html',
   styleUrls: ['./march.scss']
 })
 export class March {
-  readonly moods = [
-    { label: 'happy', color: '#D4E157' },
-    { label: 'neutral', color: '#9CCC65' },
-    { label: 'stressed', color: '#689F38' },
-    { label: 'tired', color: '#455A64' },
-    { label: 'moody', color: '#2E7D32' },
-    { label: 'sad', color: '#546E7A' }
-  ];
-
-  selectedMood = signal<string>(this.moods[0].color);
   days = signal(Array.from({ length: 31 }, (_, i) => ({ id: i + 1, color: '#FFFFFF' })));
+  selectedMood: any;
 
   readonly shardPaths = [
     "M50,100 L10,65 L50,55 Z", "M50,100 L50,55 L90,65 Z",
@@ -27,14 +19,10 @@ export class March {
     "M90,65 L50,55 L60,20 Z", "M120,0 L90,65 L50,10 Z"
   ];
 
-  setMood(color: string) {
-    this.selectedMood.set(color);
-  }
-
   updateDay(index: number) {
     this.days.update(current => {
       const updated = [...current];
-      updated[index].color = this.selectedMood();
+      updated[index].color = this.selectedMood;
       return updated;
     });
   }
@@ -64,5 +52,9 @@ export class March {
       { x: 65, y: 45 }, { x: 80, y: 45 }
     ];
     return centers[shardIndex];
+  }
+
+  updateMood(color: any) {
+    console.log('COLOR', color)
   }
 }

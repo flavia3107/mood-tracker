@@ -32,13 +32,7 @@
 		}
 		</g>
 	</svg>
-	<div class="legend">
-		@for (mood of moods; track mood.label) {
-		<div class="mood-item" (click)="setMood(mood.color)">
-			<div class="swatch" [style.background-color]="mood.color" [class.active]="selectedMood() === mood.color">
-			</div>
-			<span class="label">{{ mood.label }}</span>
-		</div>
-		}
+	<div class="legend-container">
+		<app-mood-picker (selectedMood)="updateMood($event)" />
 	</div>
 </div>
