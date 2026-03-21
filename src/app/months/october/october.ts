@@ -1,39 +1,26 @@
-import { DecimalPipe } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import { Component } from '@angular/core';
+import { MoodPicker } from '../../mood-picker/mood-picker';
 
 interface FacetDay {
   id: number;
   color: string;
-  points: string; // SVG polygon points string
-  centerX: number; // For label placement
+  points: string;
+  centerX: number;
   centerY: number;
 }
 
 @Component({
   selector: 'app-october',
   standalone: true,
-  imports: [],
+  imports: [MoodPicker],
   templateUrl: './october.html',
   styleUrl: './october.scss'
 })
 export class October {
-  selectedColor = '#ffd3b6'; // Default mood color
-  days: FacetDay[] = [];
+  private _selectedColor: string = '';
+  days: FacetDay[] = this._generateFacets();
 
-  // Mood colors inspired by the peach/yellow tones in image_21.png
-  moods = [
-    { label: 'Happy/Excited', color: '#ffaaa5' }, // Peach
-    { label: 'Good/Normal', color: '#ffd3b6' },   // Light Orange
-    { label: 'Calm/Relaxed', color: '#a8e6cf' }, // Mint Green
-    { label: 'Tired/Low', color: '#B0BEC5' },      // Grey
-    { label: 'Spooky/Stressed', color: '#9575CD' } // Purple
-  ];
-
-  ngOnInit() {
-    this.generateFacets();
-  }
-
-  generateFacets() {
+  private _generateFacets() {
     const facetData = [
       // --- TOP LOBES (Days 1-7) ---
       { pts: "100,100 180,95 140,150", cx: 140, cy: 115 },
@@ -75,15 +62,22 @@ export class October {
       { pts: "200,400 300,400 250,340", cx: 250, cy: 380 }
     ];
 
-    this.days = facetData.map((data, i) => ({
+    const newVal = facetData.map((data, i) => ({
       id: i + 1,
       color: '#ffffff',
       points: data.pts,
       centerX: data.cx,
       centerY: data.cy
     }));
+    return newVal;
   }
-  updateDayMood(index: number) {
-    this.days[index].color = this.selectedColor;
+
+  updateDayMood(day: FacetDay) {
+    if (this._selectedColor)
+      day.color = this._selectedColor;
+  }
+
+  updateMood(color: string) {
+    this._selectedColor = color;
   }
 }

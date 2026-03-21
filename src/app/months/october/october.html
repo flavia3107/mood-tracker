@@ -1,9 +1,9 @@
 <div class="container">
-	<svg viewBox="0 0 500 450" class="pumpkin-svg svg">
+	<svg viewBox="0 0 500 450" class="pumpkin-svg">
 		<path d="M230,80 Q250,20 270,80 L260,95 H240 Z" fill="#6d4c41" stroke="#3e2723" stroke-width="2" />
 
 		@for (day of days; track day.id; let i = $index) {
-		<polygon [attr.points]="day.points" [attr.fill]="day.color" (click)="updateDayMood(i)"
+		<polygon [attr.points]="day.points" [attr.fill]="day.color" (click)="updateDayMood(day)"
 			class="clickable-facet" />
 
 		<text [attr.x]="day.centerX" [attr.y]="day.centerY" class="facet-label">
@@ -20,12 +20,7 @@
 		</g>
 	</svg>
 
-	<div class="mood-palette">
-		@for (mood of moods; track mood.label) {
-		<div class="mood-item" [class.selected]="selectedColor === mood.color" (click)="selectedColor = mood.color">
-			<div [style.background]="mood.color" class="swatch"></div>
-			<span class="label">{{ mood.label }}</span>
-		</div>
-		}
+	<div class="legend-container">
+		<app-mood-picker (moodColorSelected)="updateMood($event)" />
 	</div>
 </div>
