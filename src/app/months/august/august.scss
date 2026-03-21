@@ -34,46 +34,7 @@ svg {
 	width: 50rem;
 }
 
-/* Mood Palette Styles */
-.mood-palette {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	gap: 12px;
-	margin: -24rem 0 0 1.2rem;
-}
-
-.mood-item {
-	display: flex;
-	align-items: center;
-	cursor: pointer;
-	gap: 0.5rem;
-	transition: transform 0.2s;
-}
-
-.mood-item:hover {
-	transform: translateY(-3px);
-}
-
-.mood-item.selected .swatch {
-	border-color: #333;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.mood-item.selected .label {
-	font-weight: bold;
-}
-
-.swatch {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	border: 3px solid #eee;
-	cursor: pointer;
-	margin-bottom: 5px;
-}
-
-.label {
-	font-size: 12px;
-	color: #555;
+.legend-container {
+	margin-top: -30rem;
+	margin-left: 1rem;
 }
