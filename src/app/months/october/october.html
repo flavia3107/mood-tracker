@@ -1,17 +1,39 @@
 <div class="container">
 	<svg viewBox="0 0 500 450" class="pumpkin-svg">
+		<defs>
+			<mask id="pumpkinMask">
+				<path d="M250,100 
+						 C320,100 390,120 420,195 
+						 C450,290 410,435 250,435 
+						 C90,435 50,290 80,195 
+						 C110,120 180,100 250,100 Z" fill="white" />
+			</mask>
+		</defs>
+
+
 		<path d="M230,80 Q250,20 270,80 L260,95 H240 Z" fill="#6d4c41" stroke="#3e2723" stroke-width="2" />
 
-		@for (day of days; track day.id; let i = $index) {
-		<polygon [attr.points]="day.points" [attr.fill]="day.color" (click)="updateDayMood(day)"
-			class="clickable-facet" />
+		<g mask="url(#pumpkinMask)">
+			<rect width="500" height="450" fill="#FBF8F4" />
 
-		<text [attr.x]="day.centerX" [attr.y]="day.centerY" class="facet-label">
-			{{ day.id }}
-		</text>
-		}
+			@for (day of days; track day.id) {
+			<g (click)="updateDayMood(day)" style="cursor: pointer;">
+				<polygon [attr.points]="day.points" [attr.fill]="day.color || '#FBF8F4'" stroke="#3e2723"
+					stroke-width="1" />
+				<text [attr.x]="day.centerX" [attr.y]="day.centerY" text-anchor="middle" font-size="12"
+					font-weight="900" fill="#3e2723" style="pointer-events: none; font-family: sans-serif;">
+					{{ day.id }}
+				</text>
+			</g>
+			}
+		</g>
 
-		<g class="face-overlay">
+
+		<path
+			d="M250,100 C320,100 390,120 420,195 C450,290 410,435 250,435 C90,435 50,290 80,195 C110,120 180,100 250,100 Z"
+			fill="none" stroke="#3e2723" stroke-width="6" style="pointer-events: none;" />
+
+		<g class="face-overlay" style="pointer-events: none;">
 			<path d="M160,190 L210,240 H140 Z" fill="#1a1a1a" />
 			<path d="M340,190 L290,240 H360 Z" fill="#1a1a1a" />
 			<path
@@ -19,7 +41,6 @@
 				fill="#1a1a1a" />
 		</g>
 	</svg>
-
 	<div class="legend-container">
 		<app-mood-picker (moodColorSelected)="updateMood($event)" />
 	</div>
