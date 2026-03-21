@@ -1,42 +1,39 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { UtilsService } from '../../../shared/services/utils';
+import { MoodPicker } from '../../mood-picker/mood-picker';
 
 @Component({
   selector: 'app-august',
-  imports: [],
+  imports: [MoodPicker],
   templateUrl: './august.html',
   styleUrl: './august.scss',
 })
 export class August {
   private _utilService = inject(UtilsService);
   public monthData = this._utilService.monthDays;
-  moods = [
-    { label: 'Happy/Excited', color: '#ffaaa5' }, // Peach
-    { label: 'Good/Normal', color: '#ffd3b6' },   // Light Orange
-    { label: 'Calm/Relaxed', color: '#a8e6cf' }, // Mint Green
-    { label: 'Tired/Low', color: '#B0BEC5' },      // Grey
-    { label: 'Spooky/Stressed', color: '#9575CD' } // Purple
-  ];
-  selectedColor = '#ffd3b6'; // Default mood color
-  getRotation(i: number): string {
-    return `rotate(${(i * 360) / 31}, 125, 125)`;
+  private _selectedMood: string = '';
+
+  days = computed(() => {
+    const totalDays = this.monthData();
+
+    return Array.from({ length: totalDays }, (_, i) => {
+      const angle = (i * 360) / totalDays;
+      return {
+        label: i + 1,
+        groupTransform: `rotate(${angle}, 125, 125)`,
+        textTransform: `rotate(${-angle}, 125, 48)`,
+        fill: '#ffffff',
+        stroke: '#3E2723'
+      };
+    });
+  });
+
+  updateMood(color: string) {
+    this._selectedMood = color;
   }
 
-  getMoodColor(i: number): string {
-    const mood = this.monthData()[i];
-    const palette: Record<string, string> = {
-      'great': '#FFD700',
-      'good': '#F4D03F',
-      'meh': '#D4AC0D',
-      'bad': '#997950',
-      'none': '#fff'
-    };
-    return palette[mood] || palette['none'];
-  }
-
-  getTextRotation(index: number): string {
-    const angle = (index * (360 / this.monthData()));
-    // Center of rotation is 125 (horizontal center) and 48 (near the tip)
-    return `rotate(${-angle}, 125, 48)`;
+  updateDayMood(day: any) {
+    if (this._selectedMood)
+      day.fill = this._selectedMood;
   }
 }
