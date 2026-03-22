@@ -56,4 +56,15 @@ export class February {
   updateMood(day: any) {
 
   }
+
+  getLeafTransform(leafIndex: number): string {
+    const rotations = [-70, 140];
+    const offsets = [
+      { x: 140, y: 60 },
+      { x: 240, y: 120 },
+    ];
+
+    const pos = offsets[leafIndex];
+    return `translate(${pos.x}, ${pos.y}) scale(1.3) rotate(${rotations[leafIndex]}, 40, 60)`;
+  }
 }

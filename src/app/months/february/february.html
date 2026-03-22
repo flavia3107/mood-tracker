@@ -1,35 +1,44 @@
-<div class="container" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+<div class="container">
 	<svg viewBox="-150 0 700 500" class="chocolate-svg svg">
-
+		<defs>
+			<clipPath id="heartClip">
+				<path d="M50,100 C45,90 0,75 0,35 C0,10 25,0 50,25 C75,0 100,10 100,35 C100,75 55,90 50,100 Z" />
+			</clipPath>
+		</defs>
 		<g transform="translate(-220, 40) rotate(-20)" opacity="0.9">
 			<path
 				d="M263,125 C330,5 520, 20 495,195 C480,305 295,435 280,465 C270,420 35,315 30,175 C25,25 200,10 260,120 Z"
 				fill="#FFFBF5" stroke="#3E2723" stroke-width="4" />
 
-			<path d="M120,80 L380,420" stroke="#3E2723" stroke-width="2" opacity="0.3" />
-			<path d="M160,65 L420,400" stroke="#3E2723" stroke-width="2" opacity="0.3" />
+			<path d="M180,380 L485,105" stroke="#FDE293" stroke-width="80" opacity="0.35" fill="#FDE293" />
 
-			<circle cx="180" cy="130" r="15" fill="none" stroke="#3E2723" stroke-width="2" opacity="0.5" />
-			<path d="M180,130 Q210,90 230,130 Q210,170 180,130" fill="none" stroke="#3E2723" stroke-width="1.5"
-				opacity="0.5" />
-			<path d="M180,130 Q140,90 120,130 Q140,170 180,130" fill="none" stroke="#3E2723" stroke-width="1.5"
-				opacity="0.5" />
+			<path d="M155,355 L460,75" stroke="#3E2723" stroke-width="4" opacity="0.3" fill="none" />
+			<path d="M215,405 L500,145" stroke="#3E2723" stroke-width="4" opacity="0.3" fill="none" />
+
+			<g transform="translate(0, 275) rotate(-50)">
+				@for (leafIdx of [0, 1]; track leafIdx) {
+				<g [attr.transform]="getLeafTransform(leafIdx)">
+					<g clip-path="url(#heartClip)"> </g>
+					<path d="M50,100 C45,90 0,75 0,35 C0,10 25,0 50,25 C75,0 100,10 100,35 C100,75 55,90 50,100 Z"
+						fill="none" stroke="#232323" stroke-width="2" />
+				</g>
+				}
+			</g>
 		</g>
 
-		<g transform="translate(40, 0)">
+		<g transform="translate(55, 15) rotate(15)">
 			<path id="boxPath"
 				d="M263,125 C330,5 520, 20 495,195 C480,305 295,435 280,465 C270,420 35,315 30,175 C25,25 200,10 260,120 Z"
 				fill="#FFFBF5" stroke="#3E2723" stroke-width="6" />
-
-			<!-- @for (c of chocolates(); track c.id) {
-			<g (click)="updateMood(c.id)" style="cursor: pointer;">
-				<path [attr.d]="c.pts" [attr.fill]="c.color" stroke="#3E2723" stroke-width="2" class="candy-piece" />
-				<text [attr.x]="c.cx" [attr.y]="c.cy" text-anchor="middle" class="day-label"
-					style="font-family: sans-serif; font-size: 12px; font-weight: 900; pointer-events: none; fill: #3E2723;">
-					{{ c.id }}
-				</text>
-			</g>
-			} -->
 		</g>
+		@for (c of chocolates(); track c.id) {
+		<g (click)="updateMood(c.id)" style="cursor: pointer;">
+			<path [attr.d]="c.pts" [attr.fill]="c.color" stroke="#3E2723" stroke-width="2" class="candy-piece" />
+			<text [attr.x]="c.cx" [attr.y]="c.cy" text-anchor="middle" class="day-label"
+				style="font-family: sans-serif; font-size: 12px; font-weight: 900; pointer-events: none; fill: #3E2723;">
+				{{ c.id }}
+			</text>
+		</g>
+		}
 	</svg>
 </div>
