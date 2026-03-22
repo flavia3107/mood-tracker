@@ -1,17 +1,5 @@
 <div class="container">
-	<div class="palette">
-		@for (m of moods; track m.label) {
-		<div class="mood-swatch" [style.background]="m.color" [class.active]="selectedMood === m"
-			(click)="selectedMood = m">
-		</div>
-		}
-		<span>Select Mood</span>
-	</div>
-
 	<svg viewBox="0 0 500 500" class="chocolate-svg">
-		<text x="250" y="50" text-anchor="middle" class="title">February</text>
-		<text x="250" y="80" text-anchor="middle" class="subtitle">MOOD TRACKER</text>
-
 		<path d="M150,150 C200,90 300,100 300,200 C300,320 150,420 150,420 C150,420 0,320 0,200 C0,100 100,90 150,150 Z"
 			fill="none" stroke="#3E2723" stroke-width="2" opacity="0.4" transform="translate(20, -20) rotate(-10)" />
 

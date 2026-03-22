@@ -14,18 +14,7 @@ interface Chocolate {
   styleUrl: './february.scss',
 })
 export class February {
-  // Initial Palette
-  moods = [
-    { label: 'happy', color: '#FFD54F' },
-    { label: 'neutral', color: '#FFA726' },
-    { label: 'stressed', color: '#FB8C00' },
-    { label: 'tired', color: '#E65100' },
-    { label: 'moody', color: '#BF360C' },
-    { label: 'sad', color: '#5D4037' }
-  ];
-
-  selectedMood = this.moods[0];
-
+  selectedMood = '';
   // Chocolate Shard Data (28 Days)
   chocolates = signal<Chocolate[]>([
     // Row 1
@@ -64,9 +53,7 @@ export class February {
     { id: 28, pts: "M240,115 a10,10 0 1,1 20,0 a10,10 0 1,1 -20,0", cx: 250, cy: 120, color: '#FBF8F4' }
   ]);
 
-  updateMood(dayId: number) {
-    this.chocolates.update(list =>
-      list.map(c => c.id === dayId ? { ...c, color: this.selectedMood.color } : c)
-    );
+  updateMood(day: any) {
+
   }
 }

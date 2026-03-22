@@ -2,8 +2,9 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background-color: #fdfdfd;
-	padding: 20px;
+	background-color: #fff;
+	width: 50rem;
+	height: 45rem;
 }
 
 .chocolate-svg {
@@ -35,26 +36,4 @@
 	font-weight: 900;
 	fill: #3e2723;
 	pointer-events: none;
-}
-
-/* Palette UI */
-.palette {
-	display: flex;
-	gap: 10px;
-	margin-bottom: 20px;
-	align-items: center;
-}
-
-.mood-swatch {
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
-	border: 3px solid transparent;
-	cursor: pointer;
-	transition: transform 0.2s;
-}
-
-.mood-swatch.active {
-	border-color: #3e2723;
-	transform: scale(1.2);
 }
