@@ -4,6 +4,11 @@
 			<clipPath id="heartClip">
 				<path d="M50,100 C45,90 0,75 0,35 C0,10 25,0 50,25 C75,0 100,10 100,35 C100,75 55,90 50,100 Z" />
 			</clipPath>
+
+			<filter id="wrapperJitter" x="-20%" y="-20%" width="140%" height="140%">
+				<feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" result="noise" />
+				<feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+			</filter>
 		</defs>
 		<g transform="translate(-220, 40) rotate(-20)" opacity="0.9">
 			<path
@@ -31,14 +36,22 @@
 				d="M263,125 C330,5 520, 20 495,195 C480,305 295,435 280,465 C270,420 35,315 30,175 C25,25 200,10 260,120 Z"
 				fill="#FFFBF5" stroke="#3E2723" stroke-width="6" />
 		</g>
-		@for (c of chocolates(); track c.id) {
-		<g (click)="updateMood(c.id)" style="cursor: pointer;">
-			<path [attr.d]="c.pts" [attr.fill]="c.color" stroke="#3E2723" stroke-width="2" class="candy-piece" />
-			<text [attr.x]="c.cx" [attr.y]="c.cy" text-anchor="middle" class="day-label"
-				style="font-family: sans-serif; font-size: 12px; font-weight: 900; pointer-events: none; fill: #3E2723;">
-				{{ c.id }}
-			</text>
+		<g transform="translate(0, 0)">
+			@for (c of chocolates(); track c.id) {
+			<g (click)="updateMood(c.id)" style="cursor: pointer;">
+
+				<path [attr.d]="c.pts" fill="none" stroke="#3E2723" stroke-width="1.2" opacity="0.4"
+					filter="url(#wrapperJitter)" transform="scale(1.15) "
+					style="transform-origin: center; transform-box: fill-box;" />
+
+				<path [attr.d]="c.pts" [attr.fill]="c.color" stroke="#3E2723" stroke-width="2" />
+
+				<text [attr.x]="c.cx" [attr.y]="c.cy" text-anchor="middle"
+					style="font-family: sans-serif; font-size: 11px; font-weight: 900; fill: #3E2723; pointer-events: none;">
+					{{ c.id }}
+				</text>
+			</g>
+			}
 		</g>
-		}
 	</svg>
 </div>
