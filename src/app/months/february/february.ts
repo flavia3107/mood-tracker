@@ -22,12 +22,12 @@ export class February {
     { id: 2, pts: "M90,140 a35,35 0 1,1 70,0 a35,35 0 1,1 -70,0", cx: 120, cy: 145, color: '#fff', rotate: 5 },
     // { id: 28, pts: "M60,215 a12,12 0 1,1 50,0 a12,12 0 1,1 -50,0", cx: 85, cy: 220, color: '#fff', rotate: -10 },
     { id: 1, pts: "M45,210 a30,30 0 1,1 60,0 a30,30 0 1,1 -60,0", cx: 75, cy: 210, color: '#fff', rotate: 5 },
-    // { id: 3, pts: "M295,170 a30,30 0 1,1 60,0 a30,30 0 1,1 -60,0", cx: 325, cy: 200, color: '#fff', rotate: -8 },
+    { id: 3, pts: "M305,210 a30,30 0 1,1 60,0 a30,30 0 1,1 -60,0", cx: 335, cy: 215, color: '#fff', rotate: 5 },
 
     // // Row 2: Large Squares
-    // { id: 4, pts: "M80,235 h50 v50 h-50 Z", cx: 105, cy: 260, color: '#fff', rotate: 4 },
-    // { id: 5, pts: "M160,225 h50 v50 h-50 Z", cx: 185, cy: 250, color: '#fff', rotate: -6 },
-    // { id: 6, pts: "M240,225 h50 v50 h-50 Z", cx: 265, cy: 250, color: '#fff', rotate: 15 },
+    { id: 4, pts: "M180,150 h70 v50 h-70 Z", cx: 210, cy: 180, color: '#fff', rotate: 55 },
+    { id: 5, pts: "M380,200 h80 v60 h-80 Z", cx: 415, cy: 235, color: '#fff', rotate: -6 },
+    { id: 6, pts: "M240,225 h50 v70 h-50 Z", cx: 265, cy: 260, color: '#fff', rotate: 15 },
     // { id: 7, pts: "M320,225 h50 v50 h-50 Z", cx: 345, cy: 250, color: '#fff', rotate: -3 },
     // { id: 8, pts: "M400,235 h50 v50 h-50 Z", cx: 425, cy: 260, color: '#fff', rotate: 10 },
 
