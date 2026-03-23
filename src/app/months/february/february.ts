@@ -35,14 +35,14 @@ export class February {
     { id: 9, pts: "M115,205 a35,18 0 1,1 80,0 a35,18 0 1,1 -80,0", cx: 150, cy: 210, color: '#fff', rotate: 5 },
     { id: 10, pts: "M175,325 a35,18 0 1,1 90,0 a35,18 0 1,1 -90,0", cx: 220, cy: 330, color: '#fff', rotate: 5 },
     // { id: 25, pts: "M265,295 h50 v50 h-50 Z", cx: 290, cy: 320, color: '#fff', rotate: -5 },
-    // { id: 11, pts: "M345,295 a35,18 0 1,1 70,0 a35,18 0 1,1 -70,0", cx: 380, cy: 313, color: '#fff', rotate: 8 },
-    // { id: 12, pts: "M445,305 a35,18 0 1,1 70,0 a35,18 0 1,1 -70,0", cx: 480, cy: 323, color: '#fff', rotate: -15 },
+    { id: 11, pts: "M345,375 a35,18 0 1,1 80,0 a35,18 0 1,1 -80,0", cx: 385, cy: 380, color: '#fff', rotate: 8 },
+    { id: 12, pts: "M50,295 a35,18 0 1,1 90,0 a35,18 0 1,1 -90,0", cx: 100, cy: 300, color: '#fff', rotate: 60 },
 
     // // Row 4: Mid Squares & Large Circles
-    // { id: 13, pts: "M130,370 h50 v50 h-50 Z", cx: 155, cy: 395, color: '#fff', rotate: 7 },
+    { id: 13, pts: "M135,235 h60 v60 h-60 Z", cx: 160, cy: 275, color: '#fff', rotate: 10 },
     // { id: 26, pts: "M205,385 a25,25 0 1,1 50,0 a25,25 0 1,1 -50,0", cx: 230, cy: 410, color: '#fff', rotate: -9 },
-    // { id: 14, pts: "M210,355 h50 v50 h-50 Z", cx: 235, cy: 380, color: '#fff', rotate: 3 },
-    // { id: 15, pts: "M280,355 h50 v50 h-50 Z", cx: 305, cy: 380, color: '#fff', rotate: -4 },
+    { id: 14, pts: "M115,350 h70 v50 h-70 Z", cx: 140, cy: 380, color: '#fff', rotate: 50 },
+    { id: 15, pts: "M280,325 h50 v50 h-50 Z", cx: 305, cy: 350, color: '#fff', rotate: -4 },
     // { id: 27, pts: "M345,385 a25,25 0 1,1 50,0 a25,25 0 1,1 -50,0", cx: 370, cy: 410, color: '#fff', rotate: 11 },
     // { id: 16, pts: "M370,370 h50 v50 h-50 Z", cx: 395, cy: 395, color: '#fff', rotate: -7 },
 
