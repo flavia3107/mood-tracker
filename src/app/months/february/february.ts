@@ -28,12 +28,12 @@ export class February {
     { id: 4, pts: "M180,150 h70 v50 h-70 Z", cx: 210, cy: 180, color: '#fff', rotate: 55 },
     { id: 5, pts: "M380,200 h80 v60 h-80 Z", cx: 415, cy: 235, color: '#fff', rotate: -6 },
     { id: 6, pts: "M240,225 h50 v70 h-50 Z", cx: 265, cy: 260, color: '#fff', rotate: 15 },
-    // { id: 7, pts: "M320,225 h50 v50 h-50 Z", cx: 345, cy: 250, color: '#fff', rotate: -3 },
-    // { id: 8, pts: "M400,235 h50 v50 h-50 Z", cx: 425, cy: 260, color: '#fff', rotate: 10 },
+    { id: 7, pts: "M310,255 h50 v50 h-50 Z", cx: 335, cy: 280, color: '#fff', rotate: -3 },
+    { id: 8, pts: "M390,285 h70 v70 h-70 Z", cx: 425, cy: 325, color: '#fff', rotate: 25 },
 
     // // Row 3: Horizontal Ovals
-    // { id: 9, pts: "M75,305 a35,18 0 1,1 70,0 a35,18 0 1,1 -70,0", cx: 110, cy: 323, color: '#fff', rotate: -12 },
-    // { id: 10, pts: "M175,295 a35,18 0 1,1 70,0 a35,18 0 1,1 -70,0", cx: 210, cy: 313, color: '#fff', rotate: 5 },
+    { id: 9, pts: "M115,205 a35,18 0 1,1 80,0 a35,18 0 1,1 -80,0", cx: 150, cy: 210, color: '#fff', rotate: 5 },
+    { id: 10, pts: "M175,325 a35,18 0 1,1 90,0 a35,18 0 1,1 -90,0", cx: 220, cy: 330, color: '#fff', rotate: 5 },
     // { id: 25, pts: "M265,295 h50 v50 h-50 Z", cx: 290, cy: 320, color: '#fff', rotate: -5 },
     // { id: 11, pts: "M345,295 a35,18 0 1,1 70,0 a35,18 0 1,1 -70,0", cx: 380, cy: 313, color: '#fff', rotate: 8 },
     // { id: 12, pts: "M445,305 a35,18 0 1,1 70,0 a35,18 0 1,1 -70,0", cx: 480, cy: 323, color: '#fff', rotate: -15 },
