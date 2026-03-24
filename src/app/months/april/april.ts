@@ -1,23 +1,14 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component } from '@angular/core';
+import { MoodPicker } from '../../mood-picker/mood-picker';
 
 @Component({
   selector: 'app-april',
-  imports: [],
+  imports: [MoodPicker],
   templateUrl: './april.html',
   styleUrl: './april.scss',
 })
 export class April {
-  readonly moods = [
-    { label: 'happy', color: '#D4E157' },
-    { label: 'neutral', color: '#9CCC65' },
-    { label: 'stressed', color: '#689F38' },
-    { label: 'tired', color: '#455A64' },
-    { label: 'moody', color: '#2E7D32' },
-    { label: 'sad', color: '#546E7A' }
-  ];
-
-  selectedMood = signal<string>(this.moods[0].color);
-  days = signal(Array.from({ length: 31 }, (_, i) => ({ id: i + 1, color: '#FFFFFF' })));
+  private _selectedMood: string = '';
 
   totalDays = 30;
   curveIntensity = 125;
@@ -79,19 +70,16 @@ export class April {
       label: {
         x: ((p1.x + p2.x) / 2).toFixed(1),
         y: (day % 2 === 0 ? 215 : 245)
-      }
+      },
+      color: '#fff'
     };
   });
 
-  setMood(color: string) {
-    this.selectedMood.set(color);
+  updateMood(color: string) {
+    this._selectedMood = color;
   }
 
-  updateDay(index: number) {
-    this.days.update(current => {
-      const updated = [...current];
-      updated[index].color = this.selectedMood();
-      return updated;
-    });
+  updateDay(day: any) {
+    day['color'] = this._selectedMood;
   }
 }
