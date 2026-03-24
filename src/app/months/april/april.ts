@@ -80,6 +80,7 @@ export class April {
   }
 
   updateDay(day: any) {
-    day['color'] = this._selectedMood;
+    if (this._selectedMood)
+      day['color'] = this._selectedMood;
   }
 }
