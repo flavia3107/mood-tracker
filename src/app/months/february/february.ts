@@ -62,7 +62,8 @@ export class February {
 
 
   updateDay(chocolate: Chocolate) {
-    chocolate.color = this.selectedMood;
+    if (this.selectedMood)
+      chocolate.color = this.selectedMood;
   }
 
   getLeafTransform(leafIndex: number): string {

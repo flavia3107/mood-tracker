@@ -1,11 +1,12 @@
-.tracker-container {
+.container {
 	display: flex;
 	align-items: center;
-	padding: 20px;
-	background-color: #f8f8f8;
 	width: 50rem;
 	height: 45rem;
-	justify-content: center;
+	background-image: url("/rain.jpg");
+	background-size: cover;
+	background-position: right;
+	background-color: #fff;
 }
 
 .april-svg {
