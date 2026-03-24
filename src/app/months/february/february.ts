@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { MoodPicker } from '../../mood-picker/mood-picker';
 interface Chocolate {
   id: number;
   pts: string; // SVG Path data
@@ -10,7 +11,7 @@ interface Chocolate {
 
 @Component({
   selector: 'app-february',
-  imports: [],
+  imports: [MoodPicker],
   templateUrl: './february.html',
   styleUrl: './february.scss',
 })
@@ -25,9 +26,9 @@ export class February {
     { id: 3, pts: "M305,210 a30,30 0 1,1 60,0 a30,30 0 1,1 -60,0", cx: 335, cy: 215, color: '#fff', rotate: 5 },
 
     // // Row 2: Large Squares
-    { id: 4, pts: "M180,150 h70 v50 h-70 Z", cx: 210, cy: 180, color: '#fff', rotate: 55 },
+    { id: 4, pts: "M180,150 h70 v50 h-70 Z", cx: 215, cy: 180, color: '#fff', rotate: 55 },
     { id: 5, pts: "M370,220 h50 v50 h-50 Z", cx: 395, cy: 245, color: '#fff', rotate: -6 },
-    { id: 6, pts: "M250,215 h50 v70 h-50 Z", cx: 265, cy: 260, color: '#fff', rotate: 0 },
+    { id: 6, pts: "M250,215 h50 v70 h-50 Z", cx: 275, cy: 260, color: '#fff', rotate: 0 },
     { id: 7, pts: "M310,255 h50 v50 h-50 Z", cx: 335, cy: 280, color: '#fff', rotate: -3 },
     { id: 8, pts: "M390,285 h70 v70 h-70 Z", cx: 425, cy: 325, color: '#fff', rotate: 25 },
 
@@ -39,7 +40,7 @@ export class February {
     { id: 12, pts: "M50,295 a35,18 0 1,1 90,0 a35,18 0 1,1 -90,0", cx: 100, cy: 300, color: '#fff', rotate: 60 },
 
     // // Row 4: Mid Squares & Large Circles
-    { id: 13, pts: "M125,235 h60 v60 h-60 Z", cx: 160, cy: 275, color: '#fff', rotate: 0 },
+    { id: 13, pts: "M125,235 h60 v60 h-60 Z", cx: 155, cy: 270, color: '#fff', rotate: 0 },
     { id: 26, pts: "M192,490 a25,25 0 1,1 50,0 a25,25 0 1,1 -50,0", cx: 215, cy: 490, color: '#fff', rotate: -9 },
     { id: 23, pts: "M105,350 h70 v50 h-70 Z", cx: 140, cy: 380, color: '#fff', rotate: 50 },
     { id: 25, pts: "M280,350 h50 v50 h-50 Z", cx: 305, cy: 380, color: '#fff', rotate: -4 },
@@ -55,11 +56,13 @@ export class February {
     // // Fillers
     { id: 20, pts: "M192,430 a25,25 0 1,1 50,0 a25,25 0 1,1 -50,0", cx: 210, cy: 430, color: '#fff', rotate: 15 },
     { id: 15, pts: "M375,190 a25,25 0 1,1 50,0 a25,25 0 1,1 -50,0", cx: 400, cy: 190, color: '#fff', rotate: -15 },
-    { id: 14, pts: "M193,230 h50 v50 h-50 Z", cx: 225, cy: 255, color: '#fff', rotate: 5 },
+    { id: 14, pts: "M193,230 h50 v50 h-50 Z", cx: 215, cy: 260, color: '#fff', rotate: 5 },
     { id: 17, pts: "M200,345 h50 v50 h-50 Z", cx: 225, cy: 375, color: '#fff', rotate: -15 }
   ]);
-  updateMood(day: any) {
 
+
+  updateDay(chocolate: Chocolate) {
+    chocolate.color = this.selectedMood;
   }
 
   getLeafTransform(leafIndex: number): string {
@@ -71,5 +74,9 @@ export class February {
 
     const pos = offsets[leafIndex];
     return `translate(${pos.x}, ${pos.y}) scale(1.3) rotate(${rotations[leafIndex]}, 40, 60)`;
+  }
+
+  updateMood(color: string) {
+    this.selectedMood = color;
   }
 }

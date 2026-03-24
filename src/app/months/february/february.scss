@@ -1,6 +1,5 @@
 .container {
 	display: flex;
-	flex-direction: column;
 	align-items: center;
 	background-color: #fff;
 	width: 50rem;
@@ -9,6 +8,7 @@
 
 .chocolate-svg {
 	width: 40rem;
+	margin-left: 2rem;
 }
 
 .title {
@@ -35,4 +35,10 @@
 	font-weight: 900;
 	fill: #3e2723;
 	pointer-events: none;
+}
+
+.legend-container {
+	position: relative;
+	right: 1rem;
+	bottom: -15rem;
 }
