@@ -11,7 +11,7 @@ export class April {
   private _selectedMood: string = '';
 
   totalDays = 30;
-  curveIntensity = 125;
+  curveIntensity = 145;
   topCurveY = 90;
 
   umbrellaSlices = Array.from({ length: this.totalDays }, (_, i) => {
@@ -27,12 +27,12 @@ export class April {
         // Left Section (Equal steps along the 100-unit curve)
         const localT = distance / 100;
         x = 25 + (100 * localT);
-        y = 275 + (35 * localT);
+        y = 280 + (35 * localT);
       } else if (distance <= 250) {
         // Middle Section (Equal steps along the 150-unit flat)
         const localT = (distance - 100) / 150;
         x = 125 + (150 * localT);
-        y = 310;
+        y = 315;
       } else {
         // Right Section (Equal steps along the 100-unit curve)
         const localT = (distance - 250) / 100;
@@ -69,7 +69,7 @@ export class April {
            Q${cx2},${this.topCurveY} ${tx2},${topY} Z`,
       label: {
         x: ((p1.x + p2.x) / 2).toFixed(1),
-        y: (day % 2 === 0 ? 215 : 245)
+        y: (((p1.y + p2.y) / 2) - 20).toFixed(1),
       },
       color: '#fff'
     };

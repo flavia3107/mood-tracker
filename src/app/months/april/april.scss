@@ -22,3 +22,30 @@
 .legend-container {
 	margin: 0 1rem 1rem 0;
 }
+
+.umbrella-label {
+	font-family: sans-serif;
+	font-size: 8.5px;
+	font-weight: bold;
+	fill: rgb(228, 228, 228);
+
+	/* Alignment */
+	text-anchor: middle;
+	dominant-baseline: central;
+
+	/* Interaction */
+	pointer-events: none;
+
+	/* Optional: Add a white "halo" for better readability on colors */
+	paint-order: stroke;
+	stroke: #494949;
+	stroke-width: 1.5px;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.shard-group {
+	cursor: pointer;
+	stroke: #bdbdbd;
+	stroke-width: 0.5;
+}

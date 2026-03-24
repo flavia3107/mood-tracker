@@ -3,24 +3,25 @@
 		<defs>
 			<clipPath id="umbrella-mask">
 				<path d="M180,70 
-					C300,60 375,160 375,275 
-					Q340,280 275,310 
-					L125,310 
-					Q65,280 25,275 
-					C25,160 100,60 220,70 Z" />
+				C240,65 280,80 310,110 
+				C340,140 375,190 375,275 
+				Q340,285 300,300 
+				L200,315 L100,300 
+				Q60,285 25,275 
+				C25,190 60,140 90,110 
+				C120,80 160,65 220,70 Z" />
 			</clipPath>
 		</defs>
 
-		<path d="M200,280 L200,450" stroke="#7c7c88" stroke-width="4" fill="none" stroke-linecap="round" />
-		<path d="M200,450 Q200,500 155,490" stroke="#8d7762" stroke-width="6" fill="none" stroke-linecap="round" />
+		<path d=" M200,280 L200,430" stroke="#7c7c88" stroke-width="4" fill="none" stroke-linecap="round" />
+		<path d="M200,435 Q200,500 155,465" stroke="#8d7762" stroke-width="6" fill="none" stroke-linecap="round" />
 
 		<g clip-path="url(#umbrella-mask)">
 			@for (section of umbrellaSlices; track $index) {
-			<g (click)="updateDay(section)" class="shard-group" style="cursor: pointer;">
-				<path [attr.d]="section.path" [attr.fill]="section.color" stroke="#d3d3d3" stroke-width="1"
-					opacity="1" />
-				<text [attr.x]="section.label.x" [attr.y]="section.label.y" text-anchor="middle" font-size="9"
-					font-weight="bold" fill="#111" style="pointer-events: none; font-family: sans-serif;">
+			<g (click)="updateDay(section)" class="shard-group">
+				<path [attr.d]="section.path" [attr.fill]="section.color" opacity="1" />
+				<text class="umbrella-label" [attr.x]="section.label.x" [attr.y]="section.label.y"
+					[attr.transform]="'rotate(-80 ' + section.label.x + ' ' + section.label.y + ')'">
 					{{ $index + 1 }}
 				</text>
 			</g>
@@ -28,11 +29,13 @@
 		</g>
 
 		<path d="M180,70 
-			C300,60 375,160 375,275 
-			Q340,280 275,310 
-			L125,310 
-			Q65,280 25,275 
-			C25,160 100,60 220,70 Z" fill="none" stroke="#d3d3d3" stroke-width="1.5" stroke-linecap="round"
+		C240,65 280,80 310,110 
+		C340,140 375,190 375,275 
+		Q340,285 300,300 
+		L200,315 L100,300 
+		Q60,285 25,275 
+		C25,190 60,140 90,110 
+		C120,80 160,65 220,70 Z" fill="none" stroke="#d3d3d3" stroke-width="1.5" stroke-linecap="round"
 			stroke-linejoin="round" />
 	</svg>
 	<div class="legend-container">
