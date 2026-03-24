@@ -16,7 +16,7 @@
 			<path d="M200,480 Q200,550 150,550" stroke="#333" stroke-width="6" fill="none" stroke-linecap="round" />
 
 			<g clip-path="url(#umbrella-mask)">
-				@for (config of shardConfigs; track $index) {
+				@for (config of umbrellaSlices; track $index) {
 				<g (click)="updateDay($index)" class="shard-group" style="cursor: pointer;">
 					<path [attr.d]="config.path" [attr.fill]="days()[$index].color" stroke="#333" stroke-width="0.5"
 						opacity="1" />

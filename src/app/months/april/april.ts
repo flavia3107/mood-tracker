@@ -19,47 +19,57 @@ export class April {
   selectedMood = signal<string>(this.moods[0].color);
   days = signal(Array.from({ length: 31 }, (_, i) => ({ id: i + 1, color: '#FFFFFF' })));
 
-  readonly shardConfigs = [
-    // LEFT SECTION (1-6) - Shifted interior points upward
-    { path: "M200,60 L130,90 L60,150 Z", label: { x: 135, y: 105 } }, // 1
-    { path: "M5,135 L130, 85 L110,195 Z", label: { x: 100, y: 140 } }, // 2
-    { path: "M30,130 L110,180 L25,240 Z", label: { x: 70, y: 185 } },  // 3
-    { path: "M5,240 L110,180 L90,240 Z", label: { x: 70, y: 217 } },  // 4
-    { path: "M25,240 L80,220 L25,310 Z", label: { x: 45, y: 255 } },  // 5
-    { path: "M25,310 L80,220 L125,310 Z", label: { x: 75, y: 270 } }, // 6 
+  totalDays = 30;
+  umbrellaSlices = Array.from({ length: this.totalDays }, (_, i) => {
+    const day = i + 1;
+    const t1 = i / this.totalDays;
+    const t2 = (i + 1) / this.totalDays;
 
-    // LEFT-CENTER (Standardized at y=220)
-    { path: "M200,60 L165,155 L127,85 Z", label: { x: 165, y: 95 } },   // 7
-    { path: "M130,85 L165,145 L110,180 Z", label: { x: 135, y: 140 } }, // 8
-    { path: "M110,180 L165,145 L165,220 L145,210 L110,180 Z", label: { x: 140, y: 195 } }, // 9 
-    { path: "M110,180 L80,220 L125,310 L145,210 Z", label: { x: 110, y: 250 } }, // 10
-    { path: "M125,310 L133,200 L165,220 Z", label: { x: 140, y: 250 } }, // 11
+    // 1. Calculate Top Points (interpolating the top ridge)
+    const topY = 70;
+    const getTopX = (t: number) => 180 + (40 * t); // Spans the ridge from 180 to 220
 
-    // CENTER COLUMN (Shifted y=260 anchor to y=220)
-    { path: "M200,60 L200,165 L165,145 Z", label: { x: 188, y: 125 } },  // 12
-    { path: "M165,145 L200,165 L200,220 L165,220 Z", label: { x: 180, y: 190 } }, // 13 
-    { path: "M200,165 L235,145 L235,220 L200,220 Z", label: { x: 215, y: 190 } }, // 14 
-    { path: "M165,220 L235,220 L200,310 Z", label: { x: 200, y: 265 } }, // 15
-    { path: "M165,220 L200,310 L125,310 Z", label: { x: 165, y: 280 } }, // 16
+    // 2. Calculate Bottom Points (follows the complex bottom path)
+    const getBottomPoint = (t: number) => {
+      let x, y;
+      if (t < 0.25) { // Left Curve (Q)
+        const localT = t / 0.25;
+        x = 25 + (100 * localT);
+        y = 275 + (35 * localT);
+      } else if (t < 0.75) { // Middle Flat (L)
+        const localT = (t - 0.25) / 0.5;
+        x = 125 + (150 * localT);
+        y = 310;
+      } else { // Right Curve (Q)
+        const localT = (t - 0.75) / 0.25;
+        x = 275 + (100 * localT);
+        y = 310 - (35 * localT);
+      }
+      return { x, y };
+    };
 
-    // RIGHT-CENTER
-    { path: "M200,60 L235,145 L200,165 Z", label: { x: 212, y: 125 } },  // 17
-    { path: "M235,145 L270,90 L340,150 L290,180 L235,220 Z", label: { x: 260, y: 160 } }, // 18 
-    { path: "M235,220 L290,180 L320,230 L275,220 Z", label: { x: 275, y: 210 } }, // 19 
-    { path: "M235,220 L275,220 L200,310 Z", label: { x: 232, y: 260 } }, // 20
-    { path: "M200,310 L275,220 L275,310 Z", label: { x: 250, y: 290 } }, // 21
+    const p1 = getBottomPoint(t1);
+    const p2 = getBottomPoint(t2);
+    const tx1 = getTopX(t1);
+    const tx2 = getTopX(t2);
 
-    // RIGHT SECTION (22-30)
-    { path: "M200,60 L280,90 L235,145 Z", label: { x: 240, y: 110 } },    // 22
-    { path: "M270,65 L340,150 L290,180 Z", label: { x: 300, y: 135 } },  // 23
-    { path: "M350,145 L375,245 L290,180 Z", label: { x: 335, y: 185 } }, // 24
-    { path: "M290,180 L375,240 L320,230 Z", label: { x: 325, y: 220 } }, // 25
-    { path: "M375,240 L375,310 L320,230 Z", label: { x: 355, y: 270 } }, // 26
-    { path: "M375,310 L300,280 L320,230 Z", label: { x: 330, y: 280 } }, // 27
-    { path: "M320,230 L300,280 L275,220 Z", label: { x: 300, y: 250 } }, // 28
-    { path: "M300,280 L275,310 L275,220 Z", label: { x: 285, y: 280 } }, // 29
-    { path: "M245,310 L375,310 L300,280 Z", label: { x: 290, y: 297 } }  // 30
-  ];
+    // 3. Control point for the "bulge" (middle of the slice)
+    const midX1 = (tx1 + p1.x) / 2 + (p1.x < 200 ? -10 : 10);
+    const midX2 = (tx2 + p2.x) / 2 + (p2.x < 200 ? -10 : 10);
+
+    return {
+      day,
+      // Path: Move to top-left, Curve to bottom-left, Line to bottom-right, Curve back to top-right
+      path: `M${tx1},${topY} 
+             Q${midX1},${(topY + p1.y) / 2} ${p1.x.toFixed(1)},${p1.y.toFixed(1)} 
+             L${p2.x.toFixed(1)},${p2.y.toFixed(1)} 
+             Q${midX2},${(topY + p2.y) / 2} ${tx2},${topY} Z`,
+      label: {
+        x: ((p1.x + p2.x) / 2).toFixed(1),
+        y: (day % 2 === 0 ? 220 : 255) // Staggered for readability
+      }
+    };
+  });
 
   setMood(color: string) {
     this.selectedMood.set(color);
