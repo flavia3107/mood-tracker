@@ -1,17 +1,16 @@
 <div class="tracker-container">
-	<h2>September Mood Tracker</h2>
-	<svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
-		<rect width="800" height="600" fill="#fdfcf0" rx="15" />
-
+	<svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet" class="svg">
 		<g class="leaves-group">
 			@for (leaf of leaves(); track leaf.day) {
-			<path [attr.d]="leaf.d"
-				[attr.transform]="'translate(' + leaf.x + ',' + leaf.y + ') rotate(' + leaf.rotate + ') scale(' + leaf.scale + ')'"
-				fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1.5" class="leaf-path" (click)="selectLeaf(leaf.day)" />
-			<text [attr.x]="leaf.x" [attr.y]="leaf.y + 10" text-anchor="middle" font-size="12" fill="#94a3b8"
-				pointer-events="none">
-				{{ leaf.day }}
-			</text>
+			<g [attr.transform]="'translate(' + leaf.x + ',' + leaf.y + ') rotate(' + leaf.rotate + ') scale(' + leaf.scale + ')'"
+				(click)="selectLeaf(leaf.day)" class="leaf-container">
+				<path [attr.d]="leaf.d" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1.2" class="leaf-path" />
+				<line x1="20" y1="2" x2="20" y2="48" stroke="#cbd5e1" stroke-width="1" stroke-linecap="round" />
+				<line x1="20" y1="0" x2="20" y2="-8" stroke="#cbd5e1" stroke-width="1.5" stroke-linecap="round" />
+				<text x="20" y="35" text-anchor="middle" font-size="10" fill="#64748b" class="leaf-label">
+					{{ leaf.day }}
+				</text>
+			</g>
 			}
 		</g>
 	</svg>

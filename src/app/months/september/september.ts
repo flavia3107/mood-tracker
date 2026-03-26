@@ -16,10 +16,7 @@ interface Leaf {
 export class September {
   // Signal to store our 30 leaves
   leaves = signal<Leaf[]>([]);
-
-  // A standard leaf path (slightly organic maple-ish shape)
-  private readonly leafPath = "M20,0 Q30,-10 40,0 Q50,10 40,20 Q30,35 20,45 Q10,35 0,20 Q-10,10 0,0 Q10,-10 20,0 Z";
-
+  private readonly leafPath = "M20,0 L22,2 L28,0 L30,5 L38,2 L40,10 L45,15 L40,22 L42,30 L35,35 L30,42 L20,55 L10,42 L5,35 L-2,30 L0,22 L-5,15 L0,10 L2,5 L10,0 L18,2 Z";
   ngOnInit() {
     this.generateFallingLeaves();
   }
