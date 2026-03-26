@@ -4,7 +4,7 @@
 }
 
 .brightness {
-	filter: drop-shadow(0 0 1.5px #e7ffe4cc);
+	filter: drop-shadow(0 0 1px #ffffffcc);
 }
 
 .bulb:hover {
@@ -35,6 +35,10 @@ svg {
 	fill: #202020;
 	pointer-events: none;
 	letter-spacing: -0.2px;
+}
+
+.lightText {
+	fill: #fff;
 }
 
 .legend-container {
