@@ -1,8 +1,8 @@
 <div class="container">
 	<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
 		@for (d of decorations; track $index; let i = $index) {
-		<g class="bulb" [attr.transform]="'translate(' + d.x + ',' + d.y + ')'">
-			<circle cx="0" cy="0" r="5" [attr.fill]="getMoodColor(i)" stroke="#202020" stroke-width="0.7" />
+		<g class="bulb" [attr.transform]="'translate(' + d.x + ',' + d.y + ')'" (click)="updateMood(d)">
+			<circle cx="0" cy="0" r="5" [attr.fill]="d.color" stroke="#202020" stroke-width="0.7" />
 			<rect x="-1" y="-6.2" width="2" height="2" fill="#333" />
 			<text class="label" x="0" y="0" text-anchor="middle" dy=".35em">
 				{{i + 1}}
@@ -10,7 +10,9 @@
 		</g>
 		}
 	</svg>
-	<!-- <img src="/gifts.svg" alt=""> -->
+	<div class="legend-container">
+		<app-mood-picker (moodColorSelected)="updateColor($event)" />
+	</div>
 </div>
 <!-- to do: add details and background in the svg-->
 <!-- to do: update the sidenav -->
