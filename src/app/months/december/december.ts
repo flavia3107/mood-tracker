@@ -25,40 +25,59 @@ export class December {
   }
   get decorations() {
     const totalItems = this._monthData();
-    const decs = [];
+    const decs: { x: number, y: number }[] = [];
 
     const topY = 35;
-    const bottomY = 185;
+    const bottomY = 195; // Slightly increased to allow more room at the bottom
     const height = bottomY - topY;
     const trunkX = 100;
     const redLineX = 70;
 
-    // 1. Calculate a vertical step that spans the entire tree height
-    // This ensures no two bulbs are vertically 'on top' of each other.
-    const verticalStep = height / (totalItems + 2);
+    // The minimum distance between bulb centers to prevent overlapping
+    // Bulb radius is 5, so diameter is 10. 11.5 gives a tiny safety gap.
+    const minDistance = 11.5;
 
     for (let i = 0; i < totalItems; i++) {
-      // 2. Uniform Y distribution
-      const y = topY + (i + 1) * verticalStep;
-      const progress = (y - topY) / height;
+      let placed = false;
+      let attempts = 0;
 
-      // 3. Conical Radius Logic (Tapers near top and bottom)
-      const baseRadius = 5 + (70 * progress);
-      const currentRadius = progress < 0.8 ? baseRadius : baseRadius * (1 - (progress - 0.8) * 2.5);
+      // Start with the ideal vertical progress
+      let currentY = topY + (i * (height / totalItems));
 
-      // 4. Spiral Rotation
-      // We increase the winding (e.g., 12 * PI) so the string wraps many times.
-      const angle = (progress * Math.PI * 12) + Math.PI;
+      while (!placed && attempts < 50) {
+        const progress = (currentY - topY) / height;
 
-      let x = trunkX + Math.cos(angle) * currentRadius;
+        // 1. Tapered Radius Logic
+        const baseRadius = 5 + (70 * progress);
+        const currentRadius = progress < 0.8 ? baseRadius : baseRadius * (1 - (progress - 0.8) * 2.5);
 
-      // 5. Red Line Boundary Enforcement
-      // Instead of skipping points, we push them to the left 'edge'
-      if (x < redLineX) {
-        x = redLineX + 2; // Keep it just inside the line
+        // 2. Spiral Rotation (Angle)
+        const angle = (progress * Math.PI * 14) + Math.PI;
+        let x = trunkX + Math.cos(angle) * currentRadius;
+
+        // 3. Red Line Boundary
+        if (x < redLineX) {
+          x = redLineX + 6; // Nudge in slightly more to account for bulb width
+        }
+
+        // 4. OVERLAP CHECK
+        // Check distance against all bulbs already in the 'decs' array
+        const hasOverlap = decs.some(other => {
+          const dx = x - other.x;
+          const dy = currentY - other.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          return distance < minDistance;
+        });
+
+        if (!hasOverlap) {
+          decs.push({ x, y: currentY });
+          placed = true;
+        } else {
+          // If it overlaps, nudge the Y down slightly and try again
+          currentY += 1.5;
+          attempts++;
+        }
       }
-
-      decs.push({ x, y });
     }
 
     return decs;

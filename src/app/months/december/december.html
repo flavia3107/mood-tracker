@@ -1,15 +1,12 @@
 <div class="container">
-
 	<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-		<!-- <path [attr.d]="lightWirePath" fill="none" stroke="#cdcdcd" stroke-width="0.2" stroke-linecap="round" /> -->
 		@for (d of decorations; track $index; let i = $index) {
-		<g class="bulb-container" [attr.transform]="'translate(' + d.x + ',' + d.y + ')'">
+		<g class="bulb" [attr.transform]="'translate(' + d.x + ',' + d.y + ')'">
 			<circle cx="0" cy="0" r="5" [attr.fill]="getMoodColor(i)" stroke="#202020" stroke-width="0.7" />
 			<rect x="-1" y="-6.2" width="2" height="2" fill="#333" />
 			<text class="label" x="0" y="0" text-anchor="middle" dy=".35em">
 				{{i + 1}}
 			</text>
-
 		</g>
 		}
 	</svg>
@@ -17,4 +14,3 @@
 </div>
 <!-- to do: add details and background in the svg-->
 <!-- to do: update the sidenav -->
-<!-- or maybe use different items, like gifts, or bulbs or scarf lines -->
