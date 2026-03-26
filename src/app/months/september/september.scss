@@ -1,8 +1,14 @@
-.tracker-container {
-	width: 100%;
-	max-width: 800px;
-	margin: auto;
+.container {
+	background-image: url("/leaves.png");
+	background-size: cover;
+	background-position: right;
+	display: flex;
+	align-items: center;
+	height: 45rem;
+	width: 50rem;
+	justify-content: space-between;
 }
+
 .leaf-path {
 	cursor: pointer;
 	transition: fill 0.3s ease;
