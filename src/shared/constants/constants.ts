@@ -89,12 +89,12 @@ const NOVEMBER_MOOD_COLORS = [
 	{ label: 'sad', color: '#546E7A' }
 ];
 const DECEMBER_MOOD_COLORS = [
-	{ label: 'happy', color: '#D4E157' },
-	{ label: 'neutral', color: '#9CCC65' },
-	{ label: 'stressed', color: '#689F38' },
-	{ label: 'tired', color: '#455A64' },
-	{ label: 'moody', color: '#2E7D32' },
-	{ label: 'sad', color: '#546E7A' }
+	{ label: 'happy', color: '#ff6363' },    // Bright Marigold
+	{ label: 'neutral', color: '#5fd3fe' },  // Soft Mint White
+	{ label: 'stressed', color: '#9ec8ff' }, // Deep Ocean Teal
+	{ label: 'tired', color: '#ffd3fa' },    // Coral Sunset
+	{ label: 'moody', color: '#eaff90' },    // Electric Lime
+	{ label: 'sad', color: '#ffd7c5' }       // Peachy Rose
 ];
 
 export const MONTHLY_MOOD_CONFIG: { [key: string]: any } = {
