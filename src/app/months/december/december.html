@@ -1,23 +1,5 @@
 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="svg">
-	<defs>
-		<filter id="bgBlur">
-			<feGaussianBlur in="SourceGraphic" stdDeviation="1.5" />
-		</filter>
-	</defs>
-
-
-	<g filter="url(#bgBlur)" opacity="0.4">
-		<circle cx="30" cy="40" r="10" fill="#cc3333" />
-		<circle cx="160" cy="60" r="12" fill="#d4af37" />
-		<circle cx="90" cy="140" r="9" fill="#2980b9" />
-		<circle cx="50" cy="110" r="11" fill="#27ae60" />
-		<circle cx="140" cy="150" r="8" fill="#cc3333" />
-		<circle cx="60" cy="180" r="10" fill="#d4af37" />
-		<circle cx="170" cy="120" r="9" fill="#2980b9" />
-	</g>
-
 	<path [attr.d]="lightWirePath" fill="none" stroke="#cdcdcd" stroke-width="0.2" stroke-linecap="round" />
-
 	@for (d of decorations; track $index; let i = $index) {
 	<g class="bulb" [attr.transform]="'translate(' + d.x + ',' + d.y + ')'">
 		<path d="M 0 0 C -1.5 0, -2.5 3.5, 0 5.5 C 2.5 3.5, 1.5 0, 0 0" [attr.fill]="getMoodColor(i)" />
