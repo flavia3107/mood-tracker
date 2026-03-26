@@ -25,34 +25,51 @@ export class December {
   }
   get decorations() {
     const totalItems = this._monthData();
-    const padding = 25; // Space from edges
-    const width = 200 - (padding * 2);
+    const decs = [];
+    const maxLightsPerRow = 6;
+    let itemsPlaced = 0;
 
-    // Total zags (number of times it crosses the hallway)
-    const zags = 5;
-    const itemsPerZag = Math.ceil(totalItems / zags);
+    // Conical definition: Top point, bottom diameter, total height
+    const topY = 25;
+    const baseY = 190;
+    const baseWidth = 140;
 
-    return Array.from({ length: totalItems }).map((_, i) => {
-      const zagIndex = Math.floor(i / itemsPerZag);
-      const progressInZag = (i % itemsPerZag) / (itemsPerZag - 1 || 1);
+    const rowSpacing = (baseY - topY) / Math.ceil(totalItems / (maxLightsPerRow / 2));
 
-      // Calculate Y: Moves from top to bottom based on total progress
-      const totalProgress = i / (totalItems - 1);
-      const y = 30 + (totalProgress * 140);
+    // Generate lights in layered arcs following the tree shape
+    for (let rowIdx = 0; rowIdx < 6 && itemsPlaced < totalItems; rowIdx++) {
+      const rowY = topY + rowIdx * rowSpacing;
+      const progress = (rowY - topY) / (baseY - topY);
 
-      // Calculate X: Bounce between left and right
-      const isGoingRight = zagIndex % 2 === 0;
-      let x: number;
-      if (isGoingRight) {
-        x = padding + (progressInZag * width);
-      } else {
-        x = (padding + width) - (progressInZag * width);
+      // Calculate row width based on a linear taper (cone)
+      const currentRowWidth = baseWidth * progress;
+      const startX = 100 - (currentRowWidth / 2);
+
+      const isEvenRow = rowIdx % 2 === 0;
+      const rowLightsCount = Math.min(itemsPlaced + maxLightsPerRow, totalItems) - itemsPlaced;
+
+      for (let i = 0; i < rowLightsCount; i++) {
+        // Reverse direction on even rows to alternate placement flow
+        const colIdx = isEvenRow ? i : rowLightsCount - 1 - i;
+        const progressInRow = colIdx / (rowLightsCount - 1 || 1);
+
+        const rawX = startX + progressInRow * currentRowWidth;
+        const rawY = rowY;
+
+        // Apply a mathematical bulge (bezier-like curve) to mimic the branch texture from image_2.png
+        const bulgeAmount = progress < 0.3 ? 2 : 7; // Top is tighter, bottom branches are wider
+        const xOffset = Math.sin(progressInRow * Math.PI) * -bulgeAmount;
+        const yOffset = Math.sin(progressInRow * Math.PI) * bulgeAmount * 0.8;
+
+        decs.push({
+          x: rawX + xOffset,
+          y: rawY + yOffset
+        });
+        itemsPlaced++;
       }
-
-      return { x, y, r: 3 };
-    });
+    }
+    return decs;
   }
-
   get lightWirePath(): string {
     const decs = this.decorations;
     if (decs.length < 2) return '';

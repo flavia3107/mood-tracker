@@ -8,11 +8,6 @@
 	filter: brightness(1.3) drop-shadow(0 0 5px #ffffff);
 }
 
-svg {
-	// background: #1a1a2e;
-	// border-radius: 8px;
-}
-
 .container {
 	display: flex;
 	align-items: flex-end;
@@ -20,7 +15,6 @@ svg {
 	height: 45rem;
 	background-image: url("/tree.png");
 	background-size: cover;
-	background-position: right;
 	background-color: #fff;
 	justify-content: space-between;
 }
