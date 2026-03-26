@@ -26,46 +26,45 @@ export class December {
   get decorations() {
     const totalItems = this._monthData();
     const decs = [];
-    const maxLightsPerRow = 6;
-    let itemsPlaced = 0;
+    const totalLightsGoal = Math.ceil(totalItems / 3) * 4; // Buffer for "behind-the-tree" loops
 
-    // Conical definition: Top point, bottom diameter, total height
-    const topY = 25;
-    const baseY = 190;
-    const baseWidth = 140;
+    // Tree conical definition:
+    const topY = 30; // Star height
+    const bottomY = 190; // Lowest point
+    const height = bottomY - topY;
+    const maxRadius = 75; // Widest possible part (at bottom)
+    const minRadius = 5; // Near the star top
 
-    const rowSpacing = (baseY - topY) / Math.ceil(totalItems / (maxLightsPerRow / 2));
+    // Step calculation optimized for current Items
+    const stepSize = height / totalLightsGoal;
 
-    // Generate lights in layered arcs following the tree shape
-    for (let rowIdx = 0; rowIdx < 6 && itemsPlaced < totalItems; rowIdx++) {
-      const rowY = topY + rowIdx * rowSpacing;
-      const progress = (rowY - topY) / (baseY - topY);
+    for (let i = 0; i < totalLightsGoal && decs.length < totalItems; i++) {
+      const pointY = topY + i * stepSize;
+      const progress = (pointY - topY) / height;
 
-      // Calculate row width based on a linear taper (cone)
-      const currentRowWidth = baseWidth * progress;
-      const startX = 100 - (currentRowWidth / 2);
+      // Calculate radius *based on progress* down the cone (tapers downward!)
+      const currentRadius = minRadius + (maxRadius * progress);
 
-      const isEvenRow = rowIdx % 2 === 0;
-      const rowLightsCount = Math.min(itemsPlaced + maxLightsPerRow, totalItems) - itemsPlaced;
+      // Define angle based on progress. Tighter loops (*7) increase crowd.
+      const angle = (progress * Math.PI * 7) + Math.PI;
 
-      for (let i = 0; i < rowLightsCount; i++) {
-        // Reverse direction on even rows to alternate placement flow
-        const colIdx = isEvenRow ? i : rowLightsCount - 1 - i;
-        const progressInRow = colIdx / (rowLightsCount - 1 || 1);
+      // Standard central X (100)
+      const rawX = 100 + Math.cos(angle) * currentRadius;
+      const rawY = pointY;
 
-        const rawX = startX + progressInRow * currentRowWidth;
-        const rawY = rowY;
+      // APPLY A SECOND TAPER - The Tighter Bottom offset (cite: image_2.png)
+      // This forces the lower points to stick *closer* to the trunk/conical core.
+      const bulgeAmount = 2 + (5 * progress); // Tighter on top, slightly wider bottom
+      const yTaperFactor = Math.sin(progress * Math.PI) * bulgeAmount * 0.8;
 
-        // Apply a mathematical bulge (bezier-like curve) to mimic the branch texture from image_2.png
-        const bulgeAmount = progress < 0.3 ? 2 : 7; // Top is tighter, bottom branches are wider
-        const xOffset = Math.sin(progressInRow * Math.PI) * -bulgeAmount;
-        const yOffset = Math.sin(progressInRow * Math.PI) * bulgeAmount * 0.8;
+      // Create a logical 3-on-1-off cycle to simulate looping behind (cite: image_2.png)
+      const isVisible = (i % 4) < 3;
 
+      if (isVisible) {
         decs.push({
-          x: rawX + xOffset,
-          y: rawY + yOffset
+          x: rawX,
+          y: rawY + yTaperFactor
         });
-        itemsPlaced++;
       }
     }
     return decs;
