@@ -12,3 +12,15 @@ svg {
 	// background: #1a1a2e;
 	// border-radius: 8px;
 }
+
+.container {
+	display: flex;
+	align-items: flex-end;
+	width: 50rem;
+	height: 45rem;
+	background-image: url("/tree.png");
+	background-size: cover;
+	background-position: right;
+	background-color: #fff;
+	justify-content: space-between;
+}

@@ -1,13 +1,16 @@
-<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="svg">
-	<path [attr.d]="lightWirePath" fill="none" stroke="#cdcdcd" stroke-width="0.2" stroke-linecap="round" />
-	@for (d of decorations; track $index; let i = $index) {
-	<g class="bulb" [attr.transform]="'translate(' + d.x + ',' + d.y + ')'">
-		<path d="M 0 0 C -1.5 0, -2.5 3.5, 0 5.5 C 2.5 3.5, 1.5 0, 0 0" [attr.fill]="getMoodColor(i)" />
-		<rect x="-0.8" y="-1.5" width="1.6" height="2" fill="#333" />
-	</g>
-	}
-</svg>
+<div class="container">
 
+	<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="svg">
+		<path [attr.d]="lightWirePath" fill="none" stroke="#cdcdcd" stroke-width="0.2" stroke-linecap="round" />
+		@for (d of decorations; track $index; let i = $index) {
+		<g class="bulb" [attr.transform]="'translate(' + d.x + ',' + d.y + ')'">
+			<path d="M 0 0 C -1.5 0, -2.5 3.5, 0 5.5 C 2.5 3.5, 1.5 0, 0 0" [attr.fill]="getMoodColor(i)" />
+			<rect x="-0.8" y="-1.5" width="1.6" height="2" fill="#333" />
+		</g>
+		}
+	</svg>
+	<!-- <img src="/gifts.svg" alt=""> -->
+</div>
 <!-- to do: add details and background in the svg-->
 <!-- to do: update the sidenav -->
 <!-- or maybe use different items, like gifts, or bulbs or scarf lines -->
