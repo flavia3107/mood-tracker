@@ -26,45 +26,64 @@ export class December {
   get decorations() {
     const totalItems = this._monthData();
     const decs = [];
-    const totalLightsGoal = Math.ceil(totalItems / 3) * 4; // Buffer for "behind-the-tree" loops
+    const totalPoints = Math.ceil(totalItems * 1.33); // Points for front and back
 
-    // Tree conical definition:
-    const topY = 30; // Star height
-    const bottomY = 190; // Lowest point
+    const topY = 35;
+    const bottomY = 185;
     const height = bottomY - topY;
-    const maxRadius = 75; // Widest possible part (at bottom)
-    const minRadius = 5; // Near the star top
 
-    // Step calculation optimized for current Items
-    const stepSize = height / totalLightsGoal;
+    // Boundary config (cite: image_5.png)
+    const trunkX = 100; // The vertical center of the tree
+    const redLineX = 70; // The absolute left limit
+    const safetyBuffer = 5; // Extra units from the boundary
+    const leftBoundaryLimit = redLineX + safetyBuffer;
 
-    for (let i = 0; i < totalLightsGoal && decs.length < totalItems; i++) {
-      const pointY = topY + i * stepSize;
-      const progress = (pointY - topY) / height;
+    // Maximum wide radius possible (before boundary check)
+    const maxRadiusRaw = 70;
+    const minRadius = 5;
 
-      // Calculate radius *based on progress* down the cone (tapers downward!)
-      const currentRadius = minRadius + (maxRadius * progress);
+    for (let i = 0; i < totalPoints && decs.length < totalItems; i++) {
+      const progress = i / (totalPoints - 1);
+      const y = topY + (progress * height);
 
-      // Define angle based on progress. Tighter loops (*7) increase crowd.
-      const angle = (progress * Math.PI * 7) + Math.PI;
+      // 1. Define the normal spiral radius (conical taper cite: image_2.png)
+      const currentRadiusRaw = minRadius + (maxRadiusRaw * progress);
 
-      // Standard central X (100)
-      const rawX = 100 + Math.cos(angle) * currentRadius;
-      const rawY = pointY;
+      // 2. Taper Logic (as per previous prompt for a tight bottom cite: image_dcf627.jpg)
+      let currentRadiusTapered: number;
+      if (progress < 0.8) {
+        currentRadiusTapered = currentRadiusRaw;
+      } else {
+        const bottomProgress = (progress - 0.8) / 0.2;
+        // Increase tapering multiplier (cite: image_dcf627.jpg) to compress lower lights further.
+        currentRadiusTapered = currentRadiusRaw * (1 - (0.5 * bottomProgress));
+      }
 
-      // APPLY A SECOND TAPER - The Tighter Bottom offset (cite: image_2.png)
-      // This forces the lower points to stick *closer* to the trunk/conical core.
-      const bulgeAmount = 2 + (5 * progress); // Tighter on top, slightly wider bottom
-      const yTaperFactor = Math.sin(progress * Math.PI) * bulgeAmount * 0.8;
+      // 3. SPIRAL CALCULATION
+      // PI * 10 creates extremely dense, tight winding (cite: image_dcf5ad.png).
+      const angle = (progress * Math.PI * 10) + Math.PI;
+      let x = trunkX + Math.cos(angle) * currentRadiusTapered;
 
-      // Create a logical 3-on-1-off cycle to simulate looping behind (cite: image_2.png)
-      const isVisible = (i % 4) < 3;
+      // 4. BOUNDARY CHECK (Cite: image_5.png)
+      // Check if the current position is over the line.
+      if (x < leftBoundaryLimit) {
+        // Find the boundary radius (cite: image_2.png) based on this y.
+        const maxSafeRadiusAtThisY = Math.abs(leftBoundaryLimit - trunkX);
+
+        // Find the nearest safe X by checking which safe radius is closest.
+        const nearestSafeXLeft = trunkX - maxSafeRadiusAtThisY;
+        const nearestSafeXRight = trunkX + maxSafeRadiusAtThisY;
+
+        // Choose the closest one to maintain flow.
+        x = Math.abs(x - nearestSafeXLeft) < Math.abs(x - nearestSafeXRight) ? nearestSafeXLeft : nearestSafeXRight;
+      }
+
+      // 5. Visibility check (cite: image_dcf627.jpg) for front-facing lights only.
+      // Use cos(angle) to keep them strictly on the front arc.
+      const isVisible = Math.cos(angle) > -0.15;
 
       if (isVisible) {
-        decs.push({
-          x: rawX,
-          y: rawY + yTaperFactor
-        });
+        decs.push({ x, y });
       }
     }
     return decs;
