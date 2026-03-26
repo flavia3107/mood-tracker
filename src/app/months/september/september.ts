@@ -23,22 +23,26 @@ export class September {
 
   generateFallingLeaves() {
     const newLeaves: Leaf[] = [];
-    const cols = 6; // 6 columns
-    const rows = 5; // 5 rows = 30 days
+    const cols = 6;
+    const cellWidth = 120;
+    const cellHeight = 95;
+    const startX = 100; // Left margin
+    const startY = 70;  // Top margin
 
     for (let i = 1; i <= 30; i++) {
       const col = (i - 1) % cols;
       const row = Math.floor((i - 1) / cols);
+      const stagger = (row % 2 === 0) ? 0 : 40;
+      const jitterX = (Math.random() - 0.5) * 30;
+      const jitterY = (Math.random() - 0.5) * 20;
 
-      // Positioning logic to create a "falling" scattered look without overlap
-      // We use a base grid then add "jitter" (random offset)
       newLeaves.push({
         day: i,
         d: this.leafPath,
-        x: 80 + (col * 130) + (Math.random() * 40 - 20),
-        y: 80 + (row * 100) + (Math.random() * 40 - 20),
-        rotate: Math.random() * 360, // Random rotation for a natural fall
-        scale: 0.8 + Math.random() * 0.4 // Varying sizes between 0.8 and 1.2
+        x: startX + (col * cellWidth) + stagger + jitterX,
+        y: startY + (row * cellHeight) + jitterY,
+        rotate: Math.random() * 360,
+        scale: 0.85 + Math.random() * 0.25
       });
     }
     this.leaves.set(newLeaves);
