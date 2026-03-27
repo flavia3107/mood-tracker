@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { MoodPicker } from '../../mood-picker/mood-picker';
 interface Leaf {
   day: number;
   d: string; // SVG Path
@@ -9,7 +10,7 @@ interface Leaf {
 }
 @Component({
   selector: 'app-september',
-  imports: [],
+  imports: [MoodPicker],
   templateUrl: './september.html',
   styleUrl: './september.scss',
 })
@@ -46,6 +47,9 @@ export class September {
       });
     }
     this.leaves.set(newLeaves);
+  }
+  updateMood(color: string) {
+
   }
 
   selectLeaf(day: number) {
