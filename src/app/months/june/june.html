@@ -1,3 +1,26 @@
 <div class="container">
+	<svg width="500" height="500" viewBox="0 0 500 500">
+		<g transform="translate(250, 250)">
 
+			@for (ring of rings; track $index; let rIdx = $index) {
+			@for (leaf of [].constructor(ring.count); track $index; let lIdx = $index) {
+
+			<g [attr.transform]="'rotate(' + (lIdx * (360/ring.count)) + ')'">
+				<path [attr.d]="'M -20,' + (-ring.radius) + 
+							' Q 0,' + (-ring.radius - 40 * ring.size) + ' 20,' + (-ring.radius) + 
+							' Q 25,' + (-ring.radius + 20) + ' 0,' + (-ring.radius + 30) + 
+							' Q -25,' + (-ring.radius + 20) + ' -20,' + (-ring.radius)" [attr.fill]="getMoodColor(getDayIndex(rIdx, lIdx))"
+					stroke="#2E7D32" stroke-width="2" class="succulent-leaf" />
+
+				<path
+					[attr.d]="'M -5,' + (-ring.radius - 10) + ' Q 0,' + (-ring.radius - 20) + ' 5,' + (-ring.radius - 10)"
+					fill="none" stroke="rgba(0,0,0,0.1)" />
+			</g>
+
+			}
+			}
+
+			<circle r="15" fill="#81C784" stroke="#2E7D32" />
+		</g>
+	</svg>
 </div>
