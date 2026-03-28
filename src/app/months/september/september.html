@@ -6,7 +6,7 @@
 		<g class="leaves-group">
 			@for (leaf of leaves(); track leaf.day) {
 			<g [attr.transform]="'translate(' + leaf.x + ',' + leaf.y + ') rotate(' + leaf.rotate + ') scale(' + leaf.scale + ')'"
-				(click)="selectLeaf(leaf.day)" class="leaf-container">
+				(click)="selectLeaf(leaf)" class="leaf-container">
 				<path [attr.d]="leaf.d" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1.2" class="leaf-path" />
 				<line x1="20" y1="2" x2="20" y2="48" stroke="#cbd5e1" stroke-width="1" stroke-linecap="round" />
 				<line x1="20" y1="0" x2="20" y2="-8" stroke="#cbd5e1" stroke-width="1.5" stroke-linecap="round" />

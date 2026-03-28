@@ -7,6 +7,7 @@ interface Leaf {
   y: number;
   rotate: number;
   scale: number;
+  color: string
 }
 @Component({
   selector: 'app-september',
@@ -17,6 +18,7 @@ interface Leaf {
 export class September {
   // Signal to store our 30 leaves
   leaves = signal<Leaf[]>([]);
+  private _selectedMood = '';
   private readonly leafPath = "M20,0 L22,2 L28,0 L30,5 L38,2 L40,10 L45,15 L40,22 L42,30 L35,35 L30,42 L20,55 L10,42 L5,35 L-2,30 L0,22 L-5,15 L0,10 L2,5 L10,0 L18,2 Z";
   ngOnInit() {
     this.generateFallingLeaves();
@@ -42,6 +44,7 @@ export class September {
         d: this.leafPath,
         x: startX + (col * cellWidth) + stagger + jitterX,
         y: startY + (row * cellHeight) + jitterY,
+        color: '#fff',
         rotate: Math.random() * 360,
         scale: 0.85 + Math.random() * 0.25
       });
@@ -49,11 +52,11 @@ export class September {
     this.leaves.set(newLeaves);
   }
   updateMood(color: string) {
-
+    this._selectedMood = color;
   }
 
-  selectLeaf(day: number) {
-    console.log(`Day ${day} leaf clicked for mood update!`);
-    // Here you would trigger your mood selection logic
+  selectLeaf(day: Leaf) {
+    if (this._selectedMood)
+      day.color = this._selectedMood;
   }
 }
