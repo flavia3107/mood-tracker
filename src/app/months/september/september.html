@@ -7,10 +7,12 @@
 			@for (leaf of leaves(); track leaf.day) {
 			<g [attr.transform]="'translate(' + leaf.x + ',' + leaf.y + ') rotate(' + leaf.rotate + ') scale(' + leaf.scale + ')'"
 				(click)="selectLeaf(leaf)" class="leaf-container">
-				<path [attr.d]="leaf.d" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1.2" class="leaf-path" />
-				<line x1="20" y1="2" x2="20" y2="48" stroke="#cbd5e1" stroke-width="1" stroke-linecap="round" />
-				<line x1="20" y1="0" x2="20" y2="-8" stroke="#cbd5e1" stroke-width="1.5" stroke-linecap="round" />
-				<text x="20" y="35" text-anchor="middle" font-size="10" fill="#64748b" class="leaf-label">
+				<path [attr.d]="leaf.d" [attr.fill]="leaf.color" stroke="#151d12" stroke-width="1.2"
+					class="leaf-path" />
+				<line x1="20" y1="2" x2="20" y2="48" stroke="#151d12" stroke-width="1" stroke-linecap="round" />
+				<line x1="20" y1="0" x2="20" y2="-8" stroke="#151d12" stroke-width="1.5" stroke-linecap="round" />
+				@let text = ['#D4E157','#9fc03b','#70a240', '#fff'].includes(leaf.color) ? '#151d12' : '#fff';
+				<text x="10" y="20" [attr.fill]="text" class="leaf-label">
 					{{ leaf.day }}
 				</text>
 			</g>
