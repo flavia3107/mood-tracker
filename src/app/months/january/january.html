@@ -1,31 +1,34 @@
-<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="svg">
-	<defs>
-		<filter id="iceGlow">
-			<feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
-			<feMerge>
-				<feMergeNode in="coloredBlur" />
-				<feMergeNode in="SourceGraphic" />
-			</feMerge>
-		</filter>
-	</defs>
-	@for (seed of frostSeeds; track $index; let dayIdx = $index) {
-	<g class="frost-unit"
-		[attr.transform]="'translate(' + seed.x + ',' + seed.y + ') rotate(' + seed.rotation + ') scale(' + seed.scale + ')'"
-		[attr.filter]="monthData()[dayIdx] === 'great' ? 'url(#iceGlow)' : 'none'">
+<div class="container">
+	<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="svg">
+		<defs>
+			<filter id="iceGlow">
+				<feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+				<feMerge>
+					<feMergeNode in="coloredBlur" />
+					<feMergeNode in="SourceGraphic" />
+				</feMerge>
+			</filter>
+		</defs>
+		@for (seed of frostSeeds; track $index; let dayIdx = $index) {
+		<g class="frost-unit"
+			[attr.transform]="'translate(' + seed.x + ',' + seed.y + ') rotate(' + seed.rotation + ') scale(' + seed.scale + ')'"
+			[attr.filter]="monthData()[dayIdx] === 'great' ? 'url(#iceGlow)' : 'none'">
 
-		@for (angle of [0, 60, 120, 180, 240, 300]; track $index) {
-		<path [attr.transform]="'rotate(' + angle + ')'" d="M 0 0 L 8 -5 L 16 0 L 8 5 Z"
-			[attr.fill]="getMoodColor(dayIdx)" fill-opacity="0.6" stroke="white" stroke-width="0.3"
-			stroke-opacity="0.7" />
+			@for (angle of [0, 60, 120, 180, 240, 300]; track $index) {
+			<path [attr.transform]="'rotate(' + angle + ')'" d="M 0 0 L 8 -5 L 16 0 L 8 5 Z"
+				[attr.fill]="getMoodColor(dayIdx)" fill-opacity="0.6" stroke="#f5f5f5" stroke-width="0.3"
+				stroke-opacity="0.7" />
 
-		<line x1="0" y1="0" x2="12" y2="0" [attr.transform]="'rotate(' + angle + ')'" stroke="white" stroke-width="0.2"
-			opacity="0.4" />
+			<line x1="0" y1="0" x2="12" y2="0" [attr.transform]="'rotate(' + angle + ')'" stroke="#f5f5f5"
+				stroke-width="0.2" opacity="0.4" />
+			}
+
+			<circle r="1.5" fill="#f5f5f5" opacity="0.8" />
+		</g>
 		}
+	</svg>
 
-		<circle r="1.5" fill="white" opacity="0.8" />
-	</g>
-	}
-</svg>
+</div>
 
 <!-- to do: update details, add lights in the window, show it's actually a window-->
 <!-- to do: update the sidenav -->

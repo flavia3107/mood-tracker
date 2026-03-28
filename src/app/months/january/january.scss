@@ -8,8 +8,16 @@
 }
 
 svg {
-	background: #0f172a;
 	border-radius: 12px;
-	// background: radial-gradient(circle, #1e293b 0%, #0f172a 100%);
-	background: radial-gradient(circle, #384a66 0%, #08122b 100%);
+}
+
+.container {
+	background-image: url("/frost.png");
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	align-items: flex-end;
+	height: 45rem;
+	width: 50rem;
+	justify-content: space-between;
 }
