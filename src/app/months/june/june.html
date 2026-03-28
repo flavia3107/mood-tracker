@@ -1,47 +1,31 @@
-<div class="container">
-	<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+<div class="june-container">
+	@for (unit of iceCreams(); track unit.id) {
+	<div class="ice-cream-unit" [style.left.rem]="unit.x" [style.top.rem]="unit.y" [style.--r]="unit.rotation + 'deg'"
+		[style.transform]="'rotate(' + unit.rotation + 'deg)'">
 
-		<defs>
-			<symbol id="thick-leaf" viewBox="-50 -50 100 100">
-				<path d="M 0,-48 
-					 C -35,-42 -48,-20 -48,8 
-					 C -48,30 -25,45 0,48 
-					 C 25,45 48,30 48,8 
-					 C 48,-20 35,-42 0,-48 Z" stroke="#1B5E20" stroke-width="2" />
-				<path d="M -15,5 Q 0,20 15,5" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="2.5" />
-			</symbol>
+		<svg class="cone" width="60" height="80" viewBox="0 0 40 60">
+			<path d="M0,0 L40,0 L20,60 Z" fill="#D2B48C" stroke="#8B4513" stroke-width="2" />
+			<path d="M10,0 L25,45 M20,0 L30,30 M0,10 L35,25" stroke="#8B4513" stroke-width="0.5" opacity="0.3" />
+		</svg>
 
-			<filter id="leaf-shadow" x="-30%" y="-30%" width="160%" height="160%">
-				<feGaussianBlur in="SourceAlpha" stdDeviation="2.5" />
-				<feOffset dx="0" dy="3" />
-				<feComponentTransfer>
-					<feFuncA type="linear" slope="0.4" />
-				</feComponentTransfer>
-				<feMerge>
-					<feMergeNode />
-					<feMergeNode in="SourceGraphic" />
-				</feMerge>
-			</filter>
-		</defs>
+		@for (color of unit.scoops; track $index) {
+		<div class="scoop-wrapper" [style.bottom.px]="62 + ($index * 24)" [style.z-index]="10 + $index"
+			(click)="colorScoop(unit, $index)">
 
-		<g transform="translate(300, 300)">
+			<svg width="80" height="70" viewBox="2 0 55 40">
+				<path [attr.fill]="color || '#FFF9F0'" stroke="#E6D5C3" stroke-width="1.5"
+					d="M10,30 Q10,5 30,5 Q50,5 50,30 Q50,40 40,40 Q30,35 25,40 Q20,35 15,40 Q10,40 10,30 Z" />
 
-			@for (rIdx of [5, 4, 3, 2, 1, 0]; track $index) {
-			@let ring = rings[rIdx];
-
-			@for (leafIdx of [].constructor(ring.count); track $index; let lIdx = $index) {
-
-			<g [attr.transform]="'rotate(' + (lIdx * (360/ring.count) + (rIdx * 35)) + ') 
-									translate(0, ' + (-ring.radius) + ') 
-									scale(' + ring.size + ')'" filter="url(#leaf-shadow)">
-
-				<use xlink:href="#thick-leaf" x="-50" y="-50" width="100" height="100"
-					[attr.fill]="getMoodColor(getDayIndex(rIdx, lIdx))" class="leaf-element" />
-			</g>
-			}
-			}
-
-			<circle r="22" fill="#81C784" stroke="#1B5E20" stroke-width="2" />
-		</g>
-	</svg>
+				@if (!color) {
+				<g class="sprinkles" opacity="0.6">
+					<rect x="20" y="15" width="5" height="2" rx="1" fill="#FF6B6B" transform="rotate(30 20 15)" />
+					<rect x="35" y="18" width="5" height="2" rx="1" fill="#4ECDC4" transform="rotate(-15 35 18)" />
+					<rect x="25" y="25" width="5" height="2" rx="1" fill="#FFE66D" transform="rotate(45 25 25)" />
+				</g>
+				}
+			</svg>
+		</div>
+		}
+	</div>
+	}
 </div>

@@ -1,4 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+
+interface IceCreamUnit {
+  id: number,
+  x: number;
+  y: number;
+  scoops: (string | null)[];
+  rotation: number
+}
 
 @Component({
   selector: 'app-june',
@@ -8,30 +16,67 @@ import { Component } from '@angular/core';
   styleUrl: './june.scss',
 })
 export class June {
-  // Updated rings array for a 30-day month (5 leaves x 6 rings = 30 days)
-  rings = [
-    { count: 5, radius: 30, size: 0.6 },  // Ring 0 (Center - Days 1-5)
-    { count: 5, radius: 60, size: 0.8 },  // Ring 1
-    { count: 5, radius: 95, size: 1.0 },  // Ring 2
-    { count: 5, radius: 135, size: 1.2 },  // Ring 3
-    { count: 5, radius: 180, size: 1.4 },  // Ring 4
-    { count: 5, radius: 230, size: 1.6 }   // Ring 5 (Outer - Days 26-30)
-  ];
+  // Use a computed-like approach or an effect to generate this if you want it to change 
+  // every refresh. Here we initialize it once.
+  iceCreams = signal<IceCreamUnit[]>(this.generateJuneCones());
 
-  // Updated helper to calculate the day index
-  getDayIndex(ringIndex: number, leafIndex: number): number {
-    return (ringIndex * 5) + leafIndex + 1;
+  private generateJuneCones(): IceCreamUnit[] {
+    const totalDays = 30;
+    let daysAllocated = 0;
+    const units: any[] = [];
+    let id = 1;
+
+    const minDistance = 8; // Minimum distance in 'rem' to prevent overlapping
+    const maxAttempts = 50; // How many times to try placing a cone before giving up
+
+    while (daysAllocated < totalDays) {
+      const remaining = totalDays - daysAllocated;
+      const scoopCount = Math.min(Math.floor(Math.random() * 3) + 1, remaining);
+
+      let placed = false;
+      let attempts = 0;
+
+      while (!placed && attempts < maxAttempts) {
+        // Generate random coordinates (5-85% to keep away from edges)
+        const candidateX = Math.random() * 40 + 5;
+        const candidateY = Math.random() * 30 + 5;
+
+        // Check distance against all already placed units
+        const isOverlapping = units.some(u => {
+          const dx = u.x - candidateX;
+          const dy = u.y - candidateY;
+          return Math.sqrt(dx * dx + dy * dy) < minDistance;
+        });
+
+        if (!isOverlapping) {
+          units.push({
+            id: id,
+            x: candidateX,
+            y: candidateY,
+            rotation: Math.floor(Math.random() * 24) - 12,
+            scoops: Array(scoopCount).fill(null)
+          });
+          placed = true;
+        }
+        attempts++;
+      }
+
+      // Fallback: if we can't find a spot, just increment days so we don't infinite loop
+      daysAllocated += scoopCount;
+      id++;
+    }
+    return units;
   }
 
-  getMoodColor(day: number): string {
-    // Using your established chocolate palette
-    const colors: any = {
-      'Wonderful': '#FFF5E1',
-      'Productive': '#A1887F',
-      'Neutral': '#E0E0E0', // Base succulent green/gray
-      'Tired': '#5D4037',
-      'Stressed': '#3E2723'
-    };
-    return '#E0E0E0';
+  colorScoop(unit: IceCreamUnit, scoopIndex: number) {
+    const moodColors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#BE9FE1'];
+    const randomMood = moodColors[Math.floor(Math.random() * moodColors.length)];
+
+    this.iceCreams.update(all =>
+      all.map(i => i.id === unit.id ? {
+        ...i,
+        scoops: i.scoops.map((s, idx) => idx === scoopIndex ? randomMood : s)
+      } : i)
+    );
   }
 }
