@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { MoodPicker } from '../../mood-picker/mood-picker';
 interface Leaf {
   day: number;
@@ -16,15 +16,12 @@ interface Leaf {
   styleUrl: './september.scss',
 })
 export class September {
-  // Signal to store our 30 leaves
-  leaves = signal<Leaf[]>([]);
-  private _selectedMood = '';
   private readonly leafPath = "M20,0 L22,2 L28,0 L30,5 L38,2 L40,10 L45,15 L40,22 L42,30 L35,35 L30,42 L20,55 L10,42 L5,35 L-2,30 L0,22 L-5,15 L0,10 L2,5 L10,0 L18,2 Z";
-  ngOnInit() {
-    this.generateFallingLeaves();
-  }
+  public readonly leaves: Leaf[] = this._generateFallingLeaves();;
+  private _selectedMood = '';
 
-  generateFallingLeaves() {
+
+  private _generateFallingLeaves() {
     const newLeaves: Leaf[] = [];
     const cols = 6;
     const cellWidth = 120;
@@ -49,8 +46,9 @@ export class September {
         scale: 0.85 + Math.random() * 0.25
       });
     }
-    this.leaves.set(newLeaves);
+    return newLeaves;
   }
+
   updateMood(color: string) {
     this._selectedMood = color;
   }

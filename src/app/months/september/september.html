@@ -4,7 +4,7 @@
 	</div>
 	<svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet" class="svg">
 		<g class="leaves-group">
-			@for (leaf of leaves(); track leaf.day) {
+			@for (leaf of leaves; track leaf.day) {
 			<g [attr.transform]="'translate(' + leaf.x + ',' + leaf.y + ') rotate(' + leaf.rotate + ') scale(' + leaf.scale + ')'"
 				(click)="selectLeaf(leaf)" class="leaf-container">
 				<path [attr.d]="leaf.d" [attr.fill]="leaf.color" stroke="#151d12" stroke-width="1.2"
