@@ -8,23 +8,19 @@ import { Component } from '@angular/core';
   styleUrl: './june.scss',
 })
 export class June {
-  // 3 rings of leaves to total 30 days
-  // Ring 1: 6 leaves, Ring 2: 10 leaves, Ring 3: 14 leaves
+  // Updated rings array for a 30-day month (5 leaves x 6 rings = 30 days)
   rings = [
-    { count: 6, radius: 40, size: 0.8 },
-    { count: 10, radius: 80, size: 1.1 },
-    { count: 14, radius: 130, size: 1.5 }
+    { count: 5, radius: 30, size: 0.6 },  // Ring 0 (Center - Days 1-5)
+    { count: 5, radius: 60, size: 0.8 },  // Ring 1
+    { count: 5, radius: 95, size: 1.0 },  // Ring 2
+    { count: 5, radius: 135, size: 1.2 },  // Ring 3
+    { count: 5, radius: 180, size: 1.4 },  // Ring 4
+    { count: 5, radius: 230, size: 1.6 }   // Ring 5 (Outer - Days 26-30)
   ];
 
-  userMoods: string[] = new Array(31).fill('Neutral');
-
-  // Calculates the day index based on which ring and leaf we are on
+  // Updated helper to calculate the day index
   getDayIndex(ringIndex: number, leafIndex: number): number {
-    let previousLeaves = 0;
-    for (let i = 0; i < ringIndex; i++) {
-      previousLeaves += this.rings[i].count;
-    }
-    return previousLeaves + leafIndex + 1;
+    return (ringIndex * 5) + leafIndex + 1;
   }
 
   getMoodColor(day: number): string {
@@ -36,6 +32,6 @@ export class June {
       'Tired': '#5D4037',
       'Stressed': '#3E2723'
     };
-    return colors[this.userMoods[day]] || '#E0E0E0';
+    return '#E0E0E0';
   }
 }
