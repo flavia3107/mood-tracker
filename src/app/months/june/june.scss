@@ -35,3 +35,13 @@
 .scoop-wrapper:hover {
 	transform: scale(1.1);
 }
+
+.label {
+	text-anchor: middle;
+	fill: #8b4513;
+	font-family: Arial, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	pointer-events: none;
+	user-select: none;
+}
