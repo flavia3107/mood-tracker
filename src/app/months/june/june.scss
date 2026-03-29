@@ -1,9 +1,14 @@
 .june-container {
-	height: 45rem;
-	display: flex;
-	flex-wrap: wrap;
 	width: 50rem;
+	height: 45rem;
 	position: relative;
+}
+
+.ice-cream-unit {
+	position: absolute;
+	// We use transform-origin so the cone stays centered on the (x, y) point
+	transform-origin: center bottom;
+	transition: all 0.3s ease;
 }
 
 .ice-cream-unit {

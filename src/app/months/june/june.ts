@@ -20,8 +20,13 @@ export class June {
 
   private generateJuneCones(): IceCreamUnit[] {
     const totalDays = 30;
-    const units: IceCreamUnit[] = []; // Typed correctly now
-    const minDistance = 8;
+    const units: IceCreamUnit[] = [];
+
+    const width = 50;  // Box width in rem
+    const height = 45; // Box height in rem
+    const padding = 1; // Keep cones slightly away from the absolute edge
+
+    const minDistance = 6; // Reduced slightly to ensure 30 fit on the perimeter
     const maxAttempts = 100;
 
     for (let day = 1; day <= totalDays; day++) {
@@ -29,9 +34,27 @@ export class June {
       let attempts = 0;
 
       while (!placed && attempts < maxAttempts) {
-        const candidateX = Math.random() * 40 + 5;
-        const candidateY = Math.random() * 30 + 5;
+        let candidateX = 0;
+        let candidateY = 0;
 
+        // 1. Randomly choose a side: 0=Top, 1=Bottom, 2=Left, 3=Right
+        const side = Math.floor(Math.random() * 4);
+
+        if (side === 0) { // Top
+          candidateX = Math.random() * (width - padding * 2) + padding;
+          candidateY = padding;
+        } else if (side === 1) { // Bottom
+          candidateX = Math.random() * (width - padding * 2) + padding;
+          candidateY = height - padding;
+        } else if (side === 2) { // Left
+          candidateX = padding;
+          candidateY = Math.random() * (height - padding * 2) + padding;
+        } else { // Right
+          candidateX = width - padding;
+          candidateY = Math.random() * (height - padding * 2) + padding;
+        }
+
+        // 2. Overlap check
         const isOverlapping = units.some(u => {
           const dx = u.x - candidateX;
           const dy = u.y - candidateY;
@@ -43,8 +66,8 @@ export class June {
             id: day,
             x: candidateX,
             y: candidateY,
-            day: day,       // 1:1 Day mapping
-            color: null,    // Default flavor
+            day: day,
+            color: null,
             rotation: Math.floor(Math.random() * 24) - 12,
           });
           placed = true;
