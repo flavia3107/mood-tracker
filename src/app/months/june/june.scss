@@ -1,11 +1,15 @@
 .june-container {
-	width: 52rem;
-	height: 45rem;
-	position: relative;
 	margin-top: 1rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	position: relative;
+	width: 55rem;
+	height: 45rem;
+	background-image: url("/ice-cream.png");
+	background-size: cover;
+	background-position: right;
+	background-color: #fff;
 }
 
 .ice-cream-unit {

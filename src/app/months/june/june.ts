@@ -4,8 +4,8 @@ interface IceCreamUnit {
   id: number;
   x: number;
   y: number;
-  day: number;     // Moved out of array
-  color: string | null; // Moved out of array
+  day: number;
+  color: string | null;
   rotation: number;
 }
 
@@ -19,67 +19,34 @@ export class June {
   iceCreams = signal<IceCreamUnit[]>(this.generateJuneCones());
 
   private generateJuneCones(): IceCreamUnit[] {
-    const totalDays = 30;
     const units: IceCreamUnit[] = [];
-    const width = 50;  // Box width in rem
-    const height = 45; // Box height in rem
-    const padding = 3;
-    const minDistance = 4;
-    const maxAttempts = 1000;
+    const cols = 6;
+    const rows = 5;
+    const containerWidth = 50;
+    const containerHeight = 45;
+    const spacingX = 5.5;
+    const spacingY = 7.5;
+    const startX = (containerWidth - (cols - 1) * spacingX) / 2;
+    const startY = (containerHeight - (rows - 1) * spacingY) / 2;
 
-    for (let day = 1; day <= totalDays; day++) {
-      let placed = false;
-      let attempts = 0;
-
-      while (!placed && attempts < maxAttempts) {
-        let candidateX = 0;
-        let candidateY = 0;
-        let specificTilt = 0;
-
-        let side: number;
-        if (day <= 8) side = 0;
-        else if (day <= 16) side = 1;
-        else if (day <= 24) side = 2;
-        else side = 3;
-
-        if (side === 0) { // Top
-          candidateX = Math.random() * (width - padding * 2) + padding;
-          candidateY = padding;
-        } else if (side === 1) { // Bottom
-          candidateX = Math.random() * (width - padding * 2) + padding;
-          candidateY = height - padding;
-        } else if (side === 2 || side === 3) { // Left or Right
-          if (side === 2) { // Left
-            candidateX = padding;
-            candidateY = Math.random() * (height - padding * 2) + padding;
-          } else { // Right
-            candidateX = width - padding;
-            candidateY = Math.random() * (height - padding * 2) + padding;
-          }
-          specificTilt = (day % 2 === 0) ? 15 : -15;
-        }
-
-        const isOverlapping = units.some(u => {
-          const dx = u.x - candidateX;
-          const dy = u.y - candidateY;
-          return Math.sqrt(dx * dx + dy * dy) < minDistance;
+    let day = 1;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const x = startX + (c * spacingX);
+        const y = startY + (r * spacingY);
+        const tilt = Math.random() > 0.5 ? 12 : -12;
+        units.push({
+          id: day,
+          x: x,
+          y: y,
+          day: day,
+          color: null,
+          rotation: tilt
         });
-
-        if (!isOverlapping) {
-          units.push({
-            id: day,
-            x: candidateX,
-            y: candidateY,
-            day: day,
-            color: null,
-            rotation: (Math.floor(Math.random() * 24) - 12) + specificTilt,
-          });
-          placed = true;
-        }
-        attempts++;
+        day++;
       }
     }
-    return units;
+    return units
   }
 
   colorScoop(unit: IceCreamUnit,) {
