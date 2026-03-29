@@ -22,12 +22,12 @@ export class June {
     const totalDays = 30;
     const units: IceCreamUnit[] = [];
 
-    const width = 50;  // Box width in rem
-    const height = 45; // Box height in rem
-    const padding = 1; // Keep cones slightly away from the absolute edge
+    const width = 45;  // Box width in rem
+    const height = 40; // Box height in rem
+    const padding = 1; // Padding to keep the cone/scoop within the box
 
-    const minDistance = 6; // Reduced slightly to ensure 30 fit on the perimeter
-    const maxAttempts = 100;
+    const minDistance = 5.5; // Minimum distance between cones on the perimeter
+    const maxAttempts = 150;
 
     for (let day = 1; day <= totalDays; day++) {
       let placed = false;
@@ -40,16 +40,16 @@ export class June {
         // 1. Randomly choose a side: 0=Top, 1=Bottom, 2=Left, 3=Right
         const side = Math.floor(Math.random() * 4);
 
-        if (side === 0) { // Top
+        if (side === 0) { // Top edge
           candidateX = Math.random() * (width - padding * 2) + padding;
           candidateY = padding;
-        } else if (side === 1) { // Bottom
+        } else if (side === 1) { // Bottom edge
           candidateX = Math.random() * (width - padding * 2) + padding;
           candidateY = height - padding;
-        } else if (side === 2) { // Left
+        } else if (side === 2) { // Left edge
           candidateX = padding;
           candidateY = Math.random() * (height - padding * 2) + padding;
-        } else { // Right
+        } else { // Right edge
           candidateX = width - padding;
           candidateY = Math.random() * (height - padding * 2) + padding;
         }
