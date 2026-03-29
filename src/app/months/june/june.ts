@@ -21,13 +21,11 @@ export class June {
   private generateJuneCones(): IceCreamUnit[] {
     const totalDays = 30;
     const units: IceCreamUnit[] = [];
-
-    const width = 45;  // Box width in rem
-    const height = 40; // Box height in rem
-    const padding = 1; // Padding to keep the cone/scoop within the box
-
-    const minDistance = 5.5; // Minimum distance between cones on the perimeter
-    const maxAttempts = 150;
+    const width = 50;  // Box width in rem
+    const height = 45; // Box height in rem
+    const padding = 2; // Space from the absolute edge to keep scoops visible
+    const minDistance = 4;
+    const maxAttempts = 500;
 
     for (let day = 1; day <= totalDays; day++) {
       let placed = false;
@@ -36,25 +34,26 @@ export class June {
       while (!placed && attempts < maxAttempts) {
         let candidateX = 0;
         let candidateY = 0;
+        let side: number;
+        if (day <= 8) side = 0;
+        else if (day <= 16) side = 1;
+        else if (day <= 24) side = 2;
+        else side = 3;
 
-        // 1. Randomly choose a side: 0=Top, 1=Bottom, 2=Left, 3=Right
-        const side = Math.floor(Math.random() * 4);
-
-        if (side === 0) { // Top edge
+        if (side === 0) { // Top
           candidateX = Math.random() * (width - padding * 2) + padding;
           candidateY = padding;
-        } else if (side === 1) { // Bottom edge
+        } else if (side === 1) { // Bottom
           candidateX = Math.random() * (width - padding * 2) + padding;
           candidateY = height - padding;
-        } else if (side === 2) { // Left edge
+        } else if (side === 2) { // Left
           candidateX = padding;
           candidateY = Math.random() * (height - padding * 2) + padding;
-        } else { // Right edge
+        } else { // Right
           candidateX = width - padding;
           candidateY = Math.random() * (height - padding * 2) + padding;
         }
 
-        // 2. Overlap check
         const isOverlapping = units.some(u => {
           const dx = u.x - candidateX;
           const dy = u.y - candidateY;
@@ -74,6 +73,8 @@ export class June {
         }
         attempts++;
       }
+
+      if (!placed) console.warn(`Could not place cone for day ${day}`);
     }
     return units;
   }
