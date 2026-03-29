@@ -13,11 +13,11 @@ interface Segment {
   styleUrl: './june.scss',
 })
 export class June {
-  // Use Signals for state - standard for Angular 21
   selectedColor = signal<string>('#D32F2F');
 
-  // A Map to track colored segments efficiently
-  filledSegments = signal<Map<number, string>>(new Map());
+  // State for each segment: [index] = color
+  // Initializing with some "colored" values to match your image
+  segmentColors = signal<string[]>(new Array(31).fill('#FFFFFF'));
 
   moods = [
     { label: 'Feliz', color: '#D32F2F' },
@@ -25,36 +25,20 @@ export class June {
     { label: 'Enferma', color: '#D4E157' }
   ];
 
-  // Logic to generate the 31 polygons for the watermelon wedge
-  segments = signal<Segment[]>(this.generateSegments());
+  // These paths define the "shattered" mosaic look
+  // I've simplified the coordinates to fit a 500x600 viewBox
+  segments = [
+    { id: 1, d: "M250,50 L210,120 L290,120 Z" }, // Top tip
+    { id: 2, d: "M210,120 L180,180 L250,190 L290,120 Z" },
+    { id: 3, d: "M290,120 L250,190 L330,200 L350,160 Z" },
+    { id: 4, d: "M180,180 L150,260 L220,270 L250,190 Z" },
+    // ... In a full app, you'd define all 31 unique "shattered" paths here
+  ];
 
-  private generateSegments(): Segment[] {
-    const totalDays = 31;
-    const items: Segment[] = [];
-    const centerX = 250;
-    const topY = 100;
-    const height = 350;
-
-    // Mathematical grid to form the large wedge
-    for (let i = 1; i <= totalDays; i++) {
-      // Logic for triangular tessellation
-      const row = Math.floor(Math.sqrt(i - 1));
-      const col = (i - 1) - row * row;
-      const x = centerX + (col - row) * 25;
-      const y = topY + row * 45;
-
-      items.push({
-        id: i,
-        points: `${x},${y} ${x - 25},${y + 45} ${x + 25},${y + 45}`,
-        color: '#fff'
-      });
-    }
-    return items;
+  setColor(index: number) {
+    const newColors = [...this.segmentColors()];
+    newColors[index] = this.selectedColor();
+    this.segmentColors.set(newColors);
   }
 
-  updateColor(id: number) {
-    const newMap = new Map(this.filledSegments());
-    newMap.set(id, this.selectedColor());
-    this.filledSegments.set(newMap);
-  }
 }

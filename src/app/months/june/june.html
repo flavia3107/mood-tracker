@@ -1,23 +1,29 @@
-<div class="tracker-wrapper">
-	<svg viewBox="0 0 500 600">
-		<text x="250" y="60" text-anchor="middle" class="title">mood tracker</text>
+<div class="container">
+	<div class="header">
+		<h1>mood tracker</h1>
+		<div class="sun-container">
+			<svg width="100" height="100">
+				<circle cx="50" cy="50" r="40" fill="#FFEB3B" />
+				<text x="50" y="55" text-anchor="middle" font-size="8" font-weight="bold">LIVE IN THE SUNSHINE</text>
+			</svg>
+		</div>
+	</div>
 
-		<circle cx="410" cy="110" r="45" fill="#FFEB3B" />
-		<text x="410" y="115" text-anchor="middle" font-size="10" font-weight="bold">LIVE IN THE SUNSHINE</text>
+	<svg viewBox="0 0 500 600" class="main-svg">
+		<path d="M 50 450 Q 250 580 450 450" fill="none" stroke="#2E7D32" stroke-width="25" stroke-linecap="round" />
+		<path d="M 65 445 Q 250 560 435 445" fill="none" stroke="#81C784" stroke-width="10" stroke-linecap="round" />
 
-		<path d="M 50 480 Q 250 590 450 480" stroke="#2E7D32" stroke-width="20" fill="none" />
-
-		<g class="watermelon-meat">
-			@for (seg of segments(); track seg.id) {
-			<polygon [attr.points]="seg.points" [attr.fill]="filledSegments().get(seg.id) || '#fff'" stroke="#444"
-				stroke-width="0.5" (click)="updateColor(seg.id)" />
+		<g class="mosaic">
+			@for (seg of segments; track seg.id) {
+			<path [attr.d]="seg.d" [attr.fill]="segmentColors()[$index]" stroke="#333" stroke-width="1.5"
+				(click)="setColor($index)" />
 			}
 		</g>
 	</svg>
 
 	<div class="legend">
 		@for (mood of moods; track mood.label) {
-		<button [style.background-color]="mood.color" [class.active]="selectedColor() === mood.color"
+		<button [style.background]="mood.color" [class.active]="selectedColor() === mood.color"
 			(click)="selectedColor.set(mood.color)">
 			{{ mood.label }}
 		</button>
