@@ -1,12 +1,9 @@
 import { Component, signal } from "@angular/core";
 
-interface IceCreamUnit {
+interface Segment {
   id: number;
-  x: number;
-  y: number;
-  day: number;
-  color: string | null;
-  rotation: number;
+  points: string;
+  color: string;
 }
 
 @Component({
@@ -16,49 +13,48 @@ interface IceCreamUnit {
   styleUrl: './june.scss',
 })
 export class June {
-  iceCreams = signal<IceCreamUnit[]>(this.generateJuneCones());
+  // Use Signals for state - standard for Angular 21
+  selectedColor = signal<string>('#D32F2F');
 
-  private generateJuneCones(): IceCreamUnit[] {
-    const units: IceCreamUnit[] = [];
-    const cols = 6;
-    const rows = 5;
-    const containerWidth = 50;
-    const containerHeight = 45;
-    const spacingX = 5.5;
-    const spacingY = 7.5;
-    const startX = (containerWidth - (cols - 1) * spacingX) / 2;
-    const startY = (containerHeight - (rows - 1) * spacingY) / 2;
+  // A Map to track colored segments efficiently
+  filledSegments = signal<Map<number, string>>(new Map());
 
-    let day = 1;
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const x = startX + (c * spacingX);
-        const y = startY + (r * spacingY);
-        const tilt = Math.random() > 0.5 ? 12 : -12;
-        units.push({
-          id: day,
-          x: x,
-          y: y,
-          day: day,
-          color: null,
-          rotation: tilt
-        });
-        day++;
-      }
+  moods = [
+    { label: 'Feliz', color: '#D32F2F' },
+    { label: 'Tranquila', color: '#F08080' },
+    { label: 'Enferma', color: '#D4E157' }
+  ];
+
+  // Logic to generate the 31 polygons for the watermelon wedge
+  segments = signal<Segment[]>(this.generateSegments());
+
+  private generateSegments(): Segment[] {
+    const totalDays = 31;
+    const items: Segment[] = [];
+    const centerX = 250;
+    const topY = 100;
+    const height = 350;
+
+    // Mathematical grid to form the large wedge
+    for (let i = 1; i <= totalDays; i++) {
+      // Logic for triangular tessellation
+      const row = Math.floor(Math.sqrt(i - 1));
+      const col = (i - 1) - row * row;
+      const x = centerX + (col - row) * 25;
+      const y = topY + row * 45;
+
+      items.push({
+        id: i,
+        points: `${x},${y} ${x - 25},${y + 45} ${x + 25},${y + 45}`,
+        color: '#fff'
+      });
     }
-    return units
+    return items;
   }
 
-  colorScoop(unit: IceCreamUnit,) {
-    unit.color = 'red'
-    // const moodColors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#BE9FE1'];
-    // const randomMood = moodColors[Math.floor(Math.random() * moodColors.length)];
-
-    // this.iceCreams.update(all =>
-    //   all.map(i => i.id === unit.id ? {
-    //     ...i,
-    //     scoops: i.scoops.map((s, idx) => idx === scoopIndex ? randomMood : s)
-    //   } : i)
-    // );
+  updateColor(id: number) {
+    const newMap = new Map(this.filledSegments());
+    newMap.set(id, this.selectedColor());
+    this.filledSegments.set(newMap);
   }
 }
