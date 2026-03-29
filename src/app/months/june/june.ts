@@ -22,33 +22,27 @@ export class June {
 
   private generateJuneCones(): IceCreamUnit[] {
     const totalDays = 30;
-    let currentDay = 1; // Start at day 1
     const units: any[] = [];
-    let id = 1;
 
     const minDistance = 8;
-    const maxAttempts = 50;
+    const maxAttempts = 100; // Increased attempts since we have more individual cones to place
 
-    while (currentDay <= totalDays) {
-      const remaining = (totalDays - currentDay) + 1;
-      const scoopCount = Math.min(Math.floor(Math.random() * 3) + 1, remaining);
-
-      // Create the scoops as objects: 1 scoop = 1 day
-      const scoopObjects = [];
-      for (let i = 0; i < scoopCount; i++) {
-        scoopObjects.push({
-          day: currentDay + i, // The 1:1 day number
-          color: null          // The flavor/color
-        });
-      }
-
+    for (let day = 1; day <= totalDays; day++) {
       let placed = false;
       let attempts = 0;
 
+      // Create the single scoop object for this specific day
+      const singleScoop = [{
+        day: day,
+        color: null
+      }];
+
       while (!placed && attempts < maxAttempts) {
+        // Coordinates (5-45% for X, 5-35% for Y based on your original scale)
         const candidateX = Math.random() * 40 + 5;
         const candidateY = Math.random() * 30 + 5;
 
+        // Check distance against all already placed units
         const isOverlapping = units.some(u => {
           const dx = u.x - candidateX;
           const dy = u.y - candidateY;
@@ -57,20 +51,21 @@ export class June {
 
         if (!isOverlapping) {
           units.push({
-            id: id,
+            id: day, // Using the day as the ID
             x: candidateX,
             y: candidateY,
             rotation: Math.floor(Math.random() * 24) - 12,
-            scoops: scoopObjects // Now an array of { day, color }
+            scoops: singleScoop
           });
           placed = true;
         }
         attempts++;
       }
 
-      // Increment currentDay by the number of scoops we just created
-      currentDay += scoopCount;
-      id++;
+      // Optional: Log if a cone couldn't be placed due to space
+      if (!placed) {
+        console.warn(`Could not find a spot for Day ${day}`);
+      }
     }
     return units;
   }
