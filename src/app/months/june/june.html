@@ -1,20 +1,24 @@
-<div class="tracker-container">
+<div class="container">
 	<svg viewBox="0 0 500 600">
 		<defs>
-			<linearGradient id="rindGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-				<stop offset="0%" stop-color="#1B5E20" />
-				<stop offset="100%" stop-color="#81C784" />
-			</linearGradient>
-
 			<clipPath id="wedgeClip">
 				<path [attr.d]="wedgePath()" />
 			</clipPath>
 		</defs>
 
-		<path [attr.d]="wedgePath()" fill="white" stroke="black" stroke-width="2" />
-		<path [attr.d]="rindPath()" fill="none" stroke="url(#rindGradient)" stroke-width="70"
-			clip-path="url(#wedgeClip)" />
+		<path [attr.d]="wedgePath()" fill="#fff" stroke="#000" stroke-width="1.5" stroke-linejoin="round" />
 
+		<g clip-path="url(#wedgeClip)">
+
+			<path [attr.d]="rindPathBase()" fill="none" stroke="#81C784" stroke-width="80" stroke-linecap="round" />
+
+			<path [attr.d]="rindPathMid()" fill="none" stroke="#2E7D32" stroke-width="65" stroke-linecap="round"
+				opacity="0.7" />
+
+			<path [attr.d]="rindPathOuter()" fill="none" stroke="#1B5E20" stroke-width="35" stroke-linecap="round"
+				opacity="0.4" />
+
+		</g>
 		<!-- <g class="segments">
 			@for (seg of segments; track seg?.id) {
 			<path [attr.d]="seg.d" [attr.fill]="days()[$index]" stroke="black" stroke-width="1"

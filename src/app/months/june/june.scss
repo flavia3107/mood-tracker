@@ -1,22 +1,14 @@
-.tracker-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	background-color: #f9f9f9;
-	padding: 2rem;
-	font-family: "Comic Sans MS", cursive, sans-serif;
-}
-
-.title {
-	font-size: 3rem;
-	color: #e57373;
-	margin-bottom: 0;
+.container {
+	width: 50rem;
+	height: 45rem;
+	background: #fff;
 }
 
 svg {
 	width: 100%;
-	max-width: 500px;
+	max-width: 38rem;
 	height: auto;
+	transform: rotate(-20deg);
 }
 
 .sun-text-bold {
