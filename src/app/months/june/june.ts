@@ -4,8 +4,8 @@ interface IceCreamUnit {
   id: number,
   x: number;
   y: number;
-  scoops: (string | null)[];
-  rotation: number
+  scoops: { day: number, color: string }[];
+  rotation: number,
 }
 
 @Component({
@@ -22,26 +22,33 @@ export class June {
 
   private generateJuneCones(): IceCreamUnit[] {
     const totalDays = 30;
-    let daysAllocated = 0;
+    let currentDay = 1; // Start at day 1
     const units: any[] = [];
     let id = 1;
 
-    const minDistance = 8; // Minimum distance in 'rem' to prevent overlapping
-    const maxAttempts = 50; // How many times to try placing a cone before giving up
+    const minDistance = 8;
+    const maxAttempts = 50;
 
-    while (daysAllocated < totalDays) {
-      const remaining = totalDays - daysAllocated;
+    while (currentDay <= totalDays) {
+      const remaining = (totalDays - currentDay) + 1;
       const scoopCount = Math.min(Math.floor(Math.random() * 3) + 1, remaining);
+
+      // Create the scoops as objects: 1 scoop = 1 day
+      const scoopObjects = [];
+      for (let i = 0; i < scoopCount; i++) {
+        scoopObjects.push({
+          day: currentDay + i, // The 1:1 day number
+          color: null          // The flavor/color
+        });
+      }
 
       let placed = false;
       let attempts = 0;
 
       while (!placed && attempts < maxAttempts) {
-        // Generate random coordinates (5-85% to keep away from edges)
         const candidateX = Math.random() * 40 + 5;
         const candidateY = Math.random() * 30 + 5;
 
-        // Check distance against all already placed units
         const isOverlapping = units.some(u => {
           const dx = u.x - candidateX;
           const dy = u.y - candidateY;
@@ -54,29 +61,29 @@ export class June {
             x: candidateX,
             y: candidateY,
             rotation: Math.floor(Math.random() * 24) - 12,
-            scoops: Array(scoopCount).fill(null)
+            scoops: scoopObjects // Now an array of { day, color }
           });
           placed = true;
         }
         attempts++;
       }
 
-      // Fallback: if we can't find a spot, just increment days so we don't infinite loop
-      daysAllocated += scoopCount;
+      // Increment currentDay by the number of scoops we just created
+      currentDay += scoopCount;
       id++;
     }
     return units;
   }
 
   colorScoop(unit: IceCreamUnit, scoopIndex: number) {
-    const moodColors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#BE9FE1'];
-    const randomMood = moodColors[Math.floor(Math.random() * moodColors.length)];
+    // const moodColors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#BE9FE1'];
+    // const randomMood = moodColors[Math.floor(Math.random() * moodColors.length)];
 
-    this.iceCreams.update(all =>
-      all.map(i => i.id === unit.id ? {
-        ...i,
-        scoops: i.scoops.map((s, idx) => idx === scoopIndex ? randomMood : s)
-      } : i)
-    );
+    // this.iceCreams.update(all =>
+    //   all.map(i => i.id === unit.id ? {
+    //     ...i,
+    //     scoops: i.scoops.map((s, idx) => idx === scoopIndex ? randomMood : s)
+    //   } : i)
+    // );
   }
 }

@@ -1,14 +1,14 @@
 .june-container {
 	height: 45rem;
-	background: #fdfcf0;
 	display: flex;
 	flex-wrap: wrap;
 	width: 50rem;
 	position: relative;
 }
+
 .ice-cream-unit {
 	position: absolute;
-	width: 80px; /* Fixed width for the 'unit' container */
+	width: 80px;
 	height: auto;
 	display: flex;
 	flex-direction: column;
@@ -17,8 +17,7 @@
 	cursor: pointer;
 
 	&:hover {
-		z-index: 100 !important;
-		transform: scale(1.1) rotate(0deg) !important; /* Straighten up on hover */
+		transform: scale(1.1) rotate(0deg) !important;
 	}
 }
 
@@ -31,10 +30,8 @@
 	position: absolute;
 	cursor: pointer;
 	transition: transform 0.2s;
-	/* bottom calculation happens in HTML via style binding */
 }
 
 .scoop-wrapper:hover {
 	transform: scale(1.1);
-	z-index: 100 !important;
 }
