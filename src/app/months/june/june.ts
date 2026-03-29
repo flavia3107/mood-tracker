@@ -23,9 +23,9 @@ export class June {
     const units: IceCreamUnit[] = [];
     const width = 50;  // Box width in rem
     const height = 45; // Box height in rem
-    const padding = 2; // Space from the absolute edge to keep scoops visible
+    const padding = 3;
     const minDistance = 4;
-    const maxAttempts = 500;
+    const maxAttempts = 1000;
 
     for (let day = 1; day <= totalDays; day++) {
       let placed = false;
@@ -34,6 +34,8 @@ export class June {
       while (!placed && attempts < maxAttempts) {
         let candidateX = 0;
         let candidateY = 0;
+        let specificTilt = 0;
+
         let side: number;
         if (day <= 8) side = 0;
         else if (day <= 16) side = 1;
@@ -46,12 +48,15 @@ export class June {
         } else if (side === 1) { // Bottom
           candidateX = Math.random() * (width - padding * 2) + padding;
           candidateY = height - padding;
-        } else if (side === 2) { // Left
-          candidateX = padding;
-          candidateY = Math.random() * (height - padding * 2) + padding;
-        } else { // Right
-          candidateX = width - padding;
-          candidateY = Math.random() * (height - padding * 2) + padding;
+        } else if (side === 2 || side === 3) { // Left or Right
+          if (side === 2) { // Left
+            candidateX = padding;
+            candidateY = Math.random() * (height - padding * 2) + padding;
+          } else { // Right
+            candidateX = width - padding;
+            candidateY = Math.random() * (height - padding * 2) + padding;
+          }
+          specificTilt = (day % 2 === 0) ? 15 : -15;
         }
 
         const isOverlapping = units.some(u => {
@@ -67,19 +72,18 @@ export class June {
             y: candidateY,
             day: day,
             color: null,
-            rotation: Math.floor(Math.random() * 24) - 12,
+            rotation: (Math.floor(Math.random() * 24) - 12) + specificTilt,
           });
           placed = true;
         }
         attempts++;
       }
-
-      if (!placed) console.warn(`Could not place cone for day ${day}`);
     }
     return units;
   }
 
   colorScoop(unit: IceCreamUnit,) {
+    unit.color = 'red'
     // const moodColors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#BE9FE1'];
     // const randomMood = moodColors[Math.floor(Math.random() * moodColors.length)];
 
