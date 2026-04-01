@@ -41,12 +41,12 @@ const MAY_MOOD_COLORS = [
 	{ label: 'sad', color: '#D94773' }
 ];
 const JUNE_MOOD_COLORS = [
-	{ label: 'happy', color: '#D4E157' },
-	{ label: 'neutral', color: '#9CCC65' },
-	{ label: 'stressed', color: '#689F38' },
-	{ label: 'tired', color: '#455A64' },
-	{ label: 'moody', color: '#2E7D32' },
-	{ label: 'sad', color: '#546E7A' }
+	{ label: 'happy', color: '#ffeaeb' },
+	{ label: 'neutral', color: '#ffb5b9' },
+	{ label: 'stressed', color: '#f27c82' },
+	{ label: 'tired', color: '#e0464f' },
+	{ label: 'moody', color: '#af142e' },
+	{ label: 'sad', color: '#840627' }
 ];
 const JULY_MOOD_COLORS = [
 	{ label: 'happy', color: '#FFD54F' },

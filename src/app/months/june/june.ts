@@ -16,22 +16,6 @@ export class June {
   days = signal<string[]>(new Array(31).fill('#FFFFFF'));
   private _selectedMood: string = '';
 
-  moods = [
-    { label: 'Feliz', color: '#D32F2F' },
-    { label: 'Contenta', color: '#E57373' },
-    { label: 'Tranquila', color: '#F8BBD0' },
-    { label: 'Molesta', color: '#FFCCBC' },
-    { label: 'Enferma', color: '#D4E157' },
-    { label: 'Triste', color: '#AFB42B' }
-  ];
-
-
-  updateDay(day: any) {
-    if (this._selectedMood)
-      day['color'] = this._selectedMood;
-  }
-
-
   segments = [
     // Row 1
     { id: 1, x: 250, y: 90, d: "M250,30 L210,80 L250,100 L290,80 Z", color: '#fff' },
@@ -74,7 +58,11 @@ export class June {
   ];
 
   updateMood(color: string) {
-    console.log('HER', color)
     this._selectedMood = color;
+  }
+
+  updateDay(day: any) {
+    if (this._selectedMood)
+      day['color'] = this._selectedMood;
   }
 }
