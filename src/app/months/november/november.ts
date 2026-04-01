@@ -16,24 +16,16 @@ interface ChestnutDay {
 export class November {
   days = Array.from({ length: 30 }, (_, i) => i);
 
-  // Approximate path length for the SVG 'd' attribute provided
-  totalPathLength = 1000;
-  gap = 2; // Tiny gap between segments
-  segmentLength = (this.totalPathLength / 30) - this.gap;
+  // Using pathLength="100" makes this math easy:
+  gap = 0.5;
+  segmentLength = (100 / 30) - this.gap;
 
-  // Mood State
-  moods: string[] = Array(30).fill('#d5bdaf'); // Default light tan
-
-  // Palette: Cocoa and Chocolate tones
+  // Default colors: varying shades of cocoa/tan
+  moods: string[] = Array(30).fill('#d5bdaf');
   colors = ['#3c2a21', '#5f4033', '#8b5e3c', '#b08968', '#ddb892'];
-
-  getMoodColor(day: number): string {
-    return this.moods[day];
-  }
 
   updateMood(day: number) {
     const currentIndex = this.colors.indexOf(this.moods[day]);
-    const nextIndex = (currentIndex + 1) % this.colors.length;
-    this.moods[day] = this.colors[nextIndex];
+    this.moods[day] = this.colors[(currentIndex + 1) % this.colors.length];
   }
 }
