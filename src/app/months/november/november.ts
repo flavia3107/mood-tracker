@@ -14,33 +14,26 @@ interface ChestnutDay {
   styleUrl: './november.scss',
 })
 export class November {
-  days = signal(Array.from({ length: 31 }, (_, i) => i + 1));
+  days = Array.from({ length: 30 }, (_, i) => i);
 
-  octoberChestnuts = computed(() => {
-    const containerWidth = 800; // 50rem
-    const days = this.days();
-    const columns = 7;
-    const startX = 30;         // Padding from left edge
-    const startY = 80;         // Padding from top edge
-    const horizontalGap = 100; // Adjusted to stay within 800px
-    const verticalGap = 100;
+  // Approximate path length for the SVG 'd' attribute provided
+  totalPathLength = 1000;
+  gap = 2; // Tiny gap between segments
+  segmentLength = (this.totalPathLength / 30) - this.gap;
 
-    return days.map((id, index) => {
-      const col = index % columns;
-      const row = Math.floor(index / columns);
+  // Mood State
+  moods: string[] = Array(30).fill('#d5bdaf'); // Default light tan
 
-      return {
-        id,
-        x: startX + (col * horizontalGap),
-        y: startY + (row * verticalGap),
-        rotation: (Math.random() - 0.5) * 50,
-        scale: 1.2, // Slightly smaller scale helps prevent edge bleeding
-        mood: ((Math.random() - 0.5) * 50) % 5 == 0 ? 'happy' : 'sad'
-      };
-    });
-  });
+  // Palette: Cocoa and Chocolate tones
+  colors = ['#3c2a21', '#5f4033', '#8b5e3c', '#b08968', '#ddb892'];
 
-  public getChestnutMood(id: number) {
-    return 'smile'
+  getMoodColor(day: number): string {
+    return this.moods[day];
+  }
+
+  updateMood(day: number) {
+    const currentIndex = this.colors.indexOf(this.moods[day]);
+    const nextIndex = (currentIndex + 1) % this.colors.length;
+    this.moods[day] = this.colors[nextIndex];
   }
 }

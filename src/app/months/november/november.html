@@ -1,57 +1,21 @@
-<div class="chestnut-container">
-	<svg viewBox="0 0 800 720" xmlns="http://www.w3.org/2000/svg">
+<div class="tracker-container">
+	<h2>November Mood</h2>
+	<svg viewBox="0 0 400 400" width="100%" height="100%">
+		<path id="scarfPath" d="M 100,300 C 50,200 150,50 300,100 C 400,150 300,300 200,300 L 120,380" fill="none"
+			stroke="#ece0d1" stroke-width="42" stroke-linecap="round" />
 
-		<defs>
-			<path id="chestnut-shape" d="M50 15 
-			C48 15 45 20 22 35 
-			C5 48 2 78 18 92 
-			C35 105 65 105 82 92 
-			C98 78 95 48 78 35 
-			C55 20 52 15 50 15 Z" />
+		@for (day of days; track day) {
+		<path d="M 100,300 C 50,200 150,50 300,100 C 400,150 300,300 200,300 L 120,380" fill="none"
+			[attr.stroke]="getMoodColor(day)" stroke-width="40"
+			[attr.stroke-dasharray]="segmentLength + ' ' + (totalPathLength - segmentLength)"
+			[attr.stroke-dashoffset]="-(day * (segmentLength + gap))" class="day-segment" (click)="updateMood(day)" />
+		}
 
-			<path id="chestnut-hilum-solid" d="M20 75 A 35 15 0 1 0 80 75 Q 50 95 20 75 Z" />
-
-			<pattern id="hilumGrain" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
-				<circle cx="2" cy="2" r="0.8" fill="#8b5a2b" opacity="0.3" />
-				<circle cx="5" cy="5" r="0.8" fill="#8b5a2b" opacity="0.2" />
-			</pattern>
-
-			<path id="mouth-happy" d="M42 66 Q50 72 58 66" />
-			<path id="mouth-sad" d="M42 72 Q50 66 58 72" />
-		</defs>
-
-		<g>
-			@for (item of octoberChestnuts(); track item.id) {
-			<g [attr.transform]="'translate(' + item.x + ',' + item.y + ') rotate(' + item.rotation + ') scale(' + item.scale + ')'"
-				class="chestnut-group">
-
-				<use href="#chestnut-shape" fill="#3d1a06" transform="translate(0, 2)" />
-
-				<use href="#chestnut-shape" fill="#7b3f21" />
-
-				<use href="#chestnut-hilum-solid" fill="#c4a484" />
-				<use href="#chestnut-hilum-solid" fill="url(#hilumGrain)" />
-
-				<g class="kawaii-face">
-					<circle cx="35" cy="52" r="3.5" fill="#3d1a06" />
-					<circle cx="65" cy="52" r="3.5" fill="#3d1a06" />
-
-					<use [attr.href]="'#mouth-' + (item.mood || 'happy')" fill="none" stroke="#3d1a06"
-						stroke-width="2.5" stroke-linecap="round" />
-
-					<circle cx="22" cy="58" r="5" fill="#fca5a5" fill-opacity="0.6" />
-					<circle cx="78" cy="58" r="5" fill="#fca5a5" fill-opacity="0.6" />
-				</g>
-
-				<text x="50" y="38" text-anchor="middle" [attr.transform]="'rotate(' + (-item.rotation) + ', 50, 38)'"
-					class="nut-text">
-					{{ item.id }}
-				</text>
-			</g>
-			}
-		</g>
+		<line x1="115" y1="375" x2="105" y2="395" stroke="#3c2a21" stroke-width="2" />
+		<line x1="125" y1="385" x2="115" y2="405" stroke="#3c2a21" stroke-width="2" />
 	</svg>
-</div>
 
-<!-- to do: add leaves and background in the svg-->
-<!-- to do: update the sidenav -->
+	<div class="legend">
+		<p>Click a segment to cycle through cocoa & chocolate tones.</p>
+	</div>
+</div>
