@@ -1,21 +1,36 @@
 <div class="tracker-container">
-	<h2>November Mood</h2>
-	<svg viewBox="0 0 400 400" width="100%" height="100%">
-		<path id="scarfPath" d="M 100,300 C 50,200 150,50 300,100 C 400,150 300,300 200,300 L 120,380" fill="none"
-			stroke="#ece0d1" stroke-width="42" stroke-linecap="round" />
+	<svg viewBox="0 0 400 550" width="100%" height="100%">
+		<path id="scarfPath"
+			d="M 125,450 L 125,440 C 150,350 350,300 300,150 C 250,50 150,50 100,150 C 50,300 250,350 275,440 L 275,450"
+			fill="none" stroke="#ece0d1" stroke-width="45" stroke-linecap="butt" />
 
 		@for (day of days; track day) {
-		<path d="M 100,300 C 50,200 150,50 300,100 C 400,150 300,300 200,300 L 120,380" fill="none"
-			[attr.stroke]="getMoodColor(day)" stroke-width="40"
+		<path
+			d="M 125,450 L 125,440 C 150,350 350,300 300,150 C 250,50 150,50 100,150 C 50,300 250,350 275,440 L 275,450"
+			fill="none" [attr.stroke]="getMoodColor(day)" stroke-width="40"
 			[attr.stroke-dasharray]="segmentLength + ' ' + (totalPathLength - segmentLength)"
-			[attr.stroke-dashoffset]="-(day * (segmentLength + gap))" class="day-segment" (click)="updateMood(day)" />
+			[attr.stroke-dashoffset]="-(day * (segmentLength + gap))" class="day-segment" stroke-linecap="butt"
+			(click)="updateMood(day)" />
 		}
 
-		<line x1="115" y1="375" x2="105" y2="395" stroke="#3c2a21" stroke-width="2" />
-		<line x1="125" y1="385" x2="115" y2="405" stroke="#3c2a21" stroke-width="2" />
-	</svg>
+		<g stroke="#3c2a21" stroke-width="1" fill="none" stroke-linecap="round">
+			<path d="M 108,450 C 103,465 113,475 108,490" />
+			<path d="M 113,450 C 108,470 118,480 113,500" />
+			<path d="M 118,450 C 113,470 123,485 118,505" />
+			<path d="M 123,450 C 118,475 128,485 123,510" />
+			<path d="M 128,450 C 123,475 133,485 128,510" />
+			<path d="M 133,450 C 128,470 138,485 133,505" />
+			<path d="M 138,450 C 133,470 143,480 138,500" />
+			<path d="M 143,450 C 138,465 148,475 143,490" />
 
-	<div class="legend">
-		<p>Click a segment to cycle through cocoa & chocolate tones.</p>
-	</div>
+			<path d="M 258,450 C 253,465 263,475 258,490" />
+			<path d="M 263,450 C 258,470 268,480 263,500" />
+			<path d="M 268,450 C 263,470 273,485 268,505" />
+			<path d="M 273,450 C 268,475 278,485 273,510" />
+			<path d="M 278,450 C 273,475 283,485 278,510" />
+			<path d="M 283,450 C 278,470 288,485 283,505" />
+			<path d="M 288,450 C 283,470 293,480 288,500" />
+			<path d="M 293,450 C 288,465 298,475 293,490" />
+		</g>
+	</svg>
 </div>
