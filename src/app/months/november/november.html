@@ -1,27 +1,26 @@
 <div class="tracker-container">
 	<svg viewBox="0 0 500 500" width="100%" height="100%" style="background: #fdfaf7;">
 		<defs>
-			<path id="scarfShape" d="M 180,380 L 100,300 C 50,200 150,50 300,100 C 420,150 350,350 150,300 L 250,420"
-				pathLength="100" />
+			<path id="scarfShapeSmooth" d="M 180,380                   
+				 C 100,280 200,60 300,100    
+				 C 420,150 350,330 200,320    
+				 C 100,310 180,380 180,380   
+				 C 210,400 240,430 250,440" pathLength="100" />
 		</defs>
 
-		<use href="#scarfShape" fill="none" stroke="#ece0d1" stroke-width="50" stroke-linecap="round" />
+		<use href="#scarfShapeSmooth" fill="none" stroke="#ece0d1" stroke-width="50" stroke-linecap="round" />
 
 		@for (day of days; track day) {
-		<use href="#scarfShape" fill="none" [attr.stroke]="moods[day]" stroke-width="42"
+		<use href="#scarfShapeSmooth" fill="none" [attr.stroke]="getMoodColor(day)" stroke-width="45"
 			[attr.stroke-dasharray]="segmentLength + ' ' + (100 - segmentLength)"
 			[attr.stroke-dashoffset]="-(day * (segmentLength + gap))" stroke-linecap="butt" class="day-segment"
 			(click)="updateMood(day)" />
 		}
 
 		<g stroke="#3c2a21" stroke-width="3" stroke-linecap="round">
-			<line x1="250" y1="420" x2="240" y2="450" />
-			<line x1="250" y1="420" x2="255" y2="455" />
-			<line x1="250" y1="420" x2="270" y2="445" />
+			<line x1="250" y1="440" x2="245" y2="460" />
+			<line x1="250" y1="440" x2="255" y2="465" />
+			<line x1="250" y1="440" x2="265" y2="455" />
 		</g>
 	</svg>
-
-	<div style="margin-top: 10px;">
-		<p>Current Theme: <b>Cocoa & Chocolate</b></p>
-	</div>
 </div>

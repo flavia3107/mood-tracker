@@ -16,16 +16,23 @@ interface ChestnutDay {
 export class November {
   days = Array.from({ length: 30 }, (_, i) => i);
 
-  // Using pathLength="100" makes this math easy:
+  // pathLength="100" math
   gap = 0.5;
   segmentLength = (100 / 30) - this.gap;
 
-  // Default colors: varying shades of cocoa/tan
+  // Mood State (Default shades)
   moods: string[] = Array(30).fill('#d5bdaf');
+
+  // Cocoa & Chocolate Palette
   colors = ['#3c2a21', '#5f4033', '#8b5e3c', '#b08968', '#ddb892'];
+
+  getMoodColor(day: number): string {
+    return this.moods[day];
+  }
 
   updateMood(day: number) {
     const currentIndex = this.colors.indexOf(this.moods[day]);
-    this.moods[day] = this.colors[(currentIndex + 1) % this.colors.length];
+    const nextIndex = (currentIndex + 1) % this.colors.length;
+    this.moods[day] = this.colors[nextIndex];
   }
 }
