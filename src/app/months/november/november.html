@@ -1,26 +1,21 @@
 <div class="tracker-container">
-	<svg viewBox="0 0 500 500" width="100%" height="100%" style="background: #fdfaf7;">
-		<defs>
-			<path id="scarfShapeSmooth" d="M 180,380                   
-				 C 100,280 200,60 300,100    
-				 C 420,150 350,330 200,320    
-				 C 100,310 180,380 180,380   
-				 C 210,400 240,430 250,440" pathLength="100" />
-		</defs>
-
-		<use href="#scarfShapeSmooth" fill="none" stroke="#ece0d1" stroke-width="50" stroke-linecap="round" />
+	<h2>November Mood</h2>
+	<svg viewBox="0 0 400 400" width="100%" height="100%">
+		<path id="scarfPath" d="M 100,300 C 50,200 150,50 300,100 C 400,150 300,300 200,300 L 120,380" fill="none"
+			stroke="#ece0d1" stroke-width="42" stroke-linecap="round" />
 
 		@for (day of days; track day) {
-		<use href="#scarfShapeSmooth" fill="none" [attr.stroke]="getMoodColor(day)" stroke-width="45"
-			[attr.stroke-dasharray]="segmentLength + ' ' + (100 - segmentLength)"
-			[attr.stroke-dashoffset]="-(day * (segmentLength + gap))" stroke-linecap="butt" class="day-segment"
-			(click)="updateMood(day)" />
+		<path d="M 100,300 C 50,200 150,50 300,100 C 400,150 300,300 200,300 L 120,380" fill="none"
+			[attr.stroke]="getMoodColor(day)" stroke-width="40"
+			[attr.stroke-dasharray]="segmentLength + ' ' + (totalPathLength - segmentLength)"
+			[attr.stroke-dashoffset]="-(day * (segmentLength + gap))" class="day-segment" (click)="updateMood(day)" />
 		}
 
-		<g stroke="#3c2a21" stroke-width="3" stroke-linecap="round">
-			<line x1="250" y1="440" x2="245" y2="460" />
-			<line x1="250" y1="440" x2="255" y2="465" />
-			<line x1="250" y1="440" x2="265" y2="455" />
-		</g>
+		<line x1="115" y1="375" x2="105" y2="395" stroke="#3c2a21" stroke-width="2" />
+		<line x1="125" y1="385" x2="115" y2="405" stroke="#3c2a21" stroke-width="2" />
 	</svg>
+
+	<div class="legend">
+		<p>Click a segment to cycle through cocoa & chocolate tones.</p>
+	</div>
 </div>
