@@ -2,6 +2,7 @@
 	width: 50rem;
 	height: 45rem;
 	background: #fff;
+	align-items: flex-end;
 }
 
 svg {
@@ -50,4 +51,8 @@ svg {
 .swatch.active {
 	outline: 3px solid #81c784;
 	transform: scale(1.1);
+}
+
+.legend-container {
+	margin: 0 0 1rem 3rem;
 }
