@@ -1,6 +1,9 @@
 <div class="tracker-container">
 	<svg viewBox="0 0 400 550" width="100%" height="100%">
 		<defs>
+			<path id="textCurvePath"
+				d="M 125,450 L 125,440 C 150,350 350,300 300,150 C 250,50 150,50 100,150 C 50,300 250,350 275,440 L 275,450" />
+
 			<linearGradient id="scarfShadow" x1="0%" y1="0%" x2="0%" y2="100%">
 				<stop offset="0%" stop-color="#3c2a21" stop-opacity="0" />
 				<stop offset="50%" stop-color="#3c2a21" stop-opacity="0.15" />
@@ -25,17 +28,22 @@
 			[attr.stroke-dasharray]="segmentLength + ' ' + (totalPathLength - segmentLength)"
 			[attr.stroke-dashoffset]="-(day.date * (segmentLength + gap))" class="day-segment" stroke-linecap="butt"
 			(click)="updateDay(day)" style="cursor:pointer;" />
+
+		<text font-size="12" fill="#3c2a21" font-family="sans-serif" font-weight="bold" pointer-events="none">
+			<textPath xlink:href="#textCurvePath"
+				[attr.startOffset]="(day.date * (segmentLength + gap)) + (segmentLength / 2)" text-anchor="middle">
+				{{day.date}}
+			</textPath>
+		</text>
 		}
 
 		<g clip-path="url(#scarfShapeMask)" pointer-events="none">
 			<rect x="0" y="250" width="400" height="150" fill="url(#scarfShadow)" />
-
 			<g stroke="#8b5e3c" stroke-width="0.5" fill="none" opacity="0.15">
 				<path d="M 120,450 C 145,350 345,300 295,150 C 245,50 145,50 95,150 C 45,300 245,350 270,450" />
 				<path d="M 130,450 C 155,350 355,300 305,150 C 255,50 155,50 105,150 C 55,300 255,350 280,450" />
 			</g>
 		</g>
-
 		<g stroke="#3c2a21" stroke-width="0.8" fill="none" stroke-linecap="round">
 			<path d="M 109,450 C 104,460 114,470 109,480" />
 			<path d="M 113,450 C 108,460 118,470 113,480" />
