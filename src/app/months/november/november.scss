@@ -1,8 +1,11 @@
 .tracker-container {
-	max-width: 500px;
-	margin: auto;
-	text-align: center;
-	font-family: sans-serif;
+	width: 50rem;
+	height: 45rem;
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	background-image: url("/knit.png");
+	background-size: cover;
 }
 .day-segment {
 	cursor: pointer;
@@ -10,4 +13,12 @@
 }
 .day-segment:hover {
 	stroke-width: 45px;
+}
+
+svg {
+	max-width: 30rem;
+}
+
+.legend-container {
+	margin: 0 1rem 1rem 0;
 }
