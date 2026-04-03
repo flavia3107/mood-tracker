@@ -7,7 +7,7 @@ import { MoodPicker } from '../../mood-picker/mood-picker';
   styleUrl: './november.scss',
 })
 export class November {
-  days = Array.from({ length: 30 }, (_, i) => i);
+  days = Array.from({ length: 30 }, (_, i) => ({ date: i + 1, color: '#fff' }));
   totalPathLength = 1000;
   gap = 1;
   segmentLength = (this.totalPathLength / 30) - this.gap;

@@ -23,7 +23,7 @@
 			d="M 125,450 L 125,440 C 150,350 350,300 300,150 C 250,50 150,50 100,150 C 50,300 250,350 275,440 L 275,450"
 			fill="none" [attr.stroke]="day.color" stroke-width="40"
 			[attr.stroke-dasharray]="segmentLength + ' ' + (totalPathLength - segmentLength)"
-			[attr.stroke-dashoffset]="-(day * (segmentLength + gap))" class="day-segment" stroke-linecap="butt"
+			[attr.stroke-dashoffset]="-(day.date * (segmentLength + gap))" class="day-segment" stroke-linecap="butt"
 			(click)="updateDay(day)" style="cursor:pointer;" />
 		}
 
