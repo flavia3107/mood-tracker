@@ -21,10 +21,10 @@
 		@for (day of days; track day) {
 		<path
 			d="M 125,450 L 125,440 C 150,350 350,300 300,150 C 250,50 150,50 100,150 C 50,300 250,350 275,440 L 275,450"
-			fill="none" [attr.stroke]="getMoodColor(day)" stroke-width="40"
+			fill="none" [attr.stroke]="day.color" stroke-width="40"
 			[attr.stroke-dasharray]="segmentLength + ' ' + (totalPathLength - segmentLength)"
 			[attr.stroke-dashoffset]="-(day * (segmentLength + gap))" class="day-segment" stroke-linecap="butt"
-			(click)="updateMood(day)" style="cursor:pointer;" />
+			(click)="updateDay(day)" style="cursor:pointer;" />
 		}
 
 		<g clip-path="url(#scarfShapeMask)" pointer-events="none">
@@ -58,4 +58,8 @@
 			<path d="M 291,450 C 286,460 296,470 291,480" />
 		</g>
 	</svg>
+
+	<div class="legend-container">
+		<app-mood-picker (moodColorSelected)="updateMood($event)" />
+	</div>
 </div>

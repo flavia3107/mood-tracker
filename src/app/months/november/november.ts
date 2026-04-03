@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { MoodPicker } from '../../mood-picker/mood-picker';
 @Component({
   selector: 'app-november',
-  imports: [],
+  imports: [MoodPicker],
   templateUrl: './november.html',
   styleUrl: './november.scss',
 })
@@ -10,14 +11,15 @@ export class November {
   totalPathLength = 1000;
   gap = 1;
   segmentLength = (this.totalPathLength / 30) - this.gap;
-
+  private _selectedMood: string = '';
   moods: string[] = Array(30).fill('#');
 
-  getMoodColor(day: number): string {
-    return this.moods[day];
+  updateDay(day: any) {
+    if (this._selectedMood)
+      day['color'] = this._selectedMood;
   }
 
-  updateMood(day: number) {
-
+  updateMood(color: string) {
+    this._selectedMood = color;
   }
 }
