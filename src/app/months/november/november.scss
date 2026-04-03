@@ -17,6 +17,10 @@
 
 svg {
 	max-width: 30rem;
+	position: relative;
+	left: 20rem;
+	bottom: 6rem;
+	transform: rotate(20deg);
 }
 
 .legend-container {
