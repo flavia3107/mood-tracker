@@ -4,17 +4,17 @@
 			<path id="textCurvePath"
 				d="M 125,450 L 125,440 C 110,380 340,380 320,180 C 310,80 90,80 80,180 C 60,380 290,380 275,440 L 275,450" />
 
-			<linearGradient id="scarfShadow" x1="0%" y1="0%" x2="0%" y2="100%">
-				<stop offset="0%" stop-color="#3c2a21" stop-opacity="0" />
-				<stop offset="50%" stop-color="#3c2a21" stop-opacity="0.15" />
-				<stop offset="100%" stop-color="#3c2a21" stop-opacity="0" />
-			</linearGradient>
-
 			<clipPath id="scarfShapeMask">
 				<path
 					d="M 125,450 L 125,440 C 110,380 340,380 320,180 C 310,80 90,80 80,180 C 60,380 290,380 275,440 L 275,450"
 					fill="none" stroke="white" stroke-width="45" stroke-linecap="butt" />
 			</clipPath>
+
+			<linearGradient id="scarfShadow" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#3c2a21" stop-opacity="0" />
+				<stop offset="50%" stop-color="#3c2a21" stop-opacity="0.15" />
+				<stop offset="100%" stop-color="#3c2a21" stop-opacity="0" />
+			</linearGradient>
 		</defs>
 
 		<path id="scarfOutline"
@@ -39,6 +39,11 @@
 			</textPath>
 		</text>
 		}
+
+		<path d="M 125,450 L 125,440 C 110,380 340,380 320,180 C 310,80 90,80 80,180 C 60,380 290,380 275,440 L 275,450"
+			fill="none" stroke="#3c2a21" stroke-width="45" opacity="0.3"
+			[attr.stroke-dasharray]="'1 ' + (segmentLength + gap - 1)" [attr.stroke-dashoffset]="-gap/2"
+			pointer-events="none" />
 
 		<g clip-path="url(#scarfShapeMask)" pointer-events="none">
 			<rect x="0" y="280" width="400" height="150" fill="url(#scarfShadow)" />
