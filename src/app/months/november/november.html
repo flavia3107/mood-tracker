@@ -1,36 +1,30 @@
 <div class="tracker-container">
 	<svg viewBox="0 0 400 550" width="100%" height="100%">
 		<defs>
-			<path id="textCurvePath"
-				d="M 125,450 L 125,440 C 110,380 340,380 320,180 C 310,80 90,80 80,180 C 60,380 290,380 275,440 L 275,450" />
+			<path id="textCurvePath" d="M 110,430 
+				   C 110,350 50,300 50,180 
+				   C 50,50 350,50 350,180 
+				   C 350,300 290,350 290,430" />
 
 			<clipPath id="scarfShapeMask">
-				<path
-					d="M 125,450 L 125,440 C 110,380 340,380 320,180 C 310,80 90,80 80,180 C 60,380 290,380 275,440 L 275,450"
-					fill="none" stroke="white" stroke-width="45" stroke-linecap="butt" />
+				<use xlink:href="#textCurvePath" stroke="white" stroke-width="45" fill="none" />
 			</clipPath>
 
 			<linearGradient id="scarfShadow" x1="0%" y1="0%" x2="0%" y2="100%">
 				<stop offset="0%" stop-color="#3c2a21" stop-opacity="0" />
-				<stop offset="50%" stop-color="#3c2a21" stop-opacity="0.15" />
+				<stop offset="50%" stop-color="#3c2a21" stop-opacity="0.1" />
 				<stop offset="100%" stop-color="#3c2a21" stop-opacity="0" />
 			</linearGradient>
 		</defs>
 
-		<path id="scarfOutline"
-			d="M 125,450 L 125,440 C 110,380 340,380 320,180 C 310,80 90,80 80,180 C 60,380 290,380 275,440 L 275,450"
-			fill="none" stroke="#3c2a21" stroke-width="49" stroke-linecap="butt" />
-
-		<path id="scarfPath"
-			d="M 125,450 L 125,440 C 110,380 340,380 320,180 C 310,80 90,80 80,180 C 60,380 290,380 275,440 L 275,450"
-			fill="none" stroke="#ece0d1" stroke-width="45" stroke-linecap="butt" />
+		<use xlink:href="#textCurvePath" fill="none" stroke="#3c2a21" stroke-width="49" stroke-linecap="round" />
+		<use xlink:href="#textCurvePath" fill="none" stroke="#ece0d1" stroke-width="45" stroke-linecap="round" />
 
 		@for (day of days; track day) {
-		<path d="M 125,450 L 125,440 C 110,380 340,380 320,180 C 310,80 90,80 80,180 C 60,380 290,380 275,440 L 275,450"
-			fill="none" [attr.stroke]="day.color" stroke-width="45"
+		<use xlink:href="#textCurvePath" fill="none" [attr.stroke]="day.color" stroke-width="45"
 			[attr.stroke-dasharray]="segmentLength + ' ' + (totalPathLength - segmentLength)"
-			[attr.stroke-dashoffset]="-(day.date * (segmentLength + gap))" class="day-segment" stroke-linecap="butt"
-			(click)="updateDay(day)" style="cursor:pointer;" />
+			[attr.stroke-dashoffset]="-(day.date * (segmentLength + gap))" (click)="updateDay(day)"
+			style="cursor:pointer;" />
 
 		<text font-size="11" fill="#3c2a21" font-family="sans-serif" font-weight="bold" pointer-events="none">
 			<textPath xlink:href="#textCurvePath"
@@ -40,39 +34,25 @@
 		</text>
 		}
 
-		<path d="M 125,450 L 125,440 C 110,380 340,380 320,180 C 310,80 90,80 80,180 C 60,380 290,380 275,440 L 275,450"
-			fill="none" stroke="#3c2a21" stroke-width="45" opacity="0.3"
+		<use xlink:href="#textCurvePath" fill="none" stroke="#3c2a21" stroke-width="45" opacity="0.2"
 			[attr.stroke-dasharray]="'1 ' + (segmentLength + gap - 1)" [attr.stroke-dashoffset]="-gap/2"
 			pointer-events="none" />
 
-		<g clip-path="url(#scarfShapeMask)" pointer-events="none">
-			<rect x="0" y="280" width="400" height="150" fill="url(#scarfShadow)" />
-			<g stroke="#8b5e3c" stroke-width="0.5" fill="none" opacity="0.15">
-				<path d="M 120,450 C 105,380 335,380 315,180 C 305,80 85,80 75,180 C 55,380 285,380 270,450" />
-				<path d="M 130,450 C 115,380 345,380 325,180 C 315,80 95,80 85,180 C 65,380 295,380 280,450" />
-			</g>
-		</g>
-
 		<g stroke="#3c2a21" stroke-width="0.8" fill="none" stroke-linecap="round">
-			<path d="M 109,450 C 104,460 114,470 109,480" />
-			<path d="M 113,450 C 108,460 118,470 113,480" />
-			<path d="M 117,450 C 112,460 122,470 117,480" />
-			<path d="M 121,450 C 116,460 126,470 121,480" />
-			<path d="M 125,450 C 120,460 130,470 125,480" />
-			<path d="M 129,450 C 124,460 134,470 129,480" />
-			<path d="M 133,450 C 128,460 138,470 133,480" />
-			<path d="M 137,450 C 132,460 142,470 137,480" />
-			<path d="M 141,450 C 136,460 146,470 141,480" />
-
-			<path d="M 259,450 C 254,460 264,470 259,480" />
-			<path d="M 263,450 C 258,460 268,470 263,480" />
-			<path d="M 267,450 C 262,460 272,470 267,480" />
-			<path d="M 271,450 C 266,460 276,470 271,480" />
-			<path d="M 275,450 C 270,460 280,470 275,480" />
-			<path d="M 279,450 C 274,460 284,470 279,480" />
-			<path d="M 283,450 C 278,460 288,470 283,480" />
-			<path d="M 287,450 C 282,460 292,470 287,480" />
-			<path d="M 291,450 C 286,460 296,470 291,480" />
+			<g transform="translate(110, 430)">
+				<path d="M -16,0 C -21,10 -11,20 -16,30" />
+				<path d="M -8,0  C -13,10 -3,20 -8,30" />
+				<path d="M 0,0   C -5,10 5,20 0,30" />
+				<path d="M 8,0   C 3,10 13,20 8,30" />
+				<path d="M 16,0  C 11,10 21,20 16,30" />
+			</g>
+			<g transform="translate(290, 430)">
+				<path d="M -16,0 C -21,10 -11,20 -16,30" />
+				<path d="M -8,0  C -13,10 -3,20 -8,30" />
+				<path d="M 0,0   C -5,10 5,20 0,30" />
+				<path d="M 8,0   C 3,10 13,20 8,30" />
+				<path d="M 16,0  C 11,10 21,20 16,30" />
+			</g>
 		</g>
 	</svg>
 
