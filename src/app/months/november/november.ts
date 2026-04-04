@@ -12,7 +12,7 @@ export class November {
     color: '#fff'
   }));
 
-  totalPathLength = 890;
+  totalPathLength = 920;
   gap = 2;
   segmentLength = (this.totalPathLength / 30) - this.gap;
   private _selectedMood: string = '';

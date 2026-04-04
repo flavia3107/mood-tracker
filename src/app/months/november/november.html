@@ -23,12 +23,13 @@
 		@for (day of days; track day) {
 		<use xlink:href="#textCurvePath" fill="none" [attr.stroke]="day.color" stroke-width="45"
 			[attr.stroke-dasharray]="segmentLength + ' ' + (totalPathLength - segmentLength)"
-			[attr.stroke-dashoffset]="-(day.date * (segmentLength + gap))" (click)="updateDay(day)"
+			[attr.stroke-dashoffset]="-((day.date - 1) * (totalPathLength / 30))" (click)="updateDay(day)"
 			style="cursor:pointer;" />
 
 		<text font-size="11" fill="#3c2a21" font-family="sans-serif" font-weight="bold" pointer-events="none">
 			<textPath xlink:href="#textCurvePath"
-				[attr.startOffset]="(day.date * (segmentLength + gap)) + (segmentLength / 2)" text-anchor="middle">
+				[attr.startOffset]="((day.date - 1) * (totalPathLength / 30)) + (segmentLength / 2)"
+				text-anchor="middle">
 				{{day.date}}
 			</textPath>
 		</text>
