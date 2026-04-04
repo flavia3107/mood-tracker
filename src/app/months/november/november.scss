@@ -23,3 +23,11 @@ svg {
 .legend-container {
 	margin: 0 1rem 1rem 0;
 }
+
+.label {
+	font-size: 11px;
+	font-family: sans-serif;
+	font-weight: bold;
+	pointer-events: none;
+	text-anchor: middle;
+}
