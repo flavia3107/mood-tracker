@@ -33,7 +33,7 @@ export class July {
   }));
 
   updateDayMood(day: Day) {
-    if (this._selectedColor)
+    if (this._selectedColor && day['moodColor'] === '#fff')
       day.moodColor = this._selectedColor;
   }
 

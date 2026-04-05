@@ -62,7 +62,7 @@ export class February {
 
 
   updateDay(chocolate: Chocolate) {
-    if (this.selectedMood)
+    if (this.selectedMood && chocolate['color'] === '#fff')
       chocolate.color = this.selectedMood;
   }
 

@@ -18,7 +18,7 @@ export class December {
     const totalItems = this._monthData();
     const decs: { x: number, y: number, color: string }[] = [];
     const topY = 35;
-    const bottomY = 195; // Slightly increased to allow more room at the bottom
+    const bottomY = 195;
     const height = bottomY - topY;
     const trunkX = 100;
     const redLineX = 70;
@@ -27,22 +27,18 @@ export class December {
     for (let i = 0; i < totalItems; i++) {
       let placed = false;
       let attempts = 0;
-
-      // Start with the ideal vertical progress
       let currentY = topY + (i * (height / totalItems));
 
       while (!placed && attempts < 50) {
         const progress = (currentY - topY) / height;
-        // 1. Tapered Radius Logic
         const baseRadius = 5 + (70 * progress);
         const currentRadius = progress < 0.8 ? baseRadius : baseRadius * (1 - (progress - 0.8) * 2.5);
-        // 2. Spiral Rotation (Angle)
         const angle = (progress * Math.PI * 14) + Math.PI;
         let x = trunkX + Math.cos(angle) * currentRadius;
 
         // 3. Red Line Boundary
         if (x < redLineX) {
-          x = redLineX + 6; // Nudge in slightly more to account for bulb width
+          x = redLineX + 6;
         }
 
         // 4. OVERLAP CHECK
@@ -67,7 +63,7 @@ export class December {
   }
 
   updateMood(day: any) {
-    if (this._selectedColor)
+    if (this._selectedColor && day['color'] === '#fff')
       day.color = this._selectedColor;
   }
 
