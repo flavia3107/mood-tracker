@@ -10,9 +10,9 @@ import { MoodPicker } from "../../mood-picker/mood-picker";
 })
 export class June {
   wedgePath = signal("M 250,30 L 470,440 Q 250,570 30,440 Z");
-  rindPathBase = signal("M 470,440 Q 250,570 30,440"); // Solid Mint base
-  rindPathMid = signal("M 465,445 Q 250,565 35,445"); // Translucent Green mid
-  rindPathOuter = signal("M 460,455 Q 250,560 40,455"); // Translucent Dark Green edge
+  rindPathBase = signal("M 470,440 Q 250,570 30,440");
+  rindPathMid = signal("M 465,445 Q 250,565 35,445");
+  rindPathOuter = signal("M 460,455 Q 250,560 40,455");
   days = signal<string[]>(new Array(31).fill('#FFFFFF'));
   private _selectedMood: string = '';
 
@@ -49,7 +49,7 @@ export class June {
     { id: 24, x: 316, y: 388, d: "M310,380 L280,440 L340,438 L370,365 Z", color: '#fff' },
     { id: 25, x: 377, y: 372, d: "M370,365 L340,438 L400,435 L440,350 Z", color: '#fff' },
     { id: 26, x: 440, y: 401, d: "M440,350 L400,435 L460,430 L490,350 Z", color: '#fff' },
-    // Row 7 (Relocated below Row 6)
+    // Row 7 
     { id: 27, x: 160, y: 442, d: "M110,430 L170,435 L190,470 L100,440 Z", color: '#fff' },
     { id: 28, x: 178, y: 443, d: "M170,435 L235,440 L220,480 L170,460 Z", color: '#fff' },
     { id: 29, x: 237, y: 447, d: "M230,440 L260,435 L300,465 L220,490 Z", color: '#fff' },
@@ -62,7 +62,7 @@ export class June {
   }
 
   updateDay(day: any) {
-    if (this._selectedMood)
+    if (this._selectedMood && day['color'] === '#fff')
       day['color'] = this._selectedMood;
   }
 }

@@ -19,7 +19,7 @@ export class November {
   moods: string[] = Array(30).fill('#');
 
   updateDay(day: any) {
-    if (this._selectedMood)
+    if (this._selectedMood && day['color'] === '#fff')
       day['color'] = this._selectedMood;
   }
 

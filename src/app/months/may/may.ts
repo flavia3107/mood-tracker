@@ -56,14 +56,14 @@ export class May implements OnInit {
         y,
         rotation: Math.random() * 360,
         scale: 1.8 + Math.random() * 0.3,
-        color: '#ffffff'
+        color: '#fff'
       });
     }
     this.flowers = tempTrackers;
   }
 
   onFlowerClick(flower: Flower) {
-    if (this._selectedColor)
+    if (this._selectedColor && flower['color'] === '#fff')
       flower.color = this._selectedColor;
   }
 

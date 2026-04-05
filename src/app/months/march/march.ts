@@ -30,7 +30,6 @@ export class March {
 
   getLeafTransform(leafIndex: number): string {
     const rotations = [0, 90, 180, 270];
-    // Gap set to 0 so the tips touch exactly at the center
     const gap = 3;
 
     const offsets = [
@@ -45,7 +44,6 @@ export class March {
   }
 
   getLabelPos(shardIndex: number) {
-    // Approximate center points for the 8 shard triangles
     const centers = [
       { x: 40, y: 75 }, { x: 60, y: 75 },
       { x: 20, y: 45 }, { x: 35, y: 45 },
