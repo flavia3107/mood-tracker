@@ -22,7 +22,7 @@ export class August {
         label: i + 1,
         groupTransform: `rotate(${angle}, 125, 125)`,
         textTransform: `rotate(${-angle}, 125, 48)`,
-        fill: '#ffffff',
+        fill: '#fff',
         stroke: '#3E2723'
       };
     });
@@ -33,7 +33,7 @@ export class August {
   }
 
   updateDayMood(day: any) {
-    if (this._selectedMood)
+    if (this._selectedMood && day['fill'] === '#fff')
       day.fill = this._selectedMood;
   }
 }

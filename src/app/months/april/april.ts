@@ -16,8 +16,6 @@ export class April {
 
   umbrellaSlices = Array.from({ length: this.totalDays }, (_, i) => {
     const day = i + 1;
-
-    // 1. EQUAL WIDTH LOGIC
     const totalPathLength = 350;
     const getPointOnPath = (index: number) => {
       const distance = (index / this.totalDays) * totalPathLength;
@@ -80,7 +78,7 @@ export class April {
   }
 
   updateDay(day: any) {
-    if (this._selectedMood)
+    if (this._selectedMood && day['color'] === '#fff')
       day['color'] = this._selectedMood;
   }
 }
