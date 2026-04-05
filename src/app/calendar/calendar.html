@@ -1,10 +1,10 @@
 <div class="calendar-container">
 	<div class="navigation flex-row middle">
-		<span>{{selected | date: 'MMMM yyyy'}} </span>
 		<div class="navigation-buttons-container flex-row">
 			<mat-icon matTooltip="Previous Month" (click)="updateCurrentMonth(-1)">navigate_before</mat-icon>
 			<mat-icon matTooltip="Next Month" (click)="updateCurrentMonth(1)">navigate_next</mat-icon>
 		</div>
+		<span>{{selected | date: 'MMMM yyyy'}} </span>
 	</div>
 	<div class="calendar-body days">
 		@for(dayName of days; track $index){
