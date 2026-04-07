@@ -19,9 +19,9 @@ interface Flower {
 })
 export class May implements OnInit {
   private _utilsService = inject(UtilsService);
-  private _monthData = this._utilsService.monthDays; // Assuming this returns an array of ~30 days
+  private _monthData = this._utilsService.monthDays;
   numDays = 31;
-  public _selectedColor = ''; // The color currently selected in your palette
+  public _selectedColor = '';
   public flowers: Flower[] = [];
 
   ngOnInit() {

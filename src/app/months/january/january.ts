@@ -1,9 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { UtilsService } from '../../../shared/services/utils';
-interface Point { x: number; y: number; }
+
 @Component({
   selector: 'app-january',
-  imports: [],
   templateUrl: './january.html',
   styleUrl: './january.scss',
 })
