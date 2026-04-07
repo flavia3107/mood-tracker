@@ -1,5 +1,5 @@
 import { DatePipe, NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { DAYS } from '../../shared/constants/constants';
 import { UtilsService } from '../../shared/services/utils';
 import { MatIconModule } from '@angular/material/icon';
