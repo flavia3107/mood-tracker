@@ -36,7 +36,7 @@ export class January {
           x: 20 + Math.random() * 160,
           y: 20 + Math.random() * 160,
           rotation: Math.random() * 360,
-          scale: 0.4 + Math.random() * 0.5
+          scale: 0.5 + Math.random() * 0.1
         };
 
         const isOverlapping = seeds.some(existing => {
