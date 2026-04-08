@@ -1,5 +1,6 @@
-<div class="container">
-	<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="svg">
+<div class="container flex-column">
+
+	<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
 		<defs>
 			<filter id="iceGlow">
 				<feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
@@ -27,7 +28,9 @@
 		</g>
 		}
 	</svg>
-
+	<div class="legend-container">
+		<app-mood-picker (moodColorSelected)="updateMood($event)" />
+	</div>
 </div>
 
 <!-- to do: update the sidenav -->

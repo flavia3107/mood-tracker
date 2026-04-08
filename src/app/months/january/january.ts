@@ -1,10 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { UtilsService } from '../../../shared/services/utils';
+import { MoodPicker } from '../../mood-picker/mood-picker';
 
 @Component({
   selector: 'app-january',
   templateUrl: './january.html',
   styleUrl: './january.scss',
+  imports: [MoodPicker]
 })
 export class January {
   private _utilService = inject(UtilsService);
@@ -24,7 +26,7 @@ export class January {
   private _generateFrostSeeds() {
     const count = this.monthData();
     const seeds: any[] = [];
-    const maxAttempts = 100;
+    const maxAttempts = 200;
     const paddingBase = 20;
 
     for (let i = 0; i < count; i++) {
@@ -33,7 +35,7 @@ export class January {
 
       while (!placed && attempts < maxAttempts) {
         const newSeed = {
-          x: 20 + Math.random() * 160,
+          x: Math.random() * 200,
           y: 20 + Math.random() * 160,
           rotation: Math.random() * 360,
           scale: 0.5 + Math.random() * 0.1
@@ -56,5 +58,9 @@ export class January {
     }
 
     return seeds;
+  }
+
+  public updateMood(color: string) {
+
   }
 }
