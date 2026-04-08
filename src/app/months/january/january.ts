@@ -35,10 +35,10 @@ export class January {
 
       while (!placed && attempts < maxAttempts) {
         const newSeed = {
-          x: Math.random() * 200,
-          y: 20 + Math.random() * 160,
+          x: Math.random() * 300,
+          y: 20 + Math.random() * 150,
           rotation: Math.random() * 360,
-          scale: 0.5 + Math.random() * 0.1
+          scale: 0.7 + Math.random() * 0.1
         };
 
         const isOverlapping = seeds.some(existing => {
