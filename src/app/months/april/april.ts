@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UtilsService } from '../../../shared/services/utils';
 import { MoodPicker } from '../../mood-picker/mood-picker';
 
 @Component({
@@ -9,7 +10,8 @@ import { MoodPicker } from '../../mood-picker/mood-picker';
 })
 export class April {
   private _selectedMood: string = '';
-
+  private _utilsService = inject(UtilsService);
+  private _currentDate = new Date();
   totalDays = 30;
   curveIntensity = 145;
   topCurveY = 90;
@@ -69,7 +71,7 @@ export class April {
         x: ((p1.x + p2.x) / 2).toFixed(1),
         y: (((p1.y + p2.y) / 2) - 20).toFixed(1),
       },
-      color: '#fff'
+      color: this._utilsService.getMoodColorForDate(new Date(this._currentDate.getFullYear(), this._currentDate.getMonth(), day))
     };
   });
 

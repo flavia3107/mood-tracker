@@ -1,5 +1,6 @@
 import { formatDate } from '@angular/common';
 import { computed, Injectable, signal } from '@angular/core';
+import { MONTHLY_MOOD_CONFIG } from '../constants/constants';
 
 @Injectable({
 	providedIn: 'root',
@@ -55,4 +56,17 @@ export class UtilsService {
 		max = Math.floor(max);
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
+
+	public getMoodColorForDate(date: Date): string {
+		const today = new Date();
+		const isPast = new Date(date.toDateString()) < new Date(today.toDateString());
+
+		if (!isPast) {
+			return '#fff';
+		}
+
+		const monthConfig = MONTHLY_MOOD_CONFIG[this.activeMonth()]
+		const index = Math.floor(Math.random() * 6);
+		return monthConfig[index].color;
+	};
 }
