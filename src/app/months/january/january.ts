@@ -10,17 +10,14 @@ import { MoodPicker } from '../../mood-picker/mood-picker';
 })
 export class January {
   private _utilService = inject(UtilsService);
+  private _selectedColor = '';
   public monthData = this._utilService.monthDays;
   public frostSeeds = this._generateFrostSeeds();
 
-  getMoodColor(idx: number): string {
-    const palette: Record<string, string> = {
-      'great': '#E0F7FA',
-      'good': '#B2EBF2',
-      'meh': '#80DEEA',
-      'none': 'rgba(255, 255, 255, 0.1)'
-    };
-    return palette[this.monthData()[idx]] || palette['none'];
+  setMood(day: any) {
+    if (this._selectedColor) {
+      day['color'] = this._selectedColor;
+    }
   }
 
   private _generateFrostSeeds() {
@@ -38,7 +35,8 @@ export class January {
           x: Math.random() * 300,
           y: 20 + Math.random() * 150,
           rotation: Math.random() * 360,
-          scale: 0.7 + Math.random() * 0.1
+          scale: 0.7 + Math.random() * 0.1,
+          color: '#fff'
         };
 
         const isOverlapping = seeds.some(existing => {
@@ -61,6 +59,6 @@ export class January {
   }
 
   public updateMood(color: string) {
-
+    this._selectedColor = color;
   }
 }
