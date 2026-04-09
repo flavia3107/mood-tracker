@@ -1,12 +1,12 @@
 export const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 const JANUARY_MOOD_COLORS = [
-	{ label: 'happy', color: '#D4E157' },
-	{ label: 'neutral', color: '#9CCC65' },
-	{ label: 'stressed', color: '#689F38' },
-	{ label: 'tired', color: '#455A64' },
-	{ label: 'moody', color: '#2E7D32' },
-	{ label: 'sad', color: '#546E7A' }
+	{ label: 'happy', color: '#ebeff2' },
+	{ label: 'neutral', color: '#c0d4dc' },
+	{ label: 'stressed', color: '#94b7c5' },
+	{ label: 'tired', color: '#5f8e9d' },
+	{ label: 'moody', color: '#3a6675' },
+	{ label: 'sad', color: '#2e4d57' }
 ];
 const FEBRUARY_MOOD_COLORS = [
 	{ label: 'happy', color: '#FCF8E8' },   // White
