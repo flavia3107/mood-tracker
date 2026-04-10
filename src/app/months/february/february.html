@@ -42,7 +42,7 @@
 				fill="#eecccc" stroke="#916161" stroke-width="6" />
 		</g>
 		<g transform="translate(0, 0)">
-			@for (c of chocolates(); track c.id) {
+			@for (c of chocolates; track c.id) {
 			<g (click)="updateDay(c)" style="cursor: pointer;" [attr.transform]="'rotate(' + c.rotate + ')'"
 				style="transform-origin: center; transform-box: fill-box;">
 

@@ -12,12 +12,10 @@ export class December {
   private _utilsService = inject(UtilsService);
   private _monthData = this._utilsService.monthDays;
   private _selectedColor = '';
-  private _currentDate = new Date().getFullYear();
-
   public readonly decorations = this._calculateDecorations();
 
   private _calculateDecorations() {
-    console.log('HEREE', this._utilsService.activeMonth())
+    const date = this._utilsService.selectedDate();
 
     const totalItems = this._monthData();
     const decs: { x: number, y: number, color: string }[] = [];
@@ -54,7 +52,7 @@ export class December {
         });
 
         if (!hasOverlap) {
-          decs.push({ x, y: currentY, color: this._utilsService.getMoodColorForDate(new Date(this._currentDate, 11, i + 1)) });
+          decs.push({ x, y: currentY, color: this._utilsService.getMoodColorForDate(new Date(date.getFullYear(), 11, i + 1)) });
           placed = true;
         } else {
           // If it overlaps, nudge the Y down slightly and try again

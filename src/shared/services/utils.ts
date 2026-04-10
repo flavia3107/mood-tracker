@@ -6,14 +6,13 @@ import { MONTHLY_MOOD_CONFIG } from '../constants/constants';
 	providedIn: 'root',
 })
 export class UtilsService {
-
-	private _selectedDate = signal<Date>(new Date());
+	public selectedDate = signal<Date>(new Date());
 	public calendarDays = computed(() => this._getDaysInMonth());
 	public activeMonth = computed(() => this._getMonth());
 	public monthDays = computed(() => this._getMonthDays());
 
 	private _getDaysInMonth(): string[] {
-		const date = this._selectedDate();
+		const date = this.selectedDate();
 		const year = date.getFullYear();
 		const month = date.getMonth();
 		const numDays = new Date(year, month + 1, 0).getDate();
@@ -38,17 +37,17 @@ export class UtilsService {
 	}
 
 	private _getMonth(): string {
-		return this._selectedDate().toLocaleString('en-US', { month: 'long' });
+		return this.selectedDate().toLocaleString('en-US', { month: 'long' });
 	}
 
 	private _getMonthDays(): any {
-		const date = this._selectedDate();
+		const date = this.selectedDate();
 		const year = date.getFullYear();
 		return new Date(year, date.getMonth() + 1, 0).getDate();
 	}
 
 	public updateActiveDate(date: Date) {
-		this._selectedDate.set(date);
+		this.selectedDate.set(date);
 	}
 
 	public generateRandomNumber(min: number, max: number): number {
