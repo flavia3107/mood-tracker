@@ -5,7 +5,7 @@
 		</defs>
 
 		<g transform="translate(50, 50)">
-			@for (day of julyDays(); track day.id) {
+			@for (day of julyDays; track day.id) {
 			<use href="#hex-shape" [attr.x]="day.x" [attr.y]="day.y" [style.fill]="day.moodColor"
 				(click)="updateDayMood(day)" stroke="#D4A017" stroke-width="1.5"
 				class="transition-all duration-300 hover:brightness-95 cursor-pointer" />

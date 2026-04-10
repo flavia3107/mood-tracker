@@ -25,6 +25,7 @@ export class January {
     const seeds: any[] = [];
     const maxAttempts = 200;
     const paddingBase = 20;
+    const date = this._utilService.selectedDate();
 
     for (let i = 0; i < count; i++) {
       let placed = false;
@@ -36,7 +37,7 @@ export class January {
           y: 20 + Math.random() * 150,
           rotation: Math.random() * 360,
           scale: 0.7 + Math.random() * 0.1,
-          color: '#fff'
+          color: this._utilService.getMoodColorForDate(new Date(date.getFullYear(), 0, i + 1))
         };
 
         const isOverlapping = seeds.some(existing => {
