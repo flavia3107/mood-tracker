@@ -23,6 +23,8 @@ export class May implements OnInit {
   numDays = 31;
   public _selectedColor = '';
   public flowers: Flower[] = [];
+  private _utilService = inject(UtilsService);
+  private _date = this._utilService.selectedDate();
 
   ngOnInit() {
     this._generateFlowers();
@@ -56,7 +58,7 @@ export class May implements OnInit {
         y,
         rotation: Math.random() * 360,
         scale: 1.8 + Math.random() * 0.3,
-        color: '#fff'
+        color: this._utilService.getMoodColorForDate(new Date(this._date.getFullYear(), 4, i + 1))
       });
     }
     this.flowers = tempTrackers;
