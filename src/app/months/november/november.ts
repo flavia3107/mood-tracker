@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UtilsService } from '../../../shared/services/utils';
 import { MoodPicker } from '../../mood-picker/mood-picker';
 @Component({
   selector: 'app-november',
@@ -7,9 +8,11 @@ import { MoodPicker } from '../../mood-picker/mood-picker';
   styleUrl: './november.scss',
 })
 export class November {
+  private _utilService = inject(UtilsService);
+  private _date = this._utilService.selectedDate();
   days = Array.from({ length: 30 }, (_, i) => ({
     date: i + 1,
-    color: '#fff'
+    color: this._utilService.getMoodColorForDate(new Date(this._date.getFullYear(), 10, i + 1))
   }));
 
   totalPathLength = 920;
