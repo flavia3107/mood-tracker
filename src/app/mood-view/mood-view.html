@@ -31,7 +31,7 @@
 		<path d="M200,435 Q200,500 155,465" stroke="#8d7762" stroke-width="6" fill="none" stroke-linecap="round" />
 
 		<g clip-path="url(#umbrella-mask)">
-			@for (section of umbrellaSlices; track $index) {
+			@for (section of m.days; track $index) {
 			<g (click)="m.updateMood(section)" class="shard-group">
 				<path [attr.d]="section.path" [attr.fill]="section.color" opacity="1" />
 				<text class="umbrella-label" [attr.x]="section.label.x" [attr.y]="section.label.y"
