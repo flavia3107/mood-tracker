@@ -57,6 +57,18 @@ const APRIL_DAYS: any[] = Array.from({ length: 30 }, (_, i) => {
 	};
 });
 
+const AUGUST_DAYS: any[] = Array.from({ length: 31 }, (_, i) => {
+	const angle = (i * 360) / 31;
+	return {
+		label: i + 1,
+		groupTransform: `rotate(${angle}, 125, 125)`,
+		textTransform: `rotate(${-angle}, 125, 48)`,
+		color: '#fff',
+		stroke: '#3E2723'
+	};
+});
+
 export const MONTH_DAYS_CONFIG: { [key: string]: any } = {
-	'April': APRIL_DAYS
+	'April': APRIL_DAYS,
+	'August': AUGUST_DAYS
 }

@@ -1,10 +1,9 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { computed, viewChild } from '@angular/core';
+import { computed, effect, viewChild } from '@angular/core';
 import { TemplateRef } from '@angular/core';
 import { Component, inject } from '@angular/core';
 import { MONTH_DAYS_CONFIG } from '../../shared/constants/config';
 import { UtilsService } from '../../shared/services/utils';
-import { August } from '../months/august/august';
 import { December } from '../months/december/december';
 import { February } from '../months/february/february';
 import { January } from '../months/january/january';
@@ -19,7 +18,7 @@ import { MoodPicker } from '../mood-picker/mood-picker';
 
 @Component({
   selector: 'app-mood-view',
-  imports: [January, February, March, MoodPicker, May, June, July, August, September, October, November, December, NgTemplateOutlet],
+  imports: [January, February, March, MoodPicker, May, June, July, September, October, November, December, NgTemplateOutlet],
   templateUrl: './mood-view.html',
   styleUrl: './mood-view.scss',
 })
@@ -40,12 +39,7 @@ export class MoodView {
   private _nov = viewChild<TemplateRef<any>>('november');
   private _dec = viewChild<TemplateRef<any>>('december');
   private _selectedColor = '';
-
-  public moodLogic = {
-    getColor: (color: string) => this.getMoodColorForDate(color),
-    updateMood: (day: any) => this.onDayClick(day),
-    days: this._getDaysConfig()
-  };
+  public moodLogic = this._updateSvgConfig();
 
   activeTemplate = computed(() => {
     const map: Record<string, TemplateRef<any> | undefined> = {
@@ -63,6 +57,7 @@ export class MoodView {
       'December': this._dec(),
     };
 
+    this.moodLogic = this._updateSvgConfig();
     return map[this.currentMonth()];
   });
 
@@ -77,6 +72,16 @@ export class MoodView {
   }
 
   private _getDaysConfig() {
-    return MONTH_DAYS_CONFIG[this.currentMonth()].map((day: any, index: number) => ({ ...day, color: this._utilService.getMoodColorForDate(new Date(this._date.getFullYear(), this._date.getMonth(), index + 1)) }))
+    const days = MONTH_DAYS_CONFIG[this.currentMonth()]?.map((day: any, index: number) => ({ ...day, color: this._utilService.getMoodColorForDate(new Date(this._date.getFullYear(), this._date.getMonth(), index + 1)) }));
+    console.log('DAYS', days)
+    return days
+  }
+
+  private _updateSvgConfig() {
+    return {
+      getColor: (color: string) => this.getMoodColorForDate(color),
+      updateMood: (day: any) => this.onDayClick(day),
+      days: this._getDaysConfig()
+    }
   }
 }

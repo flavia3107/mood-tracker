@@ -66,7 +66,34 @@
 	<app-july />
 </ng-template>
 <ng-template #august let-m>
-	<app-august />
+	<div class="legend-container">
+		<app-mood-picker (moodColorSelected)="m.getColor($event)" />
+	</div>
+	<svg viewBox="0 0 250 250" class="sunflower">
+		<defs>
+			<mask id="petalMask">
+				<path d="M125 105 C135 80, 140 40, 125 30 C110 40, 115 80, 125 105 Z" fill="white" />
+			</mask>
+		</defs>
+
+		@for (day of m.days; track day.label) {
+		<g [attr.transform]="day.groupTransform" (click)="m.updateMood(day)" style="cursor: pointer;">
+			<path d="M125 105 C135 80, 140 40, 125 30 C110 40, 115 80, 125 105 Z" [attr.fill]="day.color"
+				[attr.stroke]="day.stroke" stroke-width="0.7" />
+			<g mask="url(#petalMask)" opacity="0.3" [attr.fill]="day.stroke">
+				<path d="M125 105 C132 85, 130 50, 125 45 C120 50, 118 85, 125 105 Z" />
+			</g>
+			@let textFill = ['#F57C00', '#BF360C'].includes(day.color) ? '#FFF59D' : '#3E2723';
+			<text x="125" y="48" text-anchor="middle" font-size="8" font-weight="900" [attr.fill]="textFill"
+				[attr.transform]="day.textTransform" style="pointer-events: none; font-family: sans-serif;">
+				{{ day.label }}
+			</text>
+		</g>
+		}
+		<circle cx="125" cy="125" r="40" fill="#3E2723" />
+		<circle cx="125" cy="125" r="35" fill="#422426" stroke="#232323" stroke-width="2" stroke-dasharray="1 3" />
+		<circle cx="125" cy="125" r="32" fill="none" stroke="#232323" stroke-opacity="0.2" stroke-width="1" />
+	</svg>
 </ng-template>
 <ng-template #september let-m>
 	<app-september />
