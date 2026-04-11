@@ -23,7 +23,7 @@ import { MoodPicker } from '../mood-picker/mood-picker';
 })
 export class MoodView {
   private _utilService = inject(UtilsService);
-  private _date = this._utilService.selectedDate();
+  private _date = this._utilService.selectedDate;
   public currentMonth = this._utilService.activeMonth;
   private _jan = viewChild<TemplateRef<any>>('january');
   private _feb = viewChild<TemplateRef<any>>('february');
@@ -71,7 +71,8 @@ export class MoodView {
   }
 
   private _getDaysConfig() {
-    const days = MONTH_DAYS_CONFIG[this.currentMonth()]?.map((day: any, index: number) => ({ ...day, color: this._utilService.getMoodColorForDate(new Date(this._date.getFullYear(), this._date.getMonth(), index + 1)) }));
+    console.log('here', this._date())
+    const days = MONTH_DAYS_CONFIG[this.currentMonth()]?.map((day: any, index: number) => ({ ...day, color: this._utilService.getMoodColorForDate(new Date(this._date().getFullYear(), this._date().getMonth(), index + 1)) }));
     return days
   }
 
