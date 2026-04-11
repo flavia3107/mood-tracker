@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UtilsService } from '../../../shared/services/utils';
 import { MoodPicker } from '../../mood-picker/mood-picker';
 
 interface FacetDay {
@@ -18,6 +19,9 @@ interface FacetDay {
 })
 export class October {
   private _selectedColor: string = '';
+  private _utilService = inject(UtilsService);
+  private _date = this._utilService.selectedDate();
+
   days: FacetDay[] = this._generateFacets();
 
   private _generateFacets() {
@@ -64,7 +68,7 @@ export class October {
 
     const newVal = facetData.map((data, i) => ({
       id: i + 1,
-      color: '#ffffff',
+      color: this._utilService.getMoodColorForDate(new Date(this._date.getFullYear(), 9, i + 1)),
       points: data.pts,
       centerX: data.cx,
       centerY: data.cy
