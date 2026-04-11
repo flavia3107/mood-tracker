@@ -1,28 +1,41 @@
 <div class="month-container flex-row center middle svg-container">
-	@switch (currentMonth()) {
-	@case ('January') {
-	<app-january /> }
-	@case ('February') {
-	<app-february /> }
-	@case ('March') {
-	<app-march /> }
-	@case ('April') {
-	<app-april /> }
-	@case ('May') {
-	<app-may /> }
-	@case ('June') {
-	<app-june /> }
-	@case ('July') {
-	<app-july /> }
-	@case ('August') {
-	<app-august /> }
-	@case ('September') {
-	<app-september /> }
-	@case ('October') {
-	<app-october /> }
-	@case ('November') {
-	<app-november /> }
-	@case ('December') {
-	<app-december /> }
-	}
+	<ng-container [ngTemplateOutlet]="activeTemplate()" [ngTemplateOutletContext]="{ $implicit: moodLogic }">
+	</ng-container>
 </div>
+
+<ng-template #january let-m>
+	<app-january />
+</ng-template>
+<ng-template #february let-m>
+	<app-february />
+</ng-template>
+<ng-template #march let-m>
+	<app-march />
+</ng-template>
+<ng-template #april let-m>
+	<app-april />
+</ng-template>
+<ng-template #may let-m>
+	<app-may />
+</ng-template>
+<ng-template #june let-m>
+	<app-june />
+</ng-template>
+<ng-template #july let-m>
+	<app-july />
+</ng-template>
+<ng-template #august let-m>
+	<app-august />
+</ng-template>
+<ng-template #september let-m>
+	<app-september />
+</ng-template>
+<ng-template #october let-m>
+	<app-october />
+</ng-template>
+<ng-template #november let-m>
+	<app-november />
+</ng-template>
+<ng-template #december let-m>
+	<app-december />
+</ng-template>
