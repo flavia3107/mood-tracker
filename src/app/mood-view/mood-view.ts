@@ -1,4 +1,4 @@
-import { NgTemplateOutlet } from '@angular/common';
+import { LowerCasePipe, NgClass, NgTemplateOutlet } from '@angular/common';
 import { computed, effect, viewChild } from '@angular/core';
 import { TemplateRef } from '@angular/core';
 import { Component, inject } from '@angular/core';
@@ -18,7 +18,7 @@ import { MoodPicker } from '../mood-picker/mood-picker';
 
 @Component({
   selector: 'app-mood-view',
-  imports: [January, February, March, MoodPicker, May, June, July, September, October, November, December, NgTemplateOutlet],
+  imports: [January, February, March, MoodPicker, May, June, July, September, October, November, December, NgTemplateOutlet, LowerCasePipe, NgClass],
   templateUrl: './mood-view.html',
   styleUrl: './mood-view.scss',
 })

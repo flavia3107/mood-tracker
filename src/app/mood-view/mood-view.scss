@@ -3,7 +3,7 @@ app-may {
 	height: 100%;
 }
 
-.container {
+.april {
 	display: flex;
 	align-items: flex-end;
 	width: 50rem;
@@ -13,69 +13,43 @@ app-may {
 	background-position: right;
 	background-color: #fff;
 	justify-content: space-between;
+
+	.april-svg {
+		width: 40rem;
+		height: 45rem;
+		position: relative;
+		top: 6rem;
+		left: 2.5rem;
+		transform: rotate(10deg);
+	}
+
+	.legend-container {
+		margin: 0 1rem 1rem 0;
+	}
+
+	.umbrella-label {
+		font-family: sans-serif;
+		font-size: 8.5px;
+		font-weight: bold;
+		fill: rgb(228, 228, 228);
+		text-anchor: middle;
+		dominant-baseline: central;
+		pointer-events: none;
+		paint-order: stroke;
+		stroke: #494949;
+		stroke-width: 1.5px;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.shard-group {
+		cursor: pointer;
+		stroke: #bdbdbd;
+		stroke-width: 0.5;
+	}
 }
 
-.april-svg {
-	width: 40rem;
-	height: 45rem;
-	position: relative;
-	top: 6rem;
-	left: 2.5rem;
-	transform: rotate(10deg);
-}
-
-.legend-container {
-	margin: 0 1rem 1rem 0;
-}
-
-.umbrella-label {
-	font-family: sans-serif;
-	font-size: 8.5px;
-	font-weight: bold;
-	fill: rgb(228, 228, 228);
-	text-anchor: middle;
-	dominant-baseline: central;
-	pointer-events: none;
-	paint-order: stroke;
-	stroke: #494949;
-	stroke-width: 1.5px;
-	stroke-linecap: round;
-	stroke-linejoin: round;
-}
-
-.shard-group {
-	cursor: pointer;
-	stroke: #bdbdbd;
-	stroke-width: 0.5;
-}
-
-// august
-// .august-container {
-.petal {
-	transition: transform 0.2s ease-in-out, fill 0.3s ease;
-	cursor: pointer;
-}
-.petal:hover {
-	filter: brightness(1.1);
-}
-
-.day-label {
-	fill: #3e2723;
-	font-size: 5px;
-	font-family: "Arial", sans-serif;
-	font-weight: bold;
-	dominant-baseline: middle;
-	pointer-events: none;
-}
-
-svg {
-	width: 33rem;
-	height: 33rem;
-	margin-top: 24rem;
-	margin-right: -5.5rem;
-}
-
-.container {
+.august {
 	background-image: url("/sunflower.png");
 	background-size: cover;
 	background-position: right;
@@ -85,10 +59,32 @@ svg {
 	align-items: center;
 	height: 45rem;
 	width: 50rem;
-}
+	.petal {
+		transition: transform 0.2s ease-in-out, fill 0.3s ease;
+		cursor: pointer;
+	}
+	.petal:hover {
+		filter: brightness(1.1);
+	}
 
-.legend-container {
-	margin-top: -30rem;
-	margin-left: 1rem;
+	.day-label {
+		fill: #3e2723;
+		font-size: 5px;
+		font-family: "Arial", sans-serif;
+		font-weight: bold;
+		dominant-baseline: middle;
+		pointer-events: none;
+	}
+
+	svg {
+		width: 33rem;
+		height: 33rem;
+		margin-top: 24rem;
+		margin-right: -5.5rem;
+	}
+
+	.legend-container {
+		margin-top: -30rem;
+		margin-left: 1rem;
+	}
 }
-// }
