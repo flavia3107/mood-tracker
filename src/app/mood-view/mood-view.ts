@@ -73,7 +73,6 @@ export class MoodView {
 
   private _getDaysConfig() {
     const days = MONTH_DAYS_CONFIG[this.currentMonth()]?.map((day: any, index: number) => ({ ...day, color: this._utilService.getMoodColorForDate(new Date(this._date.getFullYear(), this._date.getMonth(), index + 1)) }));
-    console.log('DAYS', days)
     return days
   }
 
