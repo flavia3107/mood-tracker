@@ -105,5 +105,20 @@
 	<app-november />
 </ng-template>
 <ng-template #december let-m>
-	<app-december />
+	<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+		@for (d of m.days; track $index;) {
+		<g class="bulb" [class.brightness]="d.color !== '#fff'" [attr.transform]="'translate(' + d.x + ',' + d.y + ')'"
+			(click)="m.updateMood(d)">
+			<circle cx="0" cy="0" r="5" [attr.fill]="d.color" />
+			<rect x="-1" y="-6.2" width="2" height="2" fill="#333" />
+			<text class="label" [class.lightText]="['#840627', '#af142e', '#e0464f'].includes(d.color)" x="0" y="0"
+				text-anchor="middle" dy=".35em">
+				{{$index + 1}}
+			</text>
+		</g>
+		}
+	</svg>
+	<div class="legend-container">
+		<app-mood-picker (moodColorSelected)="m.getColor($event)" />
+	</div>
 </ng-template>

@@ -68,7 +68,58 @@ const AUGUST_DAYS: any[] = Array.from({ length: 31 }, (_, i) => {
 	};
 });
 
+const DECEMBER_DAYS: any[] = _getDecemberConfig();
+
+
+function _getDecemberConfig() {
+	const decs: { x: number, y: number, color: string }[] = [];
+	const topY = 35;
+	const bottomY = 195;
+	const height = bottomY - topY;
+	const trunkX = 100;
+	const redLineX = 70;
+	const minDistance = 11.5;
+
+	for (let i = 0; i < 31; i++) {
+		let placed = false;
+		let attempts = 0;
+		let currentY = topY + (i * (height / 31));
+
+		while (!placed && attempts < 50) {
+			const progress = (currentY - topY) / height;
+			const baseRadius = 5 + (70 * progress);
+			const currentRadius = progress < 0.8 ? baseRadius : baseRadius * (1 - (progress - 0.8) * 2.5);
+			const angle = (progress * Math.PI * 14) + Math.PI;
+			let x = trunkX + Math.cos(angle) * currentRadius;
+
+			// 3. Red Line Boundary
+			if (x < redLineX) {
+				x = redLineX + 6;
+			}
+
+			// 4. OVERLAP CHECK
+			const hasOverlap = decs.some(other => {
+				const dx = x - other.x;
+				const dy = currentY - other.y;
+				const distance = Math.sqrt(dx * dx + dy * dy);
+				return distance < minDistance;
+			});
+
+			if (!hasOverlap) {
+				decs.push({ x, y: currentY, color: '#fff' });
+				placed = true;
+			} else {
+				// If it overlaps, nudge the Y down slightly and try again
+				currentY += 1.5;
+				attempts++;
+			}
+		}
+	}
+	return decs;
+}
+
 export const MONTH_DAYS_CONFIG: { [key: string]: any } = {
 	'April': APRIL_DAYS,
-	'August': AUGUST_DAYS
+	'August': AUGUST_DAYS,
+	'December': DECEMBER_DAYS
 }
