@@ -3,7 +3,6 @@ import { computed, viewChild } from '@angular/core';
 import { TemplateRef } from '@angular/core';
 import { Component, inject } from '@angular/core';
 import { UtilsService } from '../../shared/services/utils';
-import { April } from '../months/april/april';
 import { August } from '../months/august/august';
 import { December } from '../months/december/december';
 import { February } from '../months/february/february';
