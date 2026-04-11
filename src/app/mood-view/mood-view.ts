@@ -2,7 +2,7 @@ import { NgTemplateOutlet } from '@angular/common';
 import { computed, viewChild } from '@angular/core';
 import { TemplateRef } from '@angular/core';
 import { Component, inject } from '@angular/core';
-import { APRIL_CONFIG } from '../../shared/constants/config';
+import { MONTH_DAYS_CONFIG } from '../../shared/constants/config';
 import { UtilsService } from '../../shared/services/utils';
 import { August } from '../months/august/august';
 import { December } from '../months/december/december';
@@ -77,6 +77,6 @@ export class MoodView {
   }
 
   private _getDaysConfig() {
-    return APRIL_CONFIG.days.map((day, index) => ({ ...day, color: this._utilService.getMoodColorForDate(new Date(this._date.getFullYear(), this._date.getMonth(), index + 1)) }))
+    return MONTH_DAYS_CONFIG[this.currentMonth()].map((day: any, index: number) => ({ ...day, color: this._utilService.getMoodColorForDate(new Date(this._date.getFullYear(), this._date.getMonth(), index + 1)) }))
   }
 }

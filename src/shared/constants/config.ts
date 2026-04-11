@@ -1,4 +1,4 @@
-const APRIL_DAYS = Array.from({ length: 30 }, (_, i) => {
+const APRIL_DAYS: any[] = Array.from({ length: 30 }, (_, i) => {
 	const day = i + 1;
 	const totalPathLength = 350;
 	const getPointOnPath = (index: number) => {
@@ -57,6 +57,6 @@ const APRIL_DAYS = Array.from({ length: 30 }, (_, i) => {
 	};
 });
 
-export const APRIL_CONFIG = {
-	days: APRIL_DAYS
+export const MONTH_DAYS_CONFIG: { [key: string]: any } = {
+	'April': APRIL_DAYS
 }
