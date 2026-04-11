@@ -10,9 +10,9 @@ import { MoodPicker } from '../../mood-picker/mood-picker';
 })
 export class August {
   private _utilService = inject(UtilsService);
+  private _date = this._utilService.selectedDate();
   public monthData = this._utilService.monthDays;
   private _selectedMood: string = '';
-  private _currentDate = new Date().getFullYear();
 
   days = computed(() => {
     const totalDays = this.monthData();
@@ -23,7 +23,7 @@ export class August {
         label: i + 1,
         groupTransform: `rotate(${angle}, 125, 125)`,
         textTransform: `rotate(${-angle}, 125, 48)`,
-        fill: this._utilService.getMoodColorForDate(new Date(this._currentDate, 7, i + 1)),
+        fill: this._utilService.getMoodColorForDate(new Date(this._date.getFullYear(), 7, i + 1)),
         stroke: '#3E2723'
       };
     });
