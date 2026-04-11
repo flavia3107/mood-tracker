@@ -71,9 +71,7 @@ export class MoodView {
   }
 
   private _getDaysConfig() {
-    console.log('here', this._date())
-    const days = MONTH_DAYS_CONFIG[this.currentMonth()]?.map((day: any, index: number) => ({ ...day, color: this._utilService.getMoodColorForDate(new Date(this._date().getFullYear(), this._date().getMonth(), index + 1)) }));
-    return days
+    return MONTH_DAYS_CONFIG[this.currentMonth()]?.map((day: any, index: number) => ({ ...day, color: this._utilService.getMoodColorForDate(new Date(this._date().getFullYear(), this._date().getMonth(), index + 1)) }));
   }
 
   private _updateSvgConfig() {

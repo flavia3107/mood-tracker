@@ -3,15 +3,19 @@ app-may {
 	height: 100%;
 }
 
-.april {
-	display: flex;
-	align-items: flex-end;
+.container {
 	width: 50rem;
 	height: 45rem;
-	background-image: url("/rain.png");
+	overflow: hidden;
 	background-size: cover;
-	background-position: right;
 	background-color: #fff;
+	background-size: cover;
+}
+
+.april {
+	align-items: flex-end;
+	background-image: url("/rain.png");
+	background-position: right;
 	justify-content: space-between;
 
 	.april-svg {
@@ -51,14 +55,10 @@ app-may {
 
 .august {
 	background-image: url("/sunflower.png");
-	background-size: cover;
 	background-position: right;
-	background-color: #fff;
-	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	height: 45rem;
-	width: 50rem;
+
 	.petal {
 		transition: transform 0.2s ease-in-out, fill 0.3s ease;
 		cursor: pointer;
@@ -90,13 +90,8 @@ app-may {
 }
 
 .december {
-	display: flex;
 	align-items: flex-end;
-	width: 50rem;
-	height: 45rem;
 	background-image: url("/tree.png");
-	background-size: cover;
-	background-color: #fff;
 	justify-content: space-between;
 
 	.bulb {

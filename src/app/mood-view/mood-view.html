@@ -1,4 +1,4 @@
-<div class="container" [ngClass]="currentMonth() | lowercase">
+<div class="container flex-row" [ngClass]="currentMonth() | lowercase">
 	<ng-container [ngTemplateOutlet]="activeTemplate()" [ngTemplateOutletContext]="{ $implicit: moodLogic }">
 	</ng-container>
 </div>
