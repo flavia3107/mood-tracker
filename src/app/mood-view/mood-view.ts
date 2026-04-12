@@ -4,7 +4,6 @@ import { TemplateRef } from '@angular/core';
 import { Component, inject } from '@angular/core';
 import { MONTH_DAYS_CONFIG } from '../../shared/constants/config';
 import { UtilsService } from '../../shared/services/utils';
-import { February } from '../months/february/february';
 import { January } from '../months/january/january';
 import { July } from '../months/july/july';
 import { June } from '../months/june/june';
@@ -17,7 +16,7 @@ import { MoodPicker } from '../mood-picker/mood-picker';
 
 @Component({
   selector: 'app-mood-view',
-  imports: [January, February, March, MoodPicker, May, June, July, September, October, November, NgTemplateOutlet, LowerCasePipe, NgClass],
+  imports: [January, March, MoodPicker, May, June, July, September, October, November, NgTemplateOutlet, LowerCasePipe, NgClass],
   templateUrl: './mood-view.html',
   styleUrl: './mood-view.scss',
 })
@@ -78,7 +77,19 @@ export class MoodView {
     return {
       getColor: (color: string) => this.getMoodColorForDate(color),
       updateMood: (day: any) => this.onDayClick(day),
+      getLeafTransform: (indx: number) => this._getLeafTransform(indx),
       days: this._getDaysConfig()
     }
+  }
+
+  private _getLeafTransform(leafIndex: number): string {
+    const rotations = [-70, 140];
+    const offsets = [
+      { x: 140, y: 60 },
+      { x: 240, y: 120 },
+    ];
+
+    const pos = offsets[leafIndex];
+    return `translate(${pos.x}, ${pos.y}) scale(1.3) rotate(${rotations[leafIndex]}, 40, 60)`;
   }
 }

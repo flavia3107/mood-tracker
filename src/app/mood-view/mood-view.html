@@ -7,7 +7,69 @@
 	<app-january />
 </ng-template>
 <ng-template #february let-m>
-	<app-february />
+	<svg viewBox="-150 0 700 500" class="chocolate-svg svg">
+		<defs>
+			<clipPath id="heartClip">
+				<path d="M50,100 C45,90 0,75 0,35 C0,10 25,0 50,25 C75,0 100,10 100,35 C100,75 55,90 50,100 Z" />
+			</clipPath>
+
+			<clipPath id="heartLidClip">
+				<path
+					d="M263,125 C330,5 520, 20 495,195 C480,305 295,435 280,465 C270,420 35,315 30,175 C25,25 200,10 260,120 Z" />
+			</clipPath>
+
+			<filter id="wrapperJitter" x="-20%" y="-20%" width="140%" height="140%">
+				<feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" result="noise" />
+				<feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+			</filter>
+		</defs>
+		<g transform="translate(-220, 40) rotate(-20)" opacity="0.9" clip-path="url(#heartLidClip)">
+			<path
+				d="M263,125 C330,5 520, 20 495,195 C480,305 295,435 280,465 C270,420 35,315 30,175 C25,25 200,10 260,120 Z"
+				fill="#916161" stroke="#916161" stroke-width="4" />
+
+			<path d="M175,385 L495,105" stroke="#eecccc" stroke-width="80" opacity="0.75" fill="#FDE293" />
+
+			<path d="M145,355 L475,70" stroke="#3E2723" stroke-width="4" opacity="0.8" fill="none" />
+			<path d="M215,405 L510,145" stroke="#3E2723" stroke-width="4" opacity="0.8" fill="none" />
+
+			<g transform="translate(0, 275) rotate(-50)">
+				@for (leafIdx of [0, 1]; track leafIdx) {
+				<g [attr.transform]="m.getLeafTransform(leafIdx)">
+					<g clip-path="url(#heartClip)"> </g>
+					<path d="M50,100 C45,90 0,75 0,35 C0,10 25,0 50,25 C75,0 100,10 100,35 C100,75 55,90 50,100 Z"
+						fill="#eecccc" stroke="#3E2723" opacity="0.85" stroke-width="2" />
+				</g>
+				}
+			</g>
+		</g>
+
+		<g transform="translate(55, 15) rotate(15)">
+			<path id="boxPath"
+				d="M263,125 C330,5 520, 20 495,195 C480,305 295,435 280,465 C270,420 35,315 30,175 C25,25 200,10 260,120 Z"
+				fill="#eecccc" stroke="#916161" stroke-width="6" />
+		</g>
+		<g transform="translate(0, 0)">
+			@for (c of m.days; track c.id) {
+			<g (click)="m.updateMood(c)" style="cursor: pointer;" [attr.transform]="'rotate(' + c.rotate + ')'"
+				style="transform-origin: center; transform-box: fill-box;">
+
+				<path [attr.d]="c.pts" fill="none" stroke="#3E2723" stroke-width="1.2" opacity="0.4"
+					filter="url(#wrapperJitter)" transform="scale(1.1)"
+					style="transform-origin: center; transform-box: fill-box;" />
+
+				<path [attr.d]="c.pts" [attr.fill]="c.color" stroke="#3E2723" stroke-width="2" />
+				@let textFill = ['#FCF8E8', '#D4A373', '#fff'].includes(c.color) ? '#352522' : '#FCF8E8';
+				<text [attr.x]="c.cx" [attr.y]="c.cy" text-anchor="middle" class="day-label" [attr.fill]="textFill">
+					{{ c.id }}
+				</text>
+			</g>
+			}
+		</g>
+	</svg>
+	<div class="legend-container">
+		<app-mood-picker (moodColorSelected)="m.getColor($event)" />
+	</div>
 </ng-template>
 <ng-template #march let-m>
 	<app-march />
