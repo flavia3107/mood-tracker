@@ -112,6 +112,44 @@ const FEBRUARY_DAYS: any[] = [
 	{ id: 17, pts: "M200,345 h50 v50 h-50 Z", cx: 225, cy: 375, rotate: -15 }
 ];
 
+const JANUARY_DAYS: any = _generateFrostSeeds();
+
+function _generateFrostSeeds() {
+	const seeds: any[] = [];
+	const maxAttempts = 200;
+	const paddingBase = 20;
+
+	for (let i = 0; i < 31; i++) {
+		let placed = false;
+		let attempts = 0;
+
+		while (!placed && attempts < maxAttempts) {
+			const newSeed = {
+				x: Math.random() * 300,
+				y: 20 + Math.random() * 150,
+				rotation: Math.random() * 360,
+				scale: 0.7 + Math.random() * 0.1,
+			};
+
+			const isOverlapping = seeds.some(existing => {
+				const dx = existing.x - newSeed.x;
+				const dy = existing.y - newSeed.y;
+				const distance = Math.sqrt(dx * dx + dy * dy);
+				const collisionThreshold = (existing.scale + newSeed.scale) * paddingBase;
+				return distance < collisionThreshold;
+			});
+
+			if (!isOverlapping) {
+				seeds.push(newSeed);
+				placed = true;
+			}
+			attempts++;
+		}
+	}
+
+	return seeds;
+}
+
 function _getDecemberConfig() {
 	const decs: { x: number, y: number, color: string }[] = [];
 	const topY = 35;
@@ -163,5 +201,6 @@ export const MONTH_DAYS_CONFIG: { [key: string]: any } = {
 	'April': APRIL_DAYS,
 	'August': AUGUST_DAYS,
 	'December': DECEMBER_DAYS,
-	'February': FEBRUARY_DAYS
+	'February': FEBRUARY_DAYS,
+	'January': JANUARY_DAYS
 }

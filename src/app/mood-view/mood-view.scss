@@ -174,3 +174,28 @@ app-may {
 		bottom: -15rem;
 	}
 }
+
+.january {
+	flex-direction: column;
+	background-image: url("/frost.png");
+	background-position: center;
+
+	.frost-unit {
+		transition: all 0.5s ease;
+		cursor: pointer;
+	}
+	.frost-unit:hover {
+		filter: brightness(1.5) drop-shadow(0 0 5px #fff);
+	}
+
+	svg {
+		border-radius: 12px;
+		width: 100%;
+	}
+
+	.legend-container {
+		display: flex;
+		width: 100%;
+		padding: 0 0 1rem 1rem;
+	}
+}
