@@ -151,7 +151,38 @@
 	<app-may />
 </ng-template>
 <ng-template #june let-m>
-	<app-june />
+	<div class="legend-container">
+		<app-mood-picker (moodColorSelected)="m.getColor($event)" />
+	</div>
+	<svg viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+		<defs>
+			<clipPath id="wedgeClip">
+				<path [attr.d]="june_config.wedgePath" />
+			</clipPath>
+		</defs>
+
+		<path [attr.d]="june_config.wedgePath" fill="#fff" stroke="#000" stroke-width="1.5" stroke-linejoin="round" />
+
+		<g class="segments" clip-path="url(#wedgeClip)">
+			@for (seg of m.days; track seg.id) {
+			<path [attr.d]="seg.d" [attr.fill]="seg['color']" stroke="black" stroke-width="1"
+				(click)="m.updateMood(seg)" class="clickable-segment" />
+
+			<text [attr.x]="seg.x" [attr.y]="seg.y" fill="black" font-size="10" text-anchor="middle"
+				dominant-baseline="middle" pointer-events="none" class="umbrella-label">
+				{{ seg.id }}
+			</text>
+			}
+		</g>
+		<g clip-path="url(#wedgeClip)">
+			<path [attr.d]="june_config.rindPathBase" fill="none" stroke="#81C784" stroke-width="80"
+				stroke-linecap="round" />
+			<path [attr.d]="june_config.rindPathMid" fill="none" stroke="#2E7D32" stroke-width="65"
+				stroke-linecap="round" opacity="0.7" />
+			<path [attr.d]="june_config.rindPathOuter" fill="none" stroke="#1B5E20" stroke-width="35"
+				stroke-linecap="round" opacity="0.4" />
+		</g>
+	</svg>
 </ng-template>
 <ng-template #july let-m>
 	<svg viewBox="0 0 400 450" class="svg">

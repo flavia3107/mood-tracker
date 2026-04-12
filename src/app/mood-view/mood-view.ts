@@ -2,9 +2,8 @@ import { LowerCasePipe, NgClass, NgTemplateOutlet } from '@angular/common';
 import { computed, viewChild } from '@angular/core';
 import { TemplateRef } from '@angular/core';
 import { Component, inject } from '@angular/core';
-import { MONTH_DAYS_CONFIG } from '../../shared/constants/config';
+import { JUNE_CONFIG, MONTH_DAYS_CONFIG } from '../../shared/constants/config';
 import { UtilsService } from '../../shared/services/utils';
-import { June } from '../months/june/june';
 import { March } from '../months/march/march';
 import { May } from '../months/may/may';
 import { November } from '../months/november/november';
@@ -14,7 +13,7 @@ import { MoodPicker } from '../mood-picker/mood-picker';
 
 @Component({
   selector: 'app-mood-view',
-  imports: [March, MoodPicker, May, June, September, October, November, NgTemplateOutlet, LowerCasePipe, NgClass],
+  imports: [March, MoodPicker, May, September, October, November, NgTemplateOutlet, LowerCasePipe, NgClass],
   templateUrl: './mood-view.html',
   styleUrl: './mood-view.scss',
 })
@@ -36,6 +35,7 @@ export class MoodView {
   private _dec = viewChild<TemplateRef<any>>('december');
   private _selectedColor = '';
   public moodLogic = this._updateSvgConfig();
+  readonly june_config = JUNE_CONFIG;
 
   activeTemplate = computed(() => {
     const map: Record<string, TemplateRef<any> | undefined> = {
