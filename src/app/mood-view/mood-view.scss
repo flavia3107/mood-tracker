@@ -199,3 +199,23 @@ app-may {
 		padding: 0 0 1rem 1rem;
 	}
 }
+
+.july {
+	background-image: url("/bee.png");
+	background-position: center;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+
+	svg {
+		width: 30rem;
+		height: 30rem;
+		margin: 7rem auto auto;
+	}
+
+	.legend-container {
+		position: relative;
+		right: -20rem;
+		bottom: 1rem;
+	}
+}

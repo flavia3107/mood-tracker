@@ -112,7 +112,22 @@ const FEBRUARY_DAYS: any[] = [
 	{ id: 17, pts: "M200,345 h50 v50 h-50 Z", cx: 225, cy: 375, rotate: -15 }
 ];
 
-const JANUARY_DAYS: any = _generateFrostSeeds();
+const JANUARY_DAYS: any[] = _generateFrostSeeds();
+
+const JULY_DAYS: any[] = Array.from({ length: 31 }, (_, i) => {
+	const row = Math.floor(i / 5);
+	const col = i % 5;
+	const xSpacing = 52;
+	const ySpacing = 45;
+	const xOffset = (row % 2 !== 0) ? xSpacing / 2 : 0;
+
+	return {
+		id: i + 1,
+		x: col * xSpacing + xOffset,
+		y: row * ySpacing,
+		color: '#fff'
+	};
+});
 
 function _generateFrostSeeds() {
 	const seeds: any[] = [];
@@ -202,5 +217,6 @@ export const MONTH_DAYS_CONFIG: { [key: string]: any } = {
 	'August': AUGUST_DAYS,
 	'December': DECEMBER_DAYS,
 	'February': FEBRUARY_DAYS,
-	'January': JANUARY_DAYS
+	'January': JANUARY_DAYS,
+	'July': JULY_DAYS
 }

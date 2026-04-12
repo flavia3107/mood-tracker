@@ -4,7 +4,6 @@ import { TemplateRef } from '@angular/core';
 import { Component, inject } from '@angular/core';
 import { MONTH_DAYS_CONFIG } from '../../shared/constants/config';
 import { UtilsService } from '../../shared/services/utils';
-import { July } from '../months/july/july';
 import { June } from '../months/june/june';
 import { March } from '../months/march/march';
 import { May } from '../months/may/may';
@@ -15,7 +14,7 @@ import { MoodPicker } from '../mood-picker/mood-picker';
 
 @Component({
   selector: 'app-mood-view',
-  imports: [March, MoodPicker, May, June, July, September, October, November, NgTemplateOutlet, LowerCasePipe, NgClass],
+  imports: [March, MoodPicker, May, June, September, October, November, NgTemplateOutlet, LowerCasePipe, NgClass],
   templateUrl: './mood-view.html',
   styleUrl: './mood-view.scss',
 })
