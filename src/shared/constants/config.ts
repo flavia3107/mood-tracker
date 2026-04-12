@@ -168,7 +168,9 @@ const JUNE_DAYS: any[] = [
 	{ id: 29, x: 237, y: 447, d: "M230,440 L260,435 L300,465 L220,490 Z" },
 	{ id: 30, x: 285, y: 445, d: "M260,435 L310,440 L390,480 L330,490 Z" },
 	{ id: 31, x: 333, y: 445, d: "M305,440 L470,420 L480,490 L420,490 Z" }
-]
+];
+
+const SEPTEMBER_DAYS = _generateFallingLeaves();
 
 export const JUNE_CONFIG = {
 	wedgePath: "M 250,30 L 470,440 Q 250,570 30,440 Z",
@@ -259,6 +261,36 @@ function _getDecemberConfig() {
 	return decs;
 }
 
+function _generateFallingLeaves() {
+	const leafPath = "M20,0 L22,2 L28,0 L30,5 L38,2 L40,10 L45,15 L40,22 L42,30 L35,35 L30,42 L20,55 L10,42 L5,35 L-2,30 L0,22 L-5,15 L0,10 L2,5 L10,0 L18,2 Z";
+
+	const newLeaves: any[] = [];
+	const cols = 6;
+	const cellWidth = 120;
+	const cellHeight = 95;
+	const startX = 100; // Left margin
+	const startY = 70;  // Top margin
+
+	for (let i = 1; i <= 30; i++) {
+		const col = (i - 1) % cols;
+		const row = Math.floor((i - 1) / cols);
+		const stagger = (row % 2 === 0) ? 0 : 40;
+		const jitterX = (Math.random() - 0.5) * 30;
+		const jitterY = (Math.random() - 0.5) * 20;
+
+		newLeaves.push({
+			day: i,
+			d: leafPath,
+			x: startX + (col * cellWidth) + stagger + jitterX,
+			y: startY + (row * cellHeight) + jitterY,
+			color: '#fff',
+			rotate: Math.random() * 360,
+			scale: 0.85 + Math.random() * 0.25
+		});
+	}
+	return newLeaves;
+}
+
 export const MONTH_DAYS_CONFIG: { [key: string]: any } = {
 	'April': APRIL_DAYS,
 	'August': AUGUST_DAYS,
@@ -266,5 +298,6 @@ export const MONTH_DAYS_CONFIG: { [key: string]: any } = {
 	'February': FEBRUARY_DAYS,
 	'January': JANUARY_DAYS,
 	'July': JULY_DAYS,
-	'June': JUNE_DAYS
+	'June': JUNE_DAYS,
+	'September': SEPTEMBER_DAYS
 }

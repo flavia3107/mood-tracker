@@ -8,12 +8,11 @@ import { March } from '../months/march/march';
 import { May } from '../months/may/may';
 import { November } from '../months/november/november';
 import { October } from '../months/october/october';
-import { September } from '../months/september/september';
 import { MoodPicker } from '../mood-picker/mood-picker';
 
 @Component({
   selector: 'app-mood-view',
-  imports: [March, MoodPicker, May, September, October, November, NgTemplateOutlet, LowerCasePipe, NgClass],
+  imports: [March, MoodPicker, May, October, November, NgTemplateOutlet, LowerCasePipe, NgClass],
   templateUrl: './mood-view.html',
   styleUrl: './mood-view.scss',
 })

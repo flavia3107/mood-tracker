@@ -238,7 +238,26 @@
 	</svg>
 </ng-template>
 <ng-template #september let-m>
-	<app-september />
+	<div class="legend-container">
+		<app-mood-picker (moodColorSelected)="m.getColor($event)" />
+	</div>
+	<svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet" class="svg">
+		<g class="leaves-group">
+			@for (leaf of m.days; track leaf.day) {
+			<g [attr.transform]="'translate(' + leaf.x + ',' + leaf.y + ') rotate(' + leaf.rotate + ') scale(' + leaf.scale + ')'"
+				(click)="m.updateMood(leaf)" class="leaf-container">
+				<path [attr.d]="leaf.d" [attr.fill]="leaf.color" stroke="#151d12" stroke-width="1.2"
+					class="leaf-path" />
+				<line x1="20" y1="2" x2="20" y2="48" stroke="#151d12" stroke-width="1" stroke-linecap="round" />
+				<line x1="20" y1="0" x2="20" y2="-8" stroke="#151d12" stroke-width="1.5" stroke-linecap="round" />
+				@let text = ['#D4E157','#9fc03b','#70a240', '#fff'].includes(leaf.color) ? '#151d12' : '#fff';
+				<text x="10" y="20" [attr.fill]="text" class="leaf-label">
+					{{ leaf.day }}
+				</text>
+			</g>
+			}
+		</g>
+	</svg>
 </ng-template>
 <ng-template #october let-m>
 	<app-october />
