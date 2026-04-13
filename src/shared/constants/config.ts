@@ -181,6 +181,11 @@ export const JUNE_CONFIG = {
 
 const OCTOBER_DAYS: any[] = _generateFacets();
 
+const NOVEMBER_DAYS: any[] = Array.from({ length: 30 }, (_, i) => ({
+	date: i + 1,
+	color: '#fff'
+}));
+
 function _generateFacets() {
 	const facetData = [
 		// --- TOP ROUNDED LOBES (Days 1-7) ---
@@ -355,5 +360,6 @@ export const MONTH_DAYS_CONFIG: { [key: string]: any } = {
 	'July': JULY_DAYS,
 	'June': JUNE_DAYS,
 	'September': SEPTEMBER_DAYS,
-	'October': OCTOBER_DAYS
+	'October': OCTOBER_DAYS,
+	'November': NOVEMBER_DAYS
 }

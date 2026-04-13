@@ -6,12 +6,11 @@ import { JUNE_CONFIG, MONTH_DAYS_CONFIG } from '../../shared/constants/config';
 import { UtilsService } from '../../shared/services/utils';
 import { March } from '../months/march/march';
 import { May } from '../months/may/may';
-import { November } from '../months/november/november';
 import { MoodPicker } from '../mood-picker/mood-picker';
 
 @Component({
   selector: 'app-mood-view',
-  imports: [March, MoodPicker, May, November, NgTemplateOutlet, LowerCasePipe, NgClass],
+  imports: [March, MoodPicker, May, NgTemplateOutlet, LowerCasePipe, NgClass],
   templateUrl: './mood-view.html',
   styleUrl: './mood-view.scss',
 })
@@ -74,7 +73,11 @@ export class MoodView {
       getColor: (color: string) => this.getMoodColorForDate(color),
       updateMood: (day: any) => this.onDayClick(day),
       getLeafTransform: (indx: number) => this._getLeafTransform(indx),
-      days: this._getDaysConfig()
+      days: this._getDaysConfig(),
+      november: {
+        totalPathLength: 920,
+        segmentLength: (920 / 30) - 2
+      }
     }
   }
 

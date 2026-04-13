@@ -298,7 +298,73 @@
 	</div>
 </ng-template>
 <ng-template #november let-m>
-	<app-november />
+	<svg viewBox="0 0 400 550" width="100%" height="100%">
+		<defs>
+			<path id="textCurvePath" d="M 110,430 
+				   C 110,350 50,300 50,180 
+				   C 50,50 350,50 350,180 
+				   C 350,300 290,350 290,430" />
+			<clipPath id="scarfShapeMask">
+				<use xlink:href="#textCurvePath" stroke="white" stroke-width="45" fill="none" />
+			</clipPath>
+			<linearGradient id="scarfShadow" x1="0%" y1="0%" x2="0%" y2="100%">
+				<stop offset="0%" stop-color="#3c2a21" stop-opacity="0" />
+				<stop offset="50%" stop-color="#3c2a21" stop-opacity="0.1" />
+				<stop offset="100%" stop-color="#3c2a21" stop-opacity="0" />
+			</linearGradient>
+		</defs>
+		<use xlink:href="#textCurvePath" fill="none" stroke="#3c2a21" stroke-width="49" stroke-linecap="butt" />
+		<use xlink:href="#textCurvePath" fill="none" stroke="#ece0d1" stroke-width="45" stroke-linecap="butt" />
+
+		@for (day of m.days; track day) {
+		<use xlink:href="#textCurvePath" fill="none" [attr.stroke]="day.color" stroke-width="45"
+			[attr.stroke-dasharray]="m.november.segmentLength + ' ' + (m.november.totalPathLength - m.november.segmentLength)"
+			[attr.stroke-dashoffset]="-((day.date - 1) * (m.november.totalPathLength / 30))" (click)="m.updateMood(day)"
+			style="cursor:pointer;" />
+		@let textFill = ['#ead6ca', '#ddb892', '#b08968', '#fff'].includes(day.color) ? '#3c2a21' : '#FCF8E8';
+		<text class="label">
+			<textPath xlink:href="#textCurvePath" [attr.fill]="textFill"
+				[attr.startOffset]="((day.date - 1) * (m.november.totalPathLength / 30)) + (m.november.segmentLength / 2)">
+				{{day.date}}
+			</textPath>
+		</text>
+		}
+		<g transform="translate(110, 430)">
+			<path d="M -24,0 C -28,10 -21,20 -25,30" />
+			<path d="M -20,0 C -24,10 -17,20 -21,30" />
+			<path d="M -16,0 C -20,10 -13,20 -17,30" />
+			<path d="M -12,0 C -16,10 -9,20  -13,30" />
+			<path d="M -8,0  C -12,10 -5,20  -9,30" />
+			<path d="M -4,0  C -8,10  -1,20  -5,30" />
+			<path d="M 0,0   C -4,10  4,20   0,30" />
+			<path d="M 4,0   C 0,10   8,20   4,30" />
+			<path d="M 8,0   C 4,10   12,20  8,30" />
+			<path d="M 12,0  C 8,10   16,20  12,30" />
+			<path d="M 16,0  C 12,10  20,20  16,30" />
+			<path d="M 20,0  C 16,10  24,20  20,30" />
+			<path d="M 24,0  C 20,10  28,20  24,30" />
+		</g>
+
+		<g transform="translate(290, 430)">
+			<path d="M -24,0 C -28,10 -21,20 -25,30" />
+			<path d="M -20,0 C -24,10 -17,20 -21,30" />
+			<path d="M -16,0 C -20,10 -13,20 -17,30" />
+			<path d="M -12,0 C -16,10 -9,20  -13,30" />
+			<path d="M -8,0  C -12,10 -5,20  -9,30" />
+			<path d="M -4,0  C -8,10  -1,20  -5,30" />
+			<path d="M 0,0   C -4,10  4,20   0,30" />
+			<path d="M 4,0   C 0,10   8,20   4,30" />
+			<path d="M 8,0   C 4,10   12,20  8,30" />
+			<path d="M 12,0  C 8,10   16,20  12,30" />
+			<path d="M 16,0  C 12,10  20,20  16,30" />
+			<path d="M 20,0  C 16,10  24,20  20,30" />
+			<path d="M 24,0  C 20,10  28,20  24,30" />
+		</g>
+	</svg>
+
+	<div class="legend-container">
+		<app-mood-picker (moodColorSelected)="m.getColor($event)" />
+	</div>
 </ng-template>
 <ng-template #december let-m>
 	<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
