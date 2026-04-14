@@ -4,12 +4,11 @@ import { TemplateRef } from '@angular/core';
 import { Component, inject } from '@angular/core';
 import { JUNE_CONFIG, MONTH_DAYS_CONFIG } from '../../shared/constants/config';
 import { UtilsService } from '../../shared/services/utils';
-import { March } from '../months/march/march';
 import { MoodPicker } from '../mood-picker/mood-picker';
 
 @Component({
   selector: 'app-mood-view',
-  imports: [March, MoodPicker, NgTemplateOutlet, LowerCasePipe, NgClass],
+  imports: [MoodPicker, NgTemplateOutlet, LowerCasePipe, NgClass],
   templateUrl: './mood-view.html',
   styleUrl: './mood-view.scss',
 })
@@ -58,9 +57,12 @@ export class MoodView {
     this._selectedColor = color;
   }
 
-  private onDayClick(day: any) {
-    if (this._selectedColor && day['color'] === '#fff')
-      day['color'] = this._selectedColor;
+  private onDayClick(day: any, indx?: number) {
+    if (indx != null) this._updateDay(indx);
+    else {
+      if (this._selectedColor && day['color'] === '#fff')
+        day['color'] = this._selectedColor;
+    }
   }
 
   private _getDaysConfig() {
@@ -70,8 +72,10 @@ export class MoodView {
   private _updateSvgConfig() {
     return {
       getColor: (color: string) => this.getMoodColorForDate(color),
-      updateMood: (day: any) => this.onDayClick(day),
+      updateMood: (day: any, indx?: number) => this.onDayClick(day, indx),
       getLeafTransform: (indx: number) => this._getLeafTransform(indx),
+      getLeafTransformMarch: (indx: number) => this._getLeafTransformMarch(indx),
+      getLabelPos: (indx: any) => this._getLabelPos(indx),
       days: this._getDaysConfig(),
       november: {
         totalPathLength: 920,
@@ -89,5 +93,39 @@ export class MoodView {
 
     const pos = offsets[leafIndex];
     return `translate(${pos.x}, ${pos.y}) scale(1.3) rotate(${rotations[leafIndex]}, 40, 60)`;
+  }
+
+  private _getLeafTransformMarch(leafIndex: number): string {
+    const rotations = [0, 90, 180, 270];
+    const gap = 3;
+
+    const offsets = [
+      { x: 150, y: 80 - gap },
+      { x: 220 + gap, y: 150 },
+      { x: 150, y: 220 + gap },
+      { x: 80 - gap, y: 150 }
+    ];
+
+    const pos = offsets[leafIndex];
+    return `translate(${pos.x}, ${pos.y}) scale(1.3) rotate(${rotations[leafIndex]}, 50, 50)`;
+  }
+
+  private _updateDay(index: number) {
+    if (this._selectedColor)
+      this.moodLogic.days.update((current: any) => {
+        const updated = [...current];
+        updated[index].color = this._selectedColor;
+        return updated;
+      });
+  }
+
+  private _getLabelPos(shardIndex: number) {
+    const centers = [
+      { x: 40, y: 75 }, { x: 60, y: 75 },
+      { x: 20, y: 45 }, { x: 35, y: 45 },
+      { x: 50, y: 20 }, { x: 50, y: 40 },
+      { x: 65, y: 45 }, { x: 80, y: 45 }
+    ];
+    return centers[shardIndex];
   }
 }

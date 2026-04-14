@@ -188,6 +188,13 @@ const NOVEMBER_DAYS: any[] = Array.from({ length: 30 }, (_, i) => ({
 
 const MAY_DAYS: any[] = _generateFlowers();
 
+const MARCH_DAYS: any[] = [
+	"M50,100 L10,65 L50,55 Z", "M50,100 L50,55 L90,65 Z",
+	"M0,70 L0,10 L90,15 Z", "M40,20 L50,55 L10,65 Z",
+	"M40,20 L50,5 L60,20 Z", "M60,20 L50,55 L40,20 Z",
+	"M90,65 L50,55 L60,20 Z", "M120,0 L90,65 L50,10 Z"
+];
+
 function _generateFacets() {
 	const facetData = [
 		// --- TOP ROUNDED LOBES (Days 1-7) ---
@@ -398,5 +405,6 @@ export const MONTH_DAYS_CONFIG: { [key: string]: any } = {
 	'September': SEPTEMBER_DAYS,
 	'October': OCTOBER_DAYS,
 	'November': NOVEMBER_DAYS,
-	'May': MAY_DAYS
+	'May': MAY_DAYS,
+	'March': MARCH_DAYS
 }

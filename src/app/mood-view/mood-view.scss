@@ -423,3 +423,39 @@ app-may {
 		margin: auto 1rem 1rem 0;
 	}
 }
+
+.march {
+	justify-content: center;
+	background-image: url("/st-patrick.png");
+	background-position: center;
+	align-items: flex-end;
+
+	.canvas {
+		display: flex;
+		align-items: flex-start;
+		gap: 30px;
+	}
+
+	svg {
+		position: relative;
+		top: -8.5rem;
+		left: 18.5rem;
+		width: 33rem;
+		transform: rotate(22deg);
+	}
+
+	.segment {
+		cursor: pointer;
+		transition: transform 0.1s;
+	}
+
+	.segment:hover {
+		filter: brightness(0.9);
+	}
+
+	.legend-container {
+		position: relative;
+		top: -2rem;
+		left: 4rem;
+	}
+}
