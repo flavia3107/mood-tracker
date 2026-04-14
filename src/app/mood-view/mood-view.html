@@ -108,12 +108,12 @@
 			</clipPath>
 		</defs>
 		<g transform="rotate(45, 200, 185)">
-
 			@for (shard of m.days; track shard.id) {
 			<g class="shard-group" (click)="m.updateMood(shard)">
 				<path [attr.d]="shard.d" [attr.fill]="shard.color" stroke="#95a649" stroke-width="0.5" />
-				<text [attr.x]="shard.x" [attr.y]="shard.y" text-anchor="middle" font-size="6" font-weight="bold">{{
-					shard.id }}</text>
+				<text [attr.x]="shard.x" [attr.y]="shard.y" text-anchor="middle" font-size="6" font-weight="bold">
+					{{ shard.id }}
+				</text>
 			</g>
 			}
 
