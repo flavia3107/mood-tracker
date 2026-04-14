@@ -186,6 +186,8 @@ const NOVEMBER_DAYS: any[] = Array.from({ length: 30 }, (_, i) => ({
 	color: '#fff'
 }));
 
+const MAY_DAYS: any[] = _generateFlowers();
+
 function _generateFacets() {
 	const facetData = [
 		// --- TOP ROUNDED LOBES (Days 1-7) ---
@@ -351,6 +353,40 @@ function _generateFallingLeaves() {
 	return newLeaves;
 }
 
+function _generateFlowers() {
+	const tempTrackers: any[] = [];
+	const remToUnit = 16;
+	const width = 45 * remToUnit;
+	const height = 23 * remToUnit;
+	const minDistance = 55;
+
+	for (let i = 0; i < 31; i++) {
+		let x = 0, y = 0, collision = true, attempts = 0;
+
+		while (collision && attempts < 150) {
+			x = 40 + Math.random() * (width - 80);
+			y = 40 + Math.random() * (height - 80);
+
+			collision = tempTrackers.some(other => {
+				const dx = x - other.x;
+				const dy = y - other.y;
+				return Math.sqrt(dx * dx + dy * dy) < minDistance;
+			});
+			attempts++;
+		}
+
+		tempTrackers.push({
+			day: i + 1,
+			x,
+			y,
+			rotation: Math.random() * 360,
+			scale: 1.8 + Math.random() * 0.3,
+			color: '#fff'
+		});
+	}
+	return tempTrackers;
+}
+
 export const MONTH_DAYS_CONFIG: { [key: string]: any } = {
 	'April': APRIL_DAYS,
 	'August': AUGUST_DAYS,
@@ -361,5 +397,6 @@ export const MONTH_DAYS_CONFIG: { [key: string]: any } = {
 	'June': JUNE_DAYS,
 	'September': SEPTEMBER_DAYS,
 	'October': OCTOBER_DAYS,
-	'November': NOVEMBER_DAYS
+	'November': NOVEMBER_DAYS,
+	'May': MAY_DAYS
 }
