@@ -59,7 +59,12 @@ export class MoodView {
   }
 
   private onDayClick(day: any) {
-    if (this._selectedColor && day['color'] === '#fff')
+    const selectedDate = new Date(this._date().getFullYear(), this._date().getMonth(), day.day)
+    const d2 = new Date();
+    selectedDate.setHours(0, 0, 0, 0);
+    d2.setHours(0, 0, 0, 0);
+
+    if (this._selectedColor && selectedDate.getTime() === d2.getTime())
       day['color'] = this._selectedColor;
   }
 
