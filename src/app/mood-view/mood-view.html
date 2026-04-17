@@ -101,33 +101,7 @@
 	</div>
 </ng-template>
 <ng-template #march let-m>
-	<svg viewBox="0 0 400 550" class="clover-svg">
-		<defs>
-			<clipPath id="heartClip">
-				<path d="M50,100 C45,90 0,75 0,35 C0,10 25,0 50,25 C75,0 100,10 100,35 C100,75 55,90 50,100 Z" />
-			</clipPath>
-		</defs>
-		<g transform="rotate(45, 200, 185)">
-			@for (shard of m.days; track shard.id) {
-			<g class="shard-group" (click)="m.updateMood(shard)">
-				<path [attr.d]="shard.d" [attr.fill]="shard.color" stroke="#95a649" stroke-width="0.5" />
-				<text [attr.x]="shard.x" [attr.y]="shard.y" text-anchor="middle" font-size="6" font-weight="bold">
-					{{ shard.id }}
-				</text>
-			</g>
-			}
-
-			@for (leafIdx of [0, 1, 2, 3]; track leafIdx) {
-			<g [attr.transform]="m.getLeafTransformMarch(leafIdx)">
-				<path d="M50,100 C45,90 0,75 0,35 C0,10 25,0 50,25 C75,0 100,10 100,35 C100,75 55,90 50,100 Z"
-					fill="none" stroke="#95a649" stroke-width="2" />
-			</g>
-			}
-		</g>
-	</svg>
-	<div class="legend-container">
-		<app-mood-picker (moodColorSelected)="m.getColor($event)" />
-	</div>
+	<app-march />
 </ng-template>
 <ng-template #april let-m>
 	<svg viewBox="0 0 400 600" class="april-svg" xmlns="http://www.w3.org/2000/svg">
