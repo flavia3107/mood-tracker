@@ -21,17 +21,17 @@ export class March {
     "M40,20 L50,5 L60,20 Z", "M60,20 L50,55 L40,20 Z",
     "M90,65 L50,55 L60,20 Z", "M120,0 L90,65 L50,10 Z"
   ];
+  private _config = this._setUpConfig();
 
   updateDay(index: number) {
+    console.log('HERE', this._config)
     const selectedDate = new Date(this._date().getFullYear(), this._date().getMonth(), index + 1)
     const d2 = new Date();
     selectedDate.setHours(0, 0, 0, 0);
     d2.setHours(0, 0, 0, 0);
 
-    if (this._selectedMood && selectedDate.getTime() === d2.getTime()) {
+    if (this._selectedMood && selectedDate.getTime() === d2.getTime())
       this.days[index].color = this._selectedMood;
-    }
-
   }
 
   getLeafTransform(leafIndex: number): string {
@@ -61,5 +61,27 @@ export class March {
 
   updateMood(color: string) {
     this._selectedMood = color;
+  }
+
+  private _setUpConfig() {
+    const days: { day: number; color: string; path: string; leaf: number; x: number; y: number; }[] = [];
+    for (let i = 0; i < 4; i++) {
+      this.shardPaths.forEach((shard, index) => {
+        const dayIdx = (i * 8) + index;
+        const path = dayIdx === 30 ? 'M60,15 C85,0 100,10 105,35 L90,65 L50,55 Z' : shard;
+        const { x, y } = this.getLabelPos(index)
+        if (dayIdx < 31) {
+          days.push({
+            day: dayIdx + 1,
+            color: '#fff',
+            path,
+            leaf: i,
+            x,
+            y
+          })
+        }
+      });
+    }
+    return days;
   }
 }
