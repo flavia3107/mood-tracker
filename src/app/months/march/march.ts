@@ -12,7 +12,7 @@ import { MoodPicker } from '../../mood-picker/mood-picker';
 export class March {
   private _utilService = inject(UtilsService);
   private _date = this._utilService.selectedDate;
-  days = signal(Array.from({ length: 31 }, (_, i) => ({ id: i + 1, color: '#FFFFFF' })));
+  days = Array.from({ length: 31 }, (_, i) => ({ id: i + 1, color: '#FFFFFF' }));
   private _selectedMood: string = '';
 
   readonly shardPaths = [
@@ -28,12 +28,10 @@ export class March {
     selectedDate.setHours(0, 0, 0, 0);
     d2.setHours(0, 0, 0, 0);
 
-    if (this._selectedMood && selectedDate.getTime() === d2.getTime())
-      this.days.update(current => {
-        const updated = [...current];
-        updated[index].color = this._selectedMood;
-        return updated;
-      });
+    if (this._selectedMood && selectedDate.getTime() === d2.getTime()) {
+      this.days[index].color = this._selectedMood;
+    }
+
   }
 
   getLeafTransform(leafIndex: number): string {

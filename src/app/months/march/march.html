@@ -15,7 +15,7 @@
 					'M60,15 C85,0 100,10 105,35 L90,65 L50,55 Z' :
 					shardPath;
 					@if (dayIdx < 31) { <g class="shard-group" (click)="updateDay(dayIdx)">
-						<path [attr.d]="path" [attr.fill]="days()[dayIdx].color" stroke="#95a649" stroke-width="0.5"
+						<path [attr.d]="path" [attr.fill]="days[dayIdx].color" stroke="#95a649" stroke-width="0.5"
 							class="shard" />
 						<text [attr.x]="getLabelPos($index).x" [attr.y]="getLabelPos($index).y" text-anchor="middle"
 							font-size="6" fill="#111"
