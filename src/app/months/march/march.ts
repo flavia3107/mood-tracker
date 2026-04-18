@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { UtilsService } from '../../../shared/services/utils';
 import { MoodPicker } from '../../mood-picker/mood-picker';
 
 @Component({
@@ -9,6 +10,8 @@ import { MoodPicker } from '../../mood-picker/mood-picker';
   styleUrls: ['./march.scss']
 })
 export class March {
+  private _utilService = inject(UtilsService);
+  private _date = this._utilService.selectedDate;
   days = signal(Array.from({ length: 31 }, (_, i) => ({ id: i + 1, color: '#FFFFFF' })));
   private _selectedMood: string = '';
 
@@ -20,7 +23,12 @@ export class March {
   ];
 
   updateDay(index: number) {
-    if (this._selectedMood)
+    const selectedDate = new Date(this._date().getFullYear(), this._date().getMonth(), index + 1)
+    const d2 = new Date();
+    selectedDate.setHours(0, 0, 0, 0);
+    d2.setHours(0, 0, 0, 0);
+
+    if (this._selectedMood && selectedDate.getTime() === d2.getTime())
       this.days.update(current => {
         const updated = [...current];
         updated[index].color = this._selectedMood;
