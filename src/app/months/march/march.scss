@@ -6,6 +6,7 @@
 	display: flex;
 	align-items: center;
 	width: 50rem;
+	height: 45rem;
 	align-items: flex-end;
 }
 
@@ -17,9 +18,9 @@
 
 svg {
 	position: relative;
-	top: -8.5rem;
-	left: 18.5rem;
-	width: 33rem;
+	top: -13.5rem;
+	left: 16.5rem;
+	width: 25rem;
 	transform: rotate(22deg);
 }
 
@@ -34,6 +35,6 @@ svg {
 
 .legend-container {
 	position: relative;
-	top: -2rem;
-	left: 4rem;
+	bottom: 1rem;
+	left: 7rem;
 }
