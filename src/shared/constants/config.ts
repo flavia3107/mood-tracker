@@ -188,9 +188,9 @@ const NOVEMBER_DAYS: any[] = Array.from({ length: 30 }, (_, i) => ({
 
 const MARCH_DAYS = [
 	{ "day": 1, "color": "#fff", "path": "M40,45 L50,80 L85,80 Z", "x": 55, "y": 70 },
-	{ "day": 2, "color": "#fff", "path": "M150,177 L150,118.5 L202,131.5 Z", "x": 163, "y": 144 },
+	{ "day": 2, "color": "#fff", "path": "M150,177 L160,130 L202,131.5 Z", "x": 170, "y": 142 },
 	{ "day": 3, "color": "#fff", "path": "M115,80 L100,70 L150,50 Z", "x": 115, "y": 72 },
-	// { "day": 4, "color": "#fff", "path": "M137,73 L150,118.5 L98,131.5 Z", "x": 130, "y": 105 },
+	{ "day": 4, "color": "#fff", "path": "M100,180 L130,170 L100,160 Z", "x": 110, "y": 172 },
 	// { "day": 5, "color": "#fff", "path": "M137,73 L150,53.5 L163,73 Z", "x": 150, "y": 73 },
 	// { "day": 6, "color": "#fff", "path": "M163,73 L150,118.5 L137,73 Z", "x": 150, "y": 99 },
 	// { "day": 7, "color": "#fff", "path": "M202,131.5 L150,118.5 L163,73 Z", "x": 169, "y": 105 },
