@@ -2,6 +2,7 @@
 @use '../styles/march.scss';
 @use '../styles/april.scss';
 @use '../styles/may.scss';
+@use '../styles/august.scss';
 
 app-may {
 	width: 100%;
@@ -15,42 +16,6 @@ app-may {
 	background-size: cover;
 	background-color: #fff;
 	background-size: cover;
-}
-
-.august {
-	background-image: url("/sunflower.png");
-	background-position: right;
-	justify-content: space-between;
-	align-items: center;
-
-	.petal {
-		transition: transform 0.2s ease-in-out, fill 0.3s ease;
-		cursor: pointer;
-	}
-	.petal:hover {
-		filter: brightness(1.1);
-	}
-
-	.day-label {
-		fill: #3e2723;
-		font-size: 5px;
-		font-family: "Arial", sans-serif;
-		font-weight: bold;
-		dominant-baseline: middle;
-		pointer-events: none;
-	}
-
-	svg {
-		width: 33rem;
-		height: 33rem;
-		margin-top: 24rem;
-		margin-right: -5.5rem;
-	}
-
-	.legend-container {
-		margin-top: -30rem;
-		margin-left: 1rem;
-	}
 }
 
 .december {
