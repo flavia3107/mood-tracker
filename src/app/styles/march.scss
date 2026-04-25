@@ -17,4 +17,25 @@
 		bottom: 1rem;
 		left: 7rem;
 	}
+
+	.label {
+		text-anchor: middle;
+		font-size: 5px;
+		fill: #111111;
+		pointer-events: none;
+		font-family: sans-serif;
+		font-weight: bold;
+	}
+
+	.shard {
+		stroke: #95a649;
+		stroke-width: 0.5;
+	}
+
+	.path {
+		fill: none;
+		fill-rule: evenodd;
+		stroke: #95a649;
+		stroke-width: 2px;
+	}
 }
