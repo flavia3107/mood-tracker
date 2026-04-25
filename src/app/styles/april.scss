@@ -37,4 +37,26 @@
 		stroke: #bdbdbd;
 		stroke-width: 0.5;
 	}
+
+	.path {
+		fill: none;
+		stroke: #d3d3d3;
+		stroke-width: 1.5px;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.handle-top {
+		stroke: #7c7c88;
+		stroke-width: 4px;
+		fill: none;
+		stroke-linecap: round;
+	}
+
+	.handle-bottom {
+		stroke: #8d7762;
+		stroke-width: 6px;
+		fill: none;
+		stroke-linecap: round;
+	}
 }
