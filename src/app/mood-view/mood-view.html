@@ -18,14 +18,13 @@
 		@let transform=`translate(${seed.x},${seed.y}) rotate(${seed.rotation}) scale(${seed.scale})`;
 		<g class="frost-unit" (click)="m.updateMood(seed)" [attr.transform]="transform">
 			@for (angle of [0, 60, 120, 180, 240, 300]; track $index) {
-			<path [attr.transform]="'rotate(' + angle + ')'" d="M 0 0 L 8 -5 L 16 0 L 8 5 Z" [attr.fill]="seed.color"
-				class="path" />
+			@let rotate = `rotate(${angle})`;
+			<path [attr.transform]="rotate" d="M 0 0 L 8 -5 L 16 0 L 8 5 Z" [attr.fill]="seed.color" class="path" />
 			<line x1="0" y1="0" x2="12" y2="0" [attr.transform]="'rotate(' + angle + ')'" class="line" />
 			}
 			<circle r="1.5" class="circle" />
-			<text x="0" dy="12" class="label" [attr.transform]="'rotate(' + (-seed.rotation) + ')'">
-				{{ seed.day}}
-			</text>
+			@let textRotate = `rotate(${-seed.rotation})`;
+			<text x="0" dy="12" class="label" [attr.transform]="textRotate"> {{ seed.day}} </text>
 		</g>
 		}
 	</svg>

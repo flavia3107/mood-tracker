@@ -1,4 +1,5 @@
 @use '../styles/january.scss';
+@use '../styles/march.scss';
 
 app-may {
 	width: 100%;
@@ -398,41 +399,5 @@ app-may {
 
 	.legend-container {
 		margin: auto 1rem 1rem 0;
-	}
-}
-
-.march {
-	justify-content: center;
-	background-image: url("/st-patrick.png");
-	background-position: center;
-	align-items: flex-end;
-
-	.canvas {
-		display: flex;
-		align-items: flex-start;
-		gap: 30px;
-	}
-
-	svg {
-		position: relative;
-		top: -13.5rem;
-		left: 16.5rem;
-		width: 25rem;
-		transform: rotate(22deg);
-	}
-
-	.segment {
-		cursor: pointer;
-		transition: transform 0.1s;
-	}
-
-	.segment:hover {
-		filter: brightness(0.9);
-	}
-
-	.legend-container {
-		position: relative;
-		bottom: 1rem;
-		left: 7rem;
 	}
 }

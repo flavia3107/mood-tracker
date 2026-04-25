@@ -1,0 +1,20 @@
+.march {
+	justify-content: center;
+	background-image: url("/st-patrick.png");
+	background-position: center;
+	align-items: flex-end;
+
+	svg {
+		position: relative;
+		top: -13.5rem;
+		left: 16.5rem;
+		width: 25rem;
+		transform: rotate(22deg);
+	}
+
+	.legend-container {
+		position: relative;
+		bottom: 1rem;
+		left: 7rem;
+	}
+}
