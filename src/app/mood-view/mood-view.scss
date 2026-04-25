@@ -1,6 +1,7 @@
 @use '../styles/january.scss';
 @use '../styles/march.scss';
 @use '../styles/april.scss';
+@use '../styles/may.scss';
 
 app-may {
 	width: 100%;
@@ -324,40 +325,5 @@ app-may {
 		font-weight: bold;
 		pointer-events: none;
 		text-anchor: middle;
-	}
-}
-
-.may {
-	background-image: url("/sakura-tree.png");
-	background-position: left;
-	justify-content: flex-end;
-	align-items: flex-end;
-	img {
-		width: 100%;
-	}
-
-	svg {
-		width: 45rem;
-		height: 27rem;
-		display: block;
-		margin: 0 auto;
-	}
-
-	g[style*="cursor: pointer"] {
-		transition: transform 0.2s ease-out;
-	}
-
-	g[style*="cursor: pointer"]:hover {
-		filter: brightness(1.05);
-		transform-box: fill-box;
-		transform-origin: center;
-	}
-
-	.flex-column {
-		height: 45rem;
-	}
-
-	.legend-container {
-		margin: auto 1rem 1rem 0;
 	}
 }

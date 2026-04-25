@@ -169,19 +169,15 @@
 		<rect width="100%" height="100%" fill="url(#dotGrid)" />
 
 		@for (f of m.days; track f.day) {
-		<g [attr.transform]="'translate(' + f.x + ',' + f.y + ') scale(' + f.scale + ')'" (click)="m.updateMood(f)"
-			style="cursor: pointer;">
-
+		@let transform = `translate(${f.x}, ${f.y}) scale(${f.scale})`;
+		<g [attr.transform]="transform" (click)="m.updateMood(f)" style="cursor: pointer;">
 			<g [attr.transform]="'rotate(' + f.rotation + ')'">
 				@let stroke = ['#F36D9B', '#D94773', '#eea2bc'].includes(f.color) ? '#f4cfdf' : '#F06292';
 				<use href="#dayFlower" [attr.color]="f.color" [attr.stroke]="stroke" width="30" height="30" x="-15"
 					y="-15" />
 				@let color = ['#F36D9B', '#D94773', '#eea2bc'].includes(f.color) ? '#FEEEF0' : '#5D4037';
 				<g [attr.transform]="'rotate(' + (-f.rotation) + ') translate(3, -6)'">
-					<text x="0" y="0" dy=".3em" font-size="6" font-weight="900" text-anchor="middle" [attr.fill]="color"
-						font-family="cursive" style="pointer-events: none;">
-						{{ f.day }}
-					</text>
+					<text x="0" y="0" dy=".3em" [attr.fill]="color" class="label"> {{ f.day }} </text>
 				</g>
 			</g>
 		</g>

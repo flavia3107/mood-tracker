@@ -1,0 +1,30 @@
+.may {
+	background-image: url("/sakura-tree.png");
+	align-items: flex-end;
+
+	svg {
+		height: 27rem;
+	}
+
+	g[style*="cursor: pointer"] {
+		transition: transform 0.2s ease-out;
+	}
+
+	g[style*="cursor: pointer"]:hover {
+		filter: brightness(1.05);
+		transform-box: fill-box;
+		transform-origin: center;
+	}
+
+	.legend-container {
+		margin: auto 1rem 1rem 0;
+	}
+
+	.label {
+		font-size: 6px;
+		font-weight: 900;
+		text-anchor: middle;
+		font-family: cursive;
+		pointer-events: none;
+	}
+}

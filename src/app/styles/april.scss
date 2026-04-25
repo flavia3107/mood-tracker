@@ -1,8 +1,6 @@
 .april {
 	align-items: flex-end;
 	background-image: url("/rain.png");
-	background-position: right;
-	justify-content: space-between;
 
 	.april-svg {
 		width: 40rem;
@@ -14,7 +12,7 @@
 	}
 
 	.legend-container {
-		margin: 0 1rem 1rem 0;
+		margin: 0 0 1rem 1rem;
 	}
 
 	.umbrella-label {
