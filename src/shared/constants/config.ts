@@ -279,6 +279,7 @@ function _generateFrostSeeds() {
 
 		while (!placed && attempts < maxAttempts) {
 			const newSeed = {
+				day: i + 1,
 				x: Math.random() * 300,
 				y: 20 + Math.random() * 150,
 				rotation: Math.random() * 360,
