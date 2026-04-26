@@ -122,7 +122,7 @@ const JULY_DAYS: any[] = Array.from({ length: 31 }, (_, i) => {
 	const xOffset = (row % 2 !== 0) ? xSpacing / 2 : 0;
 
 	return {
-		id: i + 1,
+		day: i + 1,
 		x: col * xSpacing + xOffset,
 		y: row * ySpacing,
 		color: '#fff'
