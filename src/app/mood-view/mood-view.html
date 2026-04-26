@@ -254,13 +254,10 @@
 		<g [attr.transform]="day.groupTransform" (click)="m.updateMood(day)" style="cursor: pointer;">
 			<path d="M125 105 C135 80, 140 40, 125 30 C110 40, 115 80, 125 105 Z" [attr.fill]="day.color"
 				[attr.stroke]="day.stroke" stroke-width="0.7" />
-			<g mask="url(#petalMask)" opacity="0.3" [attr.fill]="day.stroke">
+			<g mask="url(#petalMask)" opacity="0.1" [attr.fill]="day.stroke">
 				<path d="M125 105 C132 85, 130 50, 125 45 C120 50, 118 85, 125 105 Z" />
 			</g>
-			@let textFill = ['#F57C00', '#BF360C'].includes(day.color) ? '#FFF59D' : '#3E2723';
-			<text x="125" y="48" [attr.fill]="textFill" class="label" [attr.transform]="day.textTransform">
-				{{ day.label }}
-			</text>
+			<text x="125" y="48" class="label" [attr.transform]="day.textTransform"> {{ day.label }} </text>
 		</g>
 		}
 		<circle cx="125" cy="125" r="40" fill="#3E2723" />
