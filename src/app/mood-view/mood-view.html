@@ -243,9 +243,6 @@
 	</div>
 </ng-template>
 <ng-template #august let-m>
-	<div class="legend-container">
-		<app-mood-picker (moodColorSelected)="m.getColor($event)" />
-	</div>
 	<svg viewBox="0 0 250 250" class="sunflower">
 		<defs>
 			<mask id="petalMask">
@@ -270,6 +267,9 @@
 		<circle cx="125" cy="125" r="35" class="circle-2" />
 		<circle cx="125" cy="125" r="32" class="circle-3" />
 	</svg>
+	<div class="legend-container">
+		<app-mood-picker (moodColorSelected)="m.getColor($event)" />
+	</div>
 </ng-template>
 <ng-template #september let-m>
 	<div class="legend-container">
