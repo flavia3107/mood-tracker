@@ -4,32 +4,28 @@
 	justify-content: space-between;
 	align-items: center;
 
-	.petal {
-		transition: transform 0.2s ease-in-out, fill 0.3s ease;
-		cursor: pointer;
-	}
-	.petal:hover {
-		filter: brightness(1.1);
-	}
-
-	.day-label {
-		fill: #3e2723;
-		font-size: 5px;
-		font-family: "Arial", sans-serif;
-		font-weight: bold;
-		dominant-baseline: middle;
-		pointer-events: none;
-	}
-
 	svg {
 		width: 33rem;
-		height: 33rem;
-		margin-top: 24rem;
-		margin-right: -5.5rem;
+		margin: -14rem -6rem 0 0;
 	}
 
 	.legend-container {
-		margin-top: -30rem;
-		margin-left: 1rem;
+		margin: 30rem 0 0 1rem;
+	}
+
+	.label {
+		pointer-events: none;
+		text-anchor: middle;
+		font-weight: 900;
+		font-size: 8px;
+		font-family: "Arial", sans-serif;
+		dominant-baseline: middle;
+	}
+
+	.circle-2 {
+		fill: #422426;
+		stroke: #232323;
+		stroke-width: 2;
+		stroke-dasharray: 1 3;
 	}
 }
