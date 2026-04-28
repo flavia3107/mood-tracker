@@ -38,4 +38,20 @@
 	.legend-container {
 		margin: -29.5rem 1rem 0 0;
 	}
+
+	.label {
+		text-anchor: middle;
+		font-size: 12px;
+		font-weight: 900;
+		fill: #3e2723;
+		pointer-events: none;
+		font-family: sans-serif;
+	}
+
+	.path {
+		fill: none;
+		stroke: #3e2723;
+		stroke-width: 6;
+		pointer-events: none;
+	}
 }

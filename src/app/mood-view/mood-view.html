@@ -297,16 +297,15 @@
 			<g (click)="m.updateMood(day)" style="cursor: pointer;">
 				<polygon [attr.points]="day.points" [attr.fill]="day.color || '#FBF8F4'" stroke="#3e2723"
 					stroke-width="1" />
-				<text [attr.x]="day.centerX" [attr.y]="day.centerY" text-anchor="middle" font-size="12"
-					font-weight="900" fill="#3e2723" style="pointer-events: none; font-family: sans-serif;">
-					{{ day.id }}
+				<text [attr.x]="day.centerX" [attr.y]="day.centerY" class="label">
+					{{ day.day }}
 				</text>
 			</g>
 			}
 		</g>
 		<path
 			d="M250,100 C320,100 390,120 420,195 C450,290 400,410 300,410 L200,410 C100,410 50,290 80,195 C110,120 180,100 250,100 Z"
-			fill="none" stroke="#3e2723" stroke-width="6" style="pointer-events: none;" />
+			class="path" />
 
 		<g class="face-overlay" style="pointer-events: none;">
 			<path d="M160,190 L210,240 H140 Z" fill="#1a1a1a" />

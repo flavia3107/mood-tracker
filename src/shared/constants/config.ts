@@ -259,7 +259,7 @@ function _generateFacets() {
 	];
 
 	const newVal = facetData.map((data, i) => ({
-		id: i + 1,
+		day: i + 1,
 		color: '#fff',
 		points: data.pts,
 		centerX: data.cx,
