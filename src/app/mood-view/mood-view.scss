@@ -6,6 +6,7 @@
 @use '../styles/august.scss';
 @use '../styles/september.scss';
 @use '../styles/october.scss';
+@use '../styles/november.scss';
 
 app-may {
 	width: 100%;
@@ -165,37 +166,5 @@ app-may {
 
 	.legend-container {
 		margin: 0 0 1rem 1rem;
-	}
-}
-
-.november {
-	align-items: flex-end;
-	justify-content: space-between;
-	background-image: url("/knit.png");
-	.day-segment {
-		cursor: pointer;
-		transition: stroke 0.3s ease;
-	}
-
-	svg {
-		max-width: 30rem;
-		position: relative;
-		left: 20rem;
-		bottom: 6rem;
-		transform: rotate(20deg);
-	}
-
-	.legend-container {
-		margin: 0 1rem 1rem 0;
-		z-index: 1;
-		position: relative;
-	}
-
-	.label {
-		font-size: 11px;
-		font-family: sans-serif;
-		font-weight: bold;
-		pointer-events: none;
-		text-anchor: middle;
 	}
 }
