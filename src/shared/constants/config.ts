@@ -1,3 +1,83 @@
+
+
+const JANUARY_DAYS: any[] = _generateFrostSeeds();
+
+const FEBRUARY_DAYS: any[] = [
+	// Row 1: Top Layer
+	{ id: 2, pts: "M90,140 a35,35 0 1,1 70,0 a35,35 0 1,1 -70,0", cx: 120, cy: 145, rotate: 5 },
+	{ id: 28, pts: "M370,390 a12,12 0 1,1 50,0 a12,12 0 1,1 -50,0", cx: 390, cy: 390, rotate: -10 },
+	{ id: 1, pts: "M45,210 a30,30 0 1,1 60,0 a30,30 0 1,1 -60,0", cx: 75, cy: 210, rotate: 5 },
+	{ id: 3, pts: "M305,210 a30,30 0 1,1 60,0 a30,30 0 1,1 -60,0", cx: 335, cy: 215, rotate: 5 },
+
+	// // Row 2: Large Squares
+	{ id: 4, pts: "M180,150 h70 v50 h-70 Z", cx: 215, cy: 180, rotate: 55 },
+	{ id: 5, pts: "M370,220 h50 v50 h-50 Z", cx: 395, cy: 245, rotate: -6 },
+	{ id: 6, pts: "M250,215 h50 v70 h-50 Z", cx: 275, cy: 260, rotate: 0 },
+	{ id: 7, pts: "M310,255 h50 v50 h-50 Z", cx: 335, cy: 280, rotate: -3 },
+	{ id: 8, pts: "M390,285 h70 v70 h-70 Z", cx: 425, cy: 325, rotate: 25 },
+
+	// // Row 3: Horizontal Ovals
+	{ id: 9, pts: "M115,205 a35,18 0 1,1 80,0 a35,18 0 1,1 -80,0", cx: 150, cy: 210, rotate: 5 },
+	{ id: 27, pts: "M155,320 a35,18 0 1,1 90,0 a35,18 0 1,1 -90,0", cx: 200, cy: 330, rotate: -15 },
+	{ id: 21, pts: "M255,295 h50 v50 h-50 Z", cx: 280, cy: 320, rotate: -5 },
+	{ id: 11, pts: "M320,345 a35,18 0 1,1 70,0 a35,18 0 1,1 -70,0", cx: 355, cy: 350, rotate: 80 },
+	{ id: 12, pts: "M50,295 a35,18 0 1,1 90,0 a35,18 0 1,1 -90,0", cx: 100, cy: 300, rotate: 60 },
+
+	// // Row 4: Mid Squares & Large Circles
+	{ id: 13, pts: "M125,235 h60 v60 h-60 Z", cx: 155, cy: 270, rotate: 0 },
+	{ id: 26, pts: "M192,490 a25,25 0 1,1 50,0 a25,25 0 1,1 -50,0", cx: 215, cy: 490, rotate: -9 },
+	{ id: 23, pts: "M105,350 h70 v50 h-70 Z", cx: 140, cy: 380, rotate: 50 },
+	{ id: 25, pts: "M280,350 h50 v50 h-50 Z", cx: 305, cy: 380, rotate: -4 },
+	{ id: 10, pts: "M425,215 a25,25 0 1,1 50,0 a25,25 0 1,1 -50,0", cx: 450, cy: 220, rotate: 11 },
+	{ id: 16, pts: "M320,395 h50 v50 h-50 Z", cx: 340, cy: 420, rotate: 55 },
+
+	// // Row 5: Bottom V-Shape
+	{ id: 24, pts: "M250,470 a30,15 0 1,1 65,0 a30,15 0 1,1 -65,0", cx: 280, cy: 475, rotate: -25 },
+	{ id: 18, pts: "M425,260 a30,15 0 1,1 60,0 a30,15 0 1,1 -60,0", cx: 453, cy: 263, rotate: 5 },
+	{ id: 19, pts: "M145,445 a30,15 0 1,1 60,0 a30,15 0 1,1 -60,0", cx: 175, cy: 445, rotate: 50 },
+	{ id: 22, pts: "M245,425 a25,25 0 1,1 50,0 a25,25 0 1,1 -50,0", cx: 270, cy: 435, rotate: 0 },
+
+	// // Fillers
+	{ id: 20, pts: "M192,430 a25,25 0 1,1 50,0 a25,25 0 1,1 -50,0", cx: 210, cy: 430, rotate: 15 },
+	{ id: 15, pts: "M375,190 a25,25 0 1,1 50,0 a25,25 0 1,1 -50,0", cx: 400, cy: 190, rotate: -15 },
+	{ id: 14, pts: "M193,230 h50 v50 h-50 Z", cx: 215, cy: 260, rotate: 5 },
+	{ id: 17, pts: "M200,345 h50 v50 h-50 Z", cx: 225, cy: 375, rotate: -15 }
+];
+
+const MARCH_DAYS = [
+	{ day: 1, color: "#fff", path: "M130,100 L100,100 L145,145 Z", x: 125, y: 113 },
+	{ day: 2, color: "#fff", path: "M125,100 L150,155 L180,120 Z", x: 143, y: 125 },
+	{ day: 3, color: "#fff", path: "M125,100 L165,130 L180,100 Z", x: 150, y: 110 },
+	{ day: 4, color: "#fff", path: "M125,100 L100,100 L150,50 Z", x: 120, y: 95 },
+	{ day: 5, color: "#fff", path: "M125,100 L150,51 L163,73 Z", x: 150, y: 65 },
+	{ day: 6, color: "#fff", path: "M163,73 L185,100 L125,100 Z", x: 160, y: 95 },
+	{ day: 7, color: "#fff", path: "M241,47 L202,131.5 L148,50 Z", x: 175, y: 70 },
+	{ day: 8, color: "#fff", path: "M150,150 L190,155 L205,55 Z", x: 170, y: 135 },
+	{ day: 11, color: "#fff", path: "M130,170 L100,125 L99,185 Z", x: 110, y: 155 },
+	{ day: 9, color: "#fff", path: "M53,210 L175,180 L150,150 Z", x: 125, y: 180 },
+	{ day: 12, color: "#fff", path: "M100,180 L100,125 L75,164 Z", x: 95, y: 155 },
+	{ day: 13, color: "#fff", path: "M126,165 L150,150 L100,126 Z", x: 130, y: 150 },
+	{ day: 14, color: "#fff", path: "M75,164 L40,155 L101,126 Z", x: 75, y: 150 },
+	{ day: 10, color: "#fff", path: "M140,200 L0,198 L50,150 Z", x: 66, y: 175 },
+	{ day: 15, color: "#fff", path: "M52,150 L100,127 L100,100 Z", x: 90, y: 125 },
+	{ day: 16, color: "#fff", path: "M150,152 L100,127 L100,100 Z", x: 110, y: 125 },
+	{ day: 17, color: "#fff", path: "M152,50 L145,0 L100,22 Z", x: 130, y: 27 },
+	{ day: 18, color: "#fff", path: "M50,50 L50,0 L100,20 Z", x: 70, y: 28 },
+	{ day: 19, color: "#fff", path: "M100,75 L70,38 L100,20 Z", x: 90, y: 50 },
+	{ day: 20, color: "#fff", path: "M100,75 L70,38 L50,50 Z", x: 73, y: 55 },
+	{ day: 21, color: "#fff", path: "M100,75 L125,36 L100,20 Z", x: 110, y: 45 },
+	{ day: 22, color: "#fff", path: "M100,75 L125,36 L152,50 Z", x: 130, y: 53 },
+	{ day: 23, color: "#fff", path: "M55,53 L100,75 L100,100 Z", x: 91, y: 80 },
+	{ day: 24, color: "#fff", path: "M155,47 L100,75 L100,100 Z", x: 108, y: 81 },
+	{ day: 25, color: "#fff", path: "M100,100 L75,100 L48,150 Z", x: 80, y: 110 },
+	{ day: 26, color: "#fff", path: "M100,100 L75,100 L48,50 Z", x: 82, y: 95 },
+	{ day: 27, color: "#fff", path: "M35,130 L50,150 L75,100 Z", x: 50, y: 132 },
+	{ day: 28, color: "#fff", path: "M35,130 L20,97 L75,100 Z", x: 50, y: 112 },
+	{ day: 29, color: "#fff", path: "M50,50 L20,100 L75,100 Z", x: 50, y: 80 },
+	{ day: 30, color: "#fff", path: "M50,50 L20,100 L0,52 Z", x: 25, y: 72 },
+	{ day: 31, color: "#fff", path: "M0,150 L50,150 L21,100 Z", x: 25, y: 130 },
+];
+
 const APRIL_DAYS: any[] = Array.from({ length: 30 }, (_, i) => {
 	const day = i + 1;
 	const totalPathLength = 350;
@@ -57,77 +137,7 @@ const APRIL_DAYS: any[] = Array.from({ length: 30 }, (_, i) => {
 	};
 });
 
-const AUGUST_DAYS: any[] = Array.from({ length: 31 }, (_, i) => {
-	const angle = (i * 360) / 31;
-	return {
-		label: i + 1,
-		groupTransform: `rotate(${angle}, 125, 125)`,
-		textTransform: `rotate(${-angle}, 125, 48)`,
-		color: '#fff',
-		stroke: '#3E2723'
-	};
-});
-
-const DECEMBER_DAYS: any[] = _getDecemberConfig();
-
-const FEBRUARY_DAYS: any[] = [
-	// Row 1: Top Layer
-	{ id: 2, pts: "M90,140 a35,35 0 1,1 70,0 a35,35 0 1,1 -70,0", cx: 120, cy: 145, rotate: 5 },
-	{ id: 28, pts: "M370,390 a12,12 0 1,1 50,0 a12,12 0 1,1 -50,0", cx: 390, cy: 390, rotate: -10 },
-	{ id: 1, pts: "M45,210 a30,30 0 1,1 60,0 a30,30 0 1,1 -60,0", cx: 75, cy: 210, rotate: 5 },
-	{ id: 3, pts: "M305,210 a30,30 0 1,1 60,0 a30,30 0 1,1 -60,0", cx: 335, cy: 215, rotate: 5 },
-
-	// // Row 2: Large Squares
-	{ id: 4, pts: "M180,150 h70 v50 h-70 Z", cx: 215, cy: 180, rotate: 55 },
-	{ id: 5, pts: "M370,220 h50 v50 h-50 Z", cx: 395, cy: 245, rotate: -6 },
-	{ id: 6, pts: "M250,215 h50 v70 h-50 Z", cx: 275, cy: 260, rotate: 0 },
-	{ id: 7, pts: "M310,255 h50 v50 h-50 Z", cx: 335, cy: 280, rotate: -3 },
-	{ id: 8, pts: "M390,285 h70 v70 h-70 Z", cx: 425, cy: 325, rotate: 25 },
-
-	// // Row 3: Horizontal Ovals
-	{ id: 9, pts: "M115,205 a35,18 0 1,1 80,0 a35,18 0 1,1 -80,0", cx: 150, cy: 210, rotate: 5 },
-	{ id: 27, pts: "M155,320 a35,18 0 1,1 90,0 a35,18 0 1,1 -90,0", cx: 200, cy: 330, rotate: -15 },
-	{ id: 21, pts: "M255,295 h50 v50 h-50 Z", cx: 280, cy: 320, rotate: -5 },
-	{ id: 11, pts: "M320,345 a35,18 0 1,1 70,0 a35,18 0 1,1 -70,0", cx: 355, cy: 350, rotate: 80 },
-	{ id: 12, pts: "M50,295 a35,18 0 1,1 90,0 a35,18 0 1,1 -90,0", cx: 100, cy: 300, rotate: 60 },
-
-	// // Row 4: Mid Squares & Large Circles
-	{ id: 13, pts: "M125,235 h60 v60 h-60 Z", cx: 155, cy: 270, rotate: 0 },
-	{ id: 26, pts: "M192,490 a25,25 0 1,1 50,0 a25,25 0 1,1 -50,0", cx: 215, cy: 490, rotate: -9 },
-	{ id: 23, pts: "M105,350 h70 v50 h-70 Z", cx: 140, cy: 380, rotate: 50 },
-	{ id: 25, pts: "M280,350 h50 v50 h-50 Z", cx: 305, cy: 380, rotate: -4 },
-	{ id: 10, pts: "M425,215 a25,25 0 1,1 50,0 a25,25 0 1,1 -50,0", cx: 450, cy: 220, rotate: 11 },
-	{ id: 16, pts: "M320,395 h50 v50 h-50 Z", cx: 340, cy: 420, rotate: 55 },
-
-	// // Row 5: Bottom V-Shape
-	{ id: 24, pts: "M250,470 a30,15 0 1,1 65,0 a30,15 0 1,1 -65,0", cx: 280, cy: 475, rotate: -25 },
-	{ id: 18, pts: "M425,260 a30,15 0 1,1 60,0 a30,15 0 1,1 -60,0", cx: 453, cy: 263, rotate: 5 },
-	{ id: 19, pts: "M145,445 a30,15 0 1,1 60,0 a30,15 0 1,1 -60,0", cx: 175, cy: 445, rotate: 50 },
-	{ id: 22, pts: "M245,425 a25,25 0 1,1 50,0 a25,25 0 1,1 -50,0", cx: 270, cy: 435, rotate: 0 },
-
-	// // Fillers
-	{ id: 20, pts: "M192,430 a25,25 0 1,1 50,0 a25,25 0 1,1 -50,0", cx: 210, cy: 430, rotate: 15 },
-	{ id: 15, pts: "M375,190 a25,25 0 1,1 50,0 a25,25 0 1,1 -50,0", cx: 400, cy: 190, rotate: -15 },
-	{ id: 14, pts: "M193,230 h50 v50 h-50 Z", cx: 215, cy: 260, rotate: 5 },
-	{ id: 17, pts: "M200,345 h50 v50 h-50 Z", cx: 225, cy: 375, rotate: -15 }
-];
-
-const JANUARY_DAYS: any[] = _generateFrostSeeds();
-
-const JULY_DAYS: any[] = Array.from({ length: 31 }, (_, i) => {
-	const row = Math.floor(i / 5);
-	const col = i % 5;
-	const xSpacing = 52;
-	const ySpacing = 45;
-	const xOffset = (row % 2 !== 0) ? xSpacing / 2 : 0;
-
-	return {
-		day: i + 1,
-		x: col * xSpacing + xOffset,
-		y: row * ySpacing,
-		color: '#fff'
-	};
-});
+const MAY_DAYS: any[] = _generateFlowers();
 
 const JUNE_DAYS: any[] = [
 	{ id: 1, x: 250, y: 90, d: "M250,30 L210,80 L250,100 L290,80 Z" },
@@ -163,14 +173,33 @@ const JUNE_DAYS: any[] = [
 	{ id: 31, x: 333, y: 445, d: "M305,440 L470,420 L480,490 L420,490 Z" }
 ];
 
-const SEPTEMBER_DAYS = _generateFallingLeaves();
+const JULY_DAYS: any[] = Array.from({ length: 31 }, (_, i) => {
+	const row = Math.floor(i / 5);
+	const col = i % 5;
+	const xSpacing = 52;
+	const ySpacing = 45;
+	const xOffset = (row % 2 !== 0) ? xSpacing / 2 : 0;
 
-export const JUNE_CONFIG = {
-	wedgePath: "M 250,30 L 470,440 Q 250,570 30,440 Z",
-	rindPathBase: "M 470,440 Q 250,570 30,440",
-	rindPathMid: "M 465,445 Q 250,565 35,445",
-	rindPathOuter: "M 460,455 Q 250,560 40,455",
-}
+	return {
+		day: i + 1,
+		x: col * xSpacing + xOffset,
+		y: row * ySpacing,
+		color: '#fff'
+	};
+});
+
+const AUGUST_DAYS: any[] = Array.from({ length: 31 }, (_, i) => {
+	const angle = (i * 360) / 31;
+	return {
+		label: i + 1,
+		groupTransform: `rotate(${angle}, 125, 125)`,
+		textTransform: `rotate(${-angle}, 125, 48)`,
+		color: '#fff',
+		stroke: '#3E2723'
+	};
+});
+
+const SEPTEMBER_DAYS = _generateFallingLeaves();
 
 const OCTOBER_DAYS: any[] = _generateFacets();
 
@@ -179,42 +208,32 @@ const NOVEMBER_DAYS: any[] = Array.from({ length: 30 }, (_, i) => ({
 	color: '#fff'
 }));
 
-const MARCH_DAYS = [
-	{ day: 1, color: "#fff", path: "M130,100 L100,100 L145,145 Z", x: 125, y: 113 },
-	{ day: 2, color: "#fff", path: "M125,100 L150,155 L180,120 Z", x: 143, y: 125 },
-	{ day: 3, color: "#fff", path: "M125,100 L165,130 L180,100 Z", x: 150, y: 110 },
-	{ day: 4, color: "#fff", path: "M125,100 L100,100 L150,50 Z", x: 120, y: 95 },
-	{ day: 5, color: "#fff", path: "M125,100 L150,51 L163,73 Z", x: 150, y: 65 },
-	{ day: 6, color: "#fff", path: "M163,73 L185,100 L125,100 Z", x: 160, y: 95 },
-	{ day: 7, color: "#fff", path: "M241,47 L202,131.5 L148,50 Z", x: 175, y: 70 },
-	{ day: 8, color: "#fff", path: "M150,150 L190,155 L205,55 Z", x: 170, y: 135 },
-	{ day: 11, color: "#fff", path: "M130,170 L100,125 L99,185 Z", x: 110, y: 155 },
-	{ day: 9, color: "#fff", path: "M53,210 L175,180 L150,150 Z", x: 125, y: 180 },
-	{ day: 12, color: "#fff", path: "M100,180 L100,125 L75,164 Z", x: 95, y: 155 },
-	{ day: 13, color: "#fff", path: "M126,165 L150,150 L100,126 Z", x: 130, y: 150 },
-	{ day: 14, color: "#fff", path: "M75,164 L40,155 L101,126 Z", x: 75, y: 150 },
-	{ day: 10, color: "#fff", path: "M140,200 L0,198 L50,150 Z", x: 66, y: 175 },
-	{ day: 15, color: "#fff", path: "M52,150 L100,127 L100,100 Z", x: 90, y: 125 },
-	{ day: 16, color: "#fff", path: "M150,152 L100,127 L100,100 Z", x: 110, y: 125 },
-	{ day: 17, color: "#fff", path: "M152,50 L145,0 L100,22 Z", x: 130, y: 27 },
-	{ day: 18, color: "#fff", path: "M50,50 L50,0 L100,20 Z", x: 70, y: 28 },
-	{ day: 19, color: "#fff", path: "M100,75 L70,38 L100,20 Z", x: 90, y: 50 },
-	{ day: 20, color: "#fff", path: "M100,75 L70,38 L50,50 Z", x: 73, y: 55 },
-	{ day: 21, color: "#fff", path: "M100,75 L125,36 L100,20 Z", x: 110, y: 45 },
-	{ day: 22, color: "#fff", path: "M100,75 L125,36 L152,50 Z", x: 130, y: 53 },
-	{ day: 23, color: "#fff", path: "M55,53 L100,75 L100,100 Z", x: 91, y: 80 },
-	{ day: 24, color: "#fff", path: "M155,47 L100,75 L100,100 Z", x: 108, y: 81 },
-	{ day: 25, color: "#fff", path: "M100,100 L75,100 L48,150 Z", x: 80, y: 110 },
-	{ day: 26, color: "#fff", path: "M100,100 L75,100 L48,50 Z", x: 82, y: 95 },
-	{ day: 27, color: "#fff", path: "M35,130 L50,150 L75,100 Z", x: 50, y: 132 },
-	{ day: 28, color: "#fff", path: "M35,130 L20,97 L75,100 Z", x: 50, y: 112 },
-	{ day: 29, color: "#fff", path: "M50,50 L20,100 L75,100 Z", x: 50, y: 80 },
-	{ day: 30, color: "#fff", path: "M50,50 L20,100 L0,52 Z", x: 25, y: 72 },
-	{ day: 31, color: "#fff", path: "M0,150 L50,150 L21,100 Z", x: 25, y: 130 },
-]
+const DECEMBER_DAYS: any[] = _getDecemberConfig();
+
+export const JUNE_CONFIG = {
+	wedgePath: "M 250,30 L 470,440 Q 250,570 30,440 Z",
+	rindPathBase: "M 470,440 Q 250,570 30,440",
+	rindPathMid: "M 465,445 Q 250,565 35,445",
+	rindPathOuter: "M 460,455 Q 250,560 40,455",
+}
 
 
-const MAY_DAYS: any[] = _generateFlowers();
+export const MONTH_DAYS_CONFIG: { [key: string]: any } = {
+	'January': JANUARY_DAYS,
+	'February': FEBRUARY_DAYS,
+	'March': MARCH_DAYS,
+	'April': APRIL_DAYS,
+	'May': MAY_DAYS,
+	'June': JUNE_DAYS,
+	'July': JULY_DAYS,
+	'August': AUGUST_DAYS,
+	'September': SEPTEMBER_DAYS,
+	'October': OCTOBER_DAYS,
+	'November': NOVEMBER_DAYS,
+	'December': DECEMBER_DAYS,
+}
+
+
 
 function _generateFacets() {
 	const facetData = [
@@ -306,7 +325,7 @@ function _generateFrostSeeds() {
 }
 
 function _getDecemberConfig() {
-	const decs: { x: number, y: number, color: string }[] = [];
+	const decs: { day: number, x: number, y: number, color: string }[] = [];
 	const topY = 35;
 	const bottomY = 195;
 	const height = bottomY - topY;
@@ -340,7 +359,7 @@ function _getDecemberConfig() {
 			});
 
 			if (!hasOverlap) {
-				decs.push({ x, y: currentY, color: '#fff' });
+				decs.push({ day: i + 1, x, y: currentY, color: '#fff' });
 				placed = true;
 			} else {
 				// If it overlaps, nudge the Y down slightly and try again
@@ -414,19 +433,4 @@ function _generateFlowers() {
 		});
 	}
 	return tempTrackers;
-}
-
-export const MONTH_DAYS_CONFIG: { [key: string]: any } = {
-	'April': APRIL_DAYS,
-	'August': AUGUST_DAYS,
-	'December': DECEMBER_DAYS,
-	'February': FEBRUARY_DAYS,
-	'January': JANUARY_DAYS,
-	'July': JULY_DAYS,
-	'June': JUNE_DAYS,
-	'September': SEPTEMBER_DAYS,
-	'October': OCTOBER_DAYS,
-	'November': NOVEMBER_DAYS,
-	'May': MAY_DAYS,
-	'March': MARCH_DAYS
 }
