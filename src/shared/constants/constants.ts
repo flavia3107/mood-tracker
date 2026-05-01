@@ -64,7 +64,6 @@ const AUGUST_MOOD_COLORS = [
 	{ label: 'moody', color: '#ed934f' },
 	{ label: 'sad', color: '#b87242' }
 ];
-
 const SEPTEMBER_MOOD_COLORS = [
 	{ label: 'happy', color: '#D4E157' },
 	{ label: 'neutral', color: '#9fc03b' },

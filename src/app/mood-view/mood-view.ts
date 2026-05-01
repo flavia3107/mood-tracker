@@ -13,6 +13,7 @@ import { MoodPicker } from '../mood-picker/mood-picker';
   styleUrl: './mood-view.scss',
 })
 export class MoodView {
+  readonly june_config = JUNE_CONFIG;
   private _utilService = inject(UtilsService);
   private _date = this._utilService.selectedDate;
   public currentMonth = this._utilService.activeMonth;
@@ -30,35 +31,14 @@ export class MoodView {
   private _dec = viewChild<TemplateRef<any>>('december');
   private _selectedColor = '';
   public moodLogic = this._updateSvgConfig();
-  readonly june_config = JUNE_CONFIG;
-
-  activeTemplate = computed(() => {
-    const map: Record<string, TemplateRef<any> | undefined> = {
-      'January': this._jan(),
-      'February': this._feb(),
-      'March': this._mar(),
-      'April': this._apr(),
-      'May': this._may(),
-      'June': this._jun(),
-      'July': this._jul(),
-      'August': this._aug(),
-      'September': this._sep(),
-      'October': this._oct(),
-      'November': this._nov(),
-      'December': this._dec(),
-    };
-
-    this.moodLogic = this._updateSvgConfig();
-    return map[this.currentMonth()];
-  });
-
+  public activeTemplate = computed(() => this._templateMap());
 
   private getMoodColorForDate(color: string) {
     this._selectedColor = color;
   }
 
   private onDayClick(day: any) {
-    const selectedDate = new Date(this._date().getFullYear(), this._date().getMonth(), day.day)
+    const selectedDate = new Date(this._date().getFullYear(), this._date().getMonth(), day.day);
     const d2 = new Date();
     selectedDate.setHours(0, 0, 0, 0);
     d2.setHours(0, 0, 0, 0);
@@ -68,7 +48,11 @@ export class MoodView {
   }
 
   private _getDaysConfig() {
-    return MONTH_DAYS_CONFIG[this.currentMonth()]?.map((day: any, index: number) => ({ ...day, color: this._utilService.getMoodColorForDate(new Date(this._date().getFullYear(), this._date().getMonth(), index + 1)) }));
+    return MONTH_DAYS_CONFIG[this.currentMonth()]
+      .map((day: any, index: number) => ({
+        ...day,
+        color: this._utilService.getMoodColorForDate(new Date(this._date().getFullYear(), this._date().getMonth(), index + 1))
+      }));
   }
 
   private _updateSvgConfig() {
@@ -93,5 +77,25 @@ export class MoodView {
 
     const pos = offsets[leafIndex];
     return `translate(${pos.x}, ${pos.y}) scale(1.3) rotate(${rotations[leafIndex]}, 40, 60)`;
+  }
+
+  private _templateMap() {
+    const map: Record<string, TemplateRef<any> | undefined> = {
+      'January': this._jan(),
+      'February': this._feb(),
+      'March': this._mar(),
+      'April': this._apr(),
+      'May': this._may(),
+      'June': this._jun(),
+      'July': this._jul(),
+      'August': this._aug(),
+      'September': this._sep(),
+      'October': this._oct(),
+      'November': this._nov(),
+      'December': this._dec(),
+    };
+
+    this.moodLogic = this._updateSvgConfig();
+    return map[this.currentMonth()];
   }
 }

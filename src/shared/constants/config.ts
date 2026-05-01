@@ -217,7 +217,6 @@ export const JUNE_CONFIG = {
 	rindPathOuter: "M 460,455 Q 250,560 40,455",
 }
 
-
 export const MONTH_DAYS_CONFIG: { [key: string]: any } = {
 	'January': JANUARY_DAYS,
 	'February': FEBRUARY_DAYS,
@@ -232,8 +231,6 @@ export const MONTH_DAYS_CONFIG: { [key: string]: any } = {
 	'November': NOVEMBER_DAYS,
 	'December': DECEMBER_DAYS,
 }
-
-
 
 function _generateFacets() {
 	const facetData = [
