@@ -1,14 +1,12 @@
 .october {
 	background-image: url("/pumpkin.png");
 	background-position: center;
-	align-items: center;
-	justify-content: space-between;
 
 	.pumpkin-svg {
-		max-width: 26.5rem;
+		max-width: 25rem;
 		position: relative;
-		top: 10rem;
-		left: 5rem;
+		top: 12.5rem;
+		left: 27rem;
 	}
 
 	.legend-container {
