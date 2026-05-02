@@ -10,14 +10,15 @@
 	}
 
 	.legend-container {
-		margin: -29.5rem 1rem 0 0;
+		position: relative;
+		top: 1rem;
+		right: 23.75rem;
 	}
 
 	.label {
 		text-anchor: middle;
 		font-size: 12px;
 		font-weight: 900;
-		fill: #3e2723;
 		pointer-events: none;
 		font-family: sans-serif;
 	}
