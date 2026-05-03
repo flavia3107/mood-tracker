@@ -297,7 +297,7 @@
 			<g (click)="m.updateMood(day)" style="cursor: pointer;">
 				<polygon [attr.points]="day.points" [attr.fill]="day.color || '#FBF8F4'" stroke="#3e2723"
 					stroke-width="1" />
-				@let textFill = ['#5D4037', '#BF360C', '#E65100'].includes(day.color) ? '#FCF8E8' : '#3c2a21';
+				@let textFill = ['#F08620', '#EB6B10', '#E65100'].includes(day.color) ? '#FCF8E8' : '#3c2a21';
 				<text [attr.x]="day.centerX" [attr.y]="day.centerY" class="label" [attr.fill]="textFill">
 					{{ day.day }}
 				</text>
