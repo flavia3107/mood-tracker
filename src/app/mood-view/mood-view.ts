@@ -49,10 +49,17 @@ export class MoodView {
 
   private _getDaysConfig() {
     return MONTH_DAYS_CONFIG[this.currentMonth()]
-      .map((day: any, index: number) => ({
-        ...day,
-        color: this._utilService.getMoodColorForDate(new Date(this._date().getFullYear(), this._date().getMonth(), index + 1))
-      }));
+      .map((day: any, index: number) => {
+        const dt = new Date(this._date().getFullYear(), this._date().getMonth(), index + 1);
+        const d2 = new Date();
+        dt.setHours(0, 0, 0, 0);
+        d2.setHours(0, 0, 0, 0);
+        return {
+          ...day,
+          isActiveDay: dt.getTime() === d2.getTime(),
+          color: this._utilService.getMoodColorForDate(dt)
+        };
+      });
   }
 
   private _updateSvgConfig() {
