@@ -5,11 +5,13 @@
 .main-container {
 	width: 100%;
 	gap: 3rem;
+	height: 100vh;
 }
 
 .month-view {
 	background: #f3f3f3;
 	width: calc(100% - 10rem);
+	min-width: 55rem;
 }
 
 a {
