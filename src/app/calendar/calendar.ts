@@ -22,5 +22,14 @@ export class Calendar {
     this.selected = new Date(this.selected.getFullYear(), this.selected.getMonth() + move, 1);
     this._utilsService.updateActiveDate(this.selected);
   }
+
+  public setToday() {
+    this.currentDay.setHours(0, 0, 0, 0);
+    this.selected.setHours(0, 0, 0, 0);
+    if (this.currentDay.getTime() !== this.selected.getTime()) {
+      console.log('Dates are different', this.currentDay, this.selected);
+      this._utilsService.updateActiveDate(new Date());
+    }
+  }
 }
 
