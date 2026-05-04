@@ -27,7 +27,7 @@ export class Calendar {
     this.currentDay.setHours(0, 0, 0, 0);
     this.selected.setHours(0, 0, 0, 0);
     if (this.currentDay.getTime() !== this.selected.getTime()) {
-      console.log('Dates are different', this.currentDay, this.selected);
+      this.selected = this.currentDay;
       this._utilsService.updateActiveDate(new Date());
     }
   }
