@@ -27,4 +27,17 @@
 		font-family: cursive;
 		pointer-events: none;
 	}
+
+	.today use {
+		animation: glow 2s infinite alternate ease-in-out;
+	}
+
+	@keyframes glow {
+		0% {
+			filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
+		}
+		100% {
+			filter: drop-shadow(0 0 4px #ffa9c5);
+		}
+	}
 }
