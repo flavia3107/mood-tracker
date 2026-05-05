@@ -6,11 +6,11 @@
 		height: 27rem;
 	}
 
-	g[style*="cursor: pointer"] {
+	.flower {
 		transition: transform 0.2s ease-out;
 	}
 
-	g[style*="cursor: pointer"]:hover {
+	.flower:hover {
 		filter: brightness(1.05);
 		transform-box: fill-box;
 		transform-origin: center;
@@ -29,15 +29,10 @@
 	}
 
 	.today use {
-		animation: glow 2s infinite alternate ease-in-out;
+		filter: drop-shadow(0 0 1px #e98cac);
 	}
 
-	@keyframes glow {
-		0% {
-			filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.2));
-		}
-		100% {
-			filter: drop-shadow(0 0 4px #ffa9c5);
-		}
+	.today {
+		cursor: pointer;
 	}
 }
