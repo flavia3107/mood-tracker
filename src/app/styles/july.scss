@@ -25,6 +25,12 @@
 	.comb {
 		stroke: #d4a017;
 		stroke-width: 1.5;
+	}
+
+	.today {
+		stroke: #d4a017;
+		stroke-dasharray: 3px;
+		stroke-width: 2px;
 		cursor: pointer;
 	}
 }
