@@ -35,4 +35,11 @@
 		stroke-opacity: 0.2;
 		stroke-width: 1;
 	}
+
+	.today {
+		cursor: pointer;
+		path {
+			stroke-width: 3px;
+		}
+	}
 }
