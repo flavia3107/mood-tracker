@@ -26,6 +26,11 @@
 	.clickable-segment {
 		cursor: pointer;
 		transition: fill 0.2s ease;
+		stroke-width: 0.35px;
+	}
+
+	.today {
+		stroke-width: 2px;
 	}
 
 	.palette {
