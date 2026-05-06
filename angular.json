@@ -73,6 +73,13 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "deploy": {
+          "options": {
+            "baseHref": "/mood-tracker/",
+            "branch": "gh-pages"
+          },
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
