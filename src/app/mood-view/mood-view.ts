@@ -1,4 +1,4 @@
-import { LowerCasePipe, NgClass, NgTemplateOutlet } from '@angular/common';
+import { LowerCasePipe, NgClass, NgTemplateOutlet, PlatformLocation } from '@angular/common';
 import { computed, viewChild } from '@angular/core';
 import { TemplateRef } from '@angular/core';
 import { Component, inject } from '@angular/core';
@@ -15,10 +15,10 @@ import { MoodPicker } from '../mood-picker/mood-picker';
 })
 export class MoodView {
   readonly june_config = JUNE_CONFIG;
-  readonly backgrounds = MONTHLY_BACKGROUNDS;
+  private readonly location = inject(PlatformLocation);
+  private _baseHref = this.location.getBaseHrefFromDOM();
   private _utilService = inject(UtilsService);
   private _date = this._utilService.selectedDate;
-  public currentMonth = this._utilService.activeMonth;
   private _jan = viewChild<TemplateRef<any>>('january');
   private _feb = viewChild<TemplateRef<any>>('february');
   private _mar = viewChild<TemplateRef<any>>('march');
@@ -32,8 +32,10 @@ export class MoodView {
   private _nov = viewChild<TemplateRef<any>>('november');
   private _dec = viewChild<TemplateRef<any>>('december');
   private _selectedColor = '';
+  public currentMonth = this._utilService.activeMonth;
   public moodLogic = this._updateSvgConfig();
   public activeTemplate = computed(() => this._templateMap());
+  public currentBackground = computed(() => this._currentMonthPath());
 
   private getMoodColorForDate(color: string) {
     this._selectedColor = color;
@@ -106,5 +108,11 @@ export class MoodView {
 
     this.moodLogic = this._updateSvgConfig();
     return map[this.currentMonth()];
+  }
+
+  private _currentMonthPath() {
+    const images: Record<string, string> = MONTHLY_BACKGROUNDS;
+    const fullPath = (this._baseHref + images[this.currentMonth()]).replace(/\/+/g, '/');
+    return `url("${fullPath}")`;
   }
 }

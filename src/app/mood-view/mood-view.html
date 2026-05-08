@@ -1,5 +1,4 @@
-@let background = `url("${backgrounds[currentMonth()]}")`;
-<div class="container flex-row" [ngClass]="currentMonth() | lowercase" [style.backgroundImage]="background">
+<div class="container flex-row" [ngClass]="currentMonth() | lowercase" [style.backgroundImage]="currentBackground()">
 	<ng-container [ngTemplateOutlet]="activeTemplate()" [ngTemplateOutletContext]="{ $implicit: moodLogic }">
 	</ng-container>
 </div>
