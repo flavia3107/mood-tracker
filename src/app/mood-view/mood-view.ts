@@ -3,6 +3,7 @@ import { computed, viewChild } from '@angular/core';
 import { TemplateRef } from '@angular/core';
 import { Component, inject } from '@angular/core';
 import { JUNE_CONFIG, MONTH_DAYS_CONFIG } from '../../shared/constants/config';
+import { MONTHLY_BACKGROUNDS } from '../../shared/constants/constants';
 import { UtilsService } from '../../shared/services/utils';
 import { MoodPicker } from '../mood-picker/mood-picker';
 
@@ -14,6 +15,7 @@ import { MoodPicker } from '../mood-picker/mood-picker';
 })
 export class MoodView {
   readonly june_config = JUNE_CONFIG;
+  readonly backgrounds = MONTHLY_BACKGROUNDS;
   private _utilService = inject(UtilsService);
   private _date = this._utilService.selectedDate;
   public currentMonth = this._utilService.activeMonth;
