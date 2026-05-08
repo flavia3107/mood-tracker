@@ -123,6 +123,6 @@ export const MONTHLY_BACKGROUNDS: { [key: string]: string } = {
 	'August': '/sunflower.png',
 	'September': '/leaves.png',
 	'October': '/pumpkin.png',
-	'November': '/knit.png"',
+	'November': '/knit.png',
 	'December': '/tree.png',
 };
