@@ -111,3 +111,18 @@ export const MONTHLY_MOOD_CONFIG: { [key: string]: any } = {
 	'November': NOVEMBER_MOOD_COLORS,
 	'December': DECEMBER_MOOD_COLORS,
 };
+
+export const MONTHLY_BACKGROUNDS: { [key: string]: string } = {
+	'January': '/frost.png',
+	'February': '/valentine.png',
+	'March': '/st-patrick.png',
+	'April': '/rain.png',
+	'May': '/sakura-tree.png',
+	'June': '/watermelon.png',
+	'July': '/bee.png',
+	'August': '/sunflower.png',
+	'September': '/leaves.png',
+	'October': '/pumpkin.png',
+	'November': '/knit.png"',
+	'December': '/tree.png',
+};
