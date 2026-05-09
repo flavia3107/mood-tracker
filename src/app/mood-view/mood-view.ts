@@ -1,4 +1,4 @@
-import { LowerCasePipe, NgClass, NgTemplateOutlet, PlatformLocation } from '@angular/common';
+import { LowerCasePipe, NgClass, NgTemplateOutlet } from '@angular/common';
 import { computed, viewChild } from '@angular/core';
 import { TemplateRef } from '@angular/core';
 import { Component, inject } from '@angular/core';
@@ -15,8 +15,6 @@ import { MoodPicker } from '../mood-picker/mood-picker';
 })
 export class MoodView {
   readonly june_config = JUNE_CONFIG;
-  private readonly location = inject(PlatformLocation);
-  private _baseHref = this.location.getBaseHrefFromDOM();
   private _utilService = inject(UtilsService);
   private _date = this._utilService.selectedDate;
   private _jan = viewChild<TemplateRef<any>>('january');
@@ -112,7 +110,7 @@ export class MoodView {
 
   private _currentMonthPath() {
     const images: Record<string, string> = MONTHLY_BACKGROUNDS;
-    const fullPath = (this._baseHref + images[this.currentMonth()]).replace(/\/+/g, '/');
-    return `url("${fullPath}")`;
+    // const fullPath = (this._baseHref + images[this.currentMonth()]).replace(/\/+/g, '/');
+    // return `url("${fullPath}")`;
   }
 }
