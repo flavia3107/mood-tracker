@@ -1,5 +1,4 @@
-<!--  [style.backgroundImage]="currentBackground()" -->
-<div class="container flex-row" [ngClass]="currentMonth() | lowercase">
+<div class="container flex-row" [ngClass]="currentMonth() | lowercase" [style.backgroundImage]="currentBackground()">
 	<ng-container [ngTemplateOutlet]="activeTemplate()" [ngTemplateOutletContext]="{ $implicit: moodLogic }">
 	</ng-container>
 </div>

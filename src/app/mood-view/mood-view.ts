@@ -110,7 +110,7 @@ export class MoodView {
 
   private _currentMonthPath() {
     const images: Record<string, string> = MONTHLY_BACKGROUNDS;
-    // const fullPath = (this._baseHref + images[this.currentMonth()]).replace(/\/+/g, '/');
-    // return `url("${fullPath}")`;
+    const fullPath = images[this.currentMonth()];
+    return `url("${fullPath}")`;
   }
 }
