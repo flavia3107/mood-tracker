@@ -1,6 +1,6 @@
 app-root {
 	display: flex;
-	height: 100vh;
+	min-height: 100vh;
 }
 
 body {
@@ -27,14 +27,6 @@ body {
 
 .space-between {
 	justify-content: space-between;
-}
-
-.svg-container {
-	height: 45rem;
-	width: 50rem;
-	border: 6px double #dfdfdf;
-	overflow: hidden;
-	border-radius: 15px;
 }
 
 .svg {
