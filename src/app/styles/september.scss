@@ -36,9 +36,9 @@
 		stroke-width: 1.5;
 	}
 
-	.today {
+	.leaf-container.today {
 		cursor: pointer;
-		animation: visual-alert 3s infinite;
+		// animation: visual-alert 3s infinite;
 	}
 
 	@keyframes visual-alert {
