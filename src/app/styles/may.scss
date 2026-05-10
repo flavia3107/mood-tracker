@@ -9,12 +9,6 @@
 		transition: transform 0.2s ease-out;
 	}
 
-	.flower:hover {
-		filter: brightness(1.05);
-		transform-box: fill-box;
-		transform-origin: center;
-	}
-
 	.legend-container {
 		margin: auto 1rem 1rem 0;
 	}
@@ -27,11 +21,28 @@
 		pointer-events: none;
 	}
 
-	.today use {
-		filter: drop-shadow(0 0 1px #e98cac);
-	}
-
 	.today {
 		cursor: pointer;
+		animation: visual-alert 3s infinite;
+	}
+
+	@keyframes visual-alert {
+		0%,
+		100% {
+			filter: drop-shadow(0 0 0px #cf70b1);
+			stroke-width: 1px;
+		}
+		25% {
+			filter: drop-shadow(0 0 2px #cf70b1);
+			stroke-width: 3px;
+		}
+		50% {
+			filter: drop-shadow(0 0 1px #cf70b1);
+			stroke-width: 2px;
+		}
+		75% {
+			filter: drop-shadow(0 0 2px #cf70b1);
+			stroke-width: 3px;
+		}
 	}
 }
