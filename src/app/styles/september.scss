@@ -35,4 +35,29 @@
 	.line-2 {
 		stroke-width: 1.5;
 	}
+
+	.today {
+		cursor: pointer;
+		animation: visual-alert 3s infinite;
+	}
+
+	@keyframes visual-alert {
+		0%,
+		100% {
+			filter: drop-shadow(0 0 1px #6c9841);
+			stroke-width: 1px;
+		}
+		25% {
+			filter: drop-shadow(0 0 6px #6c9841);
+			stroke-width: 3px;
+		}
+		50% {
+			filter: drop-shadow(0 0 3px #6c9841);
+			stroke-width: 2px;
+		}
+		75% {
+			filter: drop-shadow(0 0 6px #6c9841);
+			stroke-width: 3px;
+		}
+	}
 }
