@@ -41,3 +41,22 @@ body {
 	width: 50rem;
 	height: 45rem;
 }
+
+::-webkit-scrollbar {
+	height: 0.563rem;
+	width: 0.563rem;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #c5c5c5;
+	width: 0.563rem;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+	width: 0.563rem;
+}
+
+::-webkit-scrollbar-corner {
+	background: transparent;
+}
