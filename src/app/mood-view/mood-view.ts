@@ -6,10 +6,11 @@ import { JUNE_CONFIG, MONTH_DAYS_CONFIG } from '../../shared/constants/config';
 import { MONTHLY_BACKGROUNDS } from '../../shared/constants/constants';
 import { UtilsService } from '../../shared/services/utils';
 import { MoodPicker } from '../mood-picker/mood-picker';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-mood-view',
-  imports: [MoodPicker, NgTemplateOutlet, LowerCasePipe, NgClass],
+  imports: [MoodPicker, NgTemplateOutlet, LowerCasePipe, NgClass, MatTooltipModule],
   templateUrl: './mood-view.html',
   styleUrl: './mood-view.scss',
 })
