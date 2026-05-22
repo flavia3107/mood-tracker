@@ -3,7 +3,7 @@ import { computed, viewChild } from '@angular/core';
 import { TemplateRef } from '@angular/core';
 import { Component, inject } from '@angular/core';
 import { JUNE_CONFIG, MONTH_DAYS_CONFIG } from '../../shared/constants/config';
-import { MONTHLY_BACKGROUNDS, MOOD_MESSAGES } from '../../shared/constants/constants';
+import { MONTHLY_BACKGROUNDS, Mood, MOOD_MESSAGES } from '../../shared/constants/constants';
 import { UtilsService } from '../../shared/services/utils';
 import { MoodPicker } from '../mood-picker/mood-picker';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -32,6 +32,7 @@ export class MoodView {
   private _nov = viewChild<TemplateRef<any>>('november');
   private _dec = viewChild<TemplateRef<any>>('december');
   private _selectedColor = '';
+  public activeMood!: Mood;
   public currentMonth = this._utilService.activeMonth;
   public moodLogic = this._updateSvgConfig();
   public activeTemplate = computed(() => this._templateMap());
@@ -39,6 +40,7 @@ export class MoodView {
 
   private getMoodColorForDate(mood: { [key: string]: string }) {
     this._selectedColor = mood['color'];
+    this.activeMood = mood['label'] as Mood;
   }
 
   private onDayClick(day: any) {
@@ -68,7 +70,7 @@ export class MoodView {
 
   private _updateSvgConfig() {
     return {
-      getColor: (color: string) => this.getMoodColorForDate(color),
+      getColor: (mood: { [key: string]: string }) => this.getMoodColorForDate(mood),
       updateMood: (day: any) => this.onDayClick(day),
       getLeafTransform: (indx: number) => this._getLeafTransform(indx),
       days: this._getDaysConfig(),

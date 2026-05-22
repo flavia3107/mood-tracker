@@ -127,7 +127,7 @@ export const MONTHLY_BACKGROUNDS: { [key: string]: string } = {
 	'December': 'tree.png',
 };
 
-type Mood = 'happy' | 'neutral' | 'stressed' | 'tired' | 'moody' | 'sad';
+export type Mood = 'happy' | 'neutral' | 'stressed' | 'tired' | 'moody' | 'sad';
 
 export const MOOD_MESSAGES: Record<Mood, string> = {
 	happy: "Happy - Riding high and loving life! Let's keep this amazing energy rolling.",
