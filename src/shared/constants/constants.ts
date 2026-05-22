@@ -129,7 +129,7 @@ export const MONTHLY_BACKGROUNDS: { [key: string]: string } = {
 
 type Mood = 'happy' | 'neutral' | 'stressed' | 'tired' | 'moody' | 'sad';
 
-export const moodMessages: Record<Mood, string> = {
+export const MOOD_MESSAGES: Record<Mood, string> = {
 	happy: "Happy - Riding high and loving life! Let's keep this amazing energy rolling.",
 	neutral: "Neutral - Just cruising along in steady waters. A perfectly balanced, peaceful day.",
 	stressed: "Stressed - Deep breaths. Things feel overwhelming right now, but you can handle this piece by piece.",

@@ -11,10 +11,10 @@ export class MoodPicker {
   private _utilsService = inject(UtilsService);
   public moods = computed(() => MONTHLY_MOOD_CONFIG[this._utilsService.activeMonth()]);
   public selectedMood = '';
-  public moodColorSelected = output<string>();
+  public moodColorSelected = output<{ [key: string]: string }>();
 
-  setMood(color: string) {
-    this.selectedMood = color;
-    this.moodColorSelected.emit(color);
+  setMood(mood: { [key: string]: string }) {
+    this.selectedMood = mood['color'];
+    this.moodColorSelected.emit(mood);
   }
 }

@@ -3,7 +3,7 @@ import { computed, viewChild } from '@angular/core';
 import { TemplateRef } from '@angular/core';
 import { Component, inject } from '@angular/core';
 import { JUNE_CONFIG, MONTH_DAYS_CONFIG } from '../../shared/constants/config';
-import { MONTHLY_BACKGROUNDS } from '../../shared/constants/constants';
+import { MONTHLY_BACKGROUNDS, MOOD_MESSAGES } from '../../shared/constants/constants';
 import { UtilsService } from '../../shared/services/utils';
 import { MoodPicker } from '../mood-picker/mood-picker';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -15,6 +15,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   styleUrl: './mood-view.scss',
 })
 export class MoodView {
+  readonly moods = MOOD_MESSAGES;
   readonly june_config = JUNE_CONFIG;
   private _utilService = inject(UtilsService);
   private _date = this._utilService.selectedDate;
@@ -36,8 +37,8 @@ export class MoodView {
   public activeTemplate = computed(() => this._templateMap());
   public currentBackground = computed(() => this._currentMonthPath());
 
-  private getMoodColorForDate(color: string) {
-    this._selectedColor = color;
+  private getMoodColorForDate(mood: { [key: string]: string }) {
+    this._selectedColor = mood['color'];
   }
 
   private onDayClick(day: any) {
