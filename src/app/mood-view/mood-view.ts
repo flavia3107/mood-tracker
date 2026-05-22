@@ -63,7 +63,8 @@ export class MoodView {
         return {
           ...day,
           isActiveDay: dt.getTime() === d2.getTime(),
-          color: this._utilService.getMoodColorForDate(dt)
+          color: this._utilService.getMoodColorForDate(dt),
+          // tooltip: <- set up in colors config
         };
       });
   }
