@@ -126,3 +126,14 @@ export const MONTHLY_BACKGROUNDS: { [key: string]: string } = {
 	'November': 'knit.png',
 	'December': 'tree.png',
 };
+
+type Mood = 'happy' | 'neutral' | 'stressed' | 'tired' | 'moody' | 'sad';
+
+export const moodMessages: Record<Mood, string> = {
+	happy: "Happy - Riding high and loving life! Let's keep this amazing energy rolling.",
+	neutral: "Neutral - Just cruising along in steady waters. A perfectly balanced, peaceful day.",
+	stressed: "Stressed - Deep breaths. Things feel overwhelming right now, but you can handle this piece by piece.",
+	tired: "Tired - Battery low. Time to unplug, step away from the screens, and get some well-deserved rest.",
+	moody: "Moody - A bit of a rollercoaster right now? Totally valid. Give yourself some space to just feel it out.",
+	sad: "Sad - It's okay not to be okay. Sending you a gentle reminder that it's perfectly fine to take it easy today."
+};
