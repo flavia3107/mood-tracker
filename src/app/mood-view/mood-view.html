@@ -16,7 +16,7 @@
 		</defs>
 		@for (seed of m.days; track $index;) {
 		@let transform=`translate(${seed.x},${seed.y}) rotate(${seed.rotation}) scale(${seed.scale})`;
-		<g class="frost-unit" (click)="m.updateMood(seed)" [attr.transform]="transform"
+		<g class="frost-unit" (click)="m.updateMood(seed)" [attr.transform]="transform" [matTooltip]="seed.tooltip"
 			[class.today]="seed.isActiveDay">
 			@for (angle of [0, 60, 120, 180, 240, 300]; track $index) {
 			@let rotate = `rotate(${angle})`;
@@ -79,7 +79,8 @@
 		<g transform="translate(0, 0)">
 			@for (c of m.days; track c.id) {
 			<g (click)="m.updateMood(c)" style="cursor: pointer;" [attr.transform]="'rotate(' + c.rotate + ')'"
-				style="transform-origin: center; transform-box: fill-box;" [class.today]="c.isActiveDay">
+				style="transform-origin: center; transform-box: fill-box;" [class.today]="c.isActiveDay"
+				[matTooltip]="c.tooltip">
 
 				<path [attr.d]="c.pts" fill="none" stroke="#3E2723" stroke-width="1.2" opacity="0.4"
 					filter="url(#wrapperJitter)" transform="scale(1.1)"
@@ -111,7 +112,7 @@
 			<g class="shard-group" clip-path="url(#cloverClip)">
 				@for(shard of m.days; track shard.day){
 				<path [attr.d]="shard.path" (click)="m.updateMood(shard)" [attr.fill]="shard.color" class="shard"
-					[class.today]="shard.isActiveDay" />
+					[class.today]="shard.isActiveDay" [matTooltip]="shard.tooltip" />
 				<text [attr.x]="shard.x" [attr.y]="shard.y" class="label"> {{ shard.day }} </text>
 				}
 			</g>
