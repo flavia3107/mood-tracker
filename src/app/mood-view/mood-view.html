@@ -300,7 +300,7 @@
 		<path d="M230,80 Q250,20 270,80 L260,95 H240 Z" fill="#6d4c41" stroke="#3e2723" stroke-width="2" />
 		<g mask="url(#pumpkinMask)">
 			<rect width="500" height="450" fill="#FBF8F4" />
-			@for (day of m.days; track day.id) {
+			@for (day of m.days; track $index) {
 			<g (click)="m.updateMood(day)" style="cursor: pointer;" [class.today]="day.isActiveDay"
 				[matTooltip]="day.tooltip">
 				<polygon [attr.points]="day.points" [attr.fill]="day.color || '#FBF8F4'" stroke="#3e2723"
@@ -346,18 +346,19 @@
 		<use xlink:href="#textCurvePath" fill="none" stroke="#ece0d1" stroke-width="45" stroke-linecap="butt" />
 
 		@for (day of m.days; track day) {
-		<use xlink:href="#textCurvePath" fill="none" [attr.stroke]="day.color" stroke-width="45"
-			[matTooltip]="day.tooltip"
-			[attr.stroke-dasharray]="m.november.segmentLength + ' ' + (m.november.totalPathLength - m.november.segmentLength)"
-			[attr.stroke-dashoffset]="-((day.date - 1) * (m.november.totalPathLength / 30))" (click)="m.updateMood(day)"
-			[class.today]="day.isActiveDay" style="cursor:pointer;" />
-		@let textFill = ['#ead6ca', '#ddb892', '#b08968', '#fff'].includes(day.color) ? '#3c2a21' : '#FCF8E8';
-		<text class="label">
-			<textPath xlink:href="#textCurvePath" [attr.fill]="textFill"
-				[attr.startOffset]="((day.date - 1) * (m.november.totalPathLength / 30)) + (m.november.segmentLength / 2)">
-				{{day.date}}
-			</textPath>
-		</text>
+		<g [matTooltip]="day.tooltip">
+			<use xlink:href="#textCurvePath" fill="none" [attr.stroke]="day.color" stroke-width="45"
+				[attr.stroke-dasharray]="m.november.segmentLength + ' ' + (m.november.totalPathLength - m.november.segmentLength)"
+				[attr.stroke-dashoffset]="-((day.date - 1) * (m.november.totalPathLength / 30))"
+				(click)="m.updateMood(day)" [class.today]="day.isActiveDay" style="cursor:pointer;" />
+			@let textFill = ['#ead6ca', '#ddb892', '#b08968', '#fff'].includes(day.color) ? '#3c2a21' : '#FCF8E8';
+			<text [matTooltip]="day.tooltip" class="label">
+				<textPath xlink:href="#textCurvePath" [attr.fill]="textFill"
+					[attr.startOffset]="((day.date - 1) * (m.november.totalPathLength / 30)) + (m.november.segmentLength / 2)">
+					{{day.date}}
+				</textPath>
+			</text>
+		</g>
 		}
 		<g transform="translate(110, 430)">
 			<path d="M -24,0 C -28,10 -21,20 -25,30" />

@@ -38,12 +38,13 @@ export class MoodView {
   public activeTemplate = computed(() => this._templateMap());
   public currentBackground = computed(() => this._currentMonthPath());
 
-  private getMoodColorForDate(mood: { [key: string]: string }) {
+  private getMoodColorForDate(mood: { label: Mood, color: string }) {
     this._selectedColor = mood['color'];
-    this.activeMood = mood['label'] as Mood;
+    this.activeMood = mood['label'];
   }
 
   private onDayClick(day: any) {
+    console.log('DAY', day)
     const selectedDate = new Date(this._date().getFullYear(), this._date().getMonth(), day.day);
     const d2 = new Date();
     selectedDate.setHours(0, 0, 0, 0);
@@ -72,7 +73,7 @@ export class MoodView {
 
   private _updateSvgConfig() {
     return {
-      getColor: (mood: { [key: string]: string }) => this.getMoodColorForDate(mood),
+      getColor: (mood: { label: Mood, color: string }) => this.getMoodColorForDate(mood),
       updateMood: (day: any) => this.onDayClick(day),
       getLeafTransform: (indx: number) => this._getLeafTransform(indx),
       days: this._getDaysConfig(),
