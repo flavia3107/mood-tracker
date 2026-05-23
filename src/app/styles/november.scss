@@ -28,4 +28,22 @@
 		pointer-events: none;
 		text-anchor: middle;
 	}
+
+	.scarf-part {
+		fill: none;
+		stroke-width: 45px;
+		cursor: pointer;
+	}
+
+	.text-curve {
+		fill: none;
+		stroke: #3c2a21;
+		stroke-width: 49px;
+		stroke-linecap: butt;
+	}
+
+	.txt {
+		stroke: #ece0d1;
+		stroke-width: 45px;
+	}
 }

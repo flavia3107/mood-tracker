@@ -279,14 +279,13 @@
 						 L200,410 C100,410 50,290 80,195 C110,120 180,100 250,100 Z" fill="white" />
 			</mask>
 		</defs>
-		<path d="M230,80 Q250,20 270,80 L260,95 H240 Z" fill="#6d4c41" stroke="#3e2723" stroke-width="2" />
+		<path class="stub" d="M230,80 Q250,20 270,80 L260,95 H240 Z" />
 		<g mask="url(#pumpkinMask)">
 			<rect width="500" height="450" fill="#FBF8F4" />
 			@for (day of m.days; track $index) {
 			<g (click)="m.updateMood(day)" style="cursor: pointer;" [class.today]="day.isActiveDay"
 				[matTooltip]="day.tooltip">
-				<polygon [attr.points]="day.points" [attr.fill]="day.color || '#FBF8F4'" stroke="#3e2723"
-					stroke-width="1" />
+				<polygon [attr.points]="day.points" [attr.fill]="day.color" stroke="#3e2723" stroke-width="1" />
 				@let textFill = ['#C04B0D', '#CA651D'].includes(day.color) ?'#FCF8E8':'#3c2a21' ;
 				<text [attr.x]="day.centerX" [attr.y]="day.centerY" class="label" [attr.fill]="textFill">
 					{{ day.day }}
@@ -324,19 +323,20 @@
 				<stop offset="100%" stop-color="#3c2a21" stop-opacity="0" />
 			</linearGradient>
 		</defs>
-		<use xlink:href="#textCurvePath" fill="none" stroke="#3c2a21" stroke-width="49" stroke-linecap="butt" />
-		<use xlink:href="#textCurvePath" fill="none" stroke="#ece0d1" stroke-width="45" stroke-linecap="butt" />
+		<use xlink:href="#textCurvePath" class="text-curve" />
+		<use xlink:href="#textCurvePath" class="text-curve txt" />
 
 		@for (day of m.days; track day) {
+		@let dasharray = `${m.november.segmentLength} ${(m.november.totalPathLength - m.november.segmentLength)}`;
+		@let dashoffset = -((day.date - 1) * (m.november.totalPathLength / 30));
 		<g [matTooltip]="day.tooltip">
-			<use xlink:href="#textCurvePath" fill="none" [attr.stroke]="day.color" stroke-width="45"
-				[attr.stroke-dasharray]="m.november.segmentLength + ' ' + (m.november.totalPathLength - m.november.segmentLength)"
-				[attr.stroke-dashoffset]="-((day.date - 1) * (m.november.totalPathLength / 30))"
-				(click)="m.updateMood(day)" [class.today]="day.isActiveDay" style="cursor:pointer;" />
+			<use class="scarf-part" xlink:href="#textCurvePath" [attr.stroke]="day.color"
+				[attr.stroke-dasharray]="dasharray" [attr.stroke-dashoffset]="dashoffset" (click)="m.updateMood(day)"
+				[class.today]="day.isActiveDay" />
 			@let textFill = ['#ead6ca', '#ddb892', '#b08968', '#fff'].includes(day.color) ? '#3c2a21' : '#FCF8E8';
+			@let startOffset = ((day.date - 1) * (m.november.totalPathLength / 30)) + (m.november.segmentLength / 2);
 			<text [matTooltip]="day.tooltip" class="label">
-				<textPath xlink:href="#textCurvePath" [attr.fill]="textFill"
-					[attr.startOffset]="((day.date - 1) * (m.november.totalPathLength / 30)) + (m.november.segmentLength / 2)">
+				<textPath xlink:href="#textCurvePath" [attr.fill]="textFill" [attr.startOffset]="startOffset">
 					{{day.date}}
 				</textPath>
 			</text>
