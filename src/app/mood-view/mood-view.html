@@ -382,8 +382,9 @@
 <ng-template #december let-m>
 	<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
 		@for (d of m.days; track $index;) {
-		<g class="bulb" [class.brightness]="d.color !== '#fff'" [attr.transform]="'translate(' + d.x + ',' + d.y + ')'"
-			[matTooltip]="d.tooltip" (click)="m.updateMood(d)" [class.today]="d.isActiveDay">
+		@let transform = `translate(${d.x}, ${d.y})`;
+		<g class="bulb" [class.brightness]="d.color !== '#fff'" [attr.transform]="transform" [matTooltip]="d.tooltip"
+			(click)="m.updateMood(d)" [class.today]="d.isActiveDay">
 			<circle cx="0" cy="0" r="5" [attr.fill]="d.color" />
 			<rect x="-1" y="-6.2" width="2" height="2" fill="#333" />
 			<text class="label" [class.lightText]="['#840627', '#af142e', '#e0464f'].includes(d.color)" x="0" y="0"
