@@ -251,7 +251,8 @@
 		</defs>
 
 		@for (day of m.days; track day.label) {
-		<g [attr.transform]="day.groupTransform" (click)="m.updateMood(day)" [class.today]="day.isActiveDay">
+		<g [attr.transform]="day.groupTransform" (click)="m.updateMood(day)" [class.today]="day.isActiveDay"
+			[matTooltip]="day.tooltip">
 			<path d="M125 105 C135 80, 140 40, 125 30 C110 40, 115 80, 125 105 Z" [attr.fill]="day.color"
 				[attr.stroke]="day.stroke" stroke-width="0.7" />
 			<g mask="url(#petalMask)" opacity="0.1" [attr.fill]="day.stroke">
@@ -277,7 +278,7 @@
 			@for (leaf of m.days; track leaf.day) {
 			@let transform = `translate(${leaf.x}, ${leaf.y}) rotate(${leaf.rotate}) scale(${leaf.scale})`;
 			<g [attr.transform]="transform" (click)="m.updateMood(leaf)" class="leaf-container"
-				[class.today]="leaf.isActiveDay">
+				[class.today]="leaf.isActiveDay" [matTooltip]="leaf.tooltip">
 				<path [attr.d]="leaf.d" [attr.fill]="leaf.color" class="leaf-path" />
 				<line x1="20" y1="2" x2="20" y2="48" class="line" />
 				<line x1="20" y1="0" x2="20" y2="-8" class="line line-2" />
@@ -300,7 +301,8 @@
 		<g mask="url(#pumpkinMask)">
 			<rect width="500" height="450" fill="#FBF8F4" />
 			@for (day of m.days; track day.id) {
-			<g (click)="m.updateMood(day)" style="cursor: pointer;" [class.today]="day.isActiveDay">
+			<g (click)="m.updateMood(day)" style="cursor: pointer;" [class.today]="day.isActiveDay"
+				[matTooltip]="day.tooltip">
 				<polygon [attr.points]="day.points" [attr.fill]="day.color || '#FBF8F4'" stroke="#3e2723"
 					stroke-width="1" />
 				@let textFill = ['#C04B0D', '#CA651D'].includes(day.color) ?'#FCF8E8':'#3c2a21' ;
@@ -345,6 +347,7 @@
 
 		@for (day of m.days; track day) {
 		<use xlink:href="#textCurvePath" fill="none" [attr.stroke]="day.color" stroke-width="45"
+			[matTooltip]="day.tooltip"
 			[attr.stroke-dasharray]="m.november.segmentLength + ' ' + (m.november.totalPathLength - m.november.segmentLength)"
 			[attr.stroke-dashoffset]="-((day.date - 1) * (m.november.totalPathLength / 30))" (click)="m.updateMood(day)"
 			[class.today]="day.isActiveDay" style="cursor:pointer;" />
@@ -397,7 +400,7 @@
 	<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
 		@for (d of m.days; track $index;) {
 		<g class="bulb" [class.brightness]="d.color !== '#fff'" [attr.transform]="'translate(' + d.x + ',' + d.y + ')'"
-			(click)="m.updateMood(d)" [class.today]="d.isActiveDay">
+			[matTooltip]="d.tooltip" (click)="m.updateMood(d)" [class.today]="d.isActiveDay">
 			<circle cx="0" cy="0" r="5" [attr.fill]="d.color" />
 			<rect x="-1" y="-6.2" width="2" height="2" fill="#333" />
 			<text class="label" [class.lightText]="['#840627', '#af142e', '#e0464f'].includes(d.color)" x="0" y="0"
