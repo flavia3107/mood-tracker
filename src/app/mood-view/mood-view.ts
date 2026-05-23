@@ -65,7 +65,7 @@ export class MoodView {
           ...day,
           isActiveDay: dt.getTime() === d2.getTime(),
           color,
-          tooltip: this.moods[label as Mood]
+          tooltip: this.moods[label as Mood] ?? ''
         };
       });
   }

@@ -60,7 +60,7 @@ export class UtilsService {
 		const today = new Date();
 		const isPast = new Date(date.toDateString()) < new Date(today.toDateString());
 
-		if (!isPast) return { color: '', label: null };
+		if (!isPast) return { color: '#fff', label: null };
 
 		const monthConfig = MONTHLY_MOOD_CONFIG[this.activeMonth()]
 		const index = Math.floor(Math.random() * 6);
