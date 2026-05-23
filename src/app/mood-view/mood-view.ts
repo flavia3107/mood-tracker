@@ -60,11 +60,12 @@ export class MoodView {
         const d2 = new Date();
         dt.setHours(0, 0, 0, 0);
         d2.setHours(0, 0, 0, 0);
+        const { color, label } = this._utilService.getMoodColorForDate(dt)
         return {
           ...day,
           isActiveDay: dt.getTime() === d2.getTime(),
-          color: this._utilService.getMoodColorForDate(dt),
-          // tooltip: <- set up in colors config
+          color,
+          tooltip: this.moods[label as Mood]
         };
       });
   }

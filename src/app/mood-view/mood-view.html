@@ -170,7 +170,7 @@
 		<rect width="100%" height="100%" fill="url(#dotGrid)" />
 		@for (f of m.days; track f.day) {
 		@let transform = `translate(${f.x}, ${f.y}) scale(${f.scale})`;
-		<g [attr.transform]="transform" (click)="m.updateMood(f)" class="flower" [matTooltip]="moods[activeMood]"
+		<g [attr.transform]="transform" (click)="m.updateMood(f)" class="flower" [matTooltip]="f.tooltip"
 			[class.today]="f.isActiveDay">
 			<g [attr.transform]="'rotate(' + f.rotation + ')'">
 				@let stroke = ['#F36D9B', '#D94773', '#eea2bc'].includes(f.color) ? '#f4cfdf' : '#F06292';
