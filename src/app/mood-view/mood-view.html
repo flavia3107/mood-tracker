@@ -169,9 +169,10 @@
 				<use href="#dayFlower" [attr.color]="f.color" [attr.stroke]="stroke" width="30" height="30" x="-15"
 					y="-15" />
 				@let color = ['#F36D9B', '#D94773', '#eea2bc'].includes(f.color) ? '#FEEEF0' : '#5D4037';
-				<g [attr.transform]="'rotate(' + (-f.rotation) + ') translate(3, -6)'">
+				@let transform_text = `rotate(${-f.rotation}) translate(3, -6)`;
+				<g [attr.transform]="transform_text">
 					<text x="0" y="0" dy=".3em" [attr.fill]="color" class="label"> {{ f.day }} </text>
-				</g>ss
+				</g>
 			</g>
 		</g>
 		}
@@ -190,27 +191,18 @@
 				<path [attr.d]="june_config.wedgePath" />
 			</clipPath>
 		</defs>
-
-		<path [attr.d]="june_config.wedgePath" fill="#fff" stroke="#000" stroke-width="1.5" stroke-linejoin="round" />
-
+		<path class="watermelon-path" [attr.d]="june_config.wedgePath" />
 		<g class="segments" clip-path="url(#wedgeClip)">
 			@for (seg of m.days; track seg.id) {
-			<path [attr.d]="seg.d" [attr.fill]="seg['color']" stroke="black" stroke-width="1" [matTooltip]="seg.tooltip"
-				(click)="m.updateMood(seg)" class="clickable-segment" [class.today]="seg.isActiveDay" />
-
-			<text [attr.x]="seg.x" [attr.y]="seg.y" fill="black" font-size="10" text-anchor="middle"
-				dominant-baseline="middle" pointer-events="none" class="label">
-				{{ seg.id }}
-			</text>
+			<path [attr.d]="seg.d" [attr.fill]="seg['color']" [matTooltip]="seg.tooltip" (click)="m.updateMood(seg)"
+				class="clickable-segment" [class.today]="seg.isActiveDay" />
+			<text class="label" [attr.x]="seg.x" [attr.y]="seg.y"> {{ seg.id }} </text>
 			}
 		</g>
 		<g clip-path="url(#wedgeClip)">
-			<path [attr.d]="june_config.rindPathBase" fill="none" stroke="#81C784" stroke-width="80"
-				stroke-linecap="round" />
-			<path [attr.d]="june_config.rindPathMid" fill="none" stroke="#2E7D32" stroke-width="65"
-				stroke-linecap="round" opacity="0.7" />
-			<path [attr.d]="june_config.rindPathOuter" fill="none" stroke="#1B5E20" stroke-width="35"
-				stroke-linecap="round" opacity="0.4" />
+			<path class="outer-path" [attr.d]="june_config.rindPathBase" />
+			<path class="outer-path-1" [attr.d]="june_config.rindPathMid" />
+			<path class="outer-path-2" [attr.d]="june_config.rindPathOuter" />
 		</g>
 	</svg>
 </ng-template>
