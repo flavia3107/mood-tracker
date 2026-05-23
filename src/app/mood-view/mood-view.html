@@ -136,7 +136,8 @@
 		<path class="handle-bottom" d="M200,435 Q200,500 155,465" />
 		<g clip-path="url(#umbrella-mask)">
 			@for (section of m.days; track $index) {
-			<g (click)="m.updateMood(section)" class="shard-group" [class.today]="section.isActiveDay">
+			<g (click)="m.updateMood(section)" class="shard-group" [class.today]="section.isActiveDay"
+				[matTooltip]="section.tooltip">
 				<path [attr.d]="section.path" [attr.fill]="section.color" />
 				@let textTransform = `rotate(-80 ${section.label.x} ${section.label.y})`;
 				<text class="umbrella-label" [attr.x]="section.label.x" [attr.y]="section.label.y"
@@ -204,7 +205,7 @@
 
 		<g class="segments" clip-path="url(#wedgeClip)">
 			@for (seg of m.days; track seg.id) {
-			<path [attr.d]="seg.d" [attr.fill]="seg['color']" stroke="black" stroke-width="1"
+			<path [attr.d]="seg.d" [attr.fill]="seg['color']" stroke="black" stroke-width="1" [matTooltip]="seg.tooltip"
 				(click)="m.updateMood(seg)" class="clickable-segment" [class.today]="seg.isActiveDay" />
 
 			<text [attr.x]="seg.x" [attr.y]="seg.y" fill="black" font-size="10" text-anchor="middle"
@@ -230,7 +231,7 @@
 		</defs>
 		<g transform="translate(50, 50)">
 			@for (day of m.days; track day.id) {
-			<use href="#hex-shape" [attr.x]="day.x" [attr.y]="day.y" [style.fill]="day.color"
+			<use href="#hex-shape" [attr.x]="day.x" [attr.y]="day.y" [style.fill]="day.color" [matTooltip]="day.tooltip"
 				(click)="m.updateMood(day)" class="comb" [class.today]="day.isActiveDay" />
 			@let color = day.color === '#4E342E' || day.color === '#8D6E63' ? '#FFF5F6' : '#3E2723';
 			<text [attr.x]="day.x + 17" [attr.y]="day.y + 35" [attr.fill]="color" class="label"> {{ day.day }} </text>
