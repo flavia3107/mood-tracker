@@ -230,7 +230,7 @@
 			<path id="hex-shape" d="M25 0 L50 14.42 V43.25 L25 57.67 L0 43.25 V14.42 Z" />
 		</defs>
 		<g transform="translate(50, 50)">
-			@for (day of m.days; track day.id) {
+			@for (day of m.days; track $index) {
 			<use href="#hex-shape" [attr.x]="day.x" [attr.y]="day.y" [style.fill]="day.color" [matTooltip]="day.tooltip"
 				(click)="m.updateMood(day)" class="comb" [class.today]="day.isActiveDay" />
 			@let color = day.color === '#4E342E' || day.color === '#8D6E63' ? '#FFF5F6' : '#3E2723';
