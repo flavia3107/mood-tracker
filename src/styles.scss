@@ -55,12 +55,72 @@ body {
 
 .mdc-tooltip.tooltip {
 	.mdc-tooltip__surface {
-		border: 2px solid palevioletred;
-		background-color: rgb(255, 255, 255); /* Custom Background */
-		color: #504d4d; /* Custom Text Color */
-		font-size: 14px; /* Custom Typography */
-		border-radius: 8px; /* Rounded corners */
-		padding: 8px 12px; /* Custom Spacing */
+		font-size: 12px;
+		border-radius: 12px;
+		padding: 5px 8px;
 		box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+		color: #505050;
+		font-weight: 500;
+	}
+
+	&.january .mdc-tooltip__surface {
+		border: 2px solid #88a9b3;
+		background-color: #eff1f3;
+	}
+
+	&.february .mdc-tooltip__surface {
+		border: 2px solid #9c7071;
+		background-color: #fdf1f1;
+	}
+
+	&.march .mdc-tooltip__surface {
+		border: 2px solid #b4be5f;
+		background-color: #ffffe3;
+	}
+
+	&.april .mdc-tooltip__surface {
+		border: 2px solid #90a4af;
+		background-color: #eceef1;
+	}
+
+	&.may .mdc-tooltip__surface {
+		border: 2px solid rgb(245, 176, 199);
+		background-color: #fff5f6;
+	}
+
+	&.june .mdc-tooltip__surface {
+		border: 2px solid #ef7e83;
+		background-color: #fff5f6;
+	}
+
+	&.july .mdc-tooltip__surface {
+		border: 2px solid #ec8512;
+		background-color: #fff6e1;
+	}
+
+	&.august .mdc-tooltip__surface {
+		border: 2px solid #e69555;
+		background-color: #fff7e4;
+	}
+
+	&.september .mdc-tooltip__surface {
+		border: 2px solid #72a046;
+		background-color: #fafde0;
+	}
+
+	&.october .mdc-tooltip__surface {
+		border: 2px solid #d2c9bb;
+		background-color: #292621;
+		color: #d3d3d3;
+	}
+
+	&.november .mdc-tooltip__surface {
+		border: 2px solid #3c2a20;
+		background-color: #faf1ec;
+	}
+
+	&.december .mdc-tooltip__surface {
+		border: 2px solid #a54755;
+		background-color: #f8ecea;
 	}
 }
