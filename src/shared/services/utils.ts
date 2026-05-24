@@ -9,7 +9,7 @@ export class UtilsService {
 	public selectedDate = signal<Date>(new Date());
 	public calendarDays = computed(() => this._getDaysInMonth());
 	public activeMonth = computed(() => this._getMonth());
-	public monthDays = computed(() => this._getMonthDays());
+	public numberOfDays = computed(() => this._getMonthDays());
 
 	private _getDaysInMonth(): string[] {
 		const date = this.selectedDate();

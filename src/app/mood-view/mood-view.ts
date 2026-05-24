@@ -32,6 +32,7 @@ export class MoodView {
   private _nov = viewChild<TemplateRef<any>>('november');
   private _dec = viewChild<TemplateRef<any>>('december');
   private _selectedColor = '';
+  private _numberOfDays = this._utilService.numberOfDays;
   public activeMood!: Mood;
   public currentMonth = this._utilService.activeMonth;
   public moodLogic = this._updateSvgConfig();
@@ -44,7 +45,6 @@ export class MoodView {
   }
 
   private onDayClick(day: any) {
-    console.log('DAY', day)
     const selectedDate = new Date(this._date().getFullYear(), this._date().getMonth(), day.day);
     const d2 = new Date();
     selectedDate.setHours(0, 0, 0, 0);
@@ -55,20 +55,23 @@ export class MoodView {
   }
 
   private _getDaysConfig() {
-    return MONTH_DAYS_CONFIG[this.currentMonth()]
-      .map((day: any, index: number) => {
-        const dt = new Date(this._date().getFullYear(), this._date().getMonth(), index + 1);
-        const d2 = new Date();
-        dt.setHours(0, 0, 0, 0);
-        d2.setHours(0, 0, 0, 0);
-        const { color, label } = this._utilService.getMoodColorForDate(dt)
-        return {
-          ...day,
-          isActiveDay: dt.getTime() === d2.getTime(),
-          color,
-          tooltip: this.moods[label as Mood] ?? ''
-        };
-      });
+    return Array.from({ length: this._numberOfDays() }, (_, index) => {
+      const dayIndex = index + 1;
+      const dt = new Date(this._date().getFullYear(), this._date().getMonth(), dayIndex);
+      const d2 = new Date();
+      dt.setHours(0, 0, 0, 0);
+      d2.setHours(0, 0, 0, 0);
+
+      const { color, label } = this._utilService.getMoodColorForDate(dt);
+      const baseDayConfig = MONTH_DAYS_CONFIG[this.currentMonth()]?.[index] ?? {};
+      return {
+        ...baseDayConfig,
+        dayNumber: dayIndex,
+        isActiveDay: dt.getTime() === d2.getTime(),
+        color,
+        tooltip: this.moods[label as Mood] ?? ''
+      };
+    });
   }
 
   private _updateSvgConfig() {
