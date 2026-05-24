@@ -17,7 +17,7 @@
 		@for (seed of m.days; track $index;) {
 		@let transform=`translate(${seed.x},${seed.y}) rotate(${seed.rotation}) scale(${seed.scale})`;
 		<g class="frost-unit" (click)="m.updateMood(seed)" [attr.transform]="transform" [matTooltip]="seed.tooltip"
-			[class.today]="seed.isActiveDay">
+			matTooltipClass="tooltip january" [class.today]="seed.isActiveDay">
 			@for (angle of [0, 60, 120, 180, 240, 300]; track $index) {
 			@let rotate = `rotate(${angle})`;
 			<path [attr.transform]="rotate" d="M 0 0 L 8 -5 L 16 0 L 8 5 Z" [attr.fill]="seed.color" class="path" />
@@ -76,7 +76,7 @@
 			@for (c of m.days; track c.id) {
 			@let rotate = `rotate(${c.rotate})`;
 			<g class="chocolate" (click)="m.updateMood(c)" [attr.transform]="rotate" [class.today]="c.isActiveDay"
-				[matTooltip]="c.tooltip">
+				[matTooltip]="c.tooltip" matTooltipClass="tooltip february">
 				<path class="chocolate-path" [attr.d]="c.pts" filter="url(#wrapperJitter)" />
 				<path class="chocolate-outer" [attr.d]="c.pts" [attr.fill]="c.color" />
 				@let textFill = ['#FCF8E8', '#D4A373', '#fff'].includes(c.color) ? '#352522' : '#FCF8E8';
@@ -102,7 +102,7 @@
 			<g class="shard-group" clip-path="url(#cloverClip)">
 				@for(shard of m.days; track shard.day){
 				<path [attr.d]="shard.path" (click)="m.updateMood(shard)" [attr.fill]="shard.color" class="shard"
-					[class.today]="shard.isActiveDay" [matTooltip]="shard.tooltip" />
+					[class.today]="shard.isActiveDay" [matTooltip]="shard.tooltip" matTooltipClass="tooltip march" />
 				<text [attr.x]="shard.x" [attr.y]="shard.y" class="label"> {{ shard.day }} </text>
 				}
 			</g>
@@ -127,7 +127,7 @@
 		<g clip-path="url(#umbrella-mask)">
 			@for (section of m.days; track $index) {
 			<g (click)="m.updateMood(section)" class="shard-group" [class.today]="section.isActiveDay"
-				[matTooltip]="section.tooltip">
+				matTooltipClass="tooltip april" [matTooltip]="section.tooltip">
 				<path [attr.d]="section.path" [attr.fill]="section.color" />
 				@let textTransform = `rotate(-80 ${section.label.x} ${section.label.y})`;
 				<text class="umbrella-label" [attr.x]="section.label.x" [attr.y]="section.label.y"
@@ -162,8 +162,8 @@
 		<rect width="100%" height="100%" fill="url(#dotGrid)" />
 		@for (f of m.days; track f.day) {
 		@let transform = `translate(${f.x}, ${f.y}) scale(${f.scale})`;
-		<g [attr.transform]="transform" (click)="m.updateMood(f)" class="flower" [matTooltip]="f.tooltip"
-			[class.today]="f.isActiveDay">
+		<g [attr.transform]="transform" (click)="m.updateMood(f)" class="flower" matTooltipClass="tooltip may"
+			[matTooltip]="f.tooltip" [class.today]="f.isActiveDay">
 			<g [attr.transform]="'rotate(' + f.rotation + ')'">
 				@let stroke = ['#F36D9B', '#D94773', '#eea2bc'].includes(f.color) ? '#f4cfdf' : '#F06292';
 				<use href="#dayFlower" [attr.color]="f.color" [attr.stroke]="stroke" width="30" height="30" x="-15"
@@ -195,7 +195,7 @@
 		<g class="segments" clip-path="url(#wedgeClip)">
 			@for (seg of m.days; track seg.id) {
 			<path [attr.d]="seg.d" [attr.fill]="seg['color']" [matTooltip]="seg.tooltip" (click)="m.updateMood(seg)"
-				class="clickable-segment" [class.today]="seg.isActiveDay" />
+				matTooltipClass="tooltip june" class="clickable-segment" [class.today]="seg.isActiveDay" />
 			<text class="label" [attr.x]="seg.x" [attr.y]="seg.y"> {{ seg.id }} </text>
 			}
 		</g>
@@ -214,7 +214,8 @@
 		<g transform="translate(50, 50)">
 			@for (day of m.days; track $index) {
 			<use href="#hex-shape" [attr.x]="day.x" [attr.y]="day.y" [style.fill]="day.color" [matTooltip]="day.tooltip"
-				(click)="m.updateMood(day)" class="comb" [class.today]="day.isActiveDay" />
+				matTooltipClass="tooltip july" (click)="m.updateMood(day)" class="comb"
+				[class.today]="day.isActiveDay" />
 			@let color = day.color === '#4E342E' || day.color === '#8D6E63' ? '#FFF5F6' : '#3E2723';
 			<text [attr.x]="day.x + 17" [attr.y]="day.y + 35" [attr.fill]="color" class="label"> {{ day.day }} </text>
 			}
@@ -234,7 +235,7 @@
 
 		@for (day of m.days; track day.label) {
 		<g [attr.transform]="day.groupTransform" (click)="m.updateMood(day)" [class.today]="day.isActiveDay"
-			[matTooltip]="day.tooltip">
+			[matTooltip]="day.tooltip" matTooltipClass="tooltip august">
 			<path d="M125 105 C135 80, 140 40, 125 30 C110 40, 115 80, 125 105 Z" [attr.fill]="day.color"
 				[attr.stroke]="day.stroke" stroke-width="0.7" />
 			<g mask="url(#petalMask)" opacity="0.1" [attr.fill]="day.stroke">
@@ -260,7 +261,7 @@
 			@for (leaf of m.days; track leaf.day) {
 			@let transform = `translate(${leaf.x}, ${leaf.y}) rotate(${leaf.rotate}) scale(${leaf.scale})`;
 			<g [attr.transform]="transform" (click)="m.updateMood(leaf)" class="leaf-container"
-				[class.today]="leaf.isActiveDay" [matTooltip]="leaf.tooltip">
+				[class.today]="leaf.isActiveDay" [matTooltip]="leaf.tooltip" matTooltipClass="tooltip september">
 				<path [attr.d]="leaf.d" [attr.fill]="leaf.color" class="leaf-path" />
 				<line x1="20" y1="2" x2="20" y2="48" class="line" />
 				<line x1="20" y1="0" x2="20" y2="-8" class="line line-2" />
@@ -284,7 +285,7 @@
 			<rect width="500" height="450" fill="#FBF8F4" />
 			@for (day of m.days; track $index) {
 			<g (click)="m.updateMood(day)" style="cursor: pointer;" [class.today]="day.isActiveDay"
-				[matTooltip]="day.tooltip">
+				[matTooltip]="day.tooltip" matTooltipClass="tooltip october">
 				<polygon [attr.points]="day.points" [attr.fill]="day.color" stroke="#3e2723" stroke-width="1" />
 				@let textFill = ['#C04B0D', '#CA651D'].includes(day.color) ?'#FCF8E8':'#3c2a21' ;
 				<text [attr.x]="day.centerX" [attr.y]="day.centerY" class="label" [attr.fill]="textFill">
@@ -329,13 +330,13 @@
 		@for (day of m.days; track day) {
 		@let dasharray = `${m.november.segmentLength} ${(m.november.totalPathLength - m.november.segmentLength)}`;
 		@let dashoffset = -((day.date - 1) * (m.november.totalPathLength / 30));
-		<g [matTooltip]="day.tooltip">
+		<g [matTooltip]="day.tooltip" matTooltipClass="tooltip november">
 			<use class="scarf-part" xlink:href="#textCurvePath" [attr.stroke]="day.color"
 				[attr.stroke-dasharray]="dasharray" [attr.stroke-dashoffset]="dashoffset" (click)="m.updateMood(day)"
 				[class.today]="day.isActiveDay" />
 			@let textFill = ['#ead6ca', '#ddb892', '#b08968', '#fff'].includes(day.color) ? '#3c2a21' : '#FCF8E8';
 			@let startOffset = ((day.date - 1) * (m.november.totalPathLength / 30)) + (m.november.segmentLength / 2);
-			<text [matTooltip]="day.tooltip" class="label">
+			<text class="label">
 				<textPath xlink:href="#textCurvePath" [attr.fill]="textFill" [attr.startOffset]="startOffset">
 					{{day.date}}
 				</textPath>
@@ -384,7 +385,7 @@
 		@for (d of m.days; track $index;) {
 		@let transform = `translate(${d.x}, ${d.y})`;
 		<g class="bulb" [class.brightness]="d.color !== '#fff'" [attr.transform]="transform" [matTooltip]="d.tooltip"
-			(click)="m.updateMood(d)" [class.today]="d.isActiveDay">
+			matTooltipClass="tooltip december" (click)="m.updateMood(d)" [class.today]="d.isActiveDay">
 			<circle cx="0" cy="0" r="5" [attr.fill]="d.color" />
 			<rect x="-1" y="-6.2" width="2" height="2" fill="#333" />
 			<text class="label" [class.lightText]="['#840627', '#af142e', '#e0464f'].includes(d.color)" x="0" y="0"

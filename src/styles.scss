@@ -52,3 +52,15 @@ body {
 ::-webkit-scrollbar-corner {
 	background: transparent;
 }
+
+.mdc-tooltip.tooltip {
+	.mdc-tooltip__surface {
+		border: 2px solid palevioletred;
+		background-color: rgb(255, 255, 255); /* Custom Background */
+		color: #504d4d; /* Custom Text Color */
+		font-size: 14px; /* Custom Typography */
+		border-radius: 8px; /* Rounded corners */
+		padding: 8px 12px; /* Custom Spacing */
+		box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+	}
+}
