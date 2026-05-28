@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { Calendar } from './calendar/calendar';
-import { MoodView } from './mood-view/mood-view';
 
 @Component({
   selector: 'app-root',
-  imports: [Calendar, MoodView],
+  imports: [Calendar, RouterModule],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
