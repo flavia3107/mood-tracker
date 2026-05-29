@@ -19,7 +19,7 @@
 					</defs>
 
 					<g transform="rotate(180 50 50)" filter="url(#glow)" opacity="0.65">
-						<circle cx="50" cy="50" r="40" stroke="url(#gaugeGradient)" stroke-width="10" fill="transparent"
+						<circle class="gauge-glow-path" cx="50" cy="50" r="40" stroke-width="10" fill="transparent"
 							[attr.stroke-dasharray]="strokeDashArray" [attr.stroke-dashoffset]="strokeDashOffset"
 							stroke-linecap="round" />
 					</g>
@@ -28,9 +28,9 @@
 						<circle cx="50" cy="50" r="40" stroke="#e5e7eb" stroke-width="8" fill="transparent"
 							stroke-dasharray="251.2" stroke-dashoffset="125.6" stroke-linecap="round" />
 
-						<circle class="gauge-progress" cx="50" cy="50" r="40" stroke="url(#gaugeGradient)"
-							stroke-width="8" fill="transparent" [attr.stroke-dasharray]="strokeDashArray"
-							[attr.stroke-dashoffset]="strokeDashOffset" stroke-linecap="round" />
+						<circle class="gauge-progress" cx="50" cy="50" r="40" stroke-width="8" fill="transparent"
+							[attr.stroke-dasharray]="strokeDashArray" [attr.stroke-dashoffset]="strokeDashOffset"
+							stroke-linecap="round" />
 					</g>
 				</svg>
 

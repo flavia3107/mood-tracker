@@ -18,14 +18,13 @@
 			display: block;
 			width: 100%;
 			height: auto;
-			/* Optional: fine-tunes drop-shadow blending on darker dashboard panels */
-			will-change: filter;
 		}
 	}
 
-	// Smooth movement for both the crisp track and the glow backing track
+	// Force the gradient to apply reliably via CSS
 	.gauge-progress,
-	circle[stroke="url(#gaugeGradient)"] {
+	.gauge-glow-path {
+		stroke: url(#gaugeGradient) !important;
 		transition: stroke-dashoffset 0.8s ease-in-out;
 	}
 
@@ -39,7 +38,7 @@
 		justify-content: center;
 		align-items: center;
 		transition: transform 0.8s ease-in-out;
-		z-index: 2; // Ensures arrow floats cleanly above the glow layer
+		z-index: 2;
 
 		.arrow {
 			width: 0;
