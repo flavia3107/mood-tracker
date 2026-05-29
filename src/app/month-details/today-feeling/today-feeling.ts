@@ -9,12 +9,11 @@ import { Component, SimpleChanges } from '@angular/core';
 export class TodayFeeling {
   // Accepts a mood rating from 0 to 10
   value: number = 8;
-
   maxRotation: number = 180;
   pointerRotation: number = 0;
 
-  readonly strokeDashArray = 251.2;
-  // Initialize to 125.6 so it defaults to an empty arc, not a full circle
+  // Total length of our half-circle arc path is exactly PI * Radius (3.14159 * 40)
+  readonly strokeDashArray = 125.6;
   strokeDashOffset: number = 125.6;
 
   ngOnInit(): void {
@@ -31,13 +30,10 @@ export class TodayFeeling {
     const sanitizedValue = Math.max(0, Math.min(10, this.value));
     const percentage = sanitizedValue / 10;
 
-    // Calculate pointer angle (0 to 180 deg)
+    // Pointer angle moves seamlessly from 0deg (left) to 180deg (right)
     this.pointerRotation = percentage * this.maxRotation;
 
-    // Calculate stroke offset
-    // Half of the circle's full circumference is 125.6. 
-    // We subtract the percentage filled from the empty baseline state (251.2 - 125.6)
-    const semiCircleCircumference = this.strokeDashArray / 2;
-    this.strokeDashOffset = this.strokeDashArray - (percentage * semiCircleCircumference);
+    // Inverse calculation: 125.6 is empty, 0 is full.
+    this.strokeDashOffset = this.strokeDashArray - (percentage * this.strokeDashArray);
   }
 }

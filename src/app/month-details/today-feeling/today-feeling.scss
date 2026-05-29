@@ -21,7 +21,7 @@
 		}
 	}
 
-	// Force the gradient to apply reliably via CSS
+	// Bind the gradient smoothly to the path layouts
 	.gauge-progress,
 	.gauge-glow-path {
 		stroke: url(#gaugeGradient) !important;
@@ -30,7 +30,7 @@
 
 	.pointer-wrapper {
 		position: absolute;
-		bottom: 23%;
+		bottom: 9%; // Adjusted to lock perfectly to the new path baseline center point
 		left: 50%;
 		width: 0;
 		height: 0;
@@ -46,7 +46,9 @@
 			border-left: 6px solid transparent;
 			border-right: 6px solid transparent;
 			border-bottom: 10px solid #1a1a1a;
-			transform: translateY(-36px);
+			// Negative 90deg offset adjusts native CSS rotation to follow the arc's left-to-right vector
+			transform: rotate(-90deg) translateX(40px);
+			transform-origin: center;
 		}
 	}
 

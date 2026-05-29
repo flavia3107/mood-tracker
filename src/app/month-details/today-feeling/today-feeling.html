@@ -3,7 +3,7 @@
 		<h3>Today's Feeling</h3>
 		<div class="gauge-container">
 			<div class="svg-wrapper">
-				<svg viewBox="0 0 100 65" width="100%" height="100%">
+				<svg viewBox="0 0 100 55" width="100%" height="100%">
 					<defs>
 						<linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
 							<stop offset="0%" stop-color="#4ade80" />
@@ -18,20 +18,16 @@
 						</filter>
 					</defs>
 
-					<g transform="rotate(180 50 50)" filter="url(#glow)" opacity="0.65">
-						<circle class="gauge-glow-path" cx="50" cy="50" r="40" stroke-width="10" fill="transparent"
-							[attr.stroke-dasharray]="strokeDashArray" [attr.stroke-dashoffset]="strokeDashOffset"
-							stroke-linecap="round" />
-					</g>
+					<path class="gauge-glow-path" d="M 10,50 A 40,40 0 0,1 90,50" stroke-width="10" fill="transparent"
+						filter="url(#glow)" opacity="0.65" stroke-linecap="round"
+						[attr.stroke-dasharray]="strokeDashArray" [attr.stroke-dashoffset]="strokeDashOffset" />
 
-					<g transform="rotate(180 50 50)">
-						<circle cx="50" cy="50" r="40" stroke="#e5e7eb" stroke-width="8" fill="transparent"
-							stroke-dasharray="251.2" stroke-dashoffset="125.6" stroke-linecap="round" />
+					<path d="M 10,50 A 40,40 0 0,1 90,50" stroke="#e5e7eb" stroke-width="8" fill="transparent"
+						stroke-linecap="round" />
 
-						<circle class="gauge-progress" cx="50" cy="50" r="40" stroke-width="8" fill="transparent"
-							[attr.stroke-dasharray]="strokeDashArray" [attr.stroke-dashoffset]="strokeDashOffset"
-							stroke-linecap="round" />
-					</g>
+					<path class="gauge-progress" d="M 10,50 A 40,40 0 0,1 90,50" stroke-width="8" fill="transparent"
+						stroke-linecap="round" [attr.stroke-dasharray]="strokeDashArray"
+						[attr.stroke-dashoffset]="strokeDashOffset" />
 				</svg>
 
 				<div class="pointer-wrapper" [style.transform]="'rotate(' + pointerRotation + 'deg)'">
