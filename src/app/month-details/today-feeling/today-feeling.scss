@@ -12,24 +12,26 @@
 		width: 100%;
 		display: flex;
 		justify-content: center;
-		align-items: flex-end; // Pushes content to the baseline
+		align-items: flex-end;
 
 		svg {
 			display: block;
 			width: 100%;
 			height: auto;
+			/* Optional: fine-tunes drop-shadow blending on darker dashboard panels */
+			will-change: filter;
 		}
 	}
 
-	// Active track transition
-	.gauge-progress {
+	// Smooth movement for both the crisp track and the glow backing track
+	.gauge-progress,
+	circle[stroke="url(#gaugeGradient)"] {
 		transition: stroke-dashoffset 0.8s ease-in-out;
 	}
 
-	// Upgraded absolute positioning for the arrow pointer
 	.pointer-wrapper {
 		position: absolute;
-		bottom: 23%; // Adjusted to sit perfectly at the center point of the 50x50 radius
+		bottom: 23%;
 		left: 50%;
 		width: 0;
 		height: 0;
@@ -37,6 +39,7 @@
 		justify-content: center;
 		align-items: center;
 		transition: transform 0.8s ease-in-out;
+		z-index: 2; // Ensures arrow floats cleanly above the glow layer
 
 		.arrow {
 			width: 0;
@@ -44,7 +47,7 @@
 			border-left: 6px solid transparent;
 			border-right: 6px solid transparent;
 			border-bottom: 10px solid #1a1a1a;
-			transform: translateY(-36px); // Pulls arrow up onto the track edge
+			transform: translateY(-36px);
 		}
 	}
 
