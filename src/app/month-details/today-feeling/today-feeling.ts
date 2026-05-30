@@ -1,33 +1,33 @@
-import { Component, inject, SimpleChanges } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { UtilsService } from '../../../shared/services/utils';
 
 @Component({
   selector: 'app-today-feeling',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './today-feeling.html',
   styleUrl: './today-feeling.scss',
 })
 export class TodayFeeling {
   private _utilService = inject(UtilsService);
+  private _destroyRef = inject(DestroyRef);
   readonly todayMood = this._utilService.mood;
   readonly strokeDashArray = 125.6;
-
+  time = signal(new Date());
   maxRotation: number = 180;
   pointerRotation: number = 0;
   strokeDashOffset: number = 125.6;
 
-  ngOnInit(): void {
+  constructor() {
+    const intervalId = setInterval(() => this.time.set(new Date()), 1000);
+    this._destroyRef.onDestroy(() => clearInterval(intervalId));
     this.calculateGauge();
   }
 
   private calculateGauge(): void {
     const sanitizedValue = Math.max(0, Math.min(6, this.todayMood().value));
     const percentage = sanitizedValue / 6;
-
-    // Pointer angle moves seamlessly from 0deg (left) to 180deg (right)
     this.pointerRotation = percentage * this.maxRotation;
-
-    // Inverse calculation: 125.6 is empty, 0 is full.
     this.strokeDashOffset = this.strokeDashArray - (percentage * this.strokeDashArray);
   }
 }
