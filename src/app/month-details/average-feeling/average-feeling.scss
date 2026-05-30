@@ -1,8 +1,7 @@
 .chart-container {
 	position: relative;
 	width: 100%;
-	max-width: 250px;
-	margin: 0 auto;
+	max-width: fit-content;
 	aspect-ratio: 1 / 1;
 
 	svg {
@@ -14,7 +13,7 @@
 
 	circle {
 		fill: transparent;
-		stroke-width: 16px; // Adjust thickness here
+		stroke-width: 10px; // Adjust thickness here
 	}
 
 	.track-bg {
@@ -28,12 +27,29 @@
 
 	.chart-value {
 		position: absolute;
-		top: 50%;
+		top: 47%;
 		left: 50%;
 		transform: translate(-50%, -50%);
 		font-family: sans-serif;
-		font-size: 2rem;
+		font-size: 1.5rem;
 		font-weight: bold;
 		color: #1e293b;
 	}
+}
+
+.main-container {
+	width: 100%;
+	gap: 1.5rem;
+}
+
+h4 {
+	margin: 0;
+}
+
+h3 {
+	margin: 0.5rem 0 1rem;
+}
+
+.placeholder {
+	width: 27.5rem;
 }

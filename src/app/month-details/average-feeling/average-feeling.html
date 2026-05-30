@@ -1,11 +1,12 @@
 <h3>Average Feeling</h3>
-<div class="flex-row">
+<div class="flex-row main-container">
 	<div class="chart-container average-value">
-		<svg viewBox="0 0 200 200">
-			<circle class="track-bg" cx="100" cy="100" [attr.r]="radius" />
-
-			<circle class="track-fill" cx="100" cy="100" [attr.r]="radius" [attr.stroke-dasharray]="circumference"
-				[attr.stroke-dashoffset]="strokeDashoffset" />
+		<svg viewBox="0 0 200 200" style="width: 140px; height: 140px; object-fit: cover;">
+			<g style="transform: scale(1.5); transform-origin: center;">
+				<circle class="track-bg" cx="100" cy="100" [attr.r]="radius" />
+				<circle class="track-fill" cx="100" cy="100" [attr.r]="radius" [attr.stroke-dasharray]="circumference"
+					[attr.stroke-dashoffset]="strokeDashoffset" />
+			</g>
 		</svg>
 
 		<div class="chart-value">
@@ -14,10 +15,13 @@
 	</div>
 	<div class="description flex-column">
 		<div class="details">
-			random text
+			<h4>Overall Average</h4>
+			<span>
+				Your average mood this month is positive
+			</span>
 		</div>
 		<div class="chart-placeholders">
-
+			<img class="placeholder" src="charts.png">
 		</div>
 	</div>
 </div>
