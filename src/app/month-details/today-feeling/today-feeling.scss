@@ -5,6 +5,7 @@
 	justify-content: center;
 	width: 18rem;
 	height: 8rem;
+	margin: auto;
 
 	.svg-wrapper {
 		position: relative;
@@ -17,7 +18,7 @@
 			display: block;
 			width: 100%;
 			height: auto;
-			min-height: 10.5rem;
+			min-height: 11rem;
 		}
 	}
 
@@ -30,13 +31,8 @@
 
 	.pointer-wrapper {
 		position: absolute;
-		bottom: 9%; // Adjusted to lock perfectly to the new path baseline center point
+		top: 20%;
 		left: 50%;
-		width: 0;
-		height: 0;
-		display: flex;
-		justify-content: center;
-		align-items: center;
 		transition: transform 0.8s ease-in-out;
 		z-index: 2;
 
@@ -46,7 +42,6 @@
 			border-left: 6px solid transparent;
 			border-right: 6px solid transparent;
 			border-bottom: 10px solid #1a1a1a;
-			// Negative 90deg offset adjusts native CSS rotation to follow the arc's left-to-right vector
 			transform: rotate(-90deg) translateX(40px);
 			transform-origin: center;
 		}
@@ -58,4 +53,13 @@
 		font-weight: 700;
 		color: #333;
 	}
+}
+
+.flex-column {
+	width: 100%;
+}
+
+h5,
+h2 {
+	margin: auto;
 }
