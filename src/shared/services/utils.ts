@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
 import { computed, Injectable, signal } from '@angular/core';
-import { MONTHLY_MOOD_CONFIG, Mood } from '../constants/constants';
+import { MONTHLY_MOOD_CONFIG, Mood, MOOD_MESSAGES } from '../constants/constants';
 
 @Injectable({
 	providedIn: 'root',
@@ -10,6 +10,7 @@ export class UtilsService {
 	public calendarDays = computed(() => this._getDaysInMonth());
 	public activeMonth = computed(() => this._getMonth());
 	public numberOfDays = computed(() => this._getMonthDays());
+	public mood = signal<{ label: string, icon: string, value: number }>(MOOD_MESSAGES['happy'])
 
 	private _getDaysInMonth(): string[] {
 		const date = this.selectedDate();

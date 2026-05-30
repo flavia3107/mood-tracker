@@ -31,7 +31,7 @@
 
 	.pointer-wrapper {
 		position: absolute;
-		top: 20%;
+		top: 12%;
 		left: 50%;
 		transition: transform 0.8s ease-in-out;
 		z-index: 2;
@@ -46,13 +46,6 @@
 			transform-origin: center;
 		}
 	}
-
-	// .gauge-label {
-	// 	margin-top: 10px;
-	// 	font-size: 1.2rem;
-	// 	font-weight: 700;
-	// 	color: #333;
-	// }
 }
 
 .flex-column {
@@ -74,4 +67,8 @@ img {
 
 .img-container {
 	width: fit-content;
+}
+
+.mood-icon {
+	margin-top: -5rem;
 }

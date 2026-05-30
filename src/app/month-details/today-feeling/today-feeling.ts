@@ -1,4 +1,5 @@
-import { Component, SimpleChanges } from '@angular/core';
+import { Component, inject, SimpleChanges } from '@angular/core';
+import { UtilsService } from '../../../shared/services/utils';
 
 @Component({
   selector: 'app-today-feeling',
@@ -7,28 +8,21 @@ import { Component, SimpleChanges } from '@angular/core';
   styleUrl: './today-feeling.scss',
 })
 export class TodayFeeling {
-  // Accepts a mood rating from 0 to 10
-  value: number = 8;
+  private _utilService = inject(UtilsService);
+  readonly todayMood = this._utilService.mood;
+  readonly strokeDashArray = 125.6;
+
   maxRotation: number = 180;
   pointerRotation: number = 0;
-
-  // Total length of our half-circle arc path is exactly PI * Radius (3.14159 * 40)
-  readonly strokeDashArray = 125.6;
   strokeDashOffset: number = 125.6;
 
   ngOnInit(): void {
     this.calculateGauge();
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['value'] && !changes['value'].firstChange) {
-      this.calculateGauge();
-    }
-  }
-
   private calculateGauge(): void {
-    const sanitizedValue = Math.max(0, Math.min(10, this.value));
-    const percentage = sanitizedValue / 10;
+    const sanitizedValue = Math.max(0, Math.min(6, this.todayMood().value));
+    const percentage = sanitizedValue / 6;
 
     // Pointer angle moves seamlessly from 0deg (left) to 180deg (right)
     this.pointerRotation = percentage * this.maxRotation;
