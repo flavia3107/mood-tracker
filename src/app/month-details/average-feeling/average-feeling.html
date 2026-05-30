@@ -1,1 +1,23 @@
-<p>average-feeling works!</p>
+<h3>Average Feeling</h3>
+<div class="flex-row">
+	<div class="chart-container average-value">
+		<svg viewBox="0 0 200 200">
+			<circle class="track-bg" cx="100" cy="100" [attr.r]="radius" />
+
+			<circle class="track-fill" cx="100" cy="100" [attr.r]="radius" [attr.stroke-dasharray]="circumference"
+				[attr.stroke-dashoffset]="strokeDashoffset" />
+		</svg>
+
+		<div class="chart-value">
+			{{ value }}%
+		</div>
+	</div>
+	<div class="description flex-column">
+		<div class="details">
+			random text
+		</div>
+		<div class="chart-placeholders">
+
+		</div>
+	</div>
+</div>
