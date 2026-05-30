@@ -17,12 +17,12 @@
 	}
 
 	.track-bg {
-		stroke: #e2e8f0; // The light gray uncolored track
+		stroke: #e2e8f0;
 	}
 
 	.track-fill {
-		stroke: #5c8ee3; // The colored value track
-		transition: stroke-dashoffset 0.4s ease-out; // Smooth animation when value updates
+		stroke: #88aaad;
+		transition: stroke-dashoffset 0.4s ease-out;
 	}
 
 	.chart-value {
@@ -52,4 +52,11 @@ h3 {
 
 .placeholder {
 	width: 27.5rem;
+}
+
+.pill {
+	padding: 0.35rem 0.65rem;
+	background: #e6f0ff;
+	display: inline-block;
+	border-radius: 14px;
 }

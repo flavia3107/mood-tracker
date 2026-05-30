@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UtilsService } from '../../../shared/services/utils';
 
 @Component({
   selector: 'app-average-feeling',
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './average-feeling.scss',
 })
 export class AverageFeeling {
+  private _utilsService = inject(UtilsService);
+  days = this._utilsService.numberOfDays;
   value: number = 7.42;
   radius = 50;
   circumference = 2 * Math.PI * this.radius;
