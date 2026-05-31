@@ -1,5 +1,6 @@
 import { formatDate } from '@angular/common';
 import { computed, Injectable, signal } from '@angular/core';
+import { MONTH_DAYS_CONFIG } from '../constants/config';
 import { MONTHLY_MOOD_CONFIG, Mood, MOOD_MESSAGES } from '../constants/constants';
 
 @Injectable({
@@ -10,7 +11,8 @@ export class UtilsService {
 	public calendarDays = computed(() => this._getDaysInMonth());
 	public activeMonth = computed(() => this._getMonth());
 	public numberOfDays = computed(() => this._getMonthDays());
-	public mood = signal<{ label: string, icon: string, value: number }>(MOOD_MESSAGES['happy'])
+	public mood = signal<{ label: string, icon: string, value: number }>(MOOD_MESSAGES['happy']);
+	public monthConfig = computed(() => this._getDaysConfig());
 
 	private _getDaysInMonth(): string[] {
 		const date = this.selectedDate();
@@ -67,4 +69,24 @@ export class UtilsService {
 		const index = Math.floor(Math.random() * 6);
 		return monthConfig[index];
 	};
+
+	private _getDaysConfig() {
+		return Array.from({ length: this.numberOfDays() }, (_, index) => {
+			const dayIndex = index + 1;
+			const dt = new Date(this.selectedDate().getFullYear(), this.selectedDate().getMonth(), dayIndex);
+			const d2 = new Date();
+			dt.setHours(0, 0, 0, 0);
+			d2.setHours(0, 0, 0, 0);
+
+			const { color, label } = this.getMoodColorForDate(dt);
+			const baseDayConfig = MONTH_DAYS_CONFIG[this.activeMonth()]?.[index] ?? {};
+			return {
+				...baseDayConfig,
+				dayNumber: dayIndex,
+				isActiveDay: dt.getTime() === d2.getTime(),
+				color,
+				tooltip: MOOD_MESSAGES[label as Mood]?.label ?? ''
+			};
+		});
+	}
 }

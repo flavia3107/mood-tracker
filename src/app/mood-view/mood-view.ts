@@ -2,7 +2,7 @@ import { LowerCasePipe, NgClass, NgTemplateOutlet } from '@angular/common';
 import { computed, viewChild } from '@angular/core';
 import { TemplateRef } from '@angular/core';
 import { Component, inject } from '@angular/core';
-import { JUNE_CONFIG, MONTH_DAYS_CONFIG } from '../../shared/constants/config';
+import { JUNE_CONFIG } from '../../shared/constants/config';
 import { MONTHLY_BACKGROUNDS, Mood, MOOD_MESSAGES } from '../../shared/constants/constants';
 import { UtilsService } from '../../shared/services/utils';
 import { MoodPicker } from '../mood-picker/mood-picker';
@@ -32,7 +32,6 @@ export class MoodView {
   private _nov = viewChild<TemplateRef<any>>('november');
   private _dec = viewChild<TemplateRef<any>>('december');
   private _selectedColor = '';
-  private _numberOfDays = this._utilService.numberOfDays;
   public activeMood!: Mood;
   public currentMonth = this._utilService.activeMonth;
   public moodLogic = this._updateSvgConfig();
@@ -54,32 +53,12 @@ export class MoodView {
       day['color'] = this._selectedColor;
   }
 
-  private _getDaysConfig() {
-    return Array.from({ length: this._numberOfDays() }, (_, index) => {
-      const dayIndex = index + 1;
-      const dt = new Date(this._date().getFullYear(), this._date().getMonth(), dayIndex);
-      const d2 = new Date();
-      dt.setHours(0, 0, 0, 0);
-      d2.setHours(0, 0, 0, 0);
-
-      const { color, label } = this._utilService.getMoodColorForDate(dt);
-      const baseDayConfig = MONTH_DAYS_CONFIG[this.currentMonth()]?.[index] ?? {};
-      return {
-        ...baseDayConfig,
-        dayNumber: dayIndex,
-        isActiveDay: dt.getTime() === d2.getTime(),
-        color,
-        tooltip: this.moods[label as Mood]?.label ?? ''
-      };
-    });
-  }
-
   private _updateSvgConfig() {
     return {
       getColor: (mood: { label: Mood, color: string }) => this.getMoodColorForDate(mood),
       updateMood: (day: any) => this.onDayClick(day),
       getLeafTransform: (indx: number) => this._getLeafTransform(indx),
-      days: this._getDaysConfig(),
+      days: this._utilService.monthConfig(),
       november: {
         totalPathLength: 920,
         segmentLength: (920 / 30) - 2
