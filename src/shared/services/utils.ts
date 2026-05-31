@@ -89,4 +89,17 @@ export class UtilsService {
 			};
 		});
 	}
+
+	getWeekDays() {
+		const dates = [];
+		const today = new Date();
+		const mondayIndex = today.getDate() - today.getDay() + (today.getDay() === 0 ? -6 : 1);
+
+		for (let i = 0; i < 7; i++) {
+			const weekDay = new Date();
+			weekDay.setDate(mondayIndex + i);
+			dates.push(weekDay);
+		}
+		return dates;
+	}
 }

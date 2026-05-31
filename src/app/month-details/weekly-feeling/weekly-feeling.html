@@ -7,10 +7,11 @@
 </div>
 <div class="flex-row">
 	<div class="flex-row days">
-		@for(day of weekDays; track $index){
-		<div class="flex-column">
-			<!-- <span [style.backgroundColor]="monthConfig[activeMonth()][day.mood]">color</span> -->
-			<span>{{day.day | date: 'M'}}</span>
+		@for(day of weekDays(); track $index){
+		<div class="flex-column middle">
+			@let background = day.color !== '#fff' ? day.color: '#f1f1f1';
+			<span class="day-color" [style.backgroundColor]="background"></span>
+			<span>{{day.date | date: 'EEEEE'}}</span>
 		</div>
 		}
 	</div>

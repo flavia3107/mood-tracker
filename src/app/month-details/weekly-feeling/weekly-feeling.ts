@@ -1,6 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { MONTH_DAYS_CONFIG } from '../../../shared/constants/config';
+import { Component, computed, inject } from '@angular/core';
 import { UtilsService } from '../../../shared/services/utils';
 
 @Component({
@@ -11,17 +10,15 @@ import { UtilsService } from '../../../shared/services/utils';
 })
 export class WeeklyFeeling {
   private _utilService = inject(UtilsService);
-  public activeMonth = this._utilService.activeMonth;
-  readonly monthConfig = MONTH_DAYS_CONFIG;
+  readonly monthConfig = this._utilService.monthConfig;
+  public weekDays = computed(() => this._getWeekDays());
 
-  weekDays = [
-    { day: '2026-08-14', mood: 'happy' },
-    { day: '2026-08-15', mood: 'neutral' },
-    { day: '2026-08-16', mood: 'tired' },
-    { day: '2026-08-17', mood: 'sad' },
-    { day: '2026-08-18', mood: 'stressed' },
-    { day: '2026-08-19', mood: 'happy' },
-    { day: '2026-08-20', mood: 'moody' },
-    { day: '2026-08-21', mood: 'happy' }
-  ]
+  private _getWeekDays() {
+    const month = this.monthConfig();
+    const weekDates = this._utilService.getWeekDays();
+
+    return this.monthConfig()
+      .filter(item => weekDates.filter(d => d.getDate() === (item.day ?? item.id)).length > 0)
+      .map(item => ({ ...item, date: weekDates.filter(d => d.getDate() === (item.day ?? item.id))[0] }));
+  }
 }
