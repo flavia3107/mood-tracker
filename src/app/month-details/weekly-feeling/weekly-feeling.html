@@ -1,1 +1,20 @@
-<p>weekly-feeling works!</p>
+<div class="flex-row space-between">
+	<div class="flex-row">
+		<h3>Weekly Feeling</h3>
+		<span>Aug 14-20</span>
+	</div>
+	<span>Week Avg: 6.8</span>
+</div>
+<div class="flex-row">
+	<div class="flex-row days">
+		@for(day of weekDays; track $index){
+		<div class="flex-column">
+			<!-- <span [style.backgroundColor]="monthConfig[activeMonth()][day.mood]">color</span> -->
+			<span>{{day.day | date: 'M'}}</span>
+		</div>
+		}
+	</div>
+	<div class="chart-container">
+		chart
+	</div>
+</div>
