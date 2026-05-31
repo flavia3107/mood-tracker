@@ -85,7 +85,8 @@ export class UtilsService {
 				dayNumber: dayIndex,
 				isActiveDay: dt.getTime() === d2.getTime(),
 				color,
-				tooltip: MOOD_MESSAGES[label as Mood]?.label ?? ''
+				tooltip: MOOD_MESSAGES[label as Mood]?.label ?? '',
+				value: MOOD_MESSAGES[label as Mood]?.value ?? 0
 			};
 		});
 	}

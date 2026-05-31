@@ -43,34 +43,47 @@ export class WeeklyFeeling {
 
     return this.monthConfig()
       .filter(item => weekDates.filter(d => d.getDate() === (item.day ?? item.id)).length > 0)
-      .map(item => ({ ...item, date: weekDates.filter(d => d.getDate() === (item.day ?? item.id))[0], value: 1 }));
+      .map(item => ({ ...item, date: weekDates.filter(d => d.getDate() === (item.day ?? item.id))[0] }));
   }
 
   public chartOptions: Partial<ChartOptions> = {
     series: [
       {
-        name: 'STOCK ABC',
         data: this.weekDays().map(day => day.value),
       },
     ],
     chart: {
       type: 'area',
-      height: 100,
+      height: 50,
+      width: 280,
       zoom: {
         enabled: false,
       },
+      sparkline: {
+        enabled: true
+      }
     },
     dataLabels: {
       enabled: false,
     },
     stroke: {
-      curve: 'straight',
+      curve: 'smooth',
     },
-
     labels: this.weekDays().map(day => new Date(day.date).toDateString()),
     xaxis: {
       type: 'datetime',
+      labels: {
+        show: false
+      },
+      axisBorder: {
+        show: false
+      },
+      axisTicks: {
+        show: false
+      }
     },
+    yaxis: {
+      show: false
+    }
   };
-
 }
