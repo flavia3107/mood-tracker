@@ -62,7 +62,6 @@ export class MoodTrends {
   public chartOptions: Partial<ChartOptions> = {
     series: [
       {
-        name: 'STOCK ABC',
         data: this._currentMonth().map(day => day.value),
       },
     ],
@@ -80,7 +79,7 @@ export class MoodTrends {
       curve: 'smooth',
     },
 
-    labels: this._currentMonth().map(day => new Date(this._selectedDate().getFullYear(), this._selectedDate().getMonth(), day.day).toDateString()),
+    labels: this._currentMonth().map(day => new Date(this._selectedDate().getFullYear(), this._selectedDate().getMonth(), day.dayNumber).toDateString()),
     xaxis: {
       type: 'datetime',
     },
