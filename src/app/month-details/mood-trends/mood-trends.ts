@@ -1,8 +1,6 @@
-import { formatDate } from '@angular/common';
 import { Component, inject } from '@angular/core';
 
 import {
-  ChartComponent,
   ApexAxisChartSeries,
   ApexNonAxisChartSeries,
   ApexChart,
