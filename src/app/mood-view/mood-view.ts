@@ -44,7 +44,7 @@ export class MoodView {
   }
 
   private onDayClick(day: any) {
-    const selectedDate = new Date(this._date().getFullYear(), this._date().getMonth(), day.day);
+    const selectedDate = new Date(this._date().getFullYear(), this._date().getMonth(), day.dayNumber);
     const d2 = new Date();
     selectedDate.setHours(0, 0, 0, 0);
     d2.setHours(0, 0, 0, 0);
