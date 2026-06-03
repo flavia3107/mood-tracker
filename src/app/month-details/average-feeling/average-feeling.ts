@@ -16,11 +16,20 @@ export class AverageFeeling {
   strokeDashoffset = this.circumference;
 
 
-  private _getAverage() {
+  private _getAverage(): number {
     const monthConfig = this._utilsService.monthConfig().filter(month => month.color !== '#fff');
-    const avg = monthConfig.reduce((sum, current) => sum + current.value, 0);
-    const boundedValue = Math.min(Math.max(avg, 0), 10);
-    this.strokeDashoffset = this.circumference - (boundedValue / 10) * this.circumference;
-    return avg / monthConfig.length;
+
+    if (monthConfig.length === 0) {
+      this.strokeDashoffset = this.circumference;
+      return 0;
+    }
+
+    const totalSum = monthConfig.reduce((sum, current) => sum + (Number(current?.value) || 0), 0);
+    const trueAverage = totalSum / monthConfig.length;
+    const clampedAverage = Math.min(Math.max(trueAverage, 1), 6);
+    const scaledValue = ((clampedAverage - 1) / (6 - 1)) * (10 - 1) + 1;
+
+    this.strokeDashoffset = this.circumference - (scaledValue / 10) * this.circumference;
+    return trueAverage;
   }
 }
