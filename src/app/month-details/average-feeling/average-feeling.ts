@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { UtilsService } from '../../../shared/services/utils';
 
 @Component({
@@ -10,17 +10,17 @@ import { UtilsService } from '../../../shared/services/utils';
 export class AverageFeeling {
   private _utilsService = inject(UtilsService);
   days = this._utilsService.numberOfDays;
-  value: number = 7.42;
+  monthlyAvg = computed(() => this._getAverage())
   radius = 50;
   circumference = 2 * Math.PI * this.radius;
   strokeDashoffset = this.circumference;
 
-  constructor() {
-    this._getAverage();
-  }
 
   private _getAverage() {
-    const boundedValue = Math.min(Math.max(this.value, 0), 10);
+    const monthConfig = this._utilsService.monthConfig().filter(month => month.color !== '#fff');
+    const avg = monthConfig.reduce((sum, current) => sum + current.value, 0);
+    const boundedValue = Math.min(Math.max(avg, 0), 10);
     this.strokeDashoffset = this.circumference - (boundedValue / 10) * this.circumference;
+    return avg / monthConfig.length;
   }
 }
