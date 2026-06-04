@@ -1,24 +1,28 @@
-<div class="flex-row">
-	<div class="flex-column">
-		<div class="section today">
-			<app-today-feeling />
+<div class="flex-column padding-btm">
+	Welcome
+	<div class="flex-row">
+		<div class="flex-column">
+			<div class="section today">
+				<app-today-feeling />
+			</div>
+			<div class="section padding-0">
+				<app-average-feeling />
+			</div>
 		</div>
-		<div class="section padding-0">
-			<app-average-feeling />
+		<div class="flex-column right-side">
+			<div class="section">
+				<app-weekly-feeling />
+			</div>
+			<div class="section">
+				<app-mood-trends />
+			</div>
 		</div>
 	</div>
-	<div class="flex-column right-side">
-		<div class="section">
-			<app-weekly-feeling />
-		</div>
-		<div class="section">
-			<app-mood-trends />
-		</div>
+	<div class="flex-row">
+		<app-other-statistics />
 	</div>
 </div>
-<div class="flex-row" style="margin-top: 0.5rem;">
-	<app-other-statistics />
-</div>
+
 
 <!-- to do: implement features -->
 <!-- to do: create layout -->
