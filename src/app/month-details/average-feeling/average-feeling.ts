@@ -14,21 +14,13 @@ export class AverageFeeling {
   radius = 50;
   circumference = 2 * Math.PI * this.radius;
   strokeDashoffset = this.circumference;
+
   private _getAverage(): number {
     const monthConfig = this._utilsService.monthConfig().filter(month => month.color !== '#fff');
-
-    if (monthConfig.length === 0) {
-      this.strokeDashoffset = this.circumference;
-      return 0;
-    }
-
-    const totalSum = monthConfig.reduce((sum, current) => sum + (Number(current?.value) || 0), 0);
-    const trueAverage = totalSum / monthConfig.length;
-    const clampedAverage = Math.min(Math.max(trueAverage, 1), 6);
-    const scaledAverage = ((clampedAverage - 1) / (6 - 1)) * (10 - 1) + 1;
-    const fillPercentage = (scaledAverage - 1) / 9;
-    this.strokeDashoffset = this.circumference - (fillPercentage * this.circumference);
-
-    return scaledAverage;
+    const rawAvg = monthConfig.reduce((sum, current) => sum + current.value, 0) / monthConfig.length;
+    const mappedAvg = (rawAvg - 1) * 2;
+    const boundedValue = Math.min(Math.max(mappedAvg, 0), 10);
+    this.strokeDashoffset = this.circumference - (boundedValue / 10) * this.circumference;
+    return mappedAvg;
   }
 }
