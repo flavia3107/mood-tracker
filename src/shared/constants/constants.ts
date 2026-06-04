@@ -139,7 +139,6 @@ export const MOOD_MESSAGES: Record<Mood, { label: string, icon: string, value: n
 };
 
 export interface MoodConfig {
-	mood: 'happy' | 'neutral' | 'stressed' | 'tired' | 'moody' | 'sad';
 	min: number;
 	max: number;
 	message: string;
@@ -147,39 +146,53 @@ export interface MoodConfig {
 
 export const MOOD_RANGES: MoodConfig[] = [
 	{
-		mood: 'happy',
 		min: 9,
 		max: 10,
-		message: 'This month is looking incredibly positive and full of joy!'
+		message: 'An absolutely incredible month! You hit the peak of positivity.'
 	},
 	{
-		mood: 'neutral',
+		min: 8,
+		max: 9,
+		message: 'This month was highly positive, joyful, and full of great energy!'
+	},
+	{
 		min: 7,
 		max: 8,
-		message: 'A balanced and steady month. Cruising on an even keel.'
+		message: 'Good vibes overall. You maintained a bright and sunny outlook.'
 	},
 	{
-		mood: 'stressed',
+		min: 6,
+		max: 7,
+		message: 'A solid month. Things went smoothly and mostly in your favor.'
+	},
+	{
 		min: 5,
 		max: 6,
-		message: 'Things are feeling a bit overwhelming. Remember to take a breather.'
+		message: 'A balanced and steady month. Cruising on an even, calm keel.'
 	},
 	{
-		mood: 'tired',
 		min: 4,
-		max: 4,
-		message: 'Energy levels are running low. Time to prioritize some rest.'
+		max: 5,
+		message: 'Things felt a bit overwhelming at times. Remember to breathe.'
 	},
 	{
-		mood: 'moody',
+		min: 3,
+		max: 4,
+		message: 'Energy levels ran low this month. Time to prioritize deep rest.'
+	},
+	{
 		min: 2,
 		max: 3,
-		message: 'Emotions are fluctuating quite a bit. Be gentle with yourself.'
+		message: 'Emotions fluctuated quite a bit. Be gentle and patient with yourself.'
 	},
 	{
-		mood: 'sad',
 		min: 1,
-		max: 1,
+		max: 2,
 		message: 'It has been a heavy and difficult month. Reach out if you need support.'
+	},
+	{
+		min: 0,
+		max: 1,
+		message: 'An exceptionally tough period. Please take extra care of yourself.'
 	}
 ];
