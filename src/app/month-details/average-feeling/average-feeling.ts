@@ -13,14 +13,17 @@ export class AverageFeeling {
   monthlyAvg = computed(() => this._getAverage())
   radius = 50;
   circumference = 2 * Math.PI * this.radius;
-  strokeDashoffset = this.circumference;
+  strokeDashoffset = computed(() => this._calculateStroke());
 
   private _getAverage(): number {
     const monthConfig = this._utilsService.monthConfig().filter(month => month.color !== '#fff');
     const rawAvg = monthConfig.reduce((sum, current) => sum + current.value, 0) / monthConfig.length;
     const mappedAvg = (rawAvg - 1) * 2;
-    const boundedValue = Math.min(Math.max(mappedAvg, 0), 10);
-    this.strokeDashoffset = this.circumference - (boundedValue / 10) * this.circumference;
-    return mappedAvg;
+    return mappedAvg ?? 0;
+  }
+
+  private _calculateStroke() {
+    const boundedValue = Math.min(Math.max(this.monthlyAvg(), 0), 10) ?? 0;
+    return this.circumference - (boundedValue / 10) * this.circumference;
   }
 }
