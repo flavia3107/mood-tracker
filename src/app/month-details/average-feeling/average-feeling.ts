@@ -27,3 +27,5 @@ export class AverageFeeling {
     return this.circumference - (boundedValue / 10) * this.circumference;
   }
 }
+
+// to do: handle edge cases, future empty values || week with no value
