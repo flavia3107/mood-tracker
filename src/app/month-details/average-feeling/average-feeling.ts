@@ -1,4 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
+import { MOOD_RANGES } from '../../../shared/constants/constants';
 import { UtilsService } from '../../../shared/services/utils';
 
 @Component({
@@ -15,16 +16,18 @@ export class AverageFeeling {
   circumference = 2 * Math.PI * this.radius;
   strokeDashoffset = computed(() => this._calculateStroke());
 
-  private _getAverage(): number {
+  private _getAverage(): { avg: number, message: string } {
     const monthConfig = this._utilsService.monthConfig().filter((month: { color: string; }) => month.color !== '#fff');
     const rawAvg = monthConfig.reduce((sum: any, current: { value: any; }) => sum + current.value, 0) / monthConfig.length;
     const mappedAvg = (rawAvg - 1) * 2;
-    if (isNaN(mappedAvg)) return 0;
-    return +mappedAvg.toFixed(2);
+    if (isNaN(mappedAvg)) return { avg: 0, message: 's' };
+
+    const message: string = MOOD_RANGES.find((range: { min: number; max: number; }) => mappedAvg >= range.min && mappedAvg <= range.max)?.message ?? '';
+    return { avg: +mappedAvg.toFixed(2), message };
   }
 
   private _calculateStroke() {
-    const boundedValue = Math.min(Math.max(this.monthlyAvg(), 0), 10) ?? 0;
+    const boundedValue = Math.min(Math.max(this.monthlyAvg().avg, 0), 10) ?? 0;
     return this.circumference - (boundedValue / 10) * this.circumference;
   }
 }

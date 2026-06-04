@@ -13,14 +13,14 @@
 		</svg>
 
 		<div class="chart-value">
-			{{ monthlyAvg() }}
+			{{ monthlyAvg().avg }}
 		</div>
 	</div>
 	<div class="description flex-column">
 		<div class="details">
 			<h4>Overall Average</h4>
 			<span>
-				Your average mood this month is positive
+				{{ monthlyAvg().message }}
 			</span>
 		</div>
 		<div class="chart-placeholders">

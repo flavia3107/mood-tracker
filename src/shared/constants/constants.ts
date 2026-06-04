@@ -137,3 +137,49 @@ export const MOOD_MESSAGES: Record<Mood, { label: string, icon: string, value: n
 	moody: { label: "Moody - A bit of a rollercoaster right now? Totally valid. Give yourself some space to just feel it out.", icon: 'moody.png', value: 2 },
 	sad: { label: "Sad - It's okay not to be okay. Sending you a gentle reminder that it's perfectly fine to take it easy today.", icon: 'sad.png', value: 1 }
 };
+
+export interface MoodConfig {
+	mood: 'happy' | 'neutral' | 'stressed' | 'tired' | 'moody' | 'sad';
+	min: number;
+	max: number;
+	message: string;
+}
+
+export const MOOD_RANGES: MoodConfig[] = [
+	{
+		mood: 'happy',
+		min: 9,
+		max: 10,
+		message: 'This month is looking incredibly positive and full of joy!'
+	},
+	{
+		mood: 'neutral',
+		min: 7,
+		max: 8,
+		message: 'A balanced and steady month. Cruising on an even keel.'
+	},
+	{
+		mood: 'stressed',
+		min: 5,
+		max: 6,
+		message: 'Things are feeling a bit overwhelming. Remember to take a breather.'
+	},
+	{
+		mood: 'tired',
+		min: 4,
+		max: 4,
+		message: 'Energy levels are running low. Time to prioritize some rest.'
+	},
+	{
+		mood: 'moody',
+		min: 2,
+		max: 3,
+		message: 'Emotions are fluctuating quite a bit. Be gentle with yourself.'
+	},
+	{
+		mood: 'sad',
+		min: 1,
+		max: 1,
+		message: 'It has been a heavy and difficult month. Reach out if you need support.'
+	}
+];
