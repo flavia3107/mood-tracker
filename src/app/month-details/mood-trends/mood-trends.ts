@@ -65,7 +65,7 @@ export class MoodTrends {
     ],
     chart: {
       type: 'area',
-      height: 250,
+      height: 300,
       zoom: {
         enabled: false,
       },

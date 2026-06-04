@@ -27,7 +27,7 @@
 
 	.chart-value {
 		position: absolute;
-		top: 47%;
+		top: 40%;
 		left: 50%;
 		transform: translate(-50%, -50%);
 		font-family: sans-serif;
@@ -50,9 +50,24 @@ h4 {
 	width: 27.5rem;
 }
 
+.message {
+	font-size: 1rem;
+	color: #353535;
+	margin-top: 0.5rem;
+	display: inline-block;
+	height: 2.75rem;
+}
+
 .pill {
 	padding: 0.35rem 0.65rem;
 	background: #e6f0ff;
 	display: inline-block;
 	border-radius: 14px;
+}
+
+h4 {
+	color: #a5a5a5;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 0.6rem;
 }
