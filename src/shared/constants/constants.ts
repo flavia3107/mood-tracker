@@ -192,7 +192,7 @@ export const MOOD_RANGES: MoodConfig[] = [
 	},
 	{
 		min: 0,
-		max: 1,
-		message: 'An exceptionally tough period. Please take extra care of yourself.'
+		max: 0,
+		message: 'No mood tracking data recorded for this month yet.'
 	}
 ];
