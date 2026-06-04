@@ -19,7 +19,7 @@ export class AverageFeeling {
     const monthConfig = this._utilsService.monthConfig().filter(month => month.color !== '#fff');
     const rawAvg = monthConfig.reduce((sum, current) => sum + current.value, 0) / monthConfig.length;
     const mappedAvg = (rawAvg - 1) * 2;
-    return mappedAvg ?? 0;
+    return +mappedAvg.toFixed(2);
   }
 
   private _calculateStroke() {
