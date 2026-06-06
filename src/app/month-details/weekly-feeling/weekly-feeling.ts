@@ -24,9 +24,18 @@ export class WeeklyFeeling {
   private _getWeekDays() {
     const weekDates = this._weekDates();
     const currentMonthConfig = this.monthConfig();
+
     const weekConfig = weekDates.map(date => {
-      const matchingConfig = currentMonthConfig.find((item: { day: any; id: any; }) => (item.day ?? item.id) === date.getDate());
-      return { ...matchingConfig, date: date };
+      const matchingConfig = currentMonthConfig.find(item => {
+        if (!item.date) return (item.day ?? item.id) === date.getDate();
+
+        const itemDate = new Date(item.date);
+        return itemDate.getFullYear() === date.getFullYear() &&
+          itemDate.getMonth() === date.getMonth() &&
+          itemDate.getDate() === date.getDate();
+      });
+
+      return matchingConfig ? { ...matchingConfig, date } : { id: null, color: '#fff', date };
     });
 
     const monthConfig: { [key: string]: any } = {
