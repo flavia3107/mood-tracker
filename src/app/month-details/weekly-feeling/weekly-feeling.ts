@@ -23,17 +23,20 @@ export class WeeklyFeeling {
 
   private _getWeekDays() {
     const weekDates = this._weekDates();
-    const weekConfig = this.monthConfig()
-      .filter(item => weekDates.filter(d => d.getDate() === (item.day ?? item.id)).length > 0)
-      .map(item => ({ ...item, date: weekDates.filter(d => d.getDate() === (item.day ?? item.id))[0] }));
+    const currentMonthConfig = this.monthConfig();
+    const weekConfig = weekDates.map(date => {
+      const matchingConfig = currentMonthConfig.find((item: { day: any; id: any; }) => (item.day ?? item.id) === date.getDate());
+      return { ...matchingConfig, date: date };
+    });
 
     const monthConfig: { [key: string]: any } = {
       startDate: weekDates[0].toDateString(),
       endDate: weekDates[6].toDateString(),
       weekConfig,
       isSameMonth: this._datePipe.transform(weekDates[0], 'MMM') === this._datePipe.transform(weekDates[6], 'MMM')
-    }
-    return monthConfig
+    };
+
+    return monthConfig;
   }
 
   private _getChartConfig() {
