@@ -13,6 +13,7 @@ export class UtilsService {
 	public numberOfDays = computed(() => this._getMonthDays());
 	public mood = signal<{ label: string, icon: string, value: number }>(MOOD_MESSAGES['happy']);
 	public monthConfig = computed(() => this._getDaysConfig());
+	public currentWeek = computed(() => this._getWeekDays());
 
 	private _getDaysInMonth(): string[] {
 		const date = this.selectedDate();
@@ -91,9 +92,9 @@ export class UtilsService {
 		});
 	}
 
-	getWeekDays() {
+	private _getWeekDays() {
 		const dates = [];
-		const today = new Date();
+		const today = this.selectedDate();
 		const mondayIndex = today.getDate() - today.getDay() + (today.getDay() === 0 ? -6 : 1);
 
 		for (let i = 0; i < 7; i++) {

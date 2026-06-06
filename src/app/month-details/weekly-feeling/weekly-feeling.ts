@@ -36,6 +36,8 @@ export type ChartOptions = {
 export class WeeklyFeeling {
   private _datePipe = inject(DatePipe);
   private _utilService = inject(UtilsService);
+  private _weekDates = this._utilService.currentWeek;
+
   readonly monthConfig = this._utilService.monthConfig;
   public weekDays = computed(() => this._getWeekDays());
 
@@ -81,8 +83,7 @@ export class WeeklyFeeling {
   };
 
   private _getWeekDays() {
-    const month = this.monthConfig();
-    const weekDates = this._utilService.getWeekDays();
+    const weekDates = this._weekDates();
     const weekConfig = this.monthConfig()
       .filter(item => weekDates.filter(d => d.getDate() === (item.day ?? item.id)).length > 0)
       .map(item => ({ ...item, date: weekDates.filter(d => d.getDate() === (item.day ?? item.id))[0] }));
