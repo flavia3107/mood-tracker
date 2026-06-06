@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChartOptions, CHART_OPTIONS } from '../../../shared/constants/chart-models';
+import { MONTHLY_MOOD_CONFIG } from '../../../shared/constants/constants';
 import { UtilsService } from '../../../shared/services/utils';
 
 @Component({
@@ -42,10 +43,10 @@ export class WeeklyFeeling {
           data: this.weekDays()['weekConfig'].map((day: any) => day.value),
         },
       ],
-      colors: ['#3b82f6'],
+      colors: [MONTHLY_MOOD_CONFIG[this._utilService.activeMonth()][2].color],
       labels: this.weekDays()['weekConfig'].map((day: any) => new Date(day.date).toDateString()),
     };
-
+    console.log('here', config)
     return config;
   }
 }
