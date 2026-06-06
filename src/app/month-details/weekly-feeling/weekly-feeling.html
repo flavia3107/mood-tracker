@@ -1,15 +1,14 @@
-<div class="flex-row space-between middle">
-	<div class="flex-row middle">
+<div class="flex-row space-between middle header">
+	<div class="flex-row middle current">
 		<h3 class="section-title">Weekly Feeling</h3>
-		<p>
+		<h4 class="secondary-title">
 			<span>{{weekDays()['startDate'] | date: 'MMM d'}} - </span>
 			@if(weekDays()['isSameMonth']){
 			<span>{{weekDays()['endDate'] | date : 'd' }}</span>
 			} @else {
 			<span>{{weekDays()['endDate'] | date : 'MMM d' }}</span>
 			}
-		</p>
-
+		</h4>
 	</div>
 	<span>Week Avg: 6.8</span>
 </div>
