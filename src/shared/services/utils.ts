@@ -95,11 +95,11 @@ export class UtilsService {
 	private _getWeekDays() {
 		const dates = [];
 		const today = this.selectedDate();
-		const mondayIndex = today.getDate() - today.getDay() + (today.getDay() === 0 ? -6 : 1);
+		const sundayIndex = today.getDate() - today.getDay();
 
 		for (let i = 0; i < 7; i++) {
-			const weekDay = new Date();
-			weekDay.setDate(mondayIndex + i);
+			const weekDay = new Date(this.selectedDate().toDateString());
+			weekDay.setDate(sundayIndex + i);
 			dates.push(weekDay);
 		}
 		return dates;
