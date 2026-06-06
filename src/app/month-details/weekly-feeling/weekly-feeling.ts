@@ -18,62 +18,9 @@ export class WeeklyFeeling {
   private _utilService = inject(UtilsService);
   private _weekDates = this._utilService.currentWeek;
   public weekDays = computed(() => this._getWeekDays());
-  readonly monthConfig = this._utilService.monthConfig;
-  public activeColor = computed(() => {
-    return MONTHLY_MOOD_CONFIG[this._utilService.activeMonth()][2].color;
-  });
-
   public chartOptions = computed(() => this._getChartConfig());
+  readonly monthConfig = this._utilService.monthConfig;
 
-  private _getChartConfig() {
-    const color = this.activeColor();
-    const config = this.weekDays()['weekConfig'];
-
-    return {
-      chart: {
-        type: 'area',
-        height: 50,
-        width: 320,
-        zoom: { enabled: false },
-        sparkline: { enabled: true }
-      },
-      dataLabels: { enabled: false },
-      stroke: {
-        curve: 'smooth',
-        width: 2
-      },
-
-      series: [
-        {
-          name: 'Feeling',
-          data: config.map((day: any) => ({
-            x: new Date(day.date).getTime(),
-            y: day.value
-          }))
-        }
-      ],
-
-      xaxis: {
-        type: 'datetime',
-        labels: { show: false },
-        axisBorder: { show: false },
-        axisTicks: { show: false }
-      },
-      yaxis: { show: false },
-
-      colors: [color],
-      fill: {
-        type: 'gradient',
-        gradient: {
-          type: 'vertical',
-          shadeIntensity: 1,
-          opacityFrom: 0.7,
-          opacityTo: 0.1,
-          stops: [0, 90, 100]
-        }
-      }
-    } as Partial<ChartOptions>;
-  }
   private _getWeekDays() {
     const weekDates = this._weekDates();
     const weekConfig = this.monthConfig()
@@ -89,17 +36,23 @@ export class WeeklyFeeling {
     return monthConfig
   }
 
-  // private _getChartConfig() {
-  //   const config: Partial<ChartOptions> = {
-  //     ...CHART_OPTIONS,
-  //     series: [
-  //       {
-  //         data: this.weekDays()['weekConfig'].map((day: any) => day.value),
-  //       },
-  //     ],
-  //     colors: [MONTHLY_MOOD_CONFIG[this._utilService.activeMonth()][2].color],
-  //     labels: this.weekDays()['weekConfig'].map((day: any) => new Date(day.date).toDateString()),
-  //   };
-  //   this.chartOptions = config;
-  // }
+  private _getChartConfig() {
+    const color = MONTHLY_MOOD_CONFIG[this._utilService.activeMonth()][2].color;
+    const config = this.weekDays()['weekConfig'];
+    const mappedData = config.map((day: any) => ({
+      x: new Date(day.date).getTime(),
+      y: day.value
+    })).sort((a: any, b: any) => a.x - b.x);
+
+    const chartConfig: Partial<ChartOptions> = {
+      ...CHART_OPTIONS,
+      series: [
+        { name: 'Mood', data: mappedData }
+      ],
+      colors: [color],
+      labels: mappedData.map((d: any) => new Date(d.x).toDateString()),
+    };
+
+    return chartConfig;
+  }
 }

@@ -46,7 +46,7 @@ export const CHART_OPTIONS: Partial<ChartOptions> = {
 	chart: {
 		type: 'area',
 		height: 50,
-		width: 320,
+		width: 290,
 		zoom: {
 			enabled: false,
 		},
