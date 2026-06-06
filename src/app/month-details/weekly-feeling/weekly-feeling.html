@@ -24,11 +24,13 @@
 	</div>
 	<div class="chart-container">
 		<div id="chart">
-			<apx-chart [series]="chartOptions().series!" [chart]="chartOptions().chart!"
-				[dataLabels]="chartOptions().dataLabels!" [stroke]="chartOptions().stroke!"
-				[title]="chartOptions().title!" [subtitle]="chartOptions().subtitle!" [labels]="chartOptions().labels!"
-				[xaxis]="chartOptions().xaxis!" [yaxis]="chartOptions().yaxis!">
+			@if (chartOptions()) {
+			<apx-chart [series]="chartOptions().series!" [colors]="chartOptions().colors!" [fill]="chartOptions().fill!"
+				[chart]="chartOptions().chart!" [dataLabels]="chartOptions().dataLabels!"
+				[stroke]="chartOptions().stroke!" [labels]="chartOptions().labels!" [xaxis]="chartOptions().xaxis!"
+				[yaxis]="chartOptions().yaxis!">
 			</apx-chart>
+			}
 		</div>
 	</div>
 </div>
