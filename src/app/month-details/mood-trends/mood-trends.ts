@@ -37,6 +37,15 @@ export class MoodTrends {
       dataLabels: { enabled: false },
       stroke: { curve: 'smooth' },
       xaxis: { type: 'datetime' },
+      fill: {
+        type: 'gradient',
+        gradient: {
+          shadeIntensity: 1,
+          opacityFrom: 0.7,
+          opacityTo: 0.2,
+          stops: [0, 90, 100]
+        }
+      },
     };
     return chartConfig;
   }

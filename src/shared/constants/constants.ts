@@ -148,51 +148,51 @@ export const MOOD_RANGES: MoodConfig[] = [
 	{
 		min: 9,
 		max: 10,
-		message: 'An absolutely incredible month! You hit the peak of positivity.'
+		message: 'An absolutely incredible month! You hit the absolute peak of positivity, radiating vibrant energy and making the most of every single moment. Take a moment to celebrate this beautiful chapter and carry this brilliant momentum forward into the weeks ahead.'
 	},
 	{
 		min: 8,
 		max: 9,
-		message: 'This month was highly positive, joyful, and full of great energy!'
+		message: 'This month was highly positive, joyful, and full of wonderful energy. Your bright outlook really shined through, helping you navigate your days with a genuine sense of appreciation and happiness. Keep nurturing whatever habits or mindsets brought you this much fulfillment.'
 	},
 	{
 		min: 7,
 		max: 8,
-		message: 'Good vibes overall. You maintained a bright and sunny outlook.'
+		message: 'Good vibes overall! You successfully maintained a bright and sunny outlook, striking a wonderful balance between active joy and steady contentment. It is a beautiful thing to look back and see a month defined by such consistent warmth and light.'
 	},
 	{
 		min: 6,
 		max: 7,
-		message: 'A solid month. Things went smoothly and mostly in your favor.'
+		message: 'A remarkably solid month. Things went smoothly and mostly in your favor, allowing you to move through your days with comfort and ease. It might not have been a non-stop highlight reel, but it was a genuinely good, supportive period of time.'
 	},
 	{
 		min: 5,
 		max: 6,
-		message: 'A balanced and steady month. Cruising on an even, calm keel.'
+		message: 'A beautifully balanced and steady month. Cruising on an even, calm keel allowed you to find a peaceful, grounded rhythm amidst the usual daily hustle. There is profound magic in a quiet, stable month where you can simply exist without heavy pressures.'
 	},
 	{
 		min: 4,
 		max: 5,
-		message: 'Things felt a bit overwhelming at times. Remember to breathe.'
+		message: 'Things felt a bit overwhelming and chaotic at times. It is completely normal to have months that test your resolve, so please remember to pause and breathe deeply. Give yourself immense credit for navigating the stormy patches and making it through to the other side.'
 	},
 	{
 		min: 3,
 		max: 4,
-		message: 'Energy levels ran low this month. Time to prioritize deep rest.'
+		message: 'Your overall energy levels ran quite low this month. If you have been feeling physically drained or emotionally spent, consider this a clear gentle signal to prioritize deep, restorative rest. Be fiercely protective of your peace and focus on slowly refilling your own cup.'
 	},
 	{
 		min: 2,
 		max: 3,
-		message: 'Emotions fluctuated quite a bit. Be gentle and patient with yourself.'
+		message: 'Your emotions fluctuated quite a bit over the last few weeks, making things feel like a bit of a rollercoaster. Please be gentle and endlessly patient with yourself as you navigate these complex internal tides. Healing and growing are never linear, and every feeling you had was completely valid.'
 	},
 	{
 		min: 1,
 		max: 2,
-		message: 'It has been a heavy and difficult month. Reach out if you need support.'
+		message: 'It has been an incredibly heavy and difficult month for you. Please extend the utmost grace to yourself right now, and remember that you never have to carry the weight of hard times completely alone. Lean on your loved ones and reach out to your support system whenever you feel ready.'
 	},
 	{
 		min: 0,
 		max: 0,
-		message: 'No mood tracking data recorded for this month yet.'
+		message: 'No mood tracking data has been recorded for this month just yet. Every blank canvas is a fresh opportunity, so don\'t feel any pressure about missing days. We will be right here to help you reflect and track your journey whenever you feel ready to start logging again.'
 	}
 ];
