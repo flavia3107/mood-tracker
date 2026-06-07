@@ -1,5 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
-import { MOOD_RANGES } from '../../../shared/constants/constants';
+import { MONTHLY_MOOD_CONFIG, MOOD_RANGES } from '../../../shared/constants/constants';
 import { UtilsService } from '../../../shared/services/utils';
 
 @Component({
@@ -15,6 +15,11 @@ export class AverageFeeling {
   radius = 50;
   circumference = 2 * Math.PI * this.radius;
   strokeDashoffset = computed(() => this._calculateStroke());
+  pathColor = computed(() => this._getPathColor());
+
+  private _getPathColor() {
+    return MONTHLY_MOOD_CONFIG[this._utilsService.activeMonth()][2].color;
+  }
 
   private _getAverage(): { avg: number, message: string } {
     const monthConfig = this._utilsService.monthConfig().filter((month: { color: string; }) => month.color !== '#fff');

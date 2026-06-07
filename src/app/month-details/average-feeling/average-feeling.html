@@ -7,8 +7,8 @@
 		<svg viewBox="0 0 200 200" style="width: 140px; height: 140px; object-fit: cover;">
 			<g style="transform: scale(1.5); transform-origin: center;">
 				<circle class="track-bg" cx="100" cy="100" [attr.r]="radius" />
-				<circle class="track-fill" cx="100" cy="100" [attr.r]="radius" [attr.stroke-dasharray]="circumference"
-					[attr.stroke-dashoffset]="strokeDashoffset()" />
+				<circle class="track-fill" [attr.stroke]="pathColor()" cx="100" cy="100" [attr.r]="radius"
+					[attr.stroke-dasharray]="circumference" [attr.stroke-dashoffset]="strokeDashoffset()" />
 			</g>
 		</svg>
 

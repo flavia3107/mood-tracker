@@ -13,15 +13,14 @@
 
 	circle {
 		fill: transparent;
-		stroke-width: 10px; // Adjust thickness here
+		stroke-width: 10px;
 	}
 
 	.track-bg {
-		stroke: #e2e8f0;
+		stroke: #f1f1f1;
 	}
 
 	.track-fill {
-		stroke: #88aaad;
 		transition: stroke-dashoffset 0.4s ease-out;
 	}
 
