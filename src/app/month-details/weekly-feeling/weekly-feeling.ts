@@ -1,6 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, computed, effect, inject } from '@angular/core';
-import * as ApexCharts from 'apexcharts';
+import { Component, computed, inject } from '@angular/core';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChartOptions, CHART_OPTIONS } from '../../../shared/constants/chart-models';
 import { MONTHLY_MOOD_CONFIG } from '../../../shared/constants/constants';

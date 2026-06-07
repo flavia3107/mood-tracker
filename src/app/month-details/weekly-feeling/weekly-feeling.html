@@ -12,7 +12,7 @@
 	</div>
 	<h4 class="secondary-title">Week Avg: 6.8</h4>
 </div>
-<div class="flex-row space-between">
+<div class="flex-row space-between details">
 	<div class="flex-row days">
 		@for(day of weekDays()['weekConfig']; track day.date){
 		<div class="flex-column middle">
@@ -23,14 +23,11 @@
 		}
 	</div>
 	<div class="chart-container">
-		<div id="chart">
-			@if (chartOptions()) {
-			<apx-chart [series]="chartOptions().series!" [colors]="chartOptions().colors!" [fill]="chartOptions().fill!"
-				[chart]="chartOptions().chart!" [dataLabels]="chartOptions().dataLabels!"
-				[stroke]="chartOptions().stroke!" [labels]="chartOptions().labels!" [xaxis]="chartOptions().xaxis!"
-				[yaxis]="chartOptions().yaxis!">
-			</apx-chart>
-			}
-		</div>
+		@if (chartOptions()) {
+		<apx-chart [series]="chartOptions().series!" [colors]="chartOptions().colors!" [fill]="chartOptions().fill!"
+			[chart]="chartOptions().chart!" [dataLabels]="chartOptions().dataLabels!" [stroke]="chartOptions().stroke!"
+			[labels]="chartOptions().labels!" [xaxis]="chartOptions().xaxis!" [yaxis]="chartOptions().yaxis!">
+		</apx-chart>
+		}
 	</div>
 </div>
