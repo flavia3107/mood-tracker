@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { Component, DestroyRef, inject, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
+import { MONTHLY_MOOD_CONFIG } from '../../../shared/constants/constants';
 import { UtilsService } from '../../../shared/services/utils';
 
 @Component({
@@ -13,6 +14,8 @@ export class TodayFeeling {
   private _destroyRef = inject(DestroyRef);
   readonly todayMood = this._utilService.mood;
   readonly strokeDashArray = 125.6;
+  public colors = computed(() => this._getColors());
+
   time = signal(new Date());
   maxRotation: number = 180;
   pointerRotation: number = 0;
@@ -22,6 +25,11 @@ export class TodayFeeling {
     const intervalId = setInterval(() => this.time.set(new Date()), 1000);
     this._destroyRef.onDestroy(() => clearInterval(intervalId));
     this.calculateGauge();
+  }
+
+  private _getColors() {
+    const colors = MONTHLY_MOOD_CONFIG[this._utilService.activeMonth()].map((mood: { label: string, color: string }) => mood.color);
+    return colors;
   }
 
   private calculateGauge(): void {
