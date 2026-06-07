@@ -31,7 +31,7 @@ export class MoodTrends {
       labels: mappedData.map((d: any) => new Date(d.x).toDateString()),
       chart: {
         type: 'area',
-        height: 300,
+        height: 290,
         zoom: { enabled: false },
       },
       dataLabels: { enabled: false },
