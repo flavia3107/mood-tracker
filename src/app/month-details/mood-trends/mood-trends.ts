@@ -1,50 +1,8 @@
-import { Component, inject } from '@angular/core';
-
-import {
-  ApexAxisChartSeries,
-  ApexNonAxisChartSeries,
-  ApexChart,
-  ApexXAxis,
-  ApexYAxis,
-  ApexTitleSubtitle,
-  ApexDataLabels,
-  ApexStroke,
-  ApexFill,
-  ApexLegend,
-  ApexTooltip,
-  ApexMarkers,
-  ApexPlotOptions,
-  ApexResponsive,
-  ApexGrid,
-  ApexAnnotations,
-  ApexStates,
-  ApexTheme,
-  NgApexchartsModule,
-} from 'ng-apexcharts';
+import { Component, computed, inject } from '@angular/core';
+import { NgApexchartsModule, } from 'ng-apexcharts';
+import { ChartOptions } from '../../../shared/constants/chart-models';
+import { MONTHLY_MOOD_CONFIG } from '../../../shared/constants/constants';
 import { UtilsService } from '../../../shared/services/utils';
-
-export type ChartOptions = {
-  series?: ApexAxisChartSeries | ApexNonAxisChartSeries;
-  chart?: ApexChart;
-  xaxis?: ApexXAxis;
-  yaxis?: ApexYAxis | ApexYAxis[];
-  title?: ApexTitleSubtitle;
-  subtitle?: ApexTitleSubtitle;
-  dataLabels?: ApexDataLabels;
-  stroke?: ApexStroke;
-  fill?: ApexFill;
-  legend?: ApexLegend;
-  tooltip?: ApexTooltip;
-  markers?: ApexMarkers;
-  plotOptions?: ApexPlotOptions;
-  responsive?: ApexResponsive[];
-  grid?: ApexGrid;
-  annotations?: ApexAnnotations;
-  states?: ApexStates;
-  theme?: ApexTheme;
-  colors?: string[];
-  labels?: any;
-};
 
 @Component({
   selector: 'app-mood-trends',
@@ -56,31 +14,30 @@ export class MoodTrends {
   private _utilService = inject(UtilsService);
   private _currentMonth = this._utilService.monthConfig;
   private _selectedDate = this._utilService.selectedDate;
+  public chartOptions = computed(() => this._getChartConfig());
 
-  public chartOptions: Partial<ChartOptions> = {
-    series: [
-      {
-        data: this._currentMonth().map(day => day.value),
+  private _getChartConfig() {
+    const color = MONTHLY_MOOD_CONFIG[this._utilService.activeMonth()][2].color;
+    const mappedData = this._currentMonth().map((day: any) => ({
+      x: new Date(this._selectedDate().getFullYear(), this._selectedDate().getMonth(), day.dayNumber).getTime(),
+      y: day.value
+    })).sort((a: any, b: any) => a.x - b.x);
+
+    const chartConfig: Partial<ChartOptions> = {
+      series: [
+        { name: 'Mood', data: mappedData }
+      ],
+      colors: [color],
+      labels: mappedData.map((d: any) => new Date(d.x).toDateString()),
+      chart: {
+        type: 'area',
+        height: 300,
+        zoom: { enabled: false },
       },
-    ],
-    chart: {
-      type: 'area',
-      height: 300,
-      zoom: {
-        enabled: false,
-      },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    stroke: {
-      curve: 'smooth',
-    },
-
-    labels: this._currentMonth().map(day => new Date(this._selectedDate().getFullYear(), this._selectedDate().getMonth(), day.dayNumber).toDateString()),
-    xaxis: {
-      type: 'datetime',
-    },
-  };
-
+      dataLabels: { enabled: false },
+      stroke: { curve: 'smooth' },
+      xaxis: { type: 'datetime' },
+    };
+    return chartConfig;
+  }
 }
