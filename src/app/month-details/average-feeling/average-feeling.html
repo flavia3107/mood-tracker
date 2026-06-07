@@ -4,7 +4,7 @@
 </div>
 <div class="flex-row main-container">
 	<div class="chart-container average-value">
-		<svg viewBox="0 0 200 200" style="width: 140px; height: 140px; object-fit: cover;">
+		<svg viewBox="0 0 200 200">
 			<g style="transform: scale(1.5); transform-origin: center;">
 				<circle class="track-bg" cx="100" cy="100" [attr.r]="radius" />
 				<circle class="track-fill" [attr.stroke]="pathColor()" cx="100" cy="100" [attr.r]="radius"
@@ -16,15 +16,10 @@
 			{{ monthlyAvg().avg }}
 		</div>
 	</div>
-	<div class="description flex-column">
-		<div class="details">
-			<h4 class="secondary-title">Overall Average</h4>
-			<span class="message">
-				{{ monthlyAvg().message }}
-			</span>
-		</div>
-		<div class="chart-placeholders">
-			<img class="placeholder" src="charts.png">
-		</div>
+	<div class="details">
+		<h4 class="secondary-title">Overall Average</h4>
+		<span class="message">
+			{{ monthlyAvg().message }}
+		</span>
 	</div>
 </div>

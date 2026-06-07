@@ -7,8 +7,10 @@
 	svg {
 		transform: rotate(-90deg);
 		transform-origin: center;
-		width: 100%;
-		height: 100%;
+		width: 140px;
+		height: 140px;
+		object-fit: cover;
+		margin-top: -1rem;
 	}
 
 	circle {
@@ -43,10 +45,6 @@
 
 h4 {
 	margin: 0;
-}
-
-.placeholder {
-	width: 27.5rem;
 }
 
 .message {
