@@ -31,21 +31,20 @@ export type ChartOptions = {
 })
 export class OtherStatistics {
   public moodData = signal([
-    { mood: 'Happy', value: 44 },
-    { mood: 'Calm', value: 55 },
-    { mood: 'Stressed', value: 41 },
-    { mood: 'Sad', value: 17 },
-    { mood: 'Energetic', value: 15 }
+    { mood: 'Happy', value: 44, color: '#FFD700' },
+    { mood: 'Calm', value: 55, color: '#4CAF50' },
+    { mood: 'Stressed', value: 41, color: '#F44336' },
+    { mood: 'Sad', value: 17, color: '#2196F3' },
+    { mood: 'Energetic', value: 15, color: '#FF9800' }
   ]);
 
-  public chartOptions = computed<Partial<ChartOptions>>(() => {
-    const currentData = this.moodData();
+  public chartOptions = computed<ChartOptions>(() => {
+    const data = this.moodData();
 
     return {
-      series: currentData.map(item => item.value),
-      labels: currentData.map(item => item.mood),
-      // Add your custom hex codes here (order matches the array slices)
-      colors: ['#FFD700', '#4CAF50', '#F44336', '#2196F3', '#FF9800'],
+      series: data.map(d => d.value),
+      labels: data.map(d => d.mood),
+      colors: data.map(d => d.color), // Defined cleanly here
       chart: {
         type: 'donut',
       },
