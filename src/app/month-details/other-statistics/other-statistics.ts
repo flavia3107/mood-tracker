@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { ApexAxisChartSeries, ApexNonAxisChartSeries, ApexChart, ApexXAxis, ApexYAxis, ApexTitleSubtitle, ApexDataLabels, ApexStroke, ApexFill, ApexLegend, ApexTooltip, ApexMarkers, ApexPlotOptions, ApexResponsive, ApexGrid, ApexAnnotations, ApexStates, ApexTheme, NgApexchartsModule } from 'ng-apexcharts';
 
 export type ChartOptions = {
@@ -30,23 +30,38 @@ export type ChartOptions = {
   styleUrl: './other-statistics.scss',
 })
 export class OtherStatistics {
-  public chartOptions: Partial<ChartOptions> = {
-    series: [44, 55, 41, 17, 15],
-    chart: {
-      type: 'donut',
-    },
-    responsive: [
-      {
-        breakpoint: 480,
-        options: {
-          chart: {
-            width: 200,
-          },
-          legend: {
-            position: 'bottom',
+  public moodData = signal([
+    { mood: 'Happy', value: 44 },
+    { mood: 'Calm', value: 55 },
+    { mood: 'Stressed', value: 41 },
+    { mood: 'Sad', value: 17 },
+    { mood: 'Energetic', value: 15 }
+  ]);
+
+  public chartOptions = computed<Partial<ChartOptions>>(() => {
+    const currentData = this.moodData();
+
+    return {
+      series: currentData.map(item => item.value),
+      labels: currentData.map(item => item.mood),
+      // Add your custom hex codes here (order matches the array slices)
+      colors: ['#FFD700', '#4CAF50', '#F44336', '#2196F3', '#FF9800'],
+      chart: {
+        type: 'donut',
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200,
+            },
+            legend: {
+              position: 'bottom',
+            } as ApexLegend,
           },
         },
-      },
-    ],
-  };
+      ],
+    };
+  });
 }
