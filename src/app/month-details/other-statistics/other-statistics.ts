@@ -1,5 +1,6 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { ApexAxisChartSeries, ApexNonAxisChartSeries, ApexChart, ApexXAxis, ApexYAxis, ApexTitleSubtitle, ApexDataLabels, ApexStroke, ApexFill, ApexLegend, ApexTooltip, ApexMarkers, ApexPlotOptions, ApexResponsive, ApexGrid, ApexAnnotations, ApexStates, ApexTheme, NgApexchartsModule } from 'ng-apexcharts';
+import { UtilsService } from '../../../shared/services/utils';
 
 export type ChartOptions = {
   series?: ApexAxisChartSeries | ApexNonAxisChartSeries;
@@ -30,6 +31,7 @@ export type ChartOptions = {
   styleUrl: './other-statistics.scss',
 })
 export class OtherStatistics {
+  private _utilService = inject(UtilsService);
   public moodData = signal([
     { mood: 'Happy', value: 44, color: '#FFD700' },
     { mood: 'Calm', value: 55, color: '#4CAF50' },
@@ -40,7 +42,7 @@ export class OtherStatistics {
 
   public chartOptions = computed<ChartOptions>(() => {
     const data = this.moodData();
-
+    this._utilService.calculateMood()
     return {
       series: data.map(d => d.value),
       labels: data.map(d => d.mood),

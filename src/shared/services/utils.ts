@@ -87,7 +87,8 @@ export class UtilsService {
 				isActiveDay: dt.getTime() === d2.getTime(),
 				color,
 				tooltip: MOOD_MESSAGES[label as Mood]?.label ?? '',
-				value: MOOD_MESSAGES[label as Mood]?.value ?? 0
+				value: MOOD_MESSAGES[label as Mood]?.value ?? 0,
+				label
 			};
 		});
 	}
@@ -103,5 +104,19 @@ export class UtilsService {
 			dates.push(weekDay);
 		}
 		return dates;
+	}
+
+	public calculateMood() {
+		const groupedData = Object.values(this.monthConfig().reduce((acc, current) => {
+			const mood = current.label;
+
+			if (!acc[mood]) acc[mood] = { mood: mood, value: 0 };
+
+			acc[mood].value += current.value;
+			return acc;
+		}, {})
+		);
+
+		console.log(groupedData);
 	}
 }
