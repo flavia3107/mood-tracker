@@ -32,21 +32,14 @@ export type ChartOptions = {
 })
 export class OtherStatistics {
   private _utilService = inject(UtilsService);
-  public moodData = signal([
-    { mood: 'Happy', value: 44, color: '#FFD700' },
-    { mood: 'Calm', value: 55, color: '#4CAF50' },
-    { mood: 'Stressed', value: 41, color: '#F44336' },
-    { mood: 'Sad', value: 17, color: '#2196F3' },
-    { mood: 'Energetic', value: 15, color: '#FF9800' }
-  ]);
+  public moodData = computed(() => this._utilService.calculateMood())
 
   public chartOptions = computed<ChartOptions>(() => {
     const data = this.moodData();
-    this._utilService.calculateMood()
     return {
-      series: data.map(d => d.value),
-      labels: data.map(d => d.mood),
-      colors: data.map(d => d.color), // Defined cleanly here
+      series: data.map((d: any) => d.value),
+      labels: data.map((d: any) => d.mood),
+      colors: data.map((d: any) => d.color),
       chart: {
         type: 'donut',
       },

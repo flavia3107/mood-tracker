@@ -109,14 +109,13 @@ export class UtilsService {
 	public calculateMood() {
 		const groupedData = Object.values(this.monthConfig().reduce((acc, current) => {
 			const mood = current.label;
-
+			if (!mood) return acc;
 			if (!acc[mood]) acc[mood] = { mood: mood, value: 0 };
 
 			acc[mood].value += current.value;
 			return acc;
 		}, {})
 		);
-
-		console.log(groupedData);
+		return groupedData;
 	}
 }
