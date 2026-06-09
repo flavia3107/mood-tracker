@@ -1,5 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { ApexAxisChartSeries, ApexNonAxisChartSeries, ApexChart, ApexXAxis, ApexYAxis, ApexTitleSubtitle, ApexDataLabels, ApexStroke, ApexFill, ApexLegend, ApexTooltip, ApexMarkers, ApexPlotOptions, ApexResponsive, ApexGrid, ApexAnnotations, ApexStates, ApexTheme, NgApexchartsModule } from 'ng-apexcharts';
+import { MONTHLY_MOOD_CONFIG } from '../../../shared/constants/constants';
 import { UtilsService } from '../../../shared/services/utils';
 
 export type ChartOptions = {
@@ -38,8 +39,8 @@ export class OtherStatistics {
     const data = this.moodData();
     return {
       series: data.map((d: any) => d.value),
-      labels: data.map((d: any) => d.mood),
-      colors: data.map((d: any) => d.color),
+      labels: data.map((d: any) => d.mood.),
+      colors: data.map((d: any) => MONTHLY_MOOD_CONFIG[this._utilService.activeMonth()].find((el: { label: string, color: string }) => el.label === d.mood)?.color),
       chart: {
         type: 'donut',
       },
