@@ -127,6 +127,23 @@ export const MONTHLY_BACKGROUNDS: { [key: string]: string } = {
 	'December': 'tree.png',
 };
 
+export const MONTHLY_BACKGROUNDS_COLORS: { [key: string]: string } = {
+	'January': 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
+	'February': 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
+	'March': 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
+	'April': 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
+	'May': 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
+	'June': 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
+	'July': 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
+	'August': 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
+	'September': 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
+	'October': 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
+	'November': 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
+	'December': 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)',
+};
+
+
+
 export type Mood = 'happy' | 'neutral' | 'stressed' | 'tired' | 'moody' | 'sad';
 
 export const MOOD_MESSAGES: Record<Mood, { label: string, icon: string, value: number }> = {
