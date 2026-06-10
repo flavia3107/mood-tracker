@@ -14,7 +14,7 @@
 	</div>
 	<div class="calendar-body">
 		@for(day of calendarDays(); track $index){
-		<p class="calendar-day flex-row center middle" [ngClass]="{
+		<p class="calendar-day flex-row center middle" (click)="updateToday(day)" [ngClass]="{
 				'outside-month': +(day | date:'M')! !== (currentDay!.getMonth() + 1),
 				'sunday':(day | date:'EEE') === 'Sun',
 				'today': ((day | date:'yyyy-MM-dd') === (selected | date:'yyyy-MM-dd'))

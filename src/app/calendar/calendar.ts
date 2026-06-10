@@ -1,5 +1,5 @@
 import { DatePipe, NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, output } from '@angular/core';
 import { DAYS } from '../../shared/constants/constants';
 import { UtilsService } from '../../shared/services/utils';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,6 +17,7 @@ export class Calendar {
   public calendarDays = this._utilsService.calendarDays;
   public days: string[] = DAYS;
   public currentDay: Date = new Date();
+  public updateDate = output<string>()
 
   public updateCurrentMonth(move: number): void {
     this.selected = new Date(this.selected.getFullYear(), this.selected.getMonth() + move, 1);
@@ -30,6 +31,11 @@ export class Calendar {
       this.selected = this.currentDay;
       this._utilsService.updateActiveDate(new Date());
     }
+  }
+
+  public updateToday(day: string) {
+    this.updateDate.emit(day);
+    this._utilsService.updateActiveDate(new Date(day));
   }
 }
 
