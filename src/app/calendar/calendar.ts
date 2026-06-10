@@ -35,7 +35,8 @@ export class Calendar {
 
   public updateToday(day: string) {
     this.updateDate.emit(day);
-    this._utilsService.updateActiveDate(new Date(day));
+    this.selected = new Date(day.replace(/-/g, '/'))
+    this._utilsService.updateActiveDate(this.selected);
   }
 }
 
