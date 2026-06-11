@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
+import { Component, computed, DestroyRef, effect, inject, signal } from '@angular/core';
 import { MONTHLY_MOOD_CONFIG } from '../../../shared/constants/constants';
 import { UtilsService } from '../../../shared/services/utils';
 
@@ -24,7 +24,8 @@ export class TodayFeeling {
   constructor() {
     const intervalId = setInterval(() => this.time.set(new Date()), 1000);
     this._destroyRef.onDestroy(() => clearInterval(intervalId));
-    this.calculateGauge();
+    effect(() => this.calculateGauge());
+
   }
 
   private _getColors() {
