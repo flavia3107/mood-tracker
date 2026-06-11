@@ -36,7 +36,9 @@ export class TodayFeeling {
   private calculateGauge(): void {
     const sanitizedValue = Math.max(0, Math.min(6, this.todayMood().value));
     const percentage = sanitizedValue / 6;
+    console.log('HERE', percentage)
     this.pointerRotation = percentage * this.maxRotation;
-    this.strokeDashOffset = this.strokeDashArray - (percentage * this.strokeDashArray);
+    const semiCircleCircumference = this.strokeDashArray / 2;
+    this.strokeDashOffset = this.strokeDashArray - (percentage * semiCircleCircumference);
   }
 }
