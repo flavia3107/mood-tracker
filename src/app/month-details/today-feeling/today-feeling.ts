@@ -1,11 +1,11 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, JsonPipe } from '@angular/common';
 import { Component, computed, DestroyRef, effect, inject, signal } from '@angular/core';
 import { MONTHLY_MOOD_CONFIG } from '../../../shared/constants/constants';
 import { UtilsService } from '../../../shared/services/utils';
 
 @Component({
   selector: 'app-today-feeling',
-  imports: [DatePipe],
+  imports: [DatePipe, JsonPipe],
   templateUrl: './today-feeling.html',
   styleUrl: './today-feeling.scss',
 })
