@@ -19,13 +19,11 @@ export class TodayFeeling {
   time = signal(new Date());
   maxRotation: number = 180;
   pointerRotation: number = 0;
-  strokeDashOffset: number = 125.6;
+  svgConfig = computed(() => this._calculateSvgConfig());
 
   constructor() {
     const intervalId = setInterval(() => this.time.set(new Date()), 1000);
     this._destroyRef.onDestroy(() => clearInterval(intervalId));
-    effect(() => this.calculateGauge());
-
   }
 
   private _getColors() {
@@ -33,12 +31,14 @@ export class TodayFeeling {
     return colors;
   }
 
-  private calculateGauge(): void {
-    const sanitizedValue = Math.max(0, Math.min(6, this.todayMood().value));
+  private _calculateSvgConfig(): { strokeDashOffset: number, pointerRotation: number } {
+    const mood = this.todayMood();
+    const sanitizedValue = Math.max(0, Math.min(6, mood.value));
     const percentage = sanitizedValue / 6;
-    console.log('HERE', percentage)
-    this.pointerRotation = percentage * this.maxRotation;
+    const pointerRotation = percentage * this.maxRotation;
     const semiCircleCircumference = this.strokeDashArray / 2;
-    this.strokeDashOffset = this.strokeDashArray - (percentage * semiCircleCircumference);
+    const strokeDashOffset = this.strokeDashArray - (percentage * semiCircleCircumference);
+    console.log('HERE', { strokeDashOffset, pointerRotation })
+    return { strokeDashOffset, pointerRotation }
   }
 }

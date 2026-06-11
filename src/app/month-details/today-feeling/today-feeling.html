@@ -20,17 +20,18 @@
 
 					<path class="gauge-glow-path" d="M 10,50 A 40,40 0 0,1 90,50" stroke-width="6.5" fill="transparent"
 						filter="url(#glow)" opacity="0.65" stroke-linecap="round"
-						[attr.stroke-dasharray]="strokeDashArray" [attr.stroke-dashoffset]="strokeDashOffset" />
+						[attr.stroke-dasharray]="strokeDashArray"
+						[attr.stroke-dashoffset]="svgConfig().strokeDashOffset" />
 
 					<path d="M 10,50 A 40,40 0 0,1 90,50" stroke="#e5e7eb" stroke-width="6" fill="transparent"
 						stroke-linecap="round" />
 
 					<path class="gauge-progress" d="M 10,50 A 40,40 0 0,1 90,50" stroke-width="6" fill="transparent"
 						stroke-linecap="round" [attr.stroke-dasharray]="strokeDashArray"
-						[attr.stroke-dashoffset]="strokeDashOffset" />
+						[attr.stroke-dashoffset]="svgConfig().strokeDashOffset" />
 				</svg>
 
-				<div class="pointer-wrapper" [style.transform]="'rotate(' + pointerRotation + 'deg)'">
+				<div class="pointer-wrapper" [style.transform]="'rotate(' + svgConfig().pointerRotation + 'deg)'">
 					<div class="arrow"></div>
 				</div>
 			</div>
