@@ -11,9 +11,9 @@ export class UtilsService {
 	public calendarDays = computed(() => this._getDaysInMonth());
 	public activeMonth = computed(() => this._getMonth());
 	public numberOfDays = computed(() => this._getMonthDays());
-	public mood = signal<{ label: string, icon: string, value: number }>(MOOD_MESSAGES['happy']);
 	public monthConfig = computed(() => this._getDaysConfig());
 	public currentWeek = computed(() => this._getWeekDays());
+	public todayMood = computed(() => this._getCurrentDateConfig());
 
 	private _getDaysInMonth(): string[] {
 		const date = this.selectedDate();
@@ -117,5 +117,9 @@ export class UtilsService {
 		}, {})
 		);
 		return groupedData;
+	}
+
+	private _getCurrentDateConfig() {
+		return this.monthConfig().find((date: { dayNumber: number; }) => date.dayNumber === this.selectedDate().getDate());
 	}
 }

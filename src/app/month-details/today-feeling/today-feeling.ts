@@ -1,18 +1,18 @@
-import { DatePipe, JsonPipe } from '@angular/common';
-import { Component, computed, DestroyRef, effect, inject, signal } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { MONTHLY_MOOD_CONFIG } from '../../../shared/constants/constants';
 import { UtilsService } from '../../../shared/services/utils';
 
 @Component({
   selector: 'app-today-feeling',
-  imports: [DatePipe, JsonPipe],
+  imports: [DatePipe],
   templateUrl: './today-feeling.html',
   styleUrl: './today-feeling.scss',
 })
 export class TodayFeeling {
   private _utilService = inject(UtilsService);
   private _destroyRef = inject(DestroyRef);
-  readonly todayMood = this._utilService.mood;
+  readonly todayMood = this._utilService.todayMood;
   readonly strokeDashArray = 125.6;
   public colors = computed(() => this._getColors());
 
@@ -38,7 +38,6 @@ export class TodayFeeling {
     const pointerRotation = percentage * this.maxRotation;
     const semiCircleCircumference = this.strokeDashArray / 2;
     const strokeDashOffset = this.strokeDashArray - (percentage * semiCircleCircumference);
-    console.log('HERE', { strokeDashOffset, pointerRotation })
     return { strokeDashOffset, pointerRotation }
   }
 }
