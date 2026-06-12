@@ -36,8 +36,8 @@ export class TodayFeeling {
     const sanitizedValue = Math.max(0, Math.min(6, mood.value));
     const percentage = sanitizedValue / 6;
     const pointerRotation = percentage * this.maxRotation;
-    const semiCircleCircumference = this.strokeDashArray / 2;
-    const strokeDashOffset = this.strokeDashArray - (percentage * semiCircleCircumference);
-    return { strokeDashOffset, pointerRotation }
+    const strokeDashOffset = this.strokeDashArray - (percentage * this.strokeDashArray);
+
+    return { strokeDashOffset, pointerRotation };
   }
 }
