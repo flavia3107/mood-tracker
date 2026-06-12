@@ -36,11 +36,11 @@
 				</svg>
 			</div>
 		</div>
-		<h5>I'm feeling .... </h5>
-		<h2>{{todayMood().label}}</h2>
+		<h5 class="secondary-title">I'm feeling </h5>
+		<h2 class="secondary-title">{{todayMood().label}}</h2>
 	</div>
 	<div class="flex-column middle img-container">
 		<img src="jump.png">
-		<span>Time: {{ time() | date:'mediumTime' }}</span>
+		<span class="secondary-title"> {{ time() | date:'hh:mm a' }}</span>
 	</div>
 </div>
