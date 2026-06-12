@@ -31,22 +31,16 @@
 						[attr.stroke-dashoffset]="svgConfig().strokeDashOffset" />
 
 					<g class="gauge-pointer" [style.transform]="'rotate(' + svgConfig().pointerRotation + 'deg)'">
-						<polygon points="50,48 50,52 12,50" fill="#1a1a1a" />
-						<circle cx="50" cy="50" r="3" fill="#1a1a1a" />
+						<polygon points="15,48 15,52 12,50" fill="#414141" />
 					</g>
 				</svg>
-				<!-- <div class="pointer-wrapper" [style.transform]="'rotate(' + svgConfig().pointerRotation + 'deg)'">
-					<div class="arrow"></div>
-				</div> -->
 			</div>
 		</div>
-		<h5>I'm feeling .... {{todayMood().value}}</h5>
-		<h2>AWESOME</h2>
+		<h5>I'm feeling .... </h5>
+		<h2>{{todayMood().label}}</h2>
 	</div>
 	<div class="flex-column middle img-container">
 		<img src="jump.png">
 		<span>Time: {{ time() | date:'mediumTime' }}</span>
 	</div>
 </div>
-<!-- to do: fix the progress bar -->
-<!-- to do: fix the arrow -->
