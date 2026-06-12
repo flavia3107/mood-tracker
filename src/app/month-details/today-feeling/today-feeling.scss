@@ -7,43 +7,32 @@
 	height: 8rem;
 	margin: auto;
 
-	.svg-wrapper {
-		position: relative;
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: flex-end;
-
-		svg {
-			display: block;
+	::ng-deep {
+		.svg-wrapper {
+			position: relative;
 			width: 100%;
-			height: auto;
-			min-height: 11rem;
+			display: flex;
+			justify-content: center;
+			align-items: flex-end;
+
+			svg {
+				display: block;
+				width: 100%;
+				height: auto;
+				min-height: 11rem;
+			}
 		}
-	}
 
-	// Bind the gradient smoothly to the path layouts
-	.gauge-progress,
-	.gauge-glow-path {
-		stroke: url(#gaugeGradient) !important;
-		transition: stroke-dashoffset 0.8s ease-in-out;
-	}
+		.gauge-progress,
+		.gauge-glow-path {
+			stroke: url(#gaugeGradient) !important;
+			transition: stroke-dashoffset 0.8s ease-in-out;
+		}
 
-	.pointer-wrapper {
-		position: absolute;
-		top: 12%;
-		left: 50%;
-		transition: transform 0.8s ease-in-out;
-		z-index: 2;
-
-		.arrow {
-			width: 0;
-			height: 0;
-			border-left: 6px solid transparent;
-			border-right: 6px solid transparent;
-			border-bottom: 10px solid #1a1a1a;
-			transform: rotate(-90deg) translateX(40px);
-			transform-origin: center;
+		// Animate the pointer smoothly along the exact pivot center
+		.gauge-pointer {
+			transform-origin: 50px 50px; /* Lock pivot to center of arc */
+			transition: transform 0.8s ease-in-out;
 		}
 	}
 }

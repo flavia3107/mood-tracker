@@ -29,11 +29,15 @@
 					<path class="gauge-progress" d="M 10,50 A 40,40 0 0,1 90,50" stroke-width="6" fill="transparent"
 						stroke-linecap="round" [attr.stroke-dasharray]="strokeDashArray"
 						[attr.stroke-dashoffset]="svgConfig().strokeDashOffset" />
-				</svg>
 
-				<div class="pointer-wrapper" [style.transform]="'rotate(' + svgConfig().pointerRotation + 'deg)'">
+					<g class="gauge-pointer" [style.transform]="'rotate(' + svgConfig().pointerRotation + 'deg)'">
+						<polygon points="50,48 50,52 12,50" fill="#1a1a1a" />
+						<circle cx="50" cy="50" r="3" fill="#1a1a1a" />
+					</g>
+				</svg>
+				<!-- <div class="pointer-wrapper" [style.transform]="'rotate(' + svgConfig().pointerRotation + 'deg)'">
 					<div class="arrow"></div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<h5>I'm feeling .... {{todayMood().value}}</h5>
