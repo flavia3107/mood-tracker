@@ -17,30 +17,35 @@ export class Calendar {
   public selected: Date = new Date();
   public calendarDays = this._utilsService.calendarDays;
   public days: string[] = DAYS;
-  public updateDate = output<string>()
+  public updateDate = output<string>();
+  public readonly today = new Date();
+
 
   public updateCurrentMonth(move: number): void {
     const activeDate = new Date(this.selected.getFullYear(), this.selected.getMonth() + move, 1);
     if (activeDate.getTime() > Date.now()) return;
 
     this.selected = activeDate;
-    this._utilsService.updateActiveDate(this.selected);
+    this._utilsService.updateActiveDate(new Date(this.selected.getTime()));
   }
 
   public setToday() {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    this.selected.setHours(0, 0, 0, 0);
-    if (today.getTime() !== this.selected.getTime()) {
-      this.selected = today;
-      this._utilsService.updateActiveDate(new Date());
+    const midnightToday = new Date();
+    midnightToday.setHours(0, 0, 0, 0);
+    const midnightSelected = new Date(this.selected.getTime());
+    midnightSelected.setHours(0, 0, 0, 0);
+
+    if (midnightToday.getTime() !== midnightSelected.getTime()) {
+      this.selected = new Date();
+      this._utilsService.updateActiveDate(new Date(this.selected.getTime()));
     }
   }
+
   public updateToday(day: string) {
     if (new Date(day).getTime() > Date.now()) return;
 
     this.updateDate.emit(day);
-    this.selected = new Date(day.replace(/-/g, '/'))
+    this.selected = new Date(day.replace(/-/g, '/'));
     this._utilsService.updateActiveDate(this.selected);
   }
 }
