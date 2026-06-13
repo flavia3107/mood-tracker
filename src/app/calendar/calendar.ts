@@ -17,7 +17,6 @@ export class Calendar {
   public selected: Date = new Date();
   public calendarDays = this._utilsService.calendarDays;
   public days: string[] = DAYS;
-  public currentDay: Date = new Date();
   public updateDate = output<string>()
 
   public updateCurrentMonth(move: number): void {
@@ -29,14 +28,14 @@ export class Calendar {
   }
 
   public setToday() {
-    this.currentDay.setHours(0, 0, 0, 0);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
     this.selected.setHours(0, 0, 0, 0);
-    if (this.currentDay.getTime() !== this.selected.getTime()) {
-      this.selected = this.currentDay;
+    if (today.getTime() !== this.selected.getTime()) {
+      this.selected = today;
       this._utilsService.updateActiveDate(new Date());
     }
   }
-
   public updateToday(day: string) {
     if (new Date(day).getTime() > Date.now()) return;
 
