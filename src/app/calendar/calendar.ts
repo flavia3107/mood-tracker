@@ -38,10 +38,15 @@ export class Calendar {
   }
 
   public updateToday(day: string) {
-    if (new Date(day).getTime() > Date.now()) return;
+    const selected = new Date(day.replace(/-/g, '/'));
+    const currentSelected = new Date(this.selected.getTime());
+    selected.setHours(0, 0, 0, 0);
+    currentSelected.setHours(0, 0, 0, 0);
+
+    if (selected.getTime() === currentSelected.getTime()) return;
 
     this.updateDate.emit(day);
-    this.selected = new Date(day.replace(/-/g, '/'))
+    this.selected = new Date(day.replace(/-/g, '/'));
     this._utilsService.updateActiveDate(this.selected);
   }
 }
