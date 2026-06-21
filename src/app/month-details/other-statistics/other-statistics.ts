@@ -18,7 +18,9 @@ export class OtherStatistics {
   private _utilService = inject(UtilsService);
   public moodData = computed(() => this._utilService.calculateMood());
   public quote$: Observable<any> = of(null);
-  public chartOptions = computed<ChartOptions>(() => {
+  public chartOptions = computed<ChartOptions>(() => this._getChartConfig());
+
+  private _getChartConfig(): ChartOptions {
     this.quote$ = this._quoteService.getQuoteByMood();
     const data = this.moodData();
     return {
@@ -42,5 +44,5 @@ export class OtherStatistics {
         },
       ],
     };
-  });
+  };
 }
