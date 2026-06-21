@@ -1,7 +1,9 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { ApexAxisChartSeries, ApexNonAxisChartSeries, ApexChart, ApexXAxis, ApexYAxis, ApexTitleSubtitle, ApexDataLabels, ApexStroke, ApexFill, ApexLegend, ApexTooltip, ApexMarkers, ApexPlotOptions, ApexResponsive, ApexGrid, ApexAnnotations, ApexStates, ApexTheme, NgApexchartsModule } from 'ng-apexcharts';
+import { Observable, of } from 'rxjs';
 import { MONTHLY_MOOD_CONFIG } from '../../../shared/constants/constants';
 import { UtilsService } from '../../../shared/services/utils';
+import { QuoteService } from './other-statistics-services/quote';
 
 export type ChartOptions = {
   series?: ApexAxisChartSeries | ApexNonAxisChartSeries;
@@ -32,10 +34,13 @@ export type ChartOptions = {
   styleUrl: './other-statistics.scss',
 })
 export class OtherStatistics {
+  private _quoteService = inject(QuoteService);
   private _utilService = inject(UtilsService);
-  public moodData = computed(() => this._utilService.calculateMood())
+  public moodData = computed(() => this._utilService.calculateMood());
+  public quote$: Observable<any> = of(null);
 
   public chartOptions = computed<ChartOptions>(() => {
+    this.quote$ = this._quoteService.getQuoteByMood('happy')
     const data = this.moodData();
     return {
       series: data.map((d: any) => d.value),

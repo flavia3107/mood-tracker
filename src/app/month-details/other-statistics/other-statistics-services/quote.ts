@@ -2,7 +2,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import { environment } from '../../../../enviornments/environment';
+import { environment } from '../../../../envirornments/environment';
 
 export interface Quote {
 	quote: string;
