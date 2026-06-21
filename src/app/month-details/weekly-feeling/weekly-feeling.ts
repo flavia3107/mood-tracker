@@ -31,7 +31,8 @@ export class WeeklyFeeling {
           itemDate.getMonth() === date.getMonth() &&
           itemDate.getDate() === date.getDate();
       });
-      return matchingConfig ? { ...matchingConfig, date } : { id: null, color: '#fff', date };
+      const { color, label } = this._utilService.getMoodColorForDate(date);
+      return { ...matchingConfig, date, color: matchingConfig?.color ?? color, label: matchingConfig?.label ?? label };
     });
 
     const monthConfig: { [key: string]: any } = {
@@ -40,7 +41,6 @@ export class WeeklyFeeling {
       weekConfig,
       isSameMonth: this._datePipe.transform(weekDates[0], 'MMM') === this._datePipe.transform(weekDates[6], 'MMM')
     };
-
     return monthConfig;
   }
 
