@@ -18,7 +18,8 @@ export class AverageFeeling {
   pathColor = computed(() => this._getPathColor());
 
   private _getPathColor() {
-    return MONTHLY_MOOD_CONFIG[this._utilsService.activeMonth()][2].color;
+    const colorConfig = MONTHLY_MOOD_CONFIG[this._utilsService.activeMonth()];
+    return { path: colorConfig[2].color, background: `${colorConfig[4].color}1c` }
   }
 
   private _getAverage(): { avg: number, message: string } {
