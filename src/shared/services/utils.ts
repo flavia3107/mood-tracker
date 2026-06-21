@@ -74,21 +74,22 @@ export class UtilsService {
 	private _getDaysConfig() {
 		return Array.from({ length: this.numberOfDays() }, (_, index) => {
 			const dayIndex = index + 1;
-			const dt = new Date(this.selectedDate().getFullYear(), this.selectedDate().getMonth(), dayIndex);
+			const date = new Date(this.selectedDate().getFullYear(), this.selectedDate().getMonth(), dayIndex);
 			const d2 = new Date();
-			dt.setHours(0, 0, 0, 0);
+			date.setHours(0, 0, 0, 0);
 			d2.setHours(0, 0, 0, 0);
 
-			const { color, label } = this.getMoodColorForDate(dt);
+			const { color, label } = this.getMoodColorForDate(date);
 			const baseDayConfig = MONTH_DAYS_CONFIG[this.activeMonth()]?.[index] ?? {};
 			return {
 				...baseDayConfig,
 				dayNumber: dayIndex,
-				isActiveDay: dt.getTime() === d2.getTime(),
+				isActiveDay: date.getTime() === d2.getTime(),
 				color,
 				tooltip: MOOD_MESSAGES[label as Mood]?.label ?? '',
 				value: MOOD_MESSAGES[label as Mood]?.value ?? 0,
-				label
+				label,
+				date
 			};
 		});
 	}
