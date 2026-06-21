@@ -17,7 +17,7 @@
 		@for(day of weekDays()['weekConfig']; track day.date){
 		<div class="flex-column middle">
 			@let background = day.color !== '#fff' ? day.color: '#f1f1f1';
-			<span class="day-color" [style.backgroundColor]="background"></span>
+			<span [matTooltip]="day.tooltip" class="day-color" [style.backgroundColor]="background"></span>
 			<span>{{ day.date | date: 'EEEEE' : 'UTC' }}</span>
 		</div>
 		}

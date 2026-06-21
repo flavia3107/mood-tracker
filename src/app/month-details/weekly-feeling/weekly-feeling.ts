@@ -4,10 +4,11 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChartOptions, CHART_OPTIONS } from '../../../shared/constants/chart-models';
 import { MONTHLY_MOOD_CONFIG, Mood, MOOD_MESSAGES } from '../../../shared/constants/constants';
 import { UtilsService } from '../../../shared/services/utils';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-weekly-feeling',
-  imports: [DatePipe, NgApexchartsModule],
+  imports: [DatePipe, NgApexchartsModule, MatTooltipModule],
   templateUrl: './weekly-feeling.html',
   styleUrl: './weekly-feeling.scss',
   providers: [DatePipe]
