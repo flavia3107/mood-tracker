@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChartOptions, CHART_OPTIONS } from '../../../shared/constants/chart-models';
-import { MONTHLY_MOOD_CONFIG } from '../../../shared/constants/constants';
+import { MONTHLY_MOOD_CONFIG, Mood, MOOD_MESSAGES } from '../../../shared/constants/constants';
 import { UtilsService } from '../../../shared/services/utils';
 
 @Component({
@@ -31,15 +31,15 @@ export class WeeklyFeeling {
           itemDate.getMonth() === date.getMonth() &&
           itemDate.getDate() === date.getDate();
       });
-      const { color, label } = this._utilService.getMoodColorForDate(date);
-      return { ...matchingConfig, date, color: matchingConfig?.color ?? color, label: matchingConfig?.label ?? label };
+      return matchingConfig ? { ...matchingConfig, date } : this._configEmptyDate(date);
     });
 
     const monthConfig: { [key: string]: any } = {
       startDate: weekDates[0].toDateString(),
       endDate: weekDates[6].toDateString(),
       weekConfig,
-      isSameMonth: this._datePipe.transform(weekDates[0], 'MMM') === this._datePipe.transform(weekDates[6], 'MMM')
+      isSameMonth: this._datePipe.transform(weekDates[0], 'MMM') === this._datePipe.transform(weekDates[6], 'MMM'),
+      avg: (weekConfig.reduce((sum, day) => sum += day.value, 0) / 7).toFixed(2)
     };
     return monthConfig;
   }
@@ -62,5 +62,16 @@ export class WeeklyFeeling {
     };
 
     return chartConfig;
+  }
+
+  private _configEmptyDate(date: Date) {
+    const { color, label } = this._utilService.getMoodColorForDate(date);
+    return {
+      tooltip: MOOD_MESSAGES[label as Mood]?.label ?? '',
+      value: MOOD_MESSAGES[label as Mood]?.value ?? 0,
+      color,
+      label,
+      date
+    }
   }
 }
