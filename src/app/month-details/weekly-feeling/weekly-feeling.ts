@@ -34,13 +34,13 @@ export class WeeklyFeeling {
       });
       return matchingConfig ? { ...matchingConfig, date } : this._configEmptyDate(date);
     });
-
+    const avg: number = weekConfig.reduce((sum, day) => sum + day.value, 0) / 7;
     const monthConfig: { [key: string]: any } = {
       startDate: weekDates[0].toDateString(),
       endDate: weekDates[6].toDateString(),
       weekConfig,
       isSameMonth: this._datePipe.transform(weekDates[0], 'MMM') === this._datePipe.transform(weekDates[6], 'MMM'),
-      avg: (weekConfig.reduce((sum, day) => sum += day.value, 0) / 7).toFixed(2)
+      avg: +((avg * 10) / 6).toFixed(2)
     };
     return monthConfig;
   }
