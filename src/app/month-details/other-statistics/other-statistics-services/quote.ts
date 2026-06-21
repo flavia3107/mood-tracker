@@ -2,7 +2,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../../enviornments/environment';
 
 export interface Quote {
 	quote: string;
@@ -30,15 +30,9 @@ export class QuoteService {
 		return moodMap[mood.toLowerCase()] || 'inspirational';
 	}
 
-	getQuoteByMood(mood: string): Observable<Quote> {
+	public getQuoteByMood(mood: string): Observable<Quote> {
 		const category = this.mapMoodToCategory(mood);
-
-		const headers = new HttpHeaders({
-			'X-Api-Key': environment.apiNinjasKey
-		});
-
-		// API Ninjas returns an array of objects, e.g., [{ quote: '...', author: '...', category: '...' }]
-		// We map it to just return the first quote object for ease of use.
+		const headers = new HttpHeaders({ 'X-Api-Key': environment.ninja_api });
 		return this.http.get<Quote[]>(`${this.apiUrl}?category=${category}`, { headers }).pipe(
 			map(response => response[0])
 		);
