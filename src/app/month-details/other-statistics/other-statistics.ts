@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
 import { ApexAxisChartSeries, ApexNonAxisChartSeries, ApexChart, ApexXAxis, ApexYAxis, ApexTitleSubtitle, ApexDataLabels, ApexStroke, ApexFill, ApexLegend, ApexTooltip, ApexMarkers, ApexPlotOptions, ApexResponsive, ApexGrid, ApexAnnotations, ApexStates, ApexTheme, NgApexchartsModule } from 'ng-apexcharts';
 import { Observable, of } from 'rxjs';
@@ -29,7 +30,7 @@ export type ChartOptions = {
 };
 @Component({
   selector: 'app-other-statistics',
-  imports: [NgApexchartsModule],
+  imports: [NgApexchartsModule, AsyncPipe],
   templateUrl: './other-statistics.html',
   styleUrl: './other-statistics.scss',
 })

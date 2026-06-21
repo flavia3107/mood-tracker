@@ -30,11 +30,10 @@ export class QuoteService {
 		return moodMap[mood.toLowerCase()] || 'inspirational';
 	}
 
-	public getQuoteByMood(mood: string): Observable<Quote> {
-		const category = this.mapMoodToCategory(mood);
+	public getQuoteByMood(mood: string): Observable<string> {
 		const headers = new HttpHeaders({ 'X-Api-Key': environment.ninja_api });
-		return this.http.get<Quote[]>(`${this.apiUrl}?category=${category}`, { headers }).pipe(
-			map(response => response[0])
+		return this.http.get<Quote[]>(`${this.apiUrl}`, { headers }).pipe(
+			map(response => response[0].quote)
 		);
 	}
 }
