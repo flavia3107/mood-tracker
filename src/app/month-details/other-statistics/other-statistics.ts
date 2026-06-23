@@ -3,7 +3,7 @@ import { Component, computed, effect, inject } from '@angular/core';
 import { NgApexchartsModule, ApexLegend } from 'ng-apexcharts';
 import { Observable, of } from 'rxjs';
 import { ChartOptions } from '../../../shared/constants/chart-models';
-import { MONTHLY_MOOD_CONFIG, QUOTE_MOODS } from '../../../shared/constants/constants';
+import { MONTHLY_MOOD_CONFIG, MOOD_ENTRIES } from '../../../shared/constants/constants';
 import { UtilsService } from '../../../shared/services/utils';
 import { QuoteService } from './other-statistics-services/quote';
 
@@ -18,6 +18,7 @@ export class OtherStatistics {
   private _utilService = inject(UtilsService);
   public moodData = computed(() => this._utilService.calculateMood());
   public quote$: Observable<any> = of(null);
+  public journalSnippet: string | null = null;
   public chartOptions = computed<ChartOptions>(() => this._getChartConfig());
 
   constructor() {
@@ -52,5 +53,6 @@ export class OtherStatistics {
   private _getTodayQuote() {
     const today = this._utilService.todayMood();
     this.quote$ = this._quoteService.getQuoteByMood(today['label']);
+    this.journalSnippet = MOOD_ENTRIES[today['label']]?.[1];
   }
 }
