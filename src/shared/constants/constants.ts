@@ -213,3 +213,12 @@ export const MOOD_RANGES: MoodConfig[] = [
 		message: 'No mood tracking data has been recorded for this month just yet. Every blank canvas is a fresh opportunity, so don\'t feel any pressure about missing days. We will be right here to help you reflect and track your journey whenever you feel ready to start logging again.'
 	}
 ];
+
+export const QUOTE_MOODS: { [key: string]: string[] } = {
+	happy: ['happiness', 'love', 'humor', 'art'],
+	neutral: ['life', 'time', 'nature'],
+	stressed: ['success', 'leadership', 'freedom'],
+	tired: ['wisdom', 'philosophy', 'writing'],
+	moody: ['fear', 'courage', 'truth', 'faith'],
+	sad: ['relationships', 'inspirational']
+};

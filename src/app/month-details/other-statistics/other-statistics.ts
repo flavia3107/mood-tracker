@@ -1,9 +1,9 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { NgApexchartsModule, ApexLegend } from 'ng-apexcharts';
 import { Observable, of } from 'rxjs';
 import { ChartOptions } from '../../../shared/constants/chart-models';
-import { MONTHLY_MOOD_CONFIG } from '../../../shared/constants/constants';
+import { MONTHLY_MOOD_CONFIG, QUOTE_MOODS } from '../../../shared/constants/constants';
 import { UtilsService } from '../../../shared/services/utils';
 import { QuoteService } from './other-statistics-services/quote';
 
@@ -20,10 +20,12 @@ export class OtherStatistics {
   public quote$: Observable<any> = of(null);
   public chartOptions = computed<ChartOptions>(() => this._getChartConfig());
 
+  constructor() {
+    effect(() => this._getTodayQuote());
+  }
+
   private _getChartConfig(): ChartOptions {
     const data = this.moodData();
-    console.log('here', data)
-    this.quote$ = this._quoteService.getQuoteByMood('success,wisdom');
     return {
       series: data.map((d: any) => d.value),
       labels: data.map((d: any) => d.mood),
@@ -46,4 +48,9 @@ export class OtherStatistics {
       ],
     };
   };
+
+  private _getTodayQuote() {
+    const today = this._utilService.todayMood();
+    this.quote$ = this._quoteService.getQuoteByMood(QUOTE_MOODS[today['label']]?.toString());
+  }
 }
