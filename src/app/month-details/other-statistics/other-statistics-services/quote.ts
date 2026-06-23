@@ -18,11 +18,11 @@ export class QuoteService {
 	private _http = inject(HttpClient);
 	private _apiUrl = 'https://api.api-ninjas.com/v2/randomquotes';
 
-	public getQuoteByMood(mood: string): Observable<string> {
+	public getQuoteByMood(mood: string): Observable<{ [key: string]: any }> {
 		const categories = QUOTE_MOODS[mood ?? 'neutral'].toString();
 		const headers = new HttpHeaders({ 'X-Api-Key': environment.ninja_api });
 		return this._http.get<Quote[]>(`${this._apiUrl}?categories=${categories}`, { headers }).pipe(
-			map(response => response[0].quote)
+			map(response => response[0])
 		);
 	}
 }

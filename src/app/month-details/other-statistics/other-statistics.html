@@ -11,13 +11,17 @@
 		</div>
 	</div>
 	<div class="flex-column col">
-		<div class="flex-column section height">
+		<div class="flex-column section short-height">
 			<h3 class="section-title">Recent Activity</h3>
 			<p>Test</p>
 		</div>
-		<div class="flex-column section height">
+		<div class="flex-column section tall-height">
 			<h3 class="section-title no-margin">Quote of the Day</h3>
-			<p class="quote"> {{quote$ | async}} </p>
+			@let quote = quote$ | async;
+			<blockquote>
+				<p>{{quote?.quote}}</p>
+				<cite>{{quote?.author}}</cite>
+			</blockquote>
 		</div>
 	</div>
 	<div class="flex-column col">
