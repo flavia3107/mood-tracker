@@ -248,7 +248,7 @@ export const MOOD_ENTRIES: { [key: string]: string[] } = {
 		"Spent the morning organizing my workspace. A clean desk helps keep the mind clear, even on ordinary days.",
 		"Nothing major happened today—just consistent, quiet work. Sometimes a lack of drama is exactly what you need.",
 		"Weather was pretty overcast today. Kept things low-key and just focused on getting through the baseline tasks.",
-		"Just an ordinary Tuesday. Responded to some emails, did a bit of formatting, and kept the momentum steady.",
+		"Just an ordinary day. Responded to some emails, did a bit of formatting, and kept the momentum steady.",
 		"No highs, no lows today. Just a completely level-headed afternoon of focusing on standard code maintenance.",
 		"Took a longer lunch break than usual today just to clear my head, then got back to a quiet evening of studying.",
 		"Spent a few hours reviewing some basic programming logic. It's good to keep the foundational skills sharp on quiet days.",

@@ -51,8 +51,9 @@ export class OtherStatistics {
   };
 
   private _getTodayQuote() {
-    const today = this._utilService.todayMood();
-    this.quote$ = this._quoteService.getQuoteByMood(today['label']);
-    this.journalSnippet = MOOD_ENTRIES[today['label']]?.[1];
+    const today = this._utilService.todayMood()['label'];
+    const moodEntries = MOOD_ENTRIES[today];
+    this.quote$ = this._quoteService.getQuoteByMood(today);
+    this.journalSnippet = moodEntries?.[Math.floor(Math.random() * moodEntries?.length)];
   }
 }
