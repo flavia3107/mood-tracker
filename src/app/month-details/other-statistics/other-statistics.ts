@@ -21,8 +21,9 @@ export class OtherStatistics {
   public chartOptions = computed<ChartOptions>(() => this._getChartConfig());
 
   private _getChartConfig(): ChartOptions {
-    this.quote$ = this._quoteService.getQuoteByMood();
     const data = this.moodData();
+    console.log('here', data)
+    this.quote$ = this._quoteService.getQuoteByMood('success,wisdom');
     return {
       series: data.map((d: any) => d.value),
       labels: data.map((d: any) => d.mood),
