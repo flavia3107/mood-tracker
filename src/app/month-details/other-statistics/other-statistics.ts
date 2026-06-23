@@ -51,6 +51,6 @@ export class OtherStatistics {
 
   private _getTodayQuote() {
     const today = this._utilService.todayMood();
-    this.quote$ = this._quoteService.getQuoteByMood(QUOTE_MOODS[today['label']]?.toString());
+    this.quote$ = this._quoteService.getQuoteByMood(today['label']);
   }
 }

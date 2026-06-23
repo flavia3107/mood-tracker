@@ -215,10 +215,10 @@ export const MOOD_RANGES: MoodConfig[] = [
 ];
 
 export const QUOTE_MOODS: { [key: string]: string[] } = {
-	happy: ['happiness', 'love', 'humor', 'art'],
+	happy: ['happiness', 'love', 'humor'],
 	neutral: ['life', 'time', 'nature'],
 	stressed: ['success', 'leadership', 'freedom'],
 	tired: ['wisdom', 'philosophy', 'writing'],
-	moody: ['fear', 'courage', 'truth', 'faith'],
-	sad: ['relationships', 'inspirational']
+	moody: ['courage', 'truth', 'faith'],
+	sad: ['relationships', 'inspirational', 'art']
 };
