@@ -45,12 +45,20 @@ export class MoodView {
 
   private onDayClick(day: any) {
     const selectedDate = new Date(this._date().getFullYear(), this._date().getMonth(), day.dayNumber);
+
+    const storageKey = `month_cache_${this.currentMonth()}`;
     const d2 = new Date();
     selectedDate.setHours(0, 0, 0, 0);
     d2.setHours(0, 0, 0, 0);
 
-    if (this._selectedColor && selectedDate.getTime() === d2.getTime())
+    if (this._selectedColor && selectedDate.getTime() === d2.getTime()) {
       day['color'] = this._selectedColor;
+      const month = this._utilService.monthConfig().find((day: any) => day.dayNumber === d2.getDate());
+      month['label'] = this.activeMood;
+      month['tooltip'] = MOOD_MESSAGES[this.activeMood].label;
+      month['value'] = MOOD_MESSAGES[this.activeMood].value;
+      localStorage.setItem(storageKey, JSON.stringify(this._utilService.monthConfig()))
+    }
   }
 
   private _updateSvgConfig() {
