@@ -72,7 +72,12 @@ export class UtilsService {
 	};
 
 	private _getDaysConfig() {
-		return Array.from({ length: this.numberOfDays() }, (_, index) => {
+		const currentMonthStr = new Date().toLocaleString('en-US', { month: 'long' });
+		const month = localStorage.getItem('currentMonth');
+		if (this.activeMonth() === currentMonthStr && month) {
+			return JSON.parse(month);
+		}
+		const monthConfig = Array.from({ length: this.numberOfDays() }, (_, index) => {
 			const dayIndex = index + 1;
 			const date = new Date(this.selectedDate().getFullYear(), this.selectedDate().getMonth(), dayIndex);
 			const d2 = new Date();
@@ -92,6 +97,8 @@ export class UtilsService {
 				date
 			};
 		});
+		localStorage.setItem('currentMonth', JSON.stringify(monthConfig));
+		return monthConfig;
 	}
 
 	private _getWeekDays() {
@@ -108,7 +115,7 @@ export class UtilsService {
 	}
 
 	public calculateMood() {
-		const groupedData = Object.values(this.monthConfig().reduce((acc, current) => {
+		const groupedData = Object.values(this.monthConfig().reduce((acc: any, current: any) => {
 			const mood = current.label;
 			if (!mood) return acc;
 			if (!acc[mood]) acc[mood] = { mood: mood, value: 0 };

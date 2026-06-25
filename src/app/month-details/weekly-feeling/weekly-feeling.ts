@@ -26,7 +26,7 @@ export class WeeklyFeeling {
     const currentMonthConfig = this.monthConfig();
 
     const weekConfig = weekDates.map(date => {
-      const matchingConfig = currentMonthConfig.find(item => {
+      const matchingConfig = currentMonthConfig.find((item: any) => {
         const itemDate = new Date(item.date);
         return itemDate.getFullYear() === date.getFullYear() &&
           itemDate.getMonth() === date.getMonth() &&
