@@ -73,23 +73,24 @@ export class UtilsService {
 
 	private _getDaysConfig() {
 		const currentMonthStr = new Date().toLocaleString('en-US', { month: 'long' });
-		const month = localStorage.getItem('currentMonth');
+		const isActiveMonthCurrent = this.activeMonth() === currentMonthStr;
+		const storageKey = `month_cache_${this.activeMonth()}`;
+		const cachedMonth = localStorage.getItem(storageKey);
 
-		if (this.activeMonth() === currentMonthStr && month) return JSON.parse(month);
+		if (isActiveMonthCurrent && cachedMonth) return JSON.parse(cachedMonth);
 
 		const monthConfig = Array.from({ length: this.numberOfDays() }, (_, index) => {
 			const dayIndex = index + 1;
 			const date = new Date(this.selectedDate().getFullYear(), this.selectedDate().getMonth(), dayIndex);
-			const d2 = new Date();
+			const today = new Date();
 			date.setHours(0, 0, 0, 0);
-			d2.setHours(0, 0, 0, 0);
-
+			today.setHours(0, 0, 0, 0);
 			const { color, label } = this.getMoodColorForDate(date);
 			const baseDayConfig = MONTH_DAYS_CONFIG[this.activeMonth()]?.[index] ?? {};
 			return {
 				...baseDayConfig,
 				dayNumber: dayIndex,
-				isActiveDay: date.getTime() === d2.getTime(),
+				isActiveDay: date.getTime() === today.getTime(),
 				color,
 				tooltip: MOOD_MESSAGES[label as Mood]?.label ?? '',
 				value: MOOD_MESSAGES[label as Mood]?.value ?? 0,
@@ -98,8 +99,8 @@ export class UtilsService {
 			};
 		});
 
-		if (this.activeMonth() === currentMonthStr && !month) {
-			localStorage.setItem('currentMonth', JSON.stringify(monthConfig));
+		if (isActiveMonthCurrent) {
+			localStorage.setItem(storageKey, JSON.stringify(monthConfig));
 		}
 
 		return monthConfig;
