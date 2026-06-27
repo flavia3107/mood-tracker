@@ -4,11 +4,11 @@
       <img src="logo.svg" />
     </a>
     <app-calendar />
-  </div>
-  <div class="month-view flex-column   center middle" [style.background-image]="background()">
     <div class="flex-row right navigation">
       <mat-icon>dashboard</mat-icon>
     </div>
+  </div>
+  <div class="month-view flex-column   center middle" [style.background-image]="background()">
     <router-outlet></router-outlet>
   </div>
 </div>
