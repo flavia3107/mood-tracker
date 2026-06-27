@@ -7,8 +7,9 @@
 .month-view {
 	background: #f3f3f3;
 	width: calc(100% - 10rem);
-	padding: 0 1rem;
-	min-height: fit-content;
+	padding: 0 1rem 2.5rem 1.5rem;
+	min-height: 100vh;
+	box-sizing: border-box;
 }
 
 a {
@@ -20,5 +21,8 @@ a {
 
 .calendar {
 	padding: 0 2rem;
-	margin-right: 0.5rem;
+	background: #fff;
+	border: 1px solid #ebebeb;
+	min-height: 100%;
+	box-sizing: border-box;
 }
