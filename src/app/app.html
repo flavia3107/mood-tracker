@@ -5,7 +5,10 @@
     </a>
     <app-calendar />
   </div>
-  <div class="month-view flex-row center middle" [style.background-image]="background()">
+  <div class="month-view flex-column   center middle" [style.background-image]="background()">
+    <div class="flex-row right navigation">
+      <mat-icon>dashboard</mat-icon>
+    </div>
     <router-outlet></router-outlet>
   </div>
 </div>

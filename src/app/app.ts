@@ -3,10 +3,11 @@ import { RouterModule } from '@angular/router';
 import { MONTHLY_BACKGROUNDS_COLORS } from '../shared/constants/constants';
 import { UtilsService } from '../shared/services/utils';
 import { Calendar } from './calendar/calendar';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
-  imports: [Calendar, RouterModule],
+  imports: [Calendar, RouterModule, MatIconModule],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
