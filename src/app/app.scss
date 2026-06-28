@@ -13,11 +13,13 @@
 	justify-content: space-evenly;
 }
 
-a {
+.header {
 	margin: 0.5rem;
 	position: fixed;
 	top: 0;
 	left: 0;
+	width: 100%;
+	max-width: 25rem;
 }
 
 .calendar {
@@ -26,4 +28,5 @@ a {
 	border: 1px solid #ebebeb;
 	min-height: 100%;
 	box-sizing: border-box;
+	max-width: 26rem;
 }

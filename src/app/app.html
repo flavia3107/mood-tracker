@@ -1,12 +1,12 @@
 <div class="main-container flex-row">
   <div class="calendar flex-column center">
-    <a href="https://all-projects-portfolio.web.app/" target="_blank">
-      <img src="logo.svg" />
-    </a>
-    <app-calendar />
-    <div class="flex-row right navigation">
+    <div class="flex-row header space-between">
+      <a href="https://all-projects-portfolio.web.app/" target="_blank">
+        <img src="logo.svg" />
+      </a>
       <mat-icon>dashboard</mat-icon>
     </div>
+    <app-calendar />
   </div>
   <div class="month-view flex-column   center middle" [style.background-image]="background()">
     <router-outlet></router-outlet>
