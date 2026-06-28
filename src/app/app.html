@@ -4,7 +4,9 @@
       <a href="https://all-projects-portfolio.web.app/" target="_blank">
         <img src="logo.svg" />
       </a>
-      <mat-icon>dashboard</mat-icon>
+      <button mat-icon-button (click)="navigate()">
+        <mat-icon> {{activeRoute === '/'? 'dashboard': 'home'}} </mat-icon>
+      </button>
     </div>
     <app-calendar />
   </div>
@@ -18,5 +20,4 @@
 <!-- to do: add more enhancements -->
 <!-- 2. code clean up -->
 <!-- 3. find what to add for text sections -->
-<!-- 4. add navigation from dashboard to mood tracker and reverse -->
 <!-- 5. find a different quote api -->
