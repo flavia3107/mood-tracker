@@ -1,11 +1,11 @@
 <div class="main-container flex-row">
   <div class="calendar flex-column center">
-    <div class="flex-row header space-between">
+    <div class="flex-row header space-between middle">
       <a href="https://all-projects-portfolio.web.app/" target="_blank">
         <img src="logo.svg" />
       </a>
       <button mat-icon-button (click)="navigate()">
-        <mat-icon> {{activeRoute === '/'? 'dashboard': 'home'}} </mat-icon>
+        <mat-icon> {{activeRoute === '/'? 'insights': 'brightness_5'}} </mat-icon>
       </button>
     </div>
     <app-calendar />
@@ -17,7 +17,6 @@
 
 
 <!-- to do: highlight active day  -->
-<!-- to do: add more enhancements -->
 <!-- 2. code clean up -->
 <!-- 3. find what to add for text sections -->
 <!-- 5. find a different quote api -->
