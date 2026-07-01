@@ -6,10 +6,11 @@ import { ChartOptions } from '../../../shared/constants/chart-models';
 import { MONTHLY_MOOD_CONFIG, MOOD_ENTRIES } from '../../../shared/constants/constants';
 import { UtilsService } from '../../../shared/services/utils';
 import { QuoteService } from './other-statistics-services/quote';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-other-statistics',
-  imports: [NgApexchartsModule, AsyncPipe],
+  imports: [NgApexchartsModule, AsyncPipe, MatIconModule],
   templateUrl: './other-statistics.html',
   styleUrl: './other-statistics.scss',
 })
@@ -30,7 +31,8 @@ export class OtherStatistics {
     return {
       series: data.map((d: any) => d.value),
       labels: data.map((d: any) => d.mood),
-      colors: data.map((d: any) => MONTHLY_MOOD_CONFIG[this._utilService.activeMonth()].find((el: { label: string, color: string }) => el.label === d.mood)?.color),
+      colors: data.map((d: any) => MONTHLY_MOOD_CONFIG[this._utilService.activeMonth()]
+        .find((el: { label: string, color: string }) => el.label === d.mood)?.color),
       chart: {
         type: 'donut',
       },
