@@ -22,6 +22,7 @@ export class OtherStatistics {
   public journalSnippet: string | null = null;
   public chartOptions = computed<ChartOptions>(() => this._getChartConfig());
   public iconColors = computed(() => this._getIconColors());
+  public randomValues = { sleep: 0, social: 0, exercise: 0 };
 
   private _getIconColors() {
     const colorConfig = MONTHLY_MOOD_CONFIG[this._utilService.activeMonth()];
@@ -29,6 +30,13 @@ export class OtherStatistics {
   }
   constructor() {
     effect(() => this._getTodayQuote());
+  }
+
+  private _getValues() {
+    const val1 = Math.floor(Math.random() * 97) + 1;
+    const val2 = Math.floor(Math.random() * (98 - val1)) + 1;
+    const val3 = Math.floor(Math.random() * (99 - (val1 + val2))) + 1;
+    return { sleep: val1, social: val2, exercise: val3 }
   }
 
   private _getChartConfig(): ChartOptions {
@@ -62,5 +70,6 @@ export class OtherStatistics {
     const moodEntries = MOOD_ENTRIES[today];
     this.quote$ = this._quoteService.getQuoteByMood(today);
     this.journalSnippet = moodEntries?.[Math.floor(Math.random() * moodEntries?.length)];
+    this.randomValues = this._getValues();
   }
 }
