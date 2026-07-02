@@ -26,33 +26,39 @@
 	<div class="flex-column col">
 		<div class="flex-column section height">
 			<h3 class="section-title">Key Factors</h3>
-			<div class="flex-row space-between">
-				<div class="flex-row">
-					<mat-icon>person</mat-icon>
-					<p class="flex-column">
-						<span class="key">Sleep</span>
-						<span class="percentage">30% </span>
+			<div class="flex-row space-between factors">
+				<div class="flex-row middle">
+					@let sleepColor = `${iconColors()['sleep']}35`;
+					<mat-icon [style.background]="sleepColor" [style.color]="iconColors()['sleep']">local_hotel
+					</mat-icon>
+					<p class="flex-column gap">
+						<strong class="key text-color">Sleep</strong>
+						<span class="percentage text-color">30% </span>
 					</p>
 				</div>
-				<div class="flex-row">
-					<mat-icon>person</mat-icon>
-					<p class="flex-column">
-						<span class="key">Sleep</span>
-						<span class="percentage">30% </span>
+				<div class="flex-row middle">
+					@let socialColor = `${iconColors()['social']}29`;
+					<mat-icon [style.background]="socialColor" [style.color]="iconColors()['social']">people_alt
+					</mat-icon>
+					<p class="flex-column gap">
+						<strong class="key text-color">Social</strong>
+						<span class="percentage text-color">30% </span>
 					</p>
 				</div>
-				<div class="flex-row">
-					<mat-icon>person</mat-icon>
-					<p class="flex-column">
-						<span class="key">Sleep</span>
-						<span class="percentage">30% </span>
+				<div class="flex-row middle">
+					@let exerciseColor = `${iconColors()['exercise']}29`;
+					<mat-icon [style.background]="exerciseColor" [style.color]="iconColors()['exercise']">directions_run
+					</mat-icon>
+					<p class="flex-column gap">
+						<strong class="key text-color">Exercise</strong>
+						<span class="percentage text-color">30% </span>
 					</p>
 				</div>
 			</div>
 		</div>
 		<div class="flex-column section height">
 			<h3 class="section-title">Journal Entry</h3>
-			<p class="journal">{{journalSnippet ?? 'No entry yet'}}</p>
+			<p class="text-color">{{journalSnippet ?? 'No entry yet'}}</p>
 		</div>
 	</div>
 </div>

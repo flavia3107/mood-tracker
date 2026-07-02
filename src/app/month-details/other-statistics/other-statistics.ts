@@ -21,7 +21,12 @@ export class OtherStatistics {
   public quote$: Observable<any> = of(null);
   public journalSnippet: string | null = null;
   public chartOptions = computed<ChartOptions>(() => this._getChartConfig());
+  public iconColors = computed(() => this._getIconColors());
 
+  private _getIconColors() {
+    const colorConfig = MONTHLY_MOOD_CONFIG[this._utilService.activeMonth()];
+    return { sleep: colorConfig[1].color, social: colorConfig[3].color, exercise: colorConfig[5].color }
+  }
   constructor() {
     effect(() => this._getTodayQuote());
   }
