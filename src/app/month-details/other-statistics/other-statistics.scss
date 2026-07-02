@@ -71,12 +71,15 @@ blockquote:after {
 	left: inherit;
 }
 
-blockquote p {
+blockquote em {
 	font-weight: bold;
 	padding-left: 1.75rem;
+	height: fit-content;
+	margin: 3.5rem auto 0;
+	max-width: 25rem;
 }
 
-blockquote p:after {
+blockquote em:after {
 	margin-right: 2rem;
 	flex-direction: row;
 	flex-wrap: nowrap;

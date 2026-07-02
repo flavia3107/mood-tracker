@@ -17,9 +17,9 @@
 		</div>
 		<div class="flex-column section tall-height">
 			@let quote = quote$ | async;
-			<blockquote>
-				<p>{{quote?.quote}}</p>
-				<cite>{{quote?.author}}</cite>
+			<blockquote class="flex-row middle">
+				<em>{{quote?.quote}}</em>
+				<!-- <cite>{{quote?.author}}</cite> -->
 			</blockquote>
 		</div>
 	</div>
