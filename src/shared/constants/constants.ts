@@ -325,3 +325,10 @@ export const MOOD_ENTRIES: { [key: string]: string[] } = {
 		"The house feels incredibly quiet tonight. Just listening to the background hum of the fridge and sitting with my thoughts."
 	]
 };
+
+export type StatusType = 'no_update' | 'update';
+
+export const ACTIVITY_STATUS: Record<StatusType, string> = {
+	no_update: "There is no recent activity to display.",
+	update: "Recent activity: Your mood has been updated for today!"
+};
