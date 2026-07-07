@@ -9,7 +9,9 @@
       </button>
     </div>
     <app-calendar />
-    <mat-icon matTooltip="test" class="info">help_outline</mat-icon>
+    <mat-icon
+      matTooltip="• Current month is live.&#10;• Past months are randomized.&#10;• Data is stored locally on this device, it won't sync if you switch devices."
+      matTooltipClass="multiline-tooltip" class="info">help_outline</mat-icon>
   </div>
   <div class="month-view flex-column center middle" [style.background-image]="background()">
     <router-outlet></router-outlet>

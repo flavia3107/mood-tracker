@@ -69,3 +69,10 @@ app-month-details {
 ::-webkit-scrollbar-corner {
 	background: transparent;
 }
+
+.multiline-tooltip {
+	white-space: pre-line !important;
+	font-size: 13px !important;
+	line-height: 1.5 !important;
+	padding: 10px !important;
+}
