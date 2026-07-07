@@ -5,11 +5,12 @@ import { UtilsService } from '../shared/services/utils';
 import { Calendar } from './calendar/calendar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [Calendar, RouterModule, MatIconModule, MatButtonModule],
+  imports: [Calendar, RouterModule, MatIconModule, MatButtonModule, MatTooltipModule],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
