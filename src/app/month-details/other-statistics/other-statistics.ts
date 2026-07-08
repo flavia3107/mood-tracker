@@ -73,5 +73,6 @@ export class OtherStatistics {
     this.journalSnippet = moodEntries?.[Math.floor(Math.random() * moodEntries?.length)];
     this.randomValues = this._getValues();
     this.activityStatus = ACTIVITY_STATUS[today ? 'update' : 'no_update'];
+    // for update show hour-date , for no update show date today
   }
 }

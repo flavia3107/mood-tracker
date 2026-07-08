@@ -329,6 +329,6 @@ export const MOOD_ENTRIES: { [key: string]: string[] } = {
 export type StatusType = 'no_update' | 'update';
 
 export const ACTIVITY_STATUS: Record<StatusType, string> = {
-	no_update: "There is no recent activity to display.",
-	update: "Recent activity: Your mood has been updated for today!"
+	no_update: "There is no recent activity to display ",
+	update: "Your mood has been updated for today"
 };
