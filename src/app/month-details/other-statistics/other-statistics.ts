@@ -73,6 +73,5 @@ export class OtherStatistics {
     this.journalSnippet = moodEntries?.[Math.floor(Math.random() * moodEntries?.length)];
     this.randomValues = this._getValues();
     this.activityStatus = `${ACTIVITY_STATUS[today ? 'update' : 'no_update']} ${today ?? ''}`;
-    // fix me: for dates that were generated after - dt 3 the today value is not set 
   }
 }

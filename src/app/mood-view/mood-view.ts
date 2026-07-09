@@ -53,10 +53,9 @@ export class MoodView {
     const isAllowed = (selectedDate.getTime() === d2.getTime() || selectedDate.getTime() < d2.getTime() && day['color'] === '#fff');
     if (this._selectedColor && isAllowed) {
       day['color'] = this._selectedColor;
-      const month = this._utilService.monthConfig().find((day: any) => day.dayNumber === d2.getDate());
-      month['label'] = this.activeMood;
-      month['tooltip'] = MOOD_MESSAGES[this.activeMood].label;
-      month['value'] = MOOD_MESSAGES[this.activeMood].value;
+      day['label'] = this.activeMood;
+      day['tooltip'] = MOOD_MESSAGES[this.activeMood].label;
+      day['value'] = MOOD_MESSAGES[this.activeMood].value;
       localStorage.setItem(storageKey, JSON.stringify(this._utilService.monthConfig()))
     }
   }
