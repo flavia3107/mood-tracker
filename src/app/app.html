@@ -5,7 +5,7 @@
         <img src="logo.svg" />
       </a>
       <button mat-icon-button (click)="navigate()">
-        <mat-icon> {{activeRoute === '/'? 'insights': 'brightness_5'}} </mat-icon>
+        <mat-icon> {{activeRoute() === '/'? 'insights': 'brightness_5'}} </mat-icon>
       </button>
     </div>
     <app-calendar />

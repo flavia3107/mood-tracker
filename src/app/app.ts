@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { NavigationEnd, RouterModule } from '@angular/router';
 import { MONTHLY_BACKGROUNDS_COLORS } from '../shared/constants/constants';
 import { UtilsService } from '../shared/services/utils';
 import { Calendar } from './calendar/calendar';
@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -18,9 +20,13 @@ import { Router } from '@angular/router';
 export class App {
   private _utilService = inject(UtilsService);
   private _router = inject(Router);
+  private _nav = toSignal(this._router.events.pipe(filter(e => e instanceof NavigationEnd)));
   protected readonly title = signal('mood-tracker');
   protected background = computed(() => this._getBackground());
-  public activeRoute = '/';
+  public activeRoute = computed(() => {
+    this._nav();
+    return this._router.url;
+  });
 
   private _getBackground() {
     const activeMonth = this._utilService.activeMonth();
@@ -28,7 +34,6 @@ export class App {
   }
 
   public navigate() {
-    this.activeRoute = this.activeRoute === '/' ? '/dashboard' : '/';
-    this._router.navigateByUrl(this.activeRoute);
+    this._router.navigateByUrl(this.activeRoute() === '/' ? '/dashboard' : '/');
   }
 }
