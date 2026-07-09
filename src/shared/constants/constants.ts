@@ -330,5 +330,5 @@ export type StatusType = 'no_update' | 'update';
 
 export const ACTIVITY_STATUS: Record<StatusType, string> = {
 	no_update: "There is no recent activity to display ",
-	update: "Your mood has been updated for today"
+	update: "You updated your mood to:"
 };

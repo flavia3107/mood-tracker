@@ -72,7 +72,7 @@ export class OtherStatistics {
     this.quote$ = this._quoteService.getQuoteByMood(today);
     this.journalSnippet = moodEntries?.[Math.floor(Math.random() * moodEntries?.length)];
     this.randomValues = this._getValues();
-    this.activityStatus = ACTIVITY_STATUS[today ? 'update' : 'no_update'];
-    // for update show hour-date , for no update show date today
+    this.activityStatus = `${ACTIVITY_STATUS[today ? 'update' : 'no_update']} ${today ?? ''}`;
+    // fix me: for dates that were generated after - dt 3 the today value is not set 
   }
 }
