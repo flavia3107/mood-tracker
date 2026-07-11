@@ -15,10 +15,6 @@ p {
 	height: 7rem;
 }
 
-.short-height {
-	height: 5rem;
-}
-
 .tall-height {
 	height: 10.7rem;
 	padding: 0.8rem;
@@ -124,12 +120,18 @@ mat-icon {
 	gap: 0.2rem;
 }
 
-.journal {
+.background {
 	background-image: url("/journal.jpg");
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center left;
+}
+
+.short-height {
+	height: 5rem;
+	background-image: url("/update.png");
+	background-position: bottom center;
 }
 
 .loader-overlay {
