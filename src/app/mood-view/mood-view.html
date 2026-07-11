@@ -329,16 +329,17 @@
 
 		@for (day of m.days; track day) {
 		@let dasharray = `${m.november.segmentLength} ${(m.november.totalPathLength - m.november.segmentLength)}`;
-		@let dashoffset = -((day.date - 1) * (m.november.totalPathLength / 30));
+		@let dashoffset = -((day.dayNumber - 1) * (m.november.totalPathLength / 30));
 		<g [matTooltip]="day.tooltip" matTooltipClass="tooltip november">
 			<use class="scarf-part" xlink:href="#textCurvePath" [attr.stroke]="day.color"
 				[attr.stroke-dasharray]="dasharray" [attr.stroke-dashoffset]="dashoffset" (click)="m.updateMood(day)"
 				[class.today]="day.isActiveDay" />
 			@let textFill = ['#ead6ca', '#ddb892', '#b08968', '#fff'].includes(day.color) ? '#3c2a21' : '#FCF8E8';
-			@let startOffset = ((day.date - 1) * (m.november.totalPathLength / 30)) + (m.november.segmentLength / 2);
+			@let startOffset = ((day.dayNumber - 1) * (m.november.totalPathLength / 30)) + (m.november.segmentLength /
+			2);
 			<text class="label">
 				<textPath xlink:href="#textCurvePath" [attr.fill]="textFill" [attr.startOffset]="startOffset">
-					{{day.date}}
+					{{day.dayNumber}}
 				</textPath>
 			</text>
 		</g>
