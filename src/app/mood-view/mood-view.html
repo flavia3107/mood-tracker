@@ -129,9 +129,9 @@
 			<g (click)="m.updateMood(section)" class="shard-group" [class.today]="section.isActiveDay"
 				matTooltipClass="tooltip april" [matTooltip]="section.tooltip">
 				<path [attr.d]="section.path" [attr.fill]="section.color" />
-				@let textTransform = `rotate(-80 ${section.label.x} ${section.label.y})`;
-				<text class="umbrella-label" [attr.x]="section.label.x" [attr.y]="section.label.y"
-					[attr.transform]="textTransform"> {{ section.day }} </text>
+				@let textTransform = `rotate(-80 ${section.coordinates.x} ${section.coordinates.y})`;
+				<text class="umbrella-label" [attr.x]="section.coordinates.x" [attr.y]="section.coordinates.y"
+					[attr.transform]="textTransform"> {{ section.dayNumber }} </text>
 			</g>
 			}
 		</g>

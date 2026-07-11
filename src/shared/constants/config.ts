@@ -119,7 +119,7 @@ const APRIL_DAYS: any[] = Array.from({ length: 30 }, (_, i) => {
            Q${cx1},90 ${p1.x.toFixed(1)},${p1.y.toFixed(1)} 
            L${p2.x.toFixed(1)},${p2.y.toFixed(1)} 
            Q${cx2},90 ${tx2},${topY} Z`,
-		label: {
+		coordinates: {
 			x: ((p1.x + p2.x) / 2).toFixed(1),
 			y: (((p1.y + p2.y) / 2) - 20).toFixed(1),
 		},
