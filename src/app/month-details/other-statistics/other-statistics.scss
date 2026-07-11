@@ -124,6 +124,14 @@ mat-icon {
 	gap: 0.2rem;
 }
 
+.journal {
+	background-image: url("/journal.jpg");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center left;
+}
+
 .loader-overlay {
 	position: fixed;
 	top: 0;
