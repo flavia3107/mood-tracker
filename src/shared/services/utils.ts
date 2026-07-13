@@ -72,9 +72,11 @@ export class UtilsService {
 	};
 
 	private _getDaysConfig() {
-		const currentMonthStr = new Date().toLocaleString('en-US', { month: 'long' });
-		const isActiveMonthCurrent = this.activeMonth() === currentMonthStr;
-		const storageKey = `month_cache_${this.activeMonth()}`;
+		const currentYear = new Date().getFullYear();
+		const currentMonthStr = `${new Date().toLocaleString('en-US', { month: 'long' })} ${currentYear}`;
+		const activeMonthStr = `${this.activeMonth()} ${this.selectedDate().getFullYear()}`;
+		const isActiveMonthCurrent = activeMonthStr === currentMonthStr;
+		const storageKey = `month_cache_${this.activeMonth()}_${this.selectedDate().getFullYear()}`;
 		const cachedMonth = localStorage.getItem(storageKey);
 
 		if (isActiveMonthCurrent && cachedMonth) return JSON.parse(cachedMonth);
