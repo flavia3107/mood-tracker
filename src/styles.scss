@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Petit+Formal+Script&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Special+Elite");
 
-body {
+*:not(mat-icon) {
 	font-family: "Inter", sans-serif !important;
 }
 
